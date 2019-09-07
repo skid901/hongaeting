@@ -5,6 +5,7 @@
   "dependencies": {
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.2.0",
+    "harmony-reflect": "^1.6.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.1"
