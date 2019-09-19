@@ -3,5 +3,13 @@
     "target": "es6",
     "experimentalDecorators": true
   },
-  "exclude": ["node_modules", "dist"]
+  "baseUrl": ".",
+  "paths": {
+    "src/*": ["./src/"],
+    "component/*": ["./src/component/*"],
+    "resource/*": ["./src/resource/*"],
+    "model/*": ["./src/model/*"],
+    "store/*": ["./src/store/*"],
+    "repository/*": ["./src/repository/*"]
+  }
 }
