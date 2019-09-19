@@ -1,8 +1,9 @@
 {
   "extends": [
-    // "react-app",
+    "eslint:recommended",
+    "plugin:react/recommended",
     "airbnb",
-    "prettier",
+    "plugin:prettier/recommended"
   ],
   "rules": {
     "react/prefer-stateless-function": 0,
@@ -10,6 +11,6 @@
     "react/jsx-one-expression-per-line": 0
   },
   "env": {
-    "browser": true,
-  },
+    "browser": true
+  }
 }
