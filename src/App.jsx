@@ -24,19 +24,41 @@ const App = () => (
     <BrowserRouter>
       <div className="App">
         <nav>
-          <li><Link to="/">Welcome</Link></li>
-          <li><Link to="/signup">signup</Link></li>
-          <li><Link to="/signin">signin</Link></li>
-          <li><Link to="/mypage">MyPage</Link></li>
-          <li><Link to="/introductionform">introductionform</Link></li>
-          <li><Link to="/selfdatinglist">selfdatinglist</Link></li>
-          <li><Link to="/selfdatingdetails">selfdatingdetails</Link></li>
-          <li><Link to="/selfdatingchat">selfdatingchat</Link></li>
-          <li><Link to="/matchmarkingchat">matchmarkingchat</Link></li>
-          <li><Link to="/adminreportchat">adminreportchat</Link></li>
-          <li><Link to="/adminpage">adminpage</Link></li>
+          <li>
+            <Link to="/">Welcome</Link>
+          </li>
+          <li>
+            <Link to="/signup">signup</Link>
+          </li>
+          <li>
+            <Link to="/signin">signin</Link>
+          </li>
+          <li>
+            <Link to="/mypage">MyPage</Link>
+          </li>
+          <li>
+            <Link to="/introductionform">introductionform</Link>
+          </li>
+          <li>
+            <Link to="/selfdatinglist">selfdatinglist</Link>
+          </li>
+          <li>
+            <Link to="/selfdatingdetails">selfdatingdetails</Link>
+          </li>
+          <li>
+            <Link to="/selfdatingchat">selfdatingchat</Link>
+          </li>
+          <li>
+            <Link to="/matchmarkingchat">matchmarkingchat</Link>
+          </li>
+          <li>
+            <Link to="/adminreportchat">adminreportchat</Link>
+          </li>
+          <li>
+            <Link to="/adminpage">adminpage</Link>
+          </li>
         </nav>
-        <hr/>
+        <hr />
         <Switch>
           <Route exact path="/" component={Welcome} />
           <Route path="/signup" component={SignUp} />
