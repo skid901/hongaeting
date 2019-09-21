@@ -2,6 +2,6 @@ import React from 'react';
 
 import './SignUp.scss';
 
-const SignUp = () => <>SignUp Page Here</>;
+const SignUp = () => <>SignUp Page will be here...</>;
 
 export default SignUp;

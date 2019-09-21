@@ -17,14 +17,10 @@ import AdminReportChat from 'component/10AdminReportChat/AdminReportChat';
 import AdminPage from 'component/11AdminPage/AdminPage';
 import ErrorPage from 'component/12ErrorPage/ErrorPage';
 
-const {
-  introductionStore
-} = new RootStore();
+const rootStore = new RootStore();
 
 const App = () => (
-  <Provider
-    introductionStore={introductionStore}
-  >
+  <Provider {...rootStore}>
     <BrowserRouter>
       <div className="App">
         <nav>
@@ -40,6 +36,7 @@ const App = () => (
           <li><Link to="/adminreportchat">adminreportchat</Link></li>
           <li><Link to="/adminpage">adminpage</Link></li>
         </nav>
+        <hr/>
         <Switch>
           <Route exact path="/" component={Welcome} />
           <Route path="/signup" component={SignUp} />

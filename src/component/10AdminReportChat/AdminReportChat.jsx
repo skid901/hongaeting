@@ -2,6 +2,6 @@ import React from 'react';
 
 import './AdminReportChat.scss';
 
-const AdminReportChat = () => <>AdminReportChat Here</>;
+const AdminReportChat = () => <>AdminReportChat will be here...</>;
 
 export default AdminReportChat;
