@@ -11,18 +11,23 @@
     "clsx": "^1.0.4",
     "customize-cra": "^0.7.0",
     "koa": "^2.8.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "koa-send": "^5.0.0",
+    "koa-static": "^5.0.0",
     "mobx": "^5.13.0",
     "mobx-react": "^6.1.3",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-router-dom": "^5.0.1"
+    "react-router-dom": "^5.1.0"
   },
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
-    "koa-test": "node server"
+    "server": "nodemon --watch server/ server/index.js",
+    "deploy": "react-app-rewired build && node server"
   },
   "browserslist": {
     "production": [
@@ -44,8 +49,8 @@
     "eslint-config-prettier": "^6.3.0",
     "eslint-config-react": "^1.1.7",
     "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-react": "^7.14.3",
     "node-sass": "^4.12.0",
+    "nodemon": "^1.19.2",
     "prettier": "^1.18.2",
     "react-app-rewired": "^2.1.3",
     "react-scripts": "^3.1.1"
