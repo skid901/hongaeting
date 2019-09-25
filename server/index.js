@@ -27,5 +27,5 @@ app.use(async ctx => {
 });
 
 app.listen(4000, () => {
-  console.log('Listening to port 4000');
+  console.log('Listening to  http://localhost:4000');
 });
