@@ -52,7 +52,6 @@ const SignUp = () => {
     axios
       .post('api/users/mail', {
         certification: 'tlrudejr1993@mail.hongik.ac.kr',
-        // certification: 'tlrudejr1993@gmail.com',
       })
       .then(response => {
         console.log(response);

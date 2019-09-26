@@ -113,16 +113,15 @@ exports.mail = async ctx => {
     secure: false,
     requireTLS: true,
     auth: {
-      user: 'hongaeting@gmail.com',
-      pass: 'ghdroxld2!',
+      user: '',
+      pass: '',
     },
   });
   // 메일 작성
   const mail = {
-    from: 'hongaeting@gmail.com', // 발송할 이메일
+    from: '', // 발송할 이메일
     to: certification, // 수신할 이메일
     subject: '테스트 메일 제목', // 메일 제목
-    // text: '테스트 메일 내용', // 메일 내용
     html: `<p>HTML version of the <span style="color:blue;">test</span> message</p><br/>
     <a href="http://localhost:4000">test button</a>`,
   };
