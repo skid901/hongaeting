@@ -10,4 +10,6 @@ users.delete('/:id', controller.remove);
 users.put('/:id', controller.replace);
 users.patch('/:id', controller.update);
 
+users.post('/mail', controller.mail);
+
 module.exports = users;

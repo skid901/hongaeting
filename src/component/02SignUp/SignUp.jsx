@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './SignUp.scss';
 import Container from '@material-ui/core/Container';
 import FormControl from '@material-ui/core/FormControl';
@@ -19,13 +20,14 @@ import Button from '@material-ui/core/Button';
 
 const SignUp = () => {
   const [state, setState] = useState({
-    id: '',
+    email: '',
     password: '',
     showPassword: false,
     passwordConfirm: '',
     showPasswordConfirm: false,
-    gender: '0',
-    email: '',
+    nickName: '',
+    sex: 'femail',
+    authEmail: '',
   });
   const handleChange = key => event => {
     setState({ ...state, [key]: event.target.value });
@@ -47,27 +49,31 @@ const SignUp = () => {
   );
   const handleClick = event => {
     event.preventDefault();
-    alert('test');
+    axios
+      .post('api/users/mail', {
+        certification: 'tlrudejr1993@mail.hongik.ac.kr',
+        // certification: 'tlrudejr1993@gmail.com',
+      })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
   return (
-    <div className="SignUp">
-      <Container className="signUp-input">
-        <Paper>
-          <Typography variant="h5" component="h3" color="primary">
-            회원가입
-          </Typography>
-        </Paper>
-      </Container>
+    <div className="signUp">
+      <div className="signUp-title">회원가입</div>
       <Container className="signUp-input">
         <FormControl fullWidth>
-          <InputLabel htmlFor="id">아이디</InputLabel>
+          <InputLabel htmlFor="id">이메일</InputLabel>
           <Input
-            id="signUp-id"
-            placeholder="아이드를 입력해주세요."
-            value={state.id}
-            onChange={handleChange('id')}
+            id="signUp-email"
+            placeholder="이메일을 입력해주세요."
+            value={state.email}
+            onChange={handleChange('email')}
           />
-          <FormHelperText>영문 및 숫자만 사용할 수 있어요.</FormHelperText>
+          <FormHelperText>자주 사용하는 이메일을 입력해주세요.</FormHelperText>
         </FormControl>
       </Container>
       <Container className="signUp-input">
@@ -101,24 +107,38 @@ const SignUp = () => {
         </FormControl>
       </Container>
       <Container className="signUp-input">
+        <FormControl fullWidth>
+          <InputLabel htmlFor="nickName">닉네임</InputLabel>
+          <Input
+            id="signUp-nickName"
+            placeholder="닉네임을 입력해주세요."
+            value={state.nickName}
+            onChange={handleChange('nickName')}
+          />
+          <FormHelperText>
+            홍게팅에서 사용할 닉네임을 입력해주세요.
+          </FormHelperText>
+        </FormControl>
+      </Container>
+      <Container className="signUp-input">
         <FormControl component="fieldset" fullWidth>
           <FormLabel component="legend">성별</FormLabel>
           <RadioGroup
-            id="signUp-gender"
-            aria-label="gender"
-            name="gender"
+            id="signUp-sex"
+            aria-label="sex"
+            name="sex"
             value={state.gender}
-            onChange={handleChange('gender')}
+            onChange={handleChange('sex')}
             row
           >
             <FormControlLabel
-              value="0"
+              value="female"
               control={<Radio color="primary" />}
               labelPlacement="end"
               label="여성"
             />
             <FormControlLabel
-              value="1"
+              value="male"
               control={<Radio color="primary" />}
               labelPlacement="end"
               label="남성"
@@ -128,50 +148,44 @@ const SignUp = () => {
       </Container>
       <Container className="signUp-input">
         <FormControl fullWidth>
-          <InputLabel htmlFor="email">이메일</InputLabel>
+          <InputLabel htmlFor="authEmail">홍대 이메일 계정</InputLabel>
           <Input
-            id="signUp-email"
-            placeholder="이메일을 입력해주세요."
-            value={state.email}
-            onChange={handleChange('email')}
+            id="signUp-authEmail"
+            placeholder="홍대 이메일 계정을 입력해주세요."
+            value={state.authEmail}
+            onChange={handleChange('authEmail')}
             endAdornment={
               <InputAdornment position="end">@mail.hongik.ac.kr</InputAdornment>
             }
           />
           <FormHelperText>
-            홍대생인지 확인하기 위해 홍익대학교 이메일만 입력해주세요.
+            홍대생인지 확인하기 위해 &quot;홍익대학교&quot; 이메일 계정만&nbsp;
+            입력해주세요.
           </FormHelperText>
         </FormControl>
       </Container>
-      <Container className="signUp-input">
-        <Paper>
-          <Typography variant="h6" component="h3">
-            홍익대학교 이메일이 없으신가요?
-          </Typography>
-          <Typography component="p">
-            아직 홍익대학교 이메일이 없거나 기억나지 않는다면,&nbsp;
-            <Button
-              href="http://it.hongik.ac.kr/dept/it/0204.html"
-              target="_blank"
-              color="primary"
-            >
-              이 곳
-            </Button>
-            으로 들어가 &apos;Office365 가입하기&apos;를 눌러주세요.
-          </Typography>
-          <Typography component="p">
-            비밀번호가 기억나지 않는다면,&nbsp;
-            <Button
-              href="http://it.hongik.ac.kr/dept/it/o365_pw_reset.html"
-              target="_blank"
-              color="primary"
-            >
-              이 곳
-            </Button>
-            을 참고해주세요.
-          </Typography>
-        </Paper>
-      </Container>
+      <div className="signUp-notice">
+        홍익대학교 이메일이 없으신가요?
+        <br />
+        아직 홍익대학교 이메일이 없거나 기억나지 않는다면,&nbsp;
+        <Button
+          href="http://it.hongik.ac.kr/dept/it/0204.html"
+          target="_blank"
+          color="primary"
+        >
+          이 곳
+        </Button>
+        으로 들어가 &quot;Office365 가입하기&quot;를 눌러주세요.
+        <br /> 비밀번호가 기억나지 않는다면,&nbsp;
+        <Button
+          href="http://it.hongik.ac.kr/dept/it/o365_pw_reset.html"
+          target="_blank"
+          color="primary"
+        >
+          이 곳
+        </Button>
+        을 참고해주세요.
+      </div>
       <Container className="signUp-input">
         <Button
           id="signUp-request"

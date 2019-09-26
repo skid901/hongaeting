@@ -1,3 +1,5 @@
+const nodemailer = require('nodemailer');
+
 // 초기 회원 ID
 let userId = 0;
 
@@ -9,7 +11,7 @@ const users = [];
  *  POST /api/users
  */
 exports.signUp = ctx => {
-  const { id, password, gender, email, certification } = ctx.request.body;
+  const { email, password, gender, certification } = ctx.request.body;
   userId += 1;
   const user = { id: userId, password, gender, email, certification };
   users.push(user);
@@ -79,7 +81,7 @@ exports.replace = ctx => {
 
 /*
  *  회원 수정(변경)
- *  PUT /api/users/:id
+ *  PATCH /api/users/:id
  */
 exports.update = ctx => {
   const { id } = ctx.params;
@@ -93,4 +95,46 @@ exports.update = ctx => {
   }
   users[index] = { ...users[id], ...ctx.request.body };
   ctx.body = users[id];
+};
+
+// 인증 메일 송신
+/*
+ *  인증 메일 송신
+ *  POST /api/users/mail
+ */
+exports.mail = async ctx => {
+  const { certification } = ctx.request.body;
+  console.log({ certification });
+  // 메일 발송용 인스턴스 생성
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    prot: 587,
+    host: 'smtp.gmlail.com',
+    secure: false,
+    requireTLS: true,
+    auth: {
+      user: 'hongaeting@gmail.com',
+      pass: 'ghdroxld2!',
+    },
+  });
+  // 메일 작성
+  const mail = {
+    from: 'hongaeting@gmail.com', // 발송할 이메일
+    to: certification, // 수신할 이메일
+    subject: '테스트 메일 제목', // 메일 제목
+    // text: '테스트 메일 내용', // 메일 내용
+    html: `<p>HTML version of the <span style="color:blue;">test</span> message</p><br/>
+    <a href="http://localhost:4000">test button</a>`,
+  };
+  // 메일 발송
+  await transporter.sendMail(mail, (error, info) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(`Email sent: ${info.response}`);
+    }
+  });
+  console.log('mailing complete');
+  /* eslint-disable */
+  ctx.body = { message: 'success' };
 };
