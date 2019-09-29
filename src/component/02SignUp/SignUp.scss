@@ -1,4 +1,50 @@
-.signUp-title {
-  background-color: blue;
-  color: white;
+@mixin SignUp {
+  font-size: 1rem;
+  max-width: 768px;
+  margin: {
+    left: auto;
+    right: auto;
+  }
+  padding: 5%;
+}
+
+.title {
+  @include SignUp;
+  background-color: #f6f6f6;
+  color: #333333;
+  text-align: center;
+  font: {
+    size: 2rem;
+    weight: bold;
+  }
+}
+
+.input {
+  @include SignUp;
+}
+
+.notice {
+  @include SignUp;
+  max-width: 965px;
+  padding: {
+    left: 10%;
+    right: 10%;
+  }
+  text-align: center;
+  line-height: 120%;
+}
+
+.service-agreement {
+  text-align: center;
+  font-size: 13px;
+  margin: {
+    left: auto;
+    right: auto;
+  }
+}
+
+.button {
+  margin: {
+    bottom: 20%;
+  }
 }

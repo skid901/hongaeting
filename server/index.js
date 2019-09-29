@@ -4,11 +4,17 @@ const bodyParser = require('koa-bodyparser');
 const path = require('path');
 const serve = require('koa-static');
 const send = require('koa-send');
+const cors = require('@koa/cors');
+
+require('dotenv').config();
 
 const api = require('./api');
 
 const app = new Koa();
 const router = new Router();
+
+// cors
+app.use(cors());
 
 // router 설정
 router.use('/api', api.routes());
@@ -26,6 +32,6 @@ app.use(async ctx => {
   if (ctx.status === 404) await send(ctx, 'index.html', { root });
 });
 
-app.listen(4000, () => {
-  console.log('Listening to http://localhost:4000');
+app.listen(process.env.SERVER_PORT, () => {
+  console.log(`Listening to http://${process.env.REACT_APP_API_URI}`);
 });

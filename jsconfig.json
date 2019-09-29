@@ -5,7 +5,7 @@
   },
   "baseUrl": ".",
   "paths": {
-    "src/*": ["./src/"],
+    "src/*": ["./src/*"],
     "component/*": ["./src/component/*"],
     "resource/*": ["./src/resource/*"],
     "model/*": ["./src/model/*"],

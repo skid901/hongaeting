@@ -97,14 +97,18 @@ exports.update = ctx => {
   ctx.body = users[id];
 };
 
-// 인증 메일 송신
 /*
- *  인증 메일 송신
+ *  인증 메일 발송
  *  POST /api/users/mail
  */
+const htmlContents = `<div>
+  <p>HTML version of the <span style="color:blue;">test</span> message</p><br/>
+  <a href="http://localhost:4000">test button</a>
+</div>`;
+
 exports.mail = async ctx => {
-  const { certification } = ctx.request.body;
-  console.log({ certification });
+  const { authEmail } = ctx.request.body;
+  console.log({ authEmail });
   // 메일 발송용 인스턴스 생성
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -113,17 +117,16 @@ exports.mail = async ctx => {
     secure: false,
     requireTLS: true,
     auth: {
-      user: '',
-      pass: '',
+      user: `${process.env.GMAIL_ID}`,
+      pass: `${process.env.GMAIL_PASSWORD}`,
     },
   });
   // 메일 작성
   const mail = {
     from: '', // 발송할 이메일
-    to: certification, // 수신할 이메일
+    to: authEmail, // 수신할 이메일
     subject: '테스트 메일 제목', // 메일 제목
-    html: `<p>HTML version of the <span style="color:blue;">test</span> message</p><br/>
-    <a href="http://localhost:4000">test button</a>`,
+    html: htmlContents,
   };
   // 메일 발송
   await transporter.sendMail(mail, (error, info) => {
