@@ -5,11 +5,23 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import MaterialTable from 'material-table';
+import menu from './menu.png'
+import send from './send.png'
 
 import './SelfDatingList.scss';
 import Axios from '../../../node_modules/axios/index';
 
 const SelfDatingList = () =>{
+  const [columns, setColumns] = useState([
+    {title : 'ID', field : 'id'},
+    {title : '이름', field : 'name'},
+    {title : '나이', field : 'age'},
+    {title : '소속', field : 'nationality'},
+    {title : '키워드1', field : 'tag1'},
+    {title : '키워드2', field : 'tag2'},
+    {title : '키워드3', field : 'tag3'},
+  ])
   const [datas, setdatas] = useState([
     {
       id:'0',
@@ -73,9 +85,11 @@ const SelfDatingList = () =>{
   }
 
   return(
-    <div className = "Template" >
+    <div className = "Template" sytle={"width : 720px", "margin : 0 auto"}>
       <div className="header">
-        홍셀소
+        <img src={menu} alt="" className = "Menu" />
+        <div className = "Title">홍셀소</div>
+        <img src={send} alt="" className = "Send" />
       </div>
       <div className="pagename">
         <div className="pagename1">
@@ -101,34 +115,15 @@ const SelfDatingList = () =>{
         </div>
       </div>
       <Paper>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>이름</TableCell>
-              <TableCell>나이</TableCell>
-              <TableCell>소속</TableCell>
-              <TableCell>키워드1</TableCell>
-              <TableCell>키워드2</TableCell>
-              <TableCell>키워드3</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {datas.map(data => (
-              <TableRow key = {data.id} onClick={()=>console.log(data.introduction)}>
-                <TableCell component="th" scope="row">
-                  {data.id}
-                </TableCell>
-                <TableCell>{data.name}</TableCell>
-                <TableCell>{data.age}</TableCell>
-                <TableCell>{data.nationality}</TableCell>
-                <TableCell>{data.tag1}</TableCell>
-                <TableCell>{data.tag2}</TableCell>
-                <TableCell>{data.tag3}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        <MaterialTable
+          title="셀소"
+          columns={columns}
+          data={datas}
+          options={{
+            Editable : false
+          }
+          }
+        />
       </Paper>
 
       
