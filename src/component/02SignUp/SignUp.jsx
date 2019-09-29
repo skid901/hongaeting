@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import './SignUp.scss';
+
 import Container from '@material-ui/core/Container';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
@@ -20,6 +22,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 const SignUp = () => {
+  const history = useHistory();
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -92,13 +95,15 @@ const SignUp = () => {
     // 인증 메일 발송
     axios
       .post(`${process.env.REACT_APP_API_URI}/api/users/mail`, {
-        authEmail: 'tlrudejr1993@mail.hongik.ac.kr',
+        authEmail: `${state.authEmail}`,
+        nickName: `${state.nickName}`,
       })
       .then(response => {
         console.log(response);
+        history.push(`/signup/summit`);
       })
       .catch(error => {
-        console.log(error);
+        alert('서버 에러 발생: 관리자에게 문의 부탁드립니다.');
       });
   };
   const endAdornment = key => (

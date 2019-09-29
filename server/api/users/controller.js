@@ -101,14 +101,9 @@ exports.update = ctx => {
  *  인증 메일 발송
  *  POST /api/users/mail
  */
-const htmlContents = `<div>
-  <p>HTML version of the <span style="color:blue;">test</span> message</p><br/>
-  <a href="http://localhost:4000">test button</a>
-</div>`;
-
 exports.mail = async ctx => {
-  const { authEmail } = ctx.request.body;
-  console.log({ authEmail });
+  const { authEmail, nickName } = ctx.request.body;
+  console.log(authEmail);
   // 메일 발송용 인스턴스 생성
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -121,11 +116,17 @@ exports.mail = async ctx => {
       pass: `${process.env.GMAIL_PASSWORD}`,
     },
   });
+  // 메일 내용
+  const htmlContents = `<div>
+  <p><span style="color:blue;">홍개팅</span> 계정 인증용 메일입니다.</p><br/>
+  <div style="background-color: #0045ce;">html css test</div>
+  <a target="_blank" rel="noopener noreferrer" href="${process.env.REACT_APP_DOMAIN}/signup/auth/${nickName}">홍개팅 계정 인증하기</a>
+</div>`;
   // 메일 작성
   const mail = {
     from: '', // 발송할 이메일
-    to: authEmail, // 수신할 이메일
-    subject: '테스트 메일 제목', // 메일 제목
+    to: `${authEmail}@mail.hongik.ac.kr`, // 수신할 이메일
+    subject: '홍개팅 인증 메일 테스트', // 메일 제목
     html: htmlContents,
   };
   // 메일 발송

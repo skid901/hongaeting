@@ -1,0 +1,26 @@
+@mixin Summit {
+  font-size: 1rem;
+  max-width: 768px;
+  margin: {
+    left: auto;
+    right: auto;
+  }
+  padding: 5%;
+}
+
+.notice {
+  @include Summit;
+  max-width: 965px;
+  padding: 10%;
+  margin: {
+    top: 10%;
+  }
+  text-align: center;
+  line-height: 120%;
+}
+
+.button {
+  margin: {
+    bottom: 20%;
+  }
+}

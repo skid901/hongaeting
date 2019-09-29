@@ -3,6 +3,8 @@ import { Switch, Route } from 'react-router-dom';
 
 import Welcome from 'component/01Welcome/Welcome';
 import SignUp from 'component/02SignUp/SignUp';
+import Summit from 'component/02SignUp/Summit';
+import Auth from 'component/02SignUp/Auth';
 import SignIn from 'component/03SignIn/SignIn';
 import MyPage from 'component/04MyPage/MyPage';
 import IntroductionForm from 'component/05IntroductionForm/IntroductionForm';
@@ -17,7 +19,9 @@ import ErrorPage from 'component/12ErrorPage/ErrorPage';
 const Router = () => (
   <Switch>
     <Route exact path="/" component={Welcome} />
-    <Route path="/signup" component={SignUp} />
+    <Route path="/signup/form" component={SignUp} />
+    <Route path="/signup/summit" component={Summit} />
+    <Route path="/signup/auth/:code" component={Auth} />
     <Route path="/signin" component={SignIn} />
     <Route path="/mypage" component={MyPage} />
     <Route path="/introductionform" component={IntroductionForm} />

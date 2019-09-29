@@ -10,7 +10,13 @@ const Welcome = () => (
       <Link to="/">Welcome</Link>
     </li>
     <li>
-      <Link to="/signup">signup</Link>
+      <Link to="/signup/form">signup-form</Link>
+    </li>
+    <li>
+      <Link to="/signup/summit">signup-summit</Link>
+    </li>
+    <li>
+      <Link to="/signup/auth/test">signup-auth</Link>
     </li>
     <li>
       <Link to="/signin">signin</Link>
