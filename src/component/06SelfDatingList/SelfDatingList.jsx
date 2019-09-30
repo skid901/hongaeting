@@ -14,7 +14,9 @@ import Axios from '../../../node_modules/axios/index';
 
 const SelfDatingList = () =>{
   const [columns, setColumns] = useState([
-    {title : 'ID', field : 'id'},
+    {title : 'ID', field : 'id', 
+      cellStyle:{width : 1},
+      headerStyle: {width: 5}},
     {title : '이름', field : 'name'},
     {title : '나이', field : 'age'},
     {title : '소속', field : 'nationality'},
@@ -83,6 +85,9 @@ const SelfDatingList = () =>{
     }
     setdatas(tmplist);
   }
+  const onClick = (e) => {
+    console.log(e)
+  }
 
   return(
     <div className = "Template" sytle={"width : 720px", "margin : 0 auto"}>
@@ -121,8 +126,10 @@ const SelfDatingList = () =>{
           data={datas}
           options={{
             Editable : false
-          }
-          }
+          }}
+          onRowClick={(e,a)=>{
+            <a
+          }}      
         />
       </Paper>
 
