@@ -17,7 +17,6 @@ const SelfDatingList = () =>{
     {title : 'ID', field : 'id', 
       cellStyle:{width : 1},
       headerStyle: {width: 5}},
-    {title : '이름', field : 'name'},
     {title : '나이', field : 'age'},
     {title : '소속', field : 'nationality'},
     {title : '키워드1', field : 'tag1'},
@@ -40,9 +39,11 @@ const SelfDatingList = () =>{
     useTableData();
   },[])
 
+  //const [introduction, setIntroduction] = useState("");
+
   const getTableData = async () => {
     try{
-      return await Axios.get('https://spreadsheets.google.com/feeds/list/1xOsFfS4CuvEMxssqDOKlrxzXMW7jxiuH-49Pq9svGg4/1/public/full?alt=json');
+      return await Axios.get('https://script.google.com/macros/s/AKfycbxvVR6OGNTJoHYz6KMpohrxN1opekMAPVOQfEhPR1Pgxs67C_g/exec');
     } catch (error){
       console.error(error);
     }
@@ -50,7 +51,7 @@ const SelfDatingList = () =>{
 
   const useTableData = async() => {
     const TableDatas = await getTableData();
-    const a = await TableDatas.data.feed.entry;
+    const a = await TableDatas.data.user;
     const length = a.length;
     let tmplist=[];
     let tmp = {
@@ -64,14 +65,14 @@ const SelfDatingList = () =>{
       tag3: 'Demo'
     };
     for(let i = 0; i < length ; i++){
-      tmp.id = TableDatas.data.feed.entry[i].gsx$id.$t;
-      tmp.name = TableDatas.data.feed.entry[i].gsx$name.$t;
-      tmp.age = TableDatas.data.feed.entry[i].gsx$age.$t;
-      tmp.nationality = TableDatas.data.feed.entry[i].gsx$nationality.$t;
-      tmp.introduction = TableDatas.data.feed.entry[i].gsx$introduction.$t;
-      tmp.tag1 = TableDatas.data.feed.entry[i].gsx$tag1.$t;
-      tmp.tag2 = TableDatas.data.feed.entry[i].gsx$tag2.$t;
-      tmp.tag3 = TableDatas.data.feed.entry[i].gsx$tag3.$t;
+      tmp.id = TableDatas.data.user[i].id;
+      tmp.name = TableDatas.data.user[i].name;
+      tmp.age = TableDatas.data.user[i].age;
+      tmp.nationality = TableDatas.data.user[i].nationality;
+      tmp.introduction = TableDatas.data.user[i].introduction;
+      tmp.tag1 = TableDatas.data.user[i].tag1;
+      tmp.tag2 = TableDatas.data.user[i].tag2;
+      tmp.tag3 = TableDatas.data.user[i].tag3;
       tmplist.push({
         id : tmp.id,
         name: tmp.name,
@@ -85,8 +86,11 @@ const SelfDatingList = () =>{
     }
     setdatas(tmplist);
   }
-  const onClick = (e) => {
-    console.log(e)
+
+  const a = (p) => {
+    const x = "http://localhost:3000/selfdatingdetails/" + p.data.id;
+    console.log(p.data);
+    return (<a href={x} >상세보기</a>)
   }
 
   return(
@@ -127,13 +131,27 @@ const SelfDatingList = () =>{
           options={{
             Editable : false
           }}
-          onRowClick={(e,a)=>{
-            <a
-          }}      
+          // onRowClick={(e,a)=>{
+          //   setIntroduction(a.introduction);
+          //}}
+          actions={[
+            {
+              icon: 'more',
+              tooltip: '상세보기!',
+              onClick: (event, rowData) => alert("You saved " + rowData.name)
+            }
+          ]} 
+          options={{
+            actionsColumnIndex: -1
+          }}
+          components={{
+            Action: a
+          }}
         />
       </Paper>
-
-      
+      {/* <div className="Introduction">
+        {introduction}
+      </div> */}
     </div>
   )  
 }
