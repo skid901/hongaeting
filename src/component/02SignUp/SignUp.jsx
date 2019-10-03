@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { observer, MobXProviderContext } from 'mobx-react';
 import axios from 'axios';
 import './SignUp.scss';
 
@@ -21,8 +22,12 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
-const SignUp = () => {
+const SignUp = observer(() => {
+  //
   const history = useHistory();
+
+  const { alert } = useContext(MobXProviderContext);
+
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -34,41 +39,52 @@ const SignUp = () => {
     authEmail: '',
     checked: false,
   });
+
   const handleChange = key => event => {
     setState({ ...state, [key]: event.target.value });
   };
+
+  const handleAlert = (_title, _message) => {
+    alert.setIsOpen(true);
+    alert.setTitle(`${_title}`);
+    alert.setMessage(`${_message}`);
+  };
+
   const handleClick = event => {
     event.preventDefault();
 
-    // 미입력 확인
+    // 미입력 검사
     if (state.email === '') {
-      alert(`이메일을 입력해주세요.`);
+      handleAlert(`이메일 미입력`, `이메일을 입력해주세요.`);
       return;
     }
     if (state.password === '') {
-      alert(`패스워드를 입력해주세요.`);
+      handleAlert(`패스워드 미입력`, `패스워드를 입력해주세요.`);
       return;
     }
     if (state.passwordConfirm === '') {
-      alert(`패스워드를 확인해주세요.`);
+      handleAlert(`패스워드 확인 미입력`, `패스워드 확인을 입력해주세요.`);
       return;
     }
     if (state.nickName === '') {
-      alert(`닉네임을 입력해주세요.`);
+      handleAlert(`닉네임 미입력`, `닉네임을 입력해주세요.`);
       return;
     }
     if (state.authEmail === '') {
-      alert(`홍대 이메일 아이디를 입력해주세요.`);
+      handleAlert(`홍대 이메일 미입력`, `홍대 이메일 아이디를 입력해주세요.`);
       return;
     }
 
-    // 유효성 확인
+    // 유효성 검사
     if (
       !/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i.test(
         state.email,
       )
     ) {
-      alert(`이메일이 형식에 맞는지 확인해주세요.`);
+      handleAlert(
+        `이메일 재확인`,
+        `이메일을 형식에 맞게 입력했는지 확인해주세요.`,
+      );
       return;
     }
     if (
@@ -76,25 +92,37 @@ const SignUp = () => {
         state.password,
       )
     ) {
-      alert(`패스워드가 형식에 맞는지 확인해주세요.`);
+      handleAlert(
+        `패스워드 재확인`,
+        `패스워드를 형식에 맞게 입력했는지 확인해주세요.`,
+      );
       return;
     }
     if (state.password !== state.passwordConfirm) {
-      alert(`패스워드와 패스워드 확인이 일치하는지 확인해주세요.`);
+      handleAlert(
+        `패스워드 확인 미일치`,
+        `패스워드와 패스워드 확인을 같게 입력했는지 확인해주세요.`,
+      );
       return;
     }
     if (!/^[\w\W0-9a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/.test(state.nickName)) {
-      alert(`닉네임이 형식에 맞는지 확인해주세요.`);
+      handleAlert(
+        `닉네임 재확인`,
+        `닉네임을 형식에 맞게 입력했는지 확인해주세요.`,
+      );
       return;
     }
     if (!state.checked) {
-      alert(`이용약관 및 개인정보 처리방침에 동의해주세요.`);
+      handleAlert(
+        `이용약관 및 처리방침 확인`,
+        `이용약관 및 개인정보 처리방침에 동의해주세요.`,
+      );
       return;
     }
 
     // 인증 메일 발송
     axios
-      .post(`${process.env.REACT_APP_API_URI}/api/users/mail`, {
+      .post(`${process.env.REACT_APP_API_URI}/api/user/mail`, {
         authEmail: `${state.authEmail}`,
         nickName: `${state.nickName}`,
       })
@@ -103,9 +131,10 @@ const SignUp = () => {
         history.push(`/signup/summit`);
       })
       .catch(error => {
-        alert('서버 에러 발생: 관리자에게 문의 부탁드립니다.');
+        handleAlert(`서버 오류`, `관리자에게 문의 부탁드립니다.`);
       });
   };
+
   const endAdornment = key => (
     <InputAdornment position="end">
       <IconButton
@@ -121,6 +150,7 @@ const SignUp = () => {
       </IconButton>
     </InputAdornment>
   );
+
   return (
     <div className="SignUp">
       <Container className="title" maxWidth="sm">
@@ -184,7 +214,7 @@ const SignUp = () => {
             required
           />
           <FormHelperText>
-            홍게팅에서 사용할 닉네임을 특수문자 제외 2-10자로 입력해주세요.
+            홍게팅에서 사용할 닉네임을 특수문자 제외 2-10자 입력해주세요.
           </FormHelperText>
         </FormControl>
       </Container>
@@ -217,7 +247,7 @@ const SignUp = () => {
         <FormControl fullWidth>
           <InputLabel htmlFor="authEmail">홍대 이메일 아이디</InputLabel>
           <Input
-            placeholder="홍대 이메일 아이디만 입력해주세요."
+            placeholder="아이디만 입력해주세요."
             value={state.authEmail}
             onChange={handleChange('authEmail')}
             endAdornment={
@@ -230,14 +260,12 @@ const SignUp = () => {
             {`홍대생 인증을 위해 "홍익대학교" 이메일 아이디만 입력해주세요.`}
           </FormHelperText>
         </FormControl>
-      </Container>
-      <Container className="notice" maxWidth="sm">
-        <Paper>
+        <Paper className="notice">
           <Typography variant="h6" gutterBottom>
             {`아직 홍익대학교 이메일이 없으신가요?`}
           </Typography>
           <Typography variant="body2" gutterBottom>
-            {`홍익대학교 이메일을 만들지 않았거나 기억나지 않는다면, `}
+            {`홍익대학교 이메일을 만들지 않았거나 잊어버렸다면, `}
           </Typography>
           <Typography variant="body2" gutterBottom>
             <a
@@ -289,6 +317,6 @@ const SignUp = () => {
       </Container>
     </div>
   );
-};
+});
 
 export default SignUp;

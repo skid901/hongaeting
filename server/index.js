@@ -1,14 +1,27 @@
-const Koa = require('koa');
-const Router = require('koa-router');
-const bodyParser = require('koa-bodyparser');
-const path = require('path');
-const serve = require('koa-static');
-const send = require('koa-send');
-const cors = require('@koa/cors');
+import Koa from 'koa';
+import Router from 'koa-router';
+import bodyParser from 'koa-bodyparser';
+import path from 'path';
+import serve from 'koa-static';
+import send from 'koa-send';
+import cors from '@koa/cors';
+import mongoose from 'mongoose';
+
+import api from './api';
 
 require('dotenv').config();
 
-const api = require('./api');
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+  })
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch(e => {
+    console.error(e);
+  });
 
 const app = new Koa();
 const router = new Router();

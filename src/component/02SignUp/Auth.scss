@@ -5,22 +5,29 @@
     left: auto;
     right: auto;
   }
-  padding: 5%;
+  padding: {
+    top: 20px;
+    left: 30px;
+    bottom: 20px;
+    right: 30px;
+  }
 }
 
 .notice {
   @include Auth;
   max-width: 965px;
-  padding: 10%;
-  margin: {
-    top: 10%;
-  }
   text-align: center;
-  line-height: 120%;
+  padding: {
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+    right: 10px;
+  }
 }
 
 .button {
   margin: {
-    bottom: 20%;
+    top: 20px;
+    bottom: 20px;
   }
 }

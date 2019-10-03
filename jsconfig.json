@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
+    "module": "es2015",
     "experimentalDecorators": true
   },
   "baseUrl": ".",
@@ -10,6 +11,7 @@
     "resource/*": ["./src/resource/*"],
     "model/*": ["./src/model/*"],
     "store/*": ["./src/store/*"],
-    "repository/*": ["./src/repository/*"]
+    "repository/*": ["./src/repository/*"],
+    "server/*": ["./server/*"]
   }
 }

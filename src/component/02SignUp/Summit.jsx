@@ -36,8 +36,6 @@ const Summit = () => {
             {`특별한 문제가 발생할 경우 관리자에게 연락주세요.`}
           </Typography>
         </Paper>
-      </Container>
-      <Container className="input button" maxWidth="sm">
         <Button variant="contained" color="primary" fullWidth>
           로그인 화면으로 이동
         </Button>

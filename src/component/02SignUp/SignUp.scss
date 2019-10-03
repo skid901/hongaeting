@@ -1,11 +1,16 @@
 @mixin SignUp {
   font-size: 1rem;
-  max-width: 768px;
+  max-width: 770px;
   margin: {
     left: auto;
     right: auto;
   }
-  padding: 5%;
+  padding: {
+    top: 20px;
+    left: 30px;
+    bottom: 20px;
+    right: 30px;
+  }
 }
 
 .title {
@@ -26,12 +31,13 @@
 .notice {
   @include SignUp;
   max-width: 965px;
-  padding: {
-    left: 10%;
-    right: 10%;
-  }
   text-align: center;
-  line-height: 120%;
+  padding: {
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+    right: 10px;
+  }
 }
 
 .service-agreement {
@@ -45,6 +51,6 @@
 
 .button {
   margin: {
-    bottom: 20%;
+    bottom: 20px;
   }
 }
