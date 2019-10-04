@@ -8,15 +8,14 @@ import Paper from '@material-ui/core/Paper';
 import MaterialTable from 'material-table';
 import menu from './menu.png'
 import send from './send.png'
+import { inject, observer } from 'mobx-react';
 
 import './SelfDatingList.scss';
 import Axios from '../../../node_modules/axios/index';
 
-const SelfDatingList = () =>{
+const SelfDatingList = ({setSelectedUser}) =>{
   const [columns, setColumns] = useState([
-    {title : 'ID', field : 'id', 
-      cellStyle:{width : 1},
-      headerStyle: {width: 5}},
+    {title : 'ID', field : 'id'},
     {title : '나이', field : 'age'},
     {title : '소속', field : 'nationality'},
     {title : '키워드1', field : 'tag1'},
@@ -51,8 +50,8 @@ const SelfDatingList = () =>{
 
   const useTableData = async() => {
     const TableDatas = await getTableData();
-    const a = await TableDatas.data.user;
-    const length = a.length;
+    const datas = await TableDatas.data.user;
+    const length = datas.length;
     let tmplist=[];
     let tmp = {
       id: '0',
@@ -87,10 +86,11 @@ const SelfDatingList = () =>{
     setdatas(tmplist);
   }
 
-  const a = (p) => {
-    const x = "http://localhost:3000/selfdatingdetails/" + p.data.id;
-    console.log(p.data);
-    return (<a href={x} >상세보기</a>)
+  const atag = (p) => {
+    const dynamicUrl = "http://localhost:3000/selfdatingdetails/" + p.data.id;   
+    return (<a href={dynamicUrl} onClick={()=>{
+      setSelectedUser(p.data.id, p.data.age, p.data.nationality, p.data.introduction, p.data.tag1, p.data.tag2, p.data.tag3);
+    }}>상세보기</a>)
   }
 
   return(
@@ -145,7 +145,7 @@ const SelfDatingList = () =>{
             actionsColumnIndex: -1
           }}
           components={{
-            Action: a
+            Action: atag
           }}
         />
       </Paper>
@@ -156,4 +156,6 @@ const SelfDatingList = () =>{
   )  
 }
 
-export default SelfDatingList;
+export default inject(({selectedUser}) => ({
+  setSelectedUser: selectedUser.setSelectedUser,
+}))(observer(SelfDatingList));
