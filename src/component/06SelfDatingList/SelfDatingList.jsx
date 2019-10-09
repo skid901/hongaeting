@@ -29,13 +29,6 @@ const useStyles = makeStyles({
 const SelfDatingList = ({userList, setTableData, updated}) =>{
   const [searchKeyword, setSearchKeyword] = useState('');
 
-  const atag = (p) => {
-    const dynamicUrl = "http://localhost:3000/selfdatingdetails/" + p.data.id;   
-    return (<a href={dynamicUrl} onClick={()=>{
-      setSelectedUser(p.data.id, p.data.age, p.data.nationality, p.data.introduction, p.data.tag1, p.data.tag2, p.data.tag3);
-    }}>상세보기</a>)
-  }
-
   useEffect( () => {
     setTableData();
     console.log(searchKeyword==false);
@@ -76,8 +69,10 @@ const SelfDatingList = ({userList, setTableData, updated}) =>{
       />
       <div className="CardsWrapper">
         {updated ? (searchKeyword ? (userList.filter((item)=>{
-          return (item.religion.indexOf(searchKeyword)>=0) || (item.personality.indexOf(searchKeyword)>=0) || (item.hobby.indexOf(searchKeyword)>=0)
-        }).map((user, i) => {
+          return (item.religion.indexOf(searchKeyword)>=0) || 
+            (item.personality.indexOf(searchKeyword)>=0) || 
+            (item.hobby.indexOf(searchKeyword)>=0)
+        }).map((user) => {
           return (<Cards
             id={user.id}
             age={user.age}
@@ -86,9 +81,8 @@ const SelfDatingList = ({userList, setTableData, updated}) =>{
             personality={user.personality}
             hobby={user.hobby}
             idealtype={user.idealtype}
-            key={i}
           />)
-        })): userList.map((user, i) => {
+        })): userList.map((user) => {
           return (<Cards
             id={user.id}
             age={user.age}
@@ -97,7 +91,6 @@ const SelfDatingList = ({userList, setTableData, updated}) =>{
             personality={user.personality}
             hobby={user.hobby}
             idealtype={user.idealtype}
-            key={i}
           />)
         })): (<div value="a"/>)}
       </div>
@@ -106,12 +99,8 @@ const SelfDatingList = ({userList, setTableData, updated}) =>{
 }
 
 class Cards extends React.Component{
-  //const classes = useStyle();
   render() {
-    const atag = (a) => {
-      const dynamicUrl = "http://localhost:3000/selfdatingdetails/" + a;
-      return (<a href={dynamicUrl}>상세보기</a>)
-    }
+
     return (
       <Card>
         <CardHeader
@@ -120,7 +109,7 @@ class Cards extends React.Component{
         />
         <CardContent>
           <Typography>
-            이 분의 핵심 키워드는 다음과 같습니다.{this.props.key}
+            이 분의 핵심 키워드는 다음과 같습니다.
             </Typography>
           <Typography>
             {this.props.religion.substring(0, 5)}    {this.props.personality.substring(0, 5)} {this.props.hobby.substring(0, 5)}
@@ -137,7 +126,6 @@ class Cards extends React.Component{
             href={"http://localhost:3000/selfdatingdetails/" + this.props.id}
             size = {"large"}
             variant = {'outlined'}
-            //component={()=>atag(this.props.id)}
           >상세보기</Button>
         </CardActions>
       </Card>
