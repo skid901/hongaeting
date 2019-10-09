@@ -4,12 +4,12 @@ import { Provider } from 'mobx-react';
 import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import SelectedUserStore from './store/SelectedUserStore';
+import UserListStore from './store/UserListStore';
 
-const selectedUser = new SelectedUserStore();
+const userlist = new UserListStore();
 
 ReactDOM.render(
-  <Provider selectedUser = {selectedUser}>
+  <Provider userlist = {userlist}>
     <App />
   </Provider>
 , document.getElementById('root'));
