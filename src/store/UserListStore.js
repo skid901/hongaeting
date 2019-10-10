@@ -1,9 +1,20 @@
 import { observable, action } from 'mobx';
-import { createContext } from 'react';
 import Axios from 'axios';
 
 class UserListStore {
   @observable userList = [];
+
+  @observable selectedUser = {
+    id: '',
+    time: '',
+    age: '',
+    collage: '',
+    kakaoid: '',
+    religion: '',
+    personality: '',
+    hobby: '',
+    idealtype: ''
+  };
 
   @observable updated = false;
 
@@ -56,7 +67,22 @@ class UserListStore {
     }
     this.updated = true;
   }
+
+  @action
+  setSelectedUser = (id, time, age, collage, kakaoid, religion, personality, hobby, idealtype) => {
+    this.selectedUser.id = id;
+    this.selectedUser.time = time;
+    this.selectedUser.age = age;
+    this.selectedUser.collage = collage;
+    this.selectedUser.kakaoid = kakaoid;
+    this.selectedUser.religion = religion;
+    this.selectedUser.personality = personality;
+    this.selectedUser.hobby = hobby;
+    this.selectedUser.idealtype = idealtype;
+    console.log(this.selectedUser)
+  }
 }
 
+
+
 export default UserListStore;
-// export const UserListStoreContext = createContext(new UserListStore());

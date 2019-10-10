@@ -75,6 +75,8 @@ const SelfDatingList = ({userList, setTableData, updated}) =>{
         }).map((user) => {
           return (<Cards
             id={user.id}
+            time={user.time}
+            kakaoid={user.kakaoid}
             age={user.age}
             collage={user.collage}
             religion={user.religion}
@@ -85,6 +87,8 @@ const SelfDatingList = ({userList, setTableData, updated}) =>{
         })): userList.map((user) => {
           return (<Cards
             id={user.id}
+            time={user.time}
+            kakaoid={user.kakaoid}
             age={user.age}
             collage={user.collage}
             religion={user.religion}
@@ -98,9 +102,13 @@ const SelfDatingList = ({userList, setTableData, updated}) =>{
   )  
 }
 
+@inject(({userlist}) => ({
+  setSelectedUser: userlist.setSelectedUser
+}))
+@observer
 class Cards extends React.Component{
   render() {
-
+    const {setSelectedUser} =this.props;
     return (
       <Card>
         <CardHeader
@@ -126,6 +134,17 @@ class Cards extends React.Component{
             href={"http://localhost:3000/selfdatingdetails/" + this.props.id}
             size = {"large"}
             variant = {'outlined'}
+            onClick = {()=>setSelectedUser(
+              this.props.id,
+              this.props.time,
+              this.props.age,
+              this.props.collage,
+              this.props.kakaoid,
+              this.props.religion,
+              this.props.personality,
+              this.props.hobby,
+              this.props.idealtype
+            )}
           >상세보기</Button>
         </CardActions>
       </Card>
