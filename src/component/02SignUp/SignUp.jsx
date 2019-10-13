@@ -151,7 +151,9 @@ const SignUp = observer(() => {
         );
         return;
       }
-      history.push(`/signup/summit`);
+      if (message === `signInSuccess`) {
+        history.push(`/signup/summit`);
+      }
     } catch (e) {
       handleAlert(`서버 오류`, `관리자에게 문의 부탁드립니다.`);
     }

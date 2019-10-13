@@ -8,6 +8,7 @@ import cors from '@koa/cors';
 import mongoose from 'mongoose';
 
 import api from './api';
+import jwtMiddleware from './lib/jwtMiddleware';
 
 require('dotenv').config();
 
@@ -34,6 +35,7 @@ router.use('/api', api.routes());
 
 // router 적용 전 bodyParser 적용
 app.use(bodyParser());
+app.use(jwtMiddleware);
 
 // app 인스턴스에 router 적용
 app.use(router.routes()).use(router.allowedMethods());

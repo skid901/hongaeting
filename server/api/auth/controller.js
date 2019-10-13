@@ -73,8 +73,9 @@ export const signUp = async ctx => {
     await user.setPassword(password);
     await user.setHashedAuthEmail(authEmail);
     await user.save();
+    // 인증 메일 발송
     await mail(authEmail, user.toJSON().hashedAuthEmail);
-    ctx.body = user.serialize();
+    ctx.body = `{ "message" : "signInSuccess"}`;
   } catch (e) {
     ctx.throw(500, e);
   }
@@ -117,6 +118,7 @@ export const signIn = async ctx => {
   const { email, password } = ctx.request.body;
   if (!email || !password) {
     ctx.status = 200;
+    ctx.body = `{ "message" : "noParams"}`;
     return;
   }
   try {
@@ -139,6 +141,12 @@ export const signIn = async ctx => {
       return;
     }
     ctx.body = user.serialize();
+    // 토큰 발행
+    const token = user.generateToken();
+    ctx.cookies.set(`access_token`, token, {
+      maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+      httpOnly: true,
+    });
   } catch (e) {
     ctx.throw(500, e);
   }
@@ -148,10 +156,23 @@ export const signIn = async ctx => {
  *  회원 로그인 체크
  *
  */
-export const check = ctx => {};
+export const check = async ctx => {
+  const { user } = ctx.state;
+  if (!user) {
+    // 로그인 중 아님
+    ctx.status = 200;
+    ctx.body = `{ "message" : "noSignIn" }`;
+    return;
+  }
+  ctx.body = user;
+};
 
 /*
  *  회원 로그아웃
  *
  */
-export const logout = ctx => {};
+export const logout = async ctx => {
+  ctx.cookies.set(`access_token`);
+  ctx.status = 200;
+  ctx.body = `{ "message" : "logout" }`;
+};

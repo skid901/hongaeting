@@ -1,5 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 const UserSchema = new Schema({
   email: String,
@@ -11,6 +12,9 @@ const UserSchema = new Schema({
   isAuthed: { type: Boolean, default: false },
 });
 
+/*
+ *  instance method
+ */
 UserSchema.methods.setPassword = async function(password) {
   const hash = await bcrypt.hash(password, 10);
   this.hashedPassword = hash;
@@ -43,6 +47,23 @@ UserSchema.methods.serialize = function() {
   return data;
 };
 
+UserSchema.methods.generateToken = function() {
+  const token = jwt.sign(
+    {
+      _id: this.id,
+      email: this.email,
+    },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: `7d`, // 토큰 유지기간 7일
+    },
+  );
+  return token;
+};
+
+/*
+ *  static method
+ */
 UserSchema.statics.permit = async function(authEmail) {
   await this.updateOne({ authEmail }, { isAuthed: true });
 };
