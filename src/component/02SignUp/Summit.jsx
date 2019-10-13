@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import './Summit.scss';
 
 import Container from '@material-ui/core/Container';
@@ -7,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
 const Summit = () => {
+  const history = useHistory();
   return (
     <div className="Summit">
       <Container className="notice" maxWidth="sm">
@@ -36,7 +38,14 @@ const Summit = () => {
             {`특별한 문제가 발생할 경우 관리자에게 연락주세요.`}
           </Typography>
         </Paper>
-        <Button variant="contained" color="primary" fullWidth>
+        <Button
+          variant="contained"
+          color="primary"
+          fullWidth
+          onClick={() => {
+            history.push(`/signin`);
+          }}
+        >
           로그인 화면으로 이동
         </Button>
       </Container>

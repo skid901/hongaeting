@@ -50,7 +50,7 @@ const SignUp = observer(() => {
     alert.setMessage(`${_message}`);
   };
 
-  const handleClick = event => {
+  const handleClick = async event => {
     event.preventDefault();
 
     // 미입력 검사
@@ -105,7 +105,7 @@ const SignUp = observer(() => {
       );
       return;
     }
-    if (!/^[\w\W0-9a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/.test(state.nickName)) {
+    if (!/^[\w\W0-9a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]{2,10}$/.test(state.nickName)) {
       handleAlert(
         `닉네임 재확인`,
         `닉네임을 형식에 맞게 입력했는지 확인해주세요.`,
@@ -120,19 +120,41 @@ const SignUp = observer(() => {
       return;
     }
 
-    // 인증 메일 발송
-    axios
-      .post(`${process.env.REACT_APP_API_URI}/api/user/mail`, {
-        authEmail: `${state.authEmail}`,
-        nickName: `${state.nickName}`,
-      })
-      .then(response => {
-        console.log(response);
-        history.push(`/signup/summit`);
-      })
-      .catch(error => {
-        handleAlert(`서버 오류`, `관리자에게 문의 부탁드립니다.`);
-      });
+    try {
+      // 인증 메일 발송
+      let message = ``;
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_URI}/api/auth/signUp`,
+        { ...state },
+      );
+      message = data.message;
+
+      // 결과 처리
+      if (message === `emailReduplication`) {
+        handleAlert(
+          `이메일 중복`,
+          `이미 사용 중인 이메일입니다.\n다른 이메일을 입력해주세요.`,
+        );
+        return;
+      }
+      if (message === `nickNameReduplication`) {
+        handleAlert(
+          `닉네임 중복`,
+          `이미 사용 중인 닉네임입니다.\n다른 닉네임을 입력해주세요.`,
+        );
+        return;
+      }
+      if (message === `authEamilReduplication`) {
+        handleAlert(
+          `홍대 이메일 중복`,
+          `이미 등록된 홍대 이메일입니다.\n문제가 있을 시, 관리자에게 문의 부탁드립니다.`,
+        );
+        return;
+      }
+      history.push(`/signup/summit`);
+    } catch (e) {
+      handleAlert(`서버 오류`, `관리자에게 문의 부탁드립니다.`);
+    }
   };
 
   const endAdornment = key => (

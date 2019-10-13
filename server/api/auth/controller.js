@@ -6,7 +6,7 @@ import User from '../../models/user';
  *  인증 메일 발송
  *
  */
-const mail = (authEmail, hashedAuthEmail) => {
+const mail = async (authEmail, hashedAuthEmail) => {
   // 메일 발송용 인스턴스 생성
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -33,7 +33,7 @@ const mail = (authEmail, hashedAuthEmail) => {
     html: htmlContents,
   };
   // 메일 발송
-  transporter.sendMail(mailConfig, (error, info) => {
+  await transporter.sendMail(mailConfig, (error, info) => {
     if (error) {
       console.log(error);
     } else {
@@ -45,7 +45,7 @@ const mail = (authEmail, hashedAuthEmail) => {
 
 /*
  *  회원 가입
- *  POST /api/users
+ *
  */
 export const signUp = async ctx => {
   const { email, password, nickName, sex, authEmail } = ctx.request.body;
@@ -53,27 +53,56 @@ export const signUp = async ctx => {
     let exists;
     exists = await User.findByEmail(email);
     if (exists) {
-      ctx.status = 409;
-      ctx.body = `{ "message" : "이메일 중복"}`;
+      ctx.status = 200;
+      ctx.body = `{ "message" : "emailReduplication"}`;
       return;
     }
     exists = await User.findByNickName(nickName);
     if (exists) {
-      ctx.status = 409;
-      ctx.body = `{ "message" : "닉네임 중복"}`;
+      ctx.status = 200;
+      ctx.body = `{ "message" : "nickNameReduplication"}`;
       return;
     }
     exists = await User.findByAuthEmail(authEmail);
     if (exists) {
-      ctx.status = 409;
-      ctx.body = `{ "message" : "홍대 이메일 중복"}`;
+      ctx.status = 200;
+      ctx.body = `{ "message" : "authEamilReduplication"}`;
       return;
     }
     const user = new User({ email, nickName, sex, authEmail });
     await user.setPassword(password);
     await user.setHashedAuthEmail(authEmail);
     await user.save();
-    mail(authEmail, user.toJSON().hashedAuthEmail);
+    await mail(authEmail, user.toJSON().hashedAuthEmail);
+    ctx.body = user.serialize();
+  } catch (e) {
+    ctx.throw(500, e);
+  }
+};
+
+/*
+ *  회원 메일 인증
+ *
+ */
+export const authMail = async ctx => {
+  const { hashedAuthEmail } = ctx.request.body;
+  try {
+    let user;
+    user = await User.findByHashedAuthEmail(hashedAuthEmail);
+    if (!user) {
+      ctx.status = 200;
+      ctx.body = `{ "message" : "noAuthEmail"}`;
+      return;
+    }
+    const { authEmail } = await user.serialize();
+    const isAuthed = await user.checkIsAuthed();
+    if (isAuthed) {
+      ctx.status = 200;
+      ctx.body = `{ "message" : "alreadyAuthed"}`;
+      return;
+    }
+    await User.permit(authEmail);
+    user = await User.findByAuthEmail(authEmail);
     ctx.body = user.serialize();
   } catch (e) {
     ctx.throw(500, e);
@@ -82,31 +111,31 @@ export const signUp = async ctx => {
 
 /*
  *  회원 로그인
- *  GET /api/users/:id
+ *
  */
 export const signIn = async ctx => {
   const { email, password } = ctx.request.body;
   if (!email || !password) {
-    ctx.status = 401;
+    ctx.status = 200;
     return;
   }
   try {
     const user = await User.findByEmail(email);
     if (!user) {
-      ctx.status = 401;
-      ctx.body = `{ "message" : "이메일 없음"}`;
+      ctx.status = 200;
+      ctx.body = `{ "message" : "noEmail"}`;
       return;
     }
     const valid = await user.checkPassword(password);
     if (!valid) {
-      ctx.status = 401;
-      ctx.body = `{ "message" : "비밀번호 비일치"}`;
+      ctx.status = 200;
+      ctx.body = `{ "message" : "invalidPassword"}`;
       return;
     }
-    const isAuthed = await user.checkIsAuthed(email);
+    const isAuthed = await user.checkIsAuthed();
     if (!isAuthed) {
-      ctx.status = 401;
-      ctx.body = `{ "message" : "학교 미인증"}`;
+      ctx.status = 200;
+      ctx.body = `{ "message" : "noAuth"}`;
       return;
     }
     ctx.body = user.serialize();

@@ -21,7 +21,7 @@ const Router = () => (
     <Route exact path="/" component={Welcome} />
     <Route path="/signup/form" component={SignUp} />
     <Route path="/signup/summit" component={Summit} />
-    <Route path="/signup/auth/:code" component={Auth} />
+    <Route path="/signup/auth/:hashedAuthEmail" component={Auth} />
     <Route path="/signin" component={SignIn} />
     <Route path="/mypage" component={MyPage} />
     <Route path="/introductionform" component={IntroductionForm} />
@@ -31,6 +31,7 @@ const Router = () => (
     <Route path="/matchmarkingchat" component={MatchmarkingChat} />
     <Route path="/adminreportchat" component={AdminReportChat} />
     <Route path="/adminpage" component={AdminPage} />
+    <Route path="/errorpage" component={ErrorPage} />
     <Route component={ErrorPage} />
   </Switch>
 );

@@ -8,7 +8,7 @@ const UserSchema = new Schema({
   sex: String,
   authEmail: String,
   hashedAuthEmail: String,
-  isAuthed: Boolean,
+  isAuthed: { type: Boolean, default: false },
 });
 
 UserSchema.methods.setPassword = async function(password) {
@@ -31,9 +31,9 @@ UserSchema.methods.checkHashedAuthEmail = async function(authEmail) {
   return result;
 };
 
-UserSchema.methods.checkIsAuthed = async function(email) {
-  const user = this.findOne({ email });
-  return user.toJSON().isAuthed;
+UserSchema.methods.checkIsAuthed = async function() {
+  const data = this.toJSON();
+  return data.isAuthed;
 };
 
 UserSchema.methods.serialize = function() {
@@ -41,6 +41,10 @@ UserSchema.methods.serialize = function() {
   delete data.hashedPassword;
   delete data.hashedAuthEmail;
   return data;
+};
+
+UserSchema.statics.permit = async function(authEmail) {
+  await this.updateOne({ authEmail }, { isAuthed: true });
 };
 
 UserSchema.statics.findByEmail = function(email) {
