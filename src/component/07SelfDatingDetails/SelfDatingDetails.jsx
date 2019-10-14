@@ -1,80 +1,129 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SelfDatingDetails.scss';
-import Tabletop from 'tabletop';
-import Table from '@material-ui/core/Table';
-import TableHead from '@material-ui/core/TableHead';
+import { useHistory } from 'react-router'
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Paper from '@material-ui/core/Paper'
+import CommentIcon from '@material-ui/icons/Comment';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
-import User from './User'
-import ButtonAppBar from'./ex';
-import ExpansionBar from './ExtentionBar';
+import Table from '@material-ui/core/Table';
+import { inject, observer } from 'mobx-react';
 
-class Sheet extends Component {
-  constructor() {
-    super();
-    this.state = {
-      data: [],
-    };
-  }
+const SelfDatingDetails = ({userList, setSelectedUser, selectedUser, history}) =>{
+  
 
-  componentDidMount() {
-    Tabletop.init({
-      key: '1MJ6UiMywoga78H2EHQ70V0TP9I_v1dyx6VUCqUs6RCY',
-      callback: googleData => {
-        this.setState({
-          data: googleData,
-        });
-      },
-      simpleSheet: true,
-    });
-  }
+  useEffect(()=>{
+    // setSelectedUser();
+  },[])
 
-  render() {
-    console.log('updated state--->', this.state);
-    const { data } = this.state;
-    console.dir(data)
-    console.dir(data[0])
-    console.log(data)
-    console.log(data[0])
-    console.log();
+  const useStyles = makeStyles(theme => ({
+    root: {
+      flexGrow: 1,
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    title: {
+      flexGrow: 1,
+    },
+    Expansion: {
+      width: '100%',
+    },
+    Expansionhead: {
+      fontSize: theme.typography.pxToRem(18),
+      fontWeight: theme.typography.fontWeightRegular,
+    },
+    root1: {
+      width: '100%',
+      maxWidth: 3000,
+      backgroundColor: theme.palette.background.paper,
+    },
+    table: {
+      minWidth: 100,
+      maxWidth: 500
+    },
+  }));
+  const classes = useStyles();
+  const handleGoBack = () => {
+    history.goBack(); 
+  };
+
+  const handleGoHome = () => {
+    history.push('/')
+  };
+  const historyy = useHistory();
+
+  console.log(selectedUser)
+  console.log(selectedUser.age)
     return (
+      
       <div>
         <div>
-          <div>
-            <ButtonAppBar />
-          </div>
-          <h1 className="imoji">😊</h1>
-          <h1>(532)24/남학우(..HardCoding..ㅠ)</h1>
-          <h1>밑부분 고장..</h1>
-        </div>
-        <div id="user-table">
+        <button onClick = {() => historyy.goBack()}>뒤로</button>
+        <button onClick = {handleGoHome}>홈으로</button>
+      </div>
+        <h1 className="imoji">😊</h1>
+        <h1>({selectedUser.id}) {selectedUser.age} / {selectedUser.collage}</h1>
+        <Paper>
           <Table>
-            <TableHead>
+            <TableBody>    
               <TableRow>
-                <TableCell>Hash</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell>Link</TableCell>
-                <TableCell>Date</TableCell>
+                <TableCell variant="head"><CommentIcon /> 자기소개</TableCell>
+                <TableCell> {selectedUser.hobby}</TableCell>
               </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.map(obj=>{
-                  return <User key={obj.email} hash={`${obj.hash1} ${obj.hash2} ${obj.hash3}`} email={obj.email} link={obj.link} date={obj.date} />
-                })}
+              <TableRow>    
+                <TableCell variant="head"><CommentIcon />링크</TableCell>
+                <TableCell><a href={selectedUser.kakaoid}>{selectedUser.kakaoid}</a></TableCell>
+              </TableRow>
             </TableBody>
           </Table>
-        </div>    
-        <div className="Sheet">
-          <ExpansionBar name={data.map(obj=>{
-                  return <User key={obj.content1} content1={obj.content1} content2={obj.content2} />
-                })}
-          />
+        </Paper>       
+        <div className={classes.Expansion}>
+          <ExpansionPanel>
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+            <Typography className={classes.Expansiobhead}>😊외모 </Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Typography>그의 외모는 = {selectedUser.personality}</Typography>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+          <ExpansionPanel>
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel2a-content"
+              id="panel2a-header"
+            >
+            <Typography className={classes.heading}>😊성격 </Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Typography>그의 성격은 = {selectedUser.idealtype}</Typography>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+          <ExpansionPanel disabled>
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel3a-content"
+              id="panel3a-header"
+            >
+            <Typography className={classes.heading}>Disabled Expansion Panel</Typography>
+            </ExpansionPanelSummary>
+          </ExpansionPanel>
         </div>
       </div>
-
-    );
+    )
   }
-}
-
-export default Sheet;
+export default inject(({userlist})=>({
+  userList : userlist.userList,
+  selectedUser : userlist.selectedUser,
+  setSelectedUser : userlist.setSelectedUser
+}))(observer(SelfDatingDetails));

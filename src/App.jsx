@@ -7,11 +7,13 @@ import './App.scss';
 import CustomAppBar from 'component/00Common/AppBar';
 import AlertDialog from 'component/00Common/AlertDialog';
 import Router from './Router';
+import UserListStore from './store/UserListStore';
 
+const userlist = new UserListStore();
 const rootStore = new RootStore();
 
 const App = () => (
-  <Provider {...rootStore}>
+  <Provider {...rootStore} userlist = {userlist}>
     <BrowserRouter>
       <div className="App">
         <CustomAppBar />
