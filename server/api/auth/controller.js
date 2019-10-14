@@ -75,7 +75,7 @@ export const signUp = async ctx => {
     await user.save();
     // 인증 메일 발송
     await mail(authEmail, user.toJSON().hashedAuthEmail);
-    ctx.body = `{ "message" : "signInSuccess"}`;
+    ctx.body = `{ "message" : "signUpSuccess"}`;
   } catch (e) {
     ctx.throw(500, e);
   }

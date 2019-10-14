@@ -23,7 +23,7 @@ const Router = () => (
     <Route path="/signup/summit" component={Summit} />
     <Route path="/signup/auth/:hashedAuthEmail" component={Auth} />
     <Route path="/signin" component={SignIn} />
-    <Route path="/mypage" component={MyPage} />
+    <Route path="/mypage/:nickName" component={MyPage} />
     <Route path="/introductionform" component={IntroductionForm} />
     <Route path="/selfdatinglist" component={SelfDatingList} />
     <Route path="/selfdatingdetails" component={SelfDatingDetails} />

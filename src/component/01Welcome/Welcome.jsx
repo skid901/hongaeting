@@ -22,7 +22,7 @@ const Welcome = () => (
       <Link to="/signin">signin</Link>
     </li>
     <li>
-      <Link to="/mypage">MyPage</Link>
+      <Link to="/mypage">myPage</Link>
     </li>
     <li>
       <Link to="/introductionform">introductionform</Link>
