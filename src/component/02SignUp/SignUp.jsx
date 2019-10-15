@@ -151,7 +151,7 @@ const SignUp = observer(() => {
         );
         return;
       }
-      if (message === `signInSuccess`) {
+      if (message === `signUpSuccess`) {
         history.push(`/signup/summit`);
       }
     } catch (e) {
