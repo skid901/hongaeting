@@ -48,5 +48,7 @@ app.use(async ctx => {
 });
 
 app.listen(process.env.SERVER_PORT, () => {
-  console.log(`Listening to http://${process.env.REACT_APP_API_URI}`);
+  console.log(
+    `Listening to http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`,
+  );
 });

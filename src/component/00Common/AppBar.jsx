@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from '@material-ui/core/Slide';
@@ -18,22 +19,31 @@ const HideOnScroll = props => {
   );
 };
 
-const CustomAppBar = props => (
-  <>
-    <CssBaseline />
-    <HideOnScroll {...props}>
-      <AppBar>
-        <Toolbar>
-          <nav>
-            <Typography className="logo" variant="h6">
-              홍개팅
-            </Typography>
-          </nav>
-        </Toolbar>
-      </AppBar>
-    </HideOnScroll>
-    <Toolbar />
-  </>
-);
+const CustomAppBar = props => {
+  const history = useHistory();
+  return (
+    <>
+      <CssBaseline />
+      <HideOnScroll {...props}>
+        <AppBar>
+          <Toolbar>
+            <nav>
+              <Typography
+                className="logo"
+                variant="h6"
+                onClick={() => {
+                  history.push(`/`);
+                }}
+              >
+                홍개팅
+              </Typography>
+            </nav>
+          </Toolbar>
+        </AppBar>
+      </HideOnScroll>
+      <Toolbar />
+    </>
+  );
+};
 
 export default CustomAppBar;
