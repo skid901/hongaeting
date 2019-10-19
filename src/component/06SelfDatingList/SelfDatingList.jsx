@@ -20,8 +20,8 @@ import {
   Route,
   Link,
   withRouter,
+  useHistory,
 } from 'react-router-dom';
-import { useHistory } from 'react-router';
 
 import selfdatingdetails from '../07SelfDatingDetails/SelfDatingDetails';
 import Axios from '../../../node_modules/axios/index';
@@ -34,19 +34,21 @@ const useStyles = makeStyles({
   },
 });
 
-const SelfDatingList = ({ userList, setTableData, updated, history }) => {
+const SelfDatingList = ({ userList, setTableData, updated }) => {
+  const history = useHistory();
   const [searchKeyword, setSearchKeyword] = useState('');
-
   useEffect(() => {
     setTableData();
-    console.log(searchKeyword == false);
+    console.log(searchKeyword === false);
   }, []);
   return (
     <div className="Template" sytle={('width : 720px', 'margin : 0 auto')}>
       <div className="pagename">
         <div className="pagename1">홍익 셀프 소개팅</div>
         <div className="pagename2">여러 학우들과의 대화와 만남</div>
-        <button className="apply">홍셀소 신청하기</button>
+        <button className="apply" type="button">
+          홍셀소 신청하기
+        </button>
       </div>
       <div className="body">
         <div>남학우_셀소</div>
@@ -64,53 +66,22 @@ const SelfDatingList = ({ userList, setTableData, updated, history }) => {
         onChange={e => setSearchKeyword(e.target.value)}
       />
       <div className="CardsWrapper">
-        {updated ? (
-          searchKeyword ? (
-            userList
-              .filter(item => {
-                return (
-                  item.religion.indexOf(searchKeyword) >= 0 ||
-                  item.personality.indexOf(searchKeyword) >= 0 ||
-                  item.hobby.indexOf(searchKeyword) >= 0
-                );
-              })
-              .map(user => {
-                return (
-                  <Cards
-                    id={user.id}
-                    time={user.time}
-                    kakaoid={user.kakaoid}
-                    age={user.age}
-                    collage={user.collage}
-                    religion={user.religion}
-                    personality={user.personality}
-                    hobby={user.hobby}
-                    idealtype={user.idealtype}
-                    history={history}
-                  />
-                );
-              })
-          ) : (
-            userList.map(user => {
-              return (
-                <Cards
-                  id={user.id}
-                  time={user.time}
-                  kakaoid={user.kakaoid}
-                  age={user.age}
-                  collage={user.collage}
-                  religion={user.religion}
-                  personality={user.personality}
-                  hobby={user.hobby}
-                  idealtype={user.idealtype}
-                  history={history}
-                />
-              );
-            })
-          )
-        ) : (
-          <div value="a" />
-        )}
+        {(() => {
+          let result = null;
+          if (updated) {
+            result = searchKeyword
+              ? userList
+                  .filter(
+                    item =>
+                      item.religion.indexOf(searchKeyword) >= 0 ||
+                      item.personality.indexOf(searchKeyword) >= 0 ||
+                      item.hobby.indexOf(searchKeyword) >= 0,
+                  )
+                  .map(user => <Cards user={user} history={history} />)
+              : userList.map(user => <Cards user={user} history={history} />);
+          }
+          return result;
+        })()}
       </div>
     </div>
   );
@@ -122,39 +93,35 @@ const SelfDatingList = ({ userList, setTableData, updated, history }) => {
 @observer
 class Cards extends React.Component {
   render() {
-    const { setSelectedUser } = this.props;
-    const url = `/selfdatingdetails/${this.props.id.toString().split('(')[0]}`;
+    const { setSelectedUser, user, history } = this.props;
+    const url = `/selfdatingdetails/${user.id.toString().split('(')[0]}`;
     return (
       <Card>
-        <CardHeader
-          title={this.props.id}
-          subheader={`${this.props.age}/${this.props.collage}`}
-        />
+        <CardHeader title={user.id} subheader={`${user.age}/${user.collage}`} />
         <CardContent>
           <Typography>이 분의 핵심 키워드는 다음과 같습니다.</Typography>
           <Typography>
-            {this.props.religion.substring(0, 5)}{' '}
-            {this.props.personality.substring(0, 5)}{' '}
-            {this.props.hobby.substring(0, 5)}
+            {user.religion.substring(0, 5)} {user.personality.substring(0, 5)}{' '}
+            {user.hobby.substring(0, 5)}
           </Typography>
           <Typography>직접 작성하신 한 줄 소개입니다.</Typography>
-          <Typography>{this.props.idealtype.substring(0, 40)}</Typography>
+          <Typography>{user.idealtype.substring(0, 40)}</Typography>
         </CardContent>
         <CardActions>
           <Button
             onClick={() => {
               setSelectedUser(
-                this.props.id.toString().split('(')[0],
-                this.props.time,
-                this.props.age,
-                this.props.collage,
-                this.props.kakaoid,
-                this.props.religion,
-                this.props.personality,
-                this.props.hobby,
-                this.props.idealtype,
+                user.id.toString().split('(')[0],
+                user.time,
+                user.age,
+                user.collage,
+                user.kakaoid,
+                user.religion,
+                user.personality,
+                user.hobby,
+                user.idealtype,
               );
-              this.props.history.push(url);
+              history.push(url);
             }}
           >
             상세보기
