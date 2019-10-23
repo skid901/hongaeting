@@ -17,8 +17,8 @@ class SocketStore {
       name: 'test-name',
       userid: 'test-userid',
     });
-    this.instance.on('login', data => {
-      console.log('on login', { data });
+    this.instance.on('login confirm', data => {
+      console.log('on login confirm', { data });
     });
     this.instance.on('s2c chat', data => {
       console.log('on s2c chat', { data });

@@ -19,7 +19,7 @@ function socketServer(httpServer) {
       socket.userid = data.userid;
 
       // 접속된 모든 클라이언트에게 메시지를 전송한다
-      io.emit('login', data.name);
+      io.emit('confirm', data.name);
     });
 
     // 클라이언트로부터의 메시지가 수신되면
