@@ -9,20 +9,33 @@ class SocketStore {
 
   constructor(rootStore) {
     this.rootStore = rootStore;
+    this.instance = socketIoClient(process.env.REACT_APP_API_URI, {
+      path: '/socket.io',
+    });
+    // this.instance.off('confirm');
+    this.instance.on('confirm', data => {
+      console.log('on confirm', data.socketid, { data });
+    });
+    this.instance.emit('login', {
+      name: 'test name',
+      userid: 'test userid',
+    });
+    // this.instance.off('test');
+    // this.instance.on('test', data => {
+    //   console.log(data);
+    // });
   }
 
-  @action login = () => {
-    this.instance = socketIoClient(process.env.REACT_APP_API_URI);
-    this.instance.emit('login', {
-      name: 'test-name',
-      userid: 'test-userid',
-    });
-    this.instance.on('login confirm', data => {
-      console.log('on login confirm', { data });
-    });
-    this.instance.on('s2c chat', data => {
-      console.log('on s2c chat', { data });
-    });
+  @action on = (eventName, callback) => {
+    this.instance.on(eventName, callback);
+  };
+
+  @action off = eventName => {
+    this.instance.off(eventName);
+  };
+
+  @action emit = (eventName, params) => {
+    this.instance.emit(eventName, params);
   };
 }
 
