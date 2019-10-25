@@ -42,7 +42,7 @@ const SelfDatingChat = () => {
         }}
       />
       <input
-        type="button"
+        type="submit"
         value="submit"
         onClick={e => {
           handleClick(e);
