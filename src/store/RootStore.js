@@ -1,5 +1,5 @@
 import IntroductionStore from 'store/IntroductionStore';
-import AlertStore from 'store/AlertStore';
+import AlertStore from 'store/alertStore';
 import UserListStore from 'store/UserListStore';
 
 class RootStore {
