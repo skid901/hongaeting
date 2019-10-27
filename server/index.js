@@ -6,9 +6,11 @@ import serve from 'koa-static';
 import send from 'koa-send';
 import cors from '@koa/cors';
 import mongoose from 'mongoose';
+import http from 'http';
 
 import api from './api';
 import jwtMiddleware from './lib/jwtMiddleware';
+import socketServer from './socket';
 
 require('dotenv').config();
 
@@ -47,7 +49,13 @@ app.use(async ctx => {
   if (ctx.status === 404) await send(ctx, 'index.html', { root });
 });
 
-app.listen(process.env.SERVER_PORT, () => {
+// http 서버
+const httpServer = http.createServer(app.callback());
+
+// socket 서버
+socketServer(httpServer);
+
+httpServer.listen(process.env.SERVER_PORT, () => {
   console.log(
     `Listening to http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`,
   );
