@@ -18,6 +18,7 @@ function socketServer(httpServer) {
       socket.disconnect();
     });
 
+    // discinnect
     socket.on('disconnect', () => {
       console.log(`user disconnected: ${socket.name}`);
     });
@@ -38,14 +39,11 @@ function socketServer(httpServer) {
       socket.userid = data.userid;
 
       // 접속된 모든 클라이언트에게 메시지를 전송한다
-<<<<<<< HEAD
-      io.emit('confirm', { name: data.name, socketid: socket.id });
-=======
-      io.emit('login', data.name);
->>>>>>> parent of 93e4f3a... chat client temp
+      // io.emit('login', data.name);
+      io.emit('login', socket.id);
     });
 
-    // 클라이언트로부터의 메시지가 수신되면
+    // 클라이언트로부터의 메시지 수신
     socket.on('chat', data => {
       console.log('Message from %s: %s', socket.name, data.msg);
 
