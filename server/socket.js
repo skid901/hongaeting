@@ -5,7 +5,7 @@ function socketServer(httpServer) {
   //
   const io = socketIO(httpServer, {
     path: '/socket.io',
-    pingTimeout: 1000 * 10,
+    // pingTimeout: 1000 * 10,
   });
 
   io.on('connection', socket => {
@@ -56,7 +56,7 @@ function socketServer(httpServer) {
       };
 
       // 접속된 모든 클라이언트에게 메시지를 전송
-      io.emit('s2c chat', msg);
+      io.emit('s2c chat', { name: data.name, msg: data.msg });
 
       // 메시지를 전송한 클라이언트를 제외한 모든 클라이언트에게 메시지를 전송
       // socket.broadcast.emit('s2c chat', msg);
