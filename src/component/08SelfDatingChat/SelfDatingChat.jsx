@@ -1,8 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
+import { observer, inject } from 'mobx-react';
 import socketIoClient from 'socket.io-client';
 
 import './SelfDatingChat.scss';
 
+@inject('user')
+@observer
 class SelfDatingChat extends React.Component {
   constructor(props) {
     super(props);
@@ -13,7 +16,8 @@ class SelfDatingChat extends React.Component {
     this.inputRef = React.createRef();
     this.handleClick = this.handleClick.bind(this);
 
-    this.socket = socketIoClient(process.env.REACT_APP_API_URI, {
+    this.socket = socketIoClient(`${process.env.REACT_APP_API_URI}/chat`, {
+      // this.socket = socketIoClient(`${process.env.REACT_APP_API_URI}`, {
       path: '/socket.io',
       transports: ['websocket'],
     });
@@ -29,6 +33,7 @@ class SelfDatingChat extends React.Component {
       const { log } = this.state;
       this.setState({ log: [...log, { name, msg }] });
     });
+    this.socket.emit('join', {});
   }
 
   componentWillUnmount() {

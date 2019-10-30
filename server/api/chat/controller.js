@@ -1,18 +1,20 @@
 import Room from '../../models/room';
 import Chat from '../../models/chat';
+import User from '../../models/user';
 
 /*
- *  회원 로그아웃
+ *  방 만들기
  *
  */
-export const logout = async ctx => {
+export const makeRoom = async ctx => {
   ctx.cookies.set(`access_token`);
   ctx.status = 200;
   ctx.body = `{ "message" : "logout" }`;
 };
 
-export const logout1 = async ctx => {
-  ctx.cookies.set(`access_token`);
+export const userList = async ctx => {
   ctx.status = 200;
-  ctx.body = `{ "message" : "logout" }`;
+  const users = User.find({});
+  console.log({ users });
+  ctx.body = users ? users.toJson() : '';
 };

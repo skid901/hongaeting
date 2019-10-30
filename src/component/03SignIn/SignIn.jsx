@@ -14,7 +14,7 @@ const SignIn = observer(() => {
   //
   const history = useHistory();
 
-  const { alert } = useContext(MobXProviderContext);
+  const { alert, user } = useContext(MobXProviderContext);
 
   const [state, setState] = useState({
     email: '',
@@ -66,7 +66,7 @@ const SignIn = observer(() => {
       );
       message = data.message || ``;
 
-      // 결과 처리
+      // 결과 오류 처리
       if (message === `noEmail`) {
         handleAlert(
           `이메일 오류`,
@@ -89,7 +89,15 @@ const SignIn = observer(() => {
         return;
       }
 
-      history.push(`/mypage/${data.nickName || ``}`);
+      // 유저 정보 저장
+      user.setEmail(data.email);
+      user.setNickName(data.nickName);
+      user.setSex(data.sex);
+      user.setAuthEmail(data.authEmail);
+
+      // 마이페이지로 이동
+      // history.push(`/mypage/${data.nickName || ``}`);
+      history.push(`/demo`);
     } catch (e) {
       handleAlert(`서버 오류`, `관리자에게 문의 부탁드립니다.`);
     }

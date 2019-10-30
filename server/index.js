@@ -37,6 +37,8 @@ router.use('/api', api.routes());
 
 // router 적용 전 bodyParser 적용
 app.use(bodyParser());
+
+// 토큰 검증 미들웨어
 app.use(jwtMiddleware);
 
 // app 인스턴스에 router 적용
@@ -53,7 +55,7 @@ app.use(async ctx => {
 const httpServer = http.createServer(app.callback());
 
 // socket 서버
-socketServer(httpServer);
+socketServer(httpServer, app);
 
 httpServer.listen(process.env.SERVER_PORT, () => {
   console.log(

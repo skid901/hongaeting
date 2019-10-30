@@ -16,6 +16,8 @@ import AdminReportChat from 'component/10AdminReportChat/AdminReportChat';
 import AdminPage from 'component/11AdminPage/AdminPage';
 import ErrorPage from 'component/12ErrorPage/ErrorPage';
 
+import demo from 'component/04MyPage/demo';
+
 const Router = () => (
   <Switch>
     <Route exact path="/" component={Welcome} />
@@ -32,6 +34,7 @@ const Router = () => (
     <Route path="/adminreportchat" component={AdminReportChat} />
     <Route path="/adminpage" component={AdminPage} />
     <Route path="/errorpage" component={ErrorPage} />
+    <Route path="/demo" component={demo} />
     <Route component={ErrorPage} />
   </Switch>
 );
