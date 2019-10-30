@@ -275,7 +275,7 @@ const SignUp = observer(() => {
             value={state.authEmail}
             onChange={handleChange('authEmail')}
             endAdornment={
-              <InputAdornment position="end">@mail.hongik.ac.kr</InputAdornment>
+              <InputAdornment position="end">{`@${process.env.REACT_APP_AUTH_EMAIL_DOMAIN}`}</InputAdornment>
             }
             autoComplete="off"
             required

@@ -10,6 +10,7 @@ const UserSchema = new Schema({
   authEmail: String,
   hashedAuthEmail: String,
   isAuthed: { type: Boolean, default: false },
+  createdAt: { type: Date, default: Date.now },
 });
 
 /*

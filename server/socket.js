@@ -45,7 +45,7 @@ function socketServer(httpServer) {
 
     // 클라이언트로부터의 메시지 수신
     socket.on('chat', data => {
-      console.log('Message from %s: %s', socket.name, data.msg);
+      console.log('Message from %s: %s', data.name, data.msg);
 
       const msg = {
         from: {

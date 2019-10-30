@@ -6,7 +6,7 @@ import User from '../../models/user';
  *  인증 메일 발송
  *
  */
-const mail = async (authEmail, hashedAuthEmail) => {
+const mail = (authEmail, hashedAuthEmail) => {
   // 메일 발송용 인스턴스 생성
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -28,12 +28,12 @@ const mail = async (authEmail, hashedAuthEmail) => {
   // 메일 작성
   const mailConfig = {
     from: '', // 발송할 이메일
-    to: `${authEmail}@mail.hongik.ac.kr`, // 수신할 이메일
+    to: authEmail, // 수신할 이메일
     subject: '홍개팅 인증 메일 테스트', // 메일 제목
     html: htmlContents,
   };
   // 메일 발송
-  await transporter.sendMail(mailConfig, (error, info) => {
+  transporter.sendMail(mailConfig, (error, info) => {
     if (error) {
       console.log(error);
     } else {
@@ -48,7 +48,8 @@ const mail = async (authEmail, hashedAuthEmail) => {
  *
  */
 export const signUp = async ctx => {
-  const { email, password, nickName, sex, authEmail } = ctx.request.body;
+  const { email, password, nickName, sex } = ctx.request.body;
+  const authEmail = `${ctx.request.body.authEmail}@${process.env.REACT_APP_AUTH_EMAIL_DOMAIN}`;
   try {
     let exists;
     exists = await User.findByEmail(email);
