@@ -13,6 +13,6 @@ const SelfDatingSchema = new Schema({
   idealtype: String
 });
 
-const DatingUser = mongoose.model('Datinguser', SelfDatingSchema);
+const DatingUser = mongoose.model('datinguser', SelfDatingSchema);
 
 export default DatingUser;

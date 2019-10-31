@@ -3,6 +3,8 @@ import * as controller from './controller';
 
 const datingUser = new Router();
 
-datingUser.get('/', controller.create);
+datingUser.post('/', controller.create);
+datingUser.get('/:pageNumber', controller.list);
+datingUser.get('/', controller.all);
 
 export default datingUser;

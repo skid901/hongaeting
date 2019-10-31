@@ -8,12 +8,14 @@ import CustomAppBar from 'component/00Common/AppBar';
 import AlertDialog from 'component/00Common/AlertDialog';
 import Router from './Router';
 import UserListStore from './store/UserListStore';
+import SelfDatingUserStore from './store/SelfDatingUserStore';
 
 const userlist = new UserListStore();
+const selfDatingUser = new SelfDatingUserStore();
 const rootStore = new RootStore();
 
 const App = () => (
-  <Provider {...rootStore} userlist = {userlist}>
+  <Provider {...rootStore} userlist = {userlist} selfDatingUser = {selfDatingUser}>
     <BrowserRouter>
       <div className="App">
         <CustomAppBar />

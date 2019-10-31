@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import ReactPaginate from 'react-paginate';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 
@@ -34,7 +35,7 @@ const useStyles = makeStyles({
   },
 });
 
-const SelfDatingList = ({ userList, setTableData, updated }) => {
+const SelfDatingList = ({ userList, setTableData, updated, getUsers}) => {
   const history = useHistory();
   const [searchKeyword, setSearchKeyword] = useState('');
   useEffect(() => {
@@ -46,12 +47,14 @@ const SelfDatingList = ({ userList, setTableData, updated }) => {
       <div className="pagename">
         <div className="pagename1">홍익 셀프 소개팅</div>
         <div className="pagename2">여러 학우들과의 대화와 만남</div>
-        <button className="apply" type="button">
+        <button className="apply" type="button" onClick={()=>getUsers()}>
           홍셀소 신청하기
         </button>
       </div>
       <div className="body">
-        <div>남학우_셀소</div>
+        <div>
+          남학우_셀소
+        </div>
         <div>
           1.
           <br />
@@ -82,6 +85,13 @@ const SelfDatingList = ({ userList, setTableData, updated }) => {
           }
           return result;
         })()}
+      </div>
+      <div className="page">
+        <ReactPaginate
+          pageCount={10}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={1}
+        />
       </div>
     </div>
   );
@@ -132,8 +142,9 @@ class Cards extends React.Component {
   }
 }
 
-export default inject(({ userlist }) => ({
+export default inject(({ userlist, selfDatingUser }) => ({
   userList: userlist.userList,
   setTableData: userlist.setTableData,
   updated: userlist.updated,
+  getUsers: selfDatingUser.getUsers,
 }))(observer(SelfDatingList));
