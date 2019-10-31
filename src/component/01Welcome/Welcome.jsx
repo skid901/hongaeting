@@ -45,6 +45,9 @@ const Welcome = () => (
     <li>
       <Link to="/adminpage">adminpage</Link>
     </li>
+    <li>
+      <Link to="/demo">demo</Link>
+    </li>
   </div>
 );
 

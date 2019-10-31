@@ -28,7 +28,8 @@ const Auth = () => {
     (async () => {
       // 인증 확인
       const { data } = await axios.post(
-        `${process.env.REACT_APP_API_URI}/api/auth/authEmail`,
+        // `${process.env.REACT_APP_API_URI}/api/auth/authEmail`,
+        `/api/auth/authEmail`,
         { hashedAuthEmail },
       );
 

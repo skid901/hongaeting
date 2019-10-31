@@ -124,7 +124,8 @@ const SignUp = observer(() => {
       // 인증 메일 발송
       let message = ``;
       const { data } = await axios.post(
-        `${process.env.REACT_APP_API_URI}/api/auth/signUp`,
+        // `${process.env.REACT_APP_API_URI}/api/auth/signUp`,
+        `/api/auth/signUp`,
         { ...state },
       );
       message = data.message;

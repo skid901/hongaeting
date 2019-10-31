@@ -9,6 +9,13 @@ const ChatSchema = new Schema({
   isDeleted: { type: Boolean, default: false },
 });
 
+ChatSchema.statics.findChatLogList = async function(room) {
+  return this.find(
+    { $and: [{ room }, { isDeleted: false }] },
+    { chat: 1, user: 1 },
+  ).populate('user', 'nickName');
+};
+
 const Chat = mongoose.model('Chat', ChatSchema);
 
 export default Chat;

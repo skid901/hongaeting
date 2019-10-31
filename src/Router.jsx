@@ -29,7 +29,7 @@ const Router = () => (
     <Route path="/introductionform" component={IntroductionForm} />
     <Route path="/selfdatinglist" component={SelfDatingList} />
     <Route path="/selfdatingdetails" component={SelfDatingDetails} />
-    <Route path="/selfdatingchat" component={SelfDatingChat} />
+    <Route path="/selfdatingchat/:roomId" component={SelfDatingChat} />
     <Route path="/matchmarkingchat" component={MatchmarkingChat} />
     <Route path="/adminreportchat" component={AdminReportChat} />
     <Route path="/adminpage" component={AdminPage} />

@@ -53,6 +53,9 @@ UserSchema.methods.generateToken = function() {
     {
       _id: this.id,
       email: this.email,
+      nickName: this.nickName,
+      sex: this.sex,
+      authEmail: this.authEmail,
     },
     process.env.JWT_SECRET,
     {
@@ -83,6 +86,10 @@ UserSchema.statics.findByAuthEmail = function(authEmail) {
 
 UserSchema.statics.findByHashedAuthEmail = function(hashedAuthEmail) {
   return this.findOne({ hashedAuthEmail });
+};
+
+UserSchema.statics.findAllUsers = async function() {
+  return this.find({ isAuthed: true }, { email: 1, nickName: 1, sex: 1 });
 };
 
 const User = mongoose.model('User', UserSchema);

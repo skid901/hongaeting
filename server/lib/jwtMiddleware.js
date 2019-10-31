@@ -2,13 +2,16 @@ import jwt from 'jsonwebtoken';
 import User from '../models/user';
 
 const jwtMiddleware = async (ctx, next) => {
-  const token = ctx.cookies.get('access_token');
+  const token = ctx.cookies.get(`access_token`);
   if (!token) return next(); // 토큰 없음
   try {
     const decode = jwt.verify(token, process.env.JWT_SECRET);
     ctx.state.user = {
       _id: decode._id,
       email: decode.email,
+      nickName: decode.nickName,
+      sex: decode.sex,
+      authEmail: decode.authEmail,
     };
     // 토큰 유효기간 3.5일 미만일 시 재발급
     const now = Math.floor(Date.now() / 1000);

@@ -61,7 +61,8 @@ const SignIn = observer(() => {
       // 인증 메일 발송
       let message = ``;
       const { data } = await axios.post(
-        `${process.env.REACT_APP_API_URI}/api/auth/signIn`,
+        // `${process.env.REACT_APP_API_URI}/api/auth/signIn`,
+        `/api/auth/signIn`,
         { ...state },
       );
       message = data.message || ``;
