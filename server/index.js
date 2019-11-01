@@ -45,12 +45,12 @@ app.use(jwtMiddleware);
 app.use(router.routes()).use(router.allowedMethods());
 
 // build 배포
-// const root = path.join(__dirname, '..', 'build');
-// app.use(serve(root));
+const root = path.join(__dirname, '..', 'build');
+app.use(serve(root));
 
-// app.use(async ctx => {
-//   if (ctx.status === 404) await send(ctx, 'index.html', { root });
-// });
+app.use(async ctx => {
+  if (ctx.status === 404) await send(ctx, 'index.html', { root });
+});
 
 // http 서버
 const httpServer = http.createServer(app.callback());

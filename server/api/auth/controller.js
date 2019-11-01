@@ -32,6 +32,10 @@ const mail = (authEmail, hashedAuthEmail) => {
     subject: '홍개팅 인증 메일 테스트', // 메일 제목
     html: htmlContents,
   };
+  // test
+  console.log(
+    `\ntest\n${process.env.GMAIL_ID}\n${process.env.GMAIL_PASSWORD}\n`,
+  );
   // 메일 발송
   transporter.sendMail(mailConfig, (error, info) => {
     if (error) {
@@ -40,7 +44,6 @@ const mail = (authEmail, hashedAuthEmail) => {
       console.log(`Email sent: ${info.response}`);
     }
   });
-  console.log('mailing complete');
 };
 
 /*
