@@ -1,0 +1,63 @@
+.Template {
+  max-width: 720px;
+  margin: 0 auto;
+  //font-family: 'Single Day', cursive;
+  //font-family: 'Sunflower', sans-serif;
+  //font-family: 'Nanum Pen Script', cursive;
+  //font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'Do Hyeon', sans-serif;
+}
+
+.topside {
+  padding-left: 5%;
+}
+
+.imoji {
+  padding-top: 10%;
+  font-size: 3rem;
+}
+.id {
+  font-size: 2.5rem;
+}
+.Out {
+  display: 'block';
+  width: '100%';
+}
+
+.out {
+  padding: '4px 8px 8px';
+  width: '720px';
+  max-width: '100%';
+  margin: '0px auto';
+}
+
+.Box {
+  margin: 0px;
+}
+
+.Row {
+  display: flex;
+  padding-bottom: 4px;
+}
+
+.Q {
+  display: flex;
+  align-items: center;
+  height: 34px;
+  width: 30%;
+  flex: 0 0 auto;
+  color: rgba(55, 53, 47, 0.6);
+}
+
+.A {
+  display: flex;
+  align-items: center;
+  margin-left: 4px;
+  height: 70%;
+  flex: 1 1 auto;
+  min-width: 0px;
+}
+
+.Expansion {
+  font-family: 'Nanum Pen Script', cursive;
+}

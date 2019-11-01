@@ -13,7 +13,10 @@ import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import Table from '@material-ui/core/Table';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Badge from 'C:/Users/kocon/Desktop/Hongaeting_V1/hongaeting/src/component/06SelfDatingList/Badge.jsx';
 import { inject, observer } from 'mobx-react';
+import Grid from '@material-ui/core/Grid';
 
 const SelfDatingDetails = ({
   userList,
@@ -25,113 +28,110 @@ const SelfDatingDetails = ({
     // setSelectedUser();
   }, []);
 
-  const useStyles = makeStyles(theme => ({
-    root: {
-      flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      flexGrow: 1,
-    },
-    Expansion: {
-      width: '100%',
-    },
-    Expansionhead: {
-      fontSize: theme.typography.pxToRem(18),
-      fontWeight: theme.typography.fontWeightRegular,
-    },
-    root1: {
-      width: '100%',
-      maxWidth: 3000,
-      backgroundColor: theme.palette.background.paper,
-    },
-    table: {
-      minWidth: 100,
-      maxWidth: 500,
-    },
-  }));
+  const useStyles = makeStyles();
   const classes = useStyles();
-  const handleGoBack = () => {
-    history.goBack();
-  };
-
-  const handleGoHome = () => {
-    history.push('/');
-  };
-  const historyy = useHistory();
-
   console.log(selectedUser);
   console.log(selectedUser.age);
   return (
-    <div>
-      <div>
-        <button onClick={() => historyy.goBack()}>뒤로</button>
-        <button onClick={handleGoHome}>홈으로</button>
-      </div>
-      <h1 className="imoji">😊</h1>
-      <h1>
-        ({selectedUser.id}) {selectedUser.age} / {selectedUser.collage}
-      </h1>
+    <div className="Template">
       <Paper>
-        <Table>
-          <TableBody>
-            <TableRow>
-              <TableCell variant="head">
-                <CommentIcon /> 자기소개
-              </TableCell>
-              <TableCell> {selectedUser.hobby}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell variant="head">
-                <CommentIcon />
-                링크
-              </TableCell>
-              <TableCell>
-                <a href={selectedUser.kakaoid}>{selectedUser.kakaoid}</a>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
+        <div className="topside">
+          <div className="imoji">😊</div>
+          <div className="id">
+            ({selectedUser.id}) {selectedUser.age} / {selectedUser.collage}
+          </div>
+          <div className="Out">
+            <div className="out">
+              <div className="Box">
+                <div className="Row">
+                  <div className="Q">이메일주소</div>
+                  <div className="A">{selectedUser.kakaoid}</div>
+                </div>
+                <div className="Row">
+                  <div className="Q">자기소개</div>
+                  <div className="A">
+                    <Badge keyword={selectedUser.hashtag} color="primary" />
+                    <Badge keyword={selectedUser.religion} color="rose" />
+                  </div>
+                </div>
+                <div className="Row">
+                  <div className="Q">오픈채팅링크</div>
+                  <div className="A">Openlink@kakao.com/123121123</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="Expansion">
+          <ExpansionPanel defaultExpanded="true">
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography>😊외모 </Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Typography style={{ 'font-family': 'Do Hyeon , sans-serif' }}>
+                그의 외모는 = {selectedUser.appearance}
+              </Typography>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+          <ExpansionPanel defaultExpanded="true">
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel2a-content"
+              id="panel2a-header"
+            >
+              <Typography> 🌵성격 </Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Typography style={{ 'font-family': 'Do Hyeon , sans-serif' }}>
+                그의 성격은 = {selectedUser.personality}
+              </Typography>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+          <ExpansionPanel defaultExpanded="true">
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel2a-content"
+              id="panel2a-header"
+            >
+              <Typography> 🍀여가생활 및 취미 </Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Typography style={{ 'font-family': 'Do Hyeon , sans-serif' }}>
+                나의 취미는 = {selectedUser.hobby}
+              </Typography>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+          <ExpansionPanel defaultExpanded="true">
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel2a-content"
+              id="panel2a-header"
+            >
+              <Typography> 💕연애관 및 바라는 이상형 </Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Typography style={{ 'font-family': 'Do Hyeon , sans-serif' }}>
+                이상형은 = {selectedUser.idealtype}
+              </Typography>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+          <ExpansionPanel disabled>
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel3a-content"
+              id="panel3a-header"
+            >
+              <Typography>
+                <Badge keyword={selectedUser.religion} color="rose" />
+              </Typography>
+            </ExpansionPanelSummary>
+          </ExpansionPanel>
+        </div>
       </Paper>
-      <div className={classes.Expansion}>
-        <ExpansionPanel>
-          <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography className={classes.Expansiobhead}>😊외모 </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography>그의 외모는 = {selectedUser.personality}</Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-        <ExpansionPanel>
-          <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
-          >
-            <Typography className={classes.heading}>😊성격 </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography>그의 성격은 = {selectedUser.idealtype}</Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-        <ExpansionPanel disabled>
-          <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel3a-content"
-            id="panel3a-header"
-          >
-            <Typography className={classes.heading}>
-              Disabled Expansion Panel
-            </Typography>
-          </ExpansionPanelSummary>
-        </ExpansionPanel>
-      </div>
     </div>
   );
 };

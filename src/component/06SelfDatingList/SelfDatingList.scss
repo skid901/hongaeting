@@ -1,50 +1,40 @@
-.Template{
-  width : 720px;
-  margin : 0 auto;
+.Template {
+  max-width: 720px;
+  margin: 0 auto;
+  //font-family: 'Single Day', cursive;
+  //font-family: 'Sunflower', sans-serif;
+  //font-family: 'Nanum Pen Script', cursive;
+  //font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'Do Hyeon', sans-serif;
 }
 
-.header{
-  display : flex;
+.header {
+  display: flex;
 }
 
-.pagename{
-  background-color: #f6f6f6;
-  padding-top : 40px;
-  padding-bottom : 20px;
+.MuiCardHeader-root {
+  display: flex;
+  padding: 0px;
+  align-items: center;
+  padding-left: 16px;
+  padding-top: 16px;
 }
 
-.pagename1{
-  font-size: 24px;
-  font-weight: 900;
+.CardsWrapper {
+  width: 100%;
+  padding-bottom: 2px;
+
+  //   padding-right: 15px;
+  //   padding-left: 15px;
+  //   margin:  auto;
+  //
 }
-
-.pagename2{
-
+.MuiTypography-body1 {
+  font-family: 'Nanum Pen Script', cursive;
 }
-
-.mat-column-id {
-  flex: 0 0 100px;
+.body {
+  font-family: 'Do Hyeon', sans-serif;
 }
-
-.a{
-  background: black;
-}
-
-.MTableHeader-header-145{
-  width: 150px;
-}
-
-.introduction{
-  margin-top : 60px;
-  padding-left: 60px;
-  background-color: aquamarine;
-}
-.MuiTableCell-root {
-  padding-right : 15px;
-
-}
-
-.CardsWrapper{
-  margin : 0 20px; 
-}
-
+@import url('https://fonts.googleapis.com/css?family=Single+Day&display=swap&subset=korean');
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Pen+Script|Single+Day|Sunflower:300&display=swap&subset=korean');
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap');
