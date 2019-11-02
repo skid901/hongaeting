@@ -87,7 +87,9 @@ const SelfDatingDetails = ({
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Do Hyeon , sans-serif' }}>
-                그의 성격은 = {selectedUser.personality}
+                그의 성격은은 = {selectedUser.personality}
+                {console.log(selectedUser.personality)}
+                {console.log(selectedUser.religion)}}
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>

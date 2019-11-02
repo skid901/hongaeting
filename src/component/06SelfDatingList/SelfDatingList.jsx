@@ -160,7 +160,6 @@ class Cards extends React.Component {
             history.push(url);
           }}
         >
-          {/* <CardHeader title={`(${user.id}) ${user.age}/${user.collage}`} /> */}
           <div className="MuiCardHeader-root">
             {`(${user.sex}) ${user.age}/${user.collage}`}
           </div>
@@ -168,32 +167,8 @@ class Cards extends React.Component {
             <Badge keyword={user.hashtag.substring(0, 5)} color="primary" />
             <Badge keyword={user.collage.substring(0, 5)} color="rose" />
             <Badge keyword={user.religion.substring(0, 5)} color="warning" />
-            {/* <Typography>
-            {user.religion.substring(0, 5)} {user.personality.substring(0, 5)}{' '}
-            {user.hobby.substring(0, 5)}
-          </Typography> */}
             <p className="body">{user.selfintro.substring(0, 60)}</p>
           </CardContent>
-          <CardActions>
-            {/* <Button
-            onClick={() => {
-              setSelectedUser(
-                user.id.toString().split('(')[0],
-                user.time,
-                user.age,
-                user.collage,
-                user.kakaoid,
-                user.religion,
-                user.personality,
-                user.hobby,
-                user.idealtype,
-              );
-              history.push(url);
-            }}
-          >
-            상세보기
-          </Button> */}
-          </CardActions>
         </Card>
       </div>
     );

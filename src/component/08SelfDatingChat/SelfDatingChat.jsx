@@ -8,6 +8,12 @@ import Button from '@material-ui/core/Button';
 
 import './SelfDatingChat.scss';
 
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+
+import Header from '../material/appbar/Header.js';
+// import styles from "assets/jss/material-kit-react/views/componentsSections/navbarsStyle.js";
+
 const MyButton = styled(Button)({
   width: '100%',
   background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -56,7 +62,35 @@ const SelfDatingChat = () => {
   const classes3 = useStyles3();
   return (
     <div>
-      <div>SelfDatingChat will be here...</div>
+      <Header
+        brand="Menu"
+        color="primary"
+        leftLinks={
+          <List className={classes.list}>
+            <ListItem className={classes.listItem}>
+              <Button
+                href="#pablo"
+                className={classes.navLink}
+                onClick={e => e.preventDefault()}
+                color="transparent"
+              >
+                Link
+              </Button>
+            </ListItem>
+            <ListItem className={classes.listItem}>
+              <Button
+                href="#pablo"
+                className={classes.navLink}
+                onClick={e => e.preventDefault()}
+                color="transparent"
+              >
+                Link
+              </Button>
+            </ListItem>
+          </List>
+        }
+      />
+      <div>SelfDatingChat will be here...1</div>
       <div>
         <MyButton>Styled Components</MyButton>;
         <Button className={classes.root}>Hook</Button>
