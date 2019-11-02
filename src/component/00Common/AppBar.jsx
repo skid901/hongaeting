@@ -23,7 +23,7 @@ const CustomAppBar = props => {
   const history = useHistory();
   return (
     <>
-      <CssBaseline />
+      {/* <CssBaseline />
       <HideOnScroll {...props}>
         <AppBar>
           <Toolbar>
@@ -41,7 +41,7 @@ const CustomAppBar = props => {
           </Toolbar>
         </AppBar>
       </HideOnScroll>
-      <Toolbar />
+      <Toolbar /> */}
     </>
   );
 };

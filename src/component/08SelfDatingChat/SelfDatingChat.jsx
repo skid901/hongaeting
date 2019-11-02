@@ -7,12 +7,20 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 
 import './SelfDatingChat.scss';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import MoreIcon from '@material-ui/icons/MoreVert';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 
-import Header from '../material/appbar/Header.js';
-// import styles from "assets/jss/material-kit-react/views/componentsSections/navbarsStyle.js";
+// import Header from '../material/appbar/Header.js';
+// import styles from 'assets/jss/material-kit-react/views/componentsSections/navbarsStyle.js';
 
 const MyButton = styled(Button)({
   width: '100%',
@@ -25,7 +33,25 @@ const MyButton = styled(Button)({
   padding: '0 30px',
 });
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  toolbar: {
+    // minHeight: 128,
+    // alignItems: 'flex-start',
+    // paddingTop: theme.spacing(1),
+    // paddingBottom: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
+
+const useStyles1 = makeStyles({
   root: {
     width: 300,
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -57,12 +83,38 @@ const useStyles3 = makeStyles({
   },
 });
 const SelfDatingChat = () => {
-  const classes = useStyles();
+  const classes1 = useStyles1();
   const classes2 = useStyles2();
   const classes3 = useStyles3();
+  const classes = useStyles();
+
   return (
     <div>
-      <Header
+      <div className={classes.root}>
+        <AppBar position="static">
+          <Toolbar className={classes.toolbar}>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="open drawer"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography className={classes.title} variant="h7">
+              홍셀소
+            </Typography>
+            <Typography className={classes.title} variant="h7">
+              홍미팅
+            </Typography>
+            <IconButton color="inherit">
+              <AccountCircle />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+      </div>
+
+      {/* <Header
         brand="Menu"
         color="primary"
         leftLinks={
@@ -89,11 +141,16 @@ const SelfDatingChat = () => {
             </ListItem>
           </List>
         }
-      />
+      /> */}
       <div>SelfDatingChat will be here...1</div>
       <div>
         <MyButton>Styled Components</MyButton>;
-        <Button className={classes.root}>Hook</Button>
+        <Button
+          className={classes1.root}
+          style={{ 'font-family': 'Do Hyeon, sans-serif' }}
+        >
+          홍개팅 신청하기
+        </Button>
         <div>
           <Button className={classes2.root}>
             <p>
@@ -104,10 +161,68 @@ const SelfDatingChat = () => {
           <Card>
             Card
             <CardContent className={classes3.root}>
-              <Button className={classes.root}>Button</Button>Conetens
+              <Button className={classes1.root}>Button</Button>Conetens
             </CardContent>
           </Card>
         </div>
+      </div>
+      <div className="global-navbar">
+        <nav className="navbar">
+          <div className="firstbar">
+            <div className="start">
+              <a className="logo" href="http://localhost:3000/selfdatinglist">
+                홍개팅
+              </a>
+              <div className="menu-wrapper">
+                <ol className="menulist">
+                  <li className="selso">
+                    <a
+                      className="atag"
+                      href="http://localhost:3000/selfdatinglist"
+                    >
+                      <span className="text">#홍셀소</span>
+                    </a>
+                  </li>
+                  <li className="meeting">
+                    <a
+                      className="atag"
+                      href="http://localhost:3000/selfdatinglist"
+                    >
+                      <span className="text">#홍미팅</span>
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+            <div className="end">
+              <IconButton
+                color="inherit"
+                src="http://localhost:3000/selfdatinglist"
+              >
+                <AccountCircle />
+              </IconButton>
+            </div>
+          </div>
+          <div className="secondbar">
+            <ol className="viewlist">
+              <li className="view">
+                <Button style={{ 'font-family': 'Do Hyeon, sans-serif' }}>
+                  전체보기
+                </Button>
+              </li>
+              <li className="view">
+                <Button style={{ 'font-family': 'Do Hyeon, sans-serif' }}>
+                  남자보기
+                </Button>
+              </li>
+              <li className="view">
+                <Button style={{ 'font-family': 'Do Hyeon, sans-serif' }}>
+                  여자보기
+                </Button>
+              </li>
+            </ol>
+          </div>
+        </nav>
       </div>
     </div>
   );
