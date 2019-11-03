@@ -7,6 +7,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 
 // app bar 스크롤 숨김
 const HideOnScroll = props => {
@@ -23,6 +26,70 @@ const CustomAppBar = props => {
   const history = useHistory();
   return (
     <>
+      <CssBaseline />
+      <HideOnScroll {...props}>
+        <AppBar style={{ 'font-family': 'Do Hyeon, sans-serif' }}>
+          <div className="global-navbar">
+            <nav className="navbar">
+              <div className="firstbar">
+                <div className="start">
+                  <a className="logo" href="http://localhost:3000">
+                    홍개팅
+                  </a>
+                  <div className="menu-wrapper">
+                    <ol className="menulist">
+                      <li className="selso">
+                        <a
+                          className="atag"
+                          href="http://localhost:3000/selfdatinglist"
+                        >
+                          <span className="text">#홍셀소</span>
+                        </a>
+                      </li>
+                      <li className="meeting">
+                        <a
+                          className="atag"
+                          href="http://localhost:3000/selfdatinglist"
+                        >
+                          <span className="text">#홍미팅</span>
+                        </a>
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+                <div className="end">
+                  <IconButton
+                    color="inherit"
+                    src="http://localhost:3000/selfdatinglist"
+                  >
+                    <AccountCircle />
+                  </IconButton>
+                </div>
+              </div>
+              <div className="secondbar">
+                <ol className="viewlist">
+                  <li className="view">
+                    <Button style={{ 'font-family': 'Do Hyeon, sans-serif' }}>
+                      전체보기
+                    </Button>
+                  </li>
+                  <li className="view">
+                    <Button style={{ 'font-family': 'Do Hyeon, sans-serif' }}>
+                      남자보기
+                    </Button>
+                  </li>
+                  <li className="view">
+                    <Button style={{ 'font-family': 'Do Hyeon, sans-serif' }}>
+                      여자보기
+                    </Button>
+                  </li>
+                </ol>
+              </div>
+            </nav>
+          </div>
+        </AppBar>
+      </HideOnScroll>
+
       {/* <CssBaseline />
       <HideOnScroll {...props}>
         <AppBar>
