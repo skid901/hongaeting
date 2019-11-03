@@ -9,6 +9,7 @@ const UserSchema = new Schema({
   sex: String,
   authEmail: String,
   hashedAuthEmail: String,
+  authNum: String,
   isAuthed: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now },
 });
@@ -29,6 +30,13 @@ UserSchema.methods.checkPassword = async function(password) {
 UserSchema.methods.setHashedAuthEmail = async function(authEmail) {
   const hash = await bcrypt.hash(authEmail, 10);
   this.hashedAuthEmail = hash;
+};
+UserSchema.methods.setAuthNum = async function() {
+  const authNum = ((min, max) => {
+    const ranNum = Math.floor(Math.random() * (max - min + 1)) + min;
+    return ranNum;
+  })(100000000, 999999999);
+  this.authNum = authNum;
 };
 
 UserSchema.methods.checkHashedAuthEmail = async function(authEmail) {
@@ -86,6 +94,10 @@ UserSchema.statics.findByAuthEmail = function(authEmail) {
 
 UserSchema.statics.findByHashedAuthEmail = function(hashedAuthEmail) {
   return this.findOne({ hashedAuthEmail });
+};
+
+UserSchema.statics.findBydAuthNum = function(authNum) {
+  return this.findOne({ authNum });
 };
 
 UserSchema.statics.findAllUsers = async function() {

@@ -23,7 +23,7 @@ const Router = () => (
     <Route exact path="/" component={Welcome} />
     <Route path="/signup/form" component={SignUp} />
     <Route path="/signup/summit" component={Summit} />
-    <Route path="/signup/auth/:hashedAuthEmail" component={Auth} />
+    <Route path="/signup/auth/:authNum" component={Auth} />
     <Route path="/signin" component={SignIn} />
     <Route path="/mypage/:nickName" component={MyPage} />
     <Route path="/introductionform" component={IntroductionForm} />

@@ -6,7 +6,7 @@ import User from '../../models/user';
  *  인증 메일 발송
  *
  */
-const mail = (authEmail, hashedAuthEmail) => {
+const mail = (authEmail, authNum) => {
   // 메일 발송용 인스턴스 생성
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -23,7 +23,7 @@ const mail = (authEmail, hashedAuthEmail) => {
   const htmlContents = `<div>
   <p><span style="color:blue;">홍개팅</span> 계정 인증용 메일입니다.</p><br/>
   <div style="background-color: #0045ce;">html css test</div>
-  <a target="_blank" rel="noopener noreferrer" href="${process.env.REACT_APP_DOMAIN}/signup/auth/${hashedAuthEmail}">홍개팅 계정 인증하기</a>
+  <a target="_blank" rel="noopener noreferrer" href="${process.env.REACT_APP_DOMAIN}/signup/auth/${authNum}">홍개팅 계정 인증하기</a>
 </div>`;
   // 메일 작성
   const mailConfig = {
@@ -32,10 +32,6 @@ const mail = (authEmail, hashedAuthEmail) => {
     subject: '홍개팅 인증 메일 테스트', // 메일 제목
     html: htmlContents,
   };
-  // test
-  console.log(
-    `\ntest\n${process.env.GMAIL_ID}\n${process.env.GMAIL_PASSWORD}\n`,
-  );
   // 메일 발송
   transporter.sendMail(mailConfig, (error, info) => {
     if (error) {
@@ -75,10 +71,11 @@ export const signUp = async ctx => {
     }
     const user = new User({ email, nickName, sex, authEmail });
     await user.setPassword(password);
-    await user.setHashedAuthEmail(authEmail);
+    // await user.setHashedAuthEmail(authEmail);
+    await user.setAuthNum();
     await user.save();
     // 인증 메일 발송
-    await mail(authEmail, user.toJSON().hashedAuthEmail);
+    await mail(authEmail, user.toJSON().authNum);
     ctx.body = `{ "message" : "signUpSuccess"}`;
   } catch (e) {
     ctx.throw(500, e);
@@ -90,10 +87,10 @@ export const signUp = async ctx => {
  *
  */
 export const authMail = async ctx => {
-  const { hashedAuthEmail } = ctx.request.body;
+  const { authNum } = ctx.request.body;
   try {
     let user;
-    user = await User.findByHashedAuthEmail(hashedAuthEmail);
+    user = await User.findBydAuthNum(authNum);
     if (!user) {
       ctx.status = 200;
       ctx.body = `{ "message" : "noAuthEmail"}`;
