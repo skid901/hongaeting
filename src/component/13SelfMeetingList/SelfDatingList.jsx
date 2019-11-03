@@ -2,10 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { inject, observer } from 'mobx-react';
 import './SelfDatingList.scss';
+
 import {
   BrowserRouter,
   Switch,
@@ -18,7 +20,6 @@ import {
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Badge from './Badge';
-import Axios from '../../../node_modules/axios/index';
 
 const useStyles1 = makeStyles({
   root: {
@@ -36,13 +37,12 @@ const useStyles1 = makeStyles({
 const SelfDatingList = ({ userList, setTableData, updated, IsLoading }) => {
   const history = useHistory();
   const [searchKeyword, setSearchKeyword] = useState('');
-  // const [IsLoading, setIsLoading] = useState(false);
   const classes1 = useStyles1();
   useEffect(() => {
     setTableData();
-    console.log(searchKeyword === false);
-    console.log(updated);
-    console.log(IsLoading);
+    // console.log(searchKeyword === false);
+    // console.log(updated);
+    // console.log(IsLoading);
   }, [IsLoading]);
 
   return (
