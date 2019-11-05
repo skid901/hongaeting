@@ -33,83 +33,27 @@ const useStyles1 = makeStyles({
   },
 });
 
-const SelfDatingList = ({ userList, setTableData, updated, IsLoading }) => {
+const SelfDatingList = ({ updated, IsLoading, getUsers, pageNumber, pagedUser, getAllUsers, userCount }) => {
   const history = useHistory();
   const [searchKeyword, setSearchKeyword] = useState('');
   // const [IsLoading, setIsLoading] = useState(false);
   const classes1 = useStyles1();
   useEffect(() => {
-    setTableData();
-    console.log(searchKeyword === false);
-    console.log(updated);
-    console.log(IsLoading);
+    // setTableData();
+    // console.log(searchKeyword === false);
+    // console.log(updated);
+    // console.log(IsLoading);
+    getUsers(1);
+    console.log(pagedUser);
+    getAllUsers();
   }, [IsLoading]);
 
   return (
     <div className="Template">
-      {/* <div className="global-navbar">
-        <nav className="navbar">
-          <div className="firstbar">
-            <div className="start">
-              <a className="logo" href="http://localhost:3000">
-                홍개팅
-              </a>
-              <div className="menu-wrapper">
-                <ol className="menulist">
-                  <li className="selso">
-                    <a
-                      className="atag"
-                      href="http://localhost:3000/selfdatinglist"
-                    >
-                      <span className="text">#홍셀소</span>
-                    </a>
-                  </li>
-                  <li className="meeting">
-                    <a
-                      className="atag"
-                      href="http://localhost:3000/selfdatinglist"
-                    >
-                      <span className="text">#홍미팅</span>
-                    </a>
-                  </li>
-                </ol>
-              </div>
-            </div>
-            <div className="end">
-              <IconButton
-                color="inherit"
-                src="http://localhost:3000/selfdatinglist"
-              >
-                <AccountCircle />
-              </IconButton>
-            </div>
-          </div>
-          <div className="secondbar">
-            <ol className="viewlist">
-              <li className="view">
-                <Button style={{ 'font-family': 'Do Hyeon, sans-serif' }}>
-                  전체보기
-                </Button>
-              </li>
-              <li className="view">
-                <Button style={{ 'font-family': 'Do Hyeon, sans-serif' }}>
-                  남자보기
-                </Button>
-              </li>
-              <li className="view">
-                <Button style={{ 'font-family': 'Do Hyeon, sans-serif' }}>
-                  여자보기
-                </Button>
-              </li>
-            </ol>
-          </div>
-        </nav>
-      </div> */}
       <p className="title" style={{ 'background-color': 'white' }}>
         홍익 셀프 소개팅😎
       </p>
       <div className="input" maxWidth="sm" style={{ 'padding-bottom': '0px' }}>
-        {/* <SplitButton /> */}
         <Container
           className="input"
           maxWidth="sm"
@@ -151,7 +95,7 @@ const SelfDatingList = ({ userList, setTableData, updated, IsLoading }) => {
               let result = null;
               if (updated) {
                 result = searchKeyword
-                  ? userList
+                  ? pagedUser
                       .filter(
                         item =>
                           item.collage.indexOf(searchKeyword) >= 0 ||
@@ -160,7 +104,7 @@ const SelfDatingList = ({ userList, setTableData, updated, IsLoading }) => {
                           item.hobby.indexOf(searchKeyword) >= 0,
                       )
                       .map(user => <Cards user={user} history={history} />)
-                  : userList.map(user => (
+                  : pagedUser.map(user => (
                       <Cards user={user} history={history} />
                     ));
               }
@@ -173,8 +117,8 @@ const SelfDatingList = ({ userList, setTableData, updated, IsLoading }) => {
   );
 };
 
-@inject(({ userlist }) => ({
-  setSelectedUser: userlist.setSelectedUser,
+@inject(({ selfDatingUser }) => ({
+  setSelectedUser: selfDatingUser.setSelectedUser,
 }))
 @observer
 class Cards extends React.Component {
@@ -186,48 +130,34 @@ class Cards extends React.Component {
         <Card
           onClick={() => {
             setSelectedUser(
-              user.time,
-              user.email,
-              user.kakaoid,
-              user.sex,
-              user.age,
-              user.collage,
-              user.appearance,
-              user.personality,
-              user.hobby,
-              user.religion,
-              user.smoke,
-              user.idealtype,
-              user.openchatlink,
-              user.hashtag,
-              user.selfintro,
+              user
             );
             history.push(url);
           }}
         >
           <div className="MuiCardHeader-root">
-            {`${user.sex}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
-            {`(${user.sex}) ${user.age}/${user.collage}`}
+            {`${user.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
+            {`(${user.id}) ${user.age}/${user.collage}`}
           </div>
           <CardContent style={{ 'padding-top': '6px' }}>
             <Badge
-              keyword={user.hashtag.toString().split('#')[1]}
+              keyword={user.tag.toString().split('#')[1]}
               color="primary"
             />
             <Badge
-              keyword={user.hashtag.toString().split('#')[2]}
+              keyword={user.tag.toString().split('#')[2]}
               color="primary"
             />
             <Badge
-              keyword={user.hashtag.toString().split('#')[3]}
+              keyword={user.tag.toString().split('#')[3]}
               color="rose"
             />
             <Badge
-              keyword={user.hashtag.toString().split('#')[4]}
+              keyword={user.tag.toString().split('#')[4]}
               color="rose"
             />
             <Badge
-              keyword={user.hashtag.toString().split('#')[5]}
+              keyword={user.tag.toString().split('#')[5]}
               color="success"
             />
             <p
@@ -242,7 +172,7 @@ class Cards extends React.Component {
               className="body"
               style={{ 'font-size': '14px', 'padding-top': '5px' }}
             >
-              {user.selfintro.substring(0, 60)}
+              {user.keysentence.substring(0, 60)}
             </p>
           </CardContent>
         </Card>
@@ -251,9 +181,12 @@ class Cards extends React.Component {
   }
 }
 
-export default inject(({ userlist }) => ({
-  userList: userlist.userList,
-  setTableData: userlist.setTableData,
-  updated: userlist.updated,
-  IsLoading: userlist.IsLoading,
+export default inject(({ selfDatingUser }) => ({
+  updated: selfDatingUser.updated,
+  IsLoading: selfDatingUser.IsLoading,
+  getUsers: selfDatingUser.getUsers,
+  pageNumber: selfDatingUser.pageNumber,
+  pagedUser: selfDatingUser.pagedUser,
+  getAllUsers: selfDatingUser.getAllUsers,
+  userCount: selfDatingUser.userCount,
 }))(observer(SelfDatingList));
