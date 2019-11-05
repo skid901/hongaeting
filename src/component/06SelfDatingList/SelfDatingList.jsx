@@ -35,11 +35,13 @@ const useStyles = makeStyles({
   },
 });
 
-const SelfDatingList = ({ userList, setTableData, updated, getUsers}) => {
+const SelfDatingList = ({ userList, setTableData, updated, getUsers, pageNumber, pagedUser, getAllUsers, userCount }) => {
   const history = useHistory();
   const [searchKeyword, setSearchKeyword] = useState('');
   useEffect(() => {
-    setTableData();
+    //setTableData();
+    getUsers(1);
+    getAllUsers();
     console.log(searchKeyword === false);
   }, []);
   return (
@@ -73,7 +75,7 @@ const SelfDatingList = ({ userList, setTableData, updated, getUsers}) => {
           let result = null;
           if (updated) {
             result = searchKeyword
-              ? userList
+              ? pagedUser
                   .filter(
                     item =>
                       item.religion.indexOf(searchKeyword) >= 0 ||
@@ -81,16 +83,19 @@ const SelfDatingList = ({ userList, setTableData, updated, getUsers}) => {
                       item.hobby.indexOf(searchKeyword) >= 0,
                   )
                   .map(user => <Cards user={user} history={history} />)
-              : userList.map(user => <Cards user={user} history={history} />);
+              : pagedUser.map(user => {
+              return <Cards user={user} history={history} />
+            });
           }
           return result;
         })()}
       </div>
       <div className="page">
         <ReactPaginate
-          pageCount={10}
+          pageCount={userCount / 5 ? userCount / 5 + 1: userCount/5}
           marginPagesDisplayed={2}
           pageRangeDisplayed={1}
+          onPageChange={e=>getUsers(e.selected+1)}
         />
       </div>
     </div>
@@ -145,6 +150,10 @@ class Cards extends React.Component {
 export default inject(({ userlist, selfDatingUser }) => ({
   userList: userlist.userList,
   setTableData: userlist.setTableData,
-  updated: userlist.updated,
+  updated: selfDatingUser.updated,
   getUsers: selfDatingUser.getUsers,
+  pageNumber: selfDatingUser.pageNumber,
+  pagedUser: selfDatingUser.pagedUser,
+  getAllUsers: selfDatingUser.getAllUsers,
+  userCount: selfDatingUser.userCount,
 }))(observer(SelfDatingList));

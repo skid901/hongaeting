@@ -38,28 +38,84 @@ export const create = async (ctx) => {
 }
 */
 export const create = async (ctx) => {
-  let id = 111,
-    time = 111,
-    age = 111,
-    collage= 111,
-    kakaoid= 111,
-    religion= 111,
-    appearance= 111,
-    personality= 111,
-    hobby= 111,
-    idealtype= 111;
+  {
+  // let id = 2;
+  // let time = "";
+  // let email = "";
+  // let address = "";
+  // let gender = "";
+  // let age = "";
+  // let collage = "";
+  // let self = 1;
+  // let same = 0;
+  // let appearance = "";
+  // let personality = "";
+  // let hobby = "";
+  // let religion = "";
+  // let smoke = "";
+  // let idealtype = "";
+  // let chatlink = "";
+  // let tag = "";
+  // let keysentence = "";
+  // let appearance2 = "";
+  // let personality2 = "";
+  // let hobby2 = "";
+  // let idealtype2 = "";
+  // let religion2 = "";
+  // let smoke2 = "";
+  }
+  const {
+    id,
+    time,
+    email,
+    address,
+    gender,
+    age,
+    collage,
+    self,
+    same,
+    appearance,
+    personality,
+    hobby,
+    religion,
+    smoke,
+    idealtype,
+    chatlink,
+    tag,
+    keysentence,
+    appearance2,
+    personality2,
+    hobby2,
+    idealtype2,
+    religion2,
+    smoke2
+  } = ctx.request.body;
 
   const datingUser = new DatingUser({
     id,
     time,
+    email,
+    address,
+    gender,
     age,
     collage,
-    kakaoid,
-    religion,
+    self,
+    same,
     appearance,
     personality,
     hobby,
-    idealtype
+    religion,
+    smoke,
+    idealtype,
+    chatlink,
+    tag,
+    keysentence,
+    appearance2,
+    personality2,
+    hobby2,
+    idealtype2,
+    religion2,
+    smoke2
   });
 
   try {
@@ -81,8 +137,8 @@ export const list = async (ctx) => {
   try{
     list = await DatingUser.find()
       .sort({_id: -1})
-      .skip((pageNumber-1) * 10)
-      .limit(10)
+      .skip((pageNumber-1) * 20)
+      .limit(20)
       .exec();
   } catch (e){
     return ctx.throw(500, e);
@@ -93,7 +149,7 @@ export const list = async (ctx) => {
 export const all = async (ctx) => {
   let all;
   try{
-    all = await DatingUser.find().exec();
+    all = await DatingUser.count().exec();
   }catch (e){
     return ctx.throw(500, e);
   }
