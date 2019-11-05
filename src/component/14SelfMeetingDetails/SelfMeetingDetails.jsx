@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './SelfDatingDetails.scss';
+import './SelfMeetingDetails.scss';
 import { useHistory } from 'react-router';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -18,47 +18,62 @@ import Badge from 'C:/Users/kocon/Desktop/Hongaeting_V1/hongaeting/src/component
 import { inject, observer } from 'mobx-react';
 import Grid from '@material-ui/core/Grid';
 
-const SelfDatingDetails = ({
-  userList,
-  setSelectedUser,
-  selectedUser,
-  history,
-}) => {
+const SelfMeetingDetails = ({ selectedMeeting }) => {
   useEffect(() => {
     // setSelectedUser();
   }, []);
 
-  const useStyles = makeStyles();
-  const classes = useStyles();
-  console.log(selectedUser);
-  console.log(selectedUser.age);
+  console.log(selectedMeeting);
   return (
     <div className="Template">
       <Paper>
         <div className="topside">
           <div className="imoji">
-            {`${selectedUser.sex}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
+            {`${selectedMeeting.sex}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
           </div>
           <div className="id">
-            ({selectedUser.sex}) {selectedUser.age} / {selectedUser.collage}
+            ({selectedMeeting.sex}) {selectedMeeting.age} /{' '}
+            {selectedMeeting.collage}
           </div>
           <div className="Out">
             <div className="out">
               <div className="Box">
                 <div className="Row">
-                  <div className="Q">이메일주소</div>
-                  <div className="A">{selectedUser.kakaoid}</div>
+                  <div className="Q">나이</div>
+                  <div className="A">
+                    {selectedMeeting.TwoTwoFirstAge},{' '}
+                    {selectedMeeting.TwoTwoSecondAge}
+                    {selectedMeeting.FourFourFirstAge}
+                    {selectedMeeting.FourFourSecondAge}
+                  </div>
+                </div>
+                <div className="Row">
+                  <div className="Q">학과</div>
+                  <div className="A">
+                    {selectedMeeting.TwoTwoFirstCollage},
+                    {selectedMeeting.TwoTwoSecondCollage}
+                    {selectedMeeting.FourFourFirstCollage}
+                    {selectedMeeting.FourFourSecondCollage}
+                  </div>
+                </div>
+                <div className="Row">
+                  <div className="Q">해시태그</div>
+                  <div className="A">
+                    <Badge keyword={selectedMeeting.hashtag} color="primary" />
+                  </div>
                 </div>
                 <div className="Row">
                   <div className="Q">자기소개</div>
                   <div className="A">
-                    <Badge keyword={selectedUser.hashtag} color="primary" />
-                    <Badge keyword={selectedUser.religion} color="rose" />
+                    <Badge
+                      keyword={selectedMeeting.selfintro}
+                      color="primary"
+                    />
                   </div>
                 </div>
                 <div className="Row">
                   <div className="Q">오픈채팅링크</div>
-                  <div className="A">Openlink@kakao.com/123121123</div>
+                  <div className="A">{selectedMeeting.openlink}</div>
                 </div>
               </div>
             </div>
@@ -75,7 +90,7 @@ const SelfDatingDetails = ({
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Do Hyeon , sans-serif' }}>
-                그의 외모는 = {selectedUser.appearance}
+                {selectedMeeting.appearance}
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
@@ -89,9 +104,7 @@ const SelfDatingDetails = ({
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Do Hyeon , sans-serif' }}>
-                그의 성격은은 = {selectedUser.personality}
-                {console.log(selectedUser.personality)}
-                {console.log(selectedUser.religion)}}
+                {selectedMeeting.personality}
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
@@ -105,7 +118,7 @@ const SelfDatingDetails = ({
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Do Hyeon , sans-serif' }}>
-                나의 취미는 = {selectedUser.hobby}
+                {selectedMeeting.hobby}
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
@@ -119,7 +132,7 @@ const SelfDatingDetails = ({
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Do Hyeon , sans-serif' }}>
-                이상형은 = {selectedUser.idealtype}
+                {selectedMeeting.idealtype}
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
@@ -130,7 +143,7 @@ const SelfDatingDetails = ({
               id="panel3a-header"
             >
               <Typography>
-                <Badge keyword={selectedUser.religion} color="rose" />
+                <Badge keyword={selectedMeeting.religion} color="rose" />
               </Typography>
             </ExpansionPanelSummary>
           </ExpansionPanel>
@@ -140,7 +153,7 @@ const SelfDatingDetails = ({
   );
 };
 export default inject(({ userlist }) => ({
-  userList: userlist.userList,
-  selectedUser: userlist.selectedUser,
-  setSelectedUser: userlist.setSelectedUser,
-}))(observer(SelfDatingDetails));
+  MeetingUserList: userlist.MeetingUserList,
+  selectedMeeting: userlist.selectedMeeting,
+  setSelectedMeeting: userlist.setSelectedMeeting,
+}))(observer(SelfMeetingDetails));

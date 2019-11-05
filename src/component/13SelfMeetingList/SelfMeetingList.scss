@@ -1,0 +1,40 @@
+.Template {
+  max-width: 720px;
+  margin: 0 auto;
+  //font-family: 'Single Day', cursive;
+  //font-family: 'Sunflower', sans-serif;
+  //font-family: 'Nanum Pen Script', cursive;
+  //font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'Do Hyeon', sans-serif;
+}
+
+.header {
+  display: flex;
+}
+
+.MuiCardHeader-root {
+  display: flex;
+  padding: 0px;
+  align-items: center;
+  padding-left: 16px;
+  padding-top: 16px;
+}
+
+.CardsWrapper {
+  width: 100%;
+  padding-bottom: 2px;
+
+  //   padding-right: 15px;
+  //   padding-left: 15px;
+  //   margin:  auto;
+  //
+}
+.MuiTypography-body1 {
+  font-family: 'Nanum Pen Script', cursive;
+}
+.body {
+  font-family: 'Do Hyeon', sans-serif;
+}
+@import url('https://fonts.googleapis.com/css?family=Single+Day&display=swap&subset=korean');
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Pen+Script|Single+Day|Sunflower:300&display=swap&subset=korean');
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap');

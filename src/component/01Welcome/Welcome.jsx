@@ -45,6 +45,12 @@ const Welcome = () => (
     <li>
       <Link to="/adminpage">adminpage</Link>
     </li>
+    <li>
+      <Link to="/selfmeetinglist">selfmeetinglist</Link>
+    </li>
+    <li>
+      <Link to="/selfmeetingdetails">selfmeetingdetails</Link>
+    </li>
   </div>
 );
 

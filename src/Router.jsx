@@ -15,6 +15,8 @@ import MatchmarkingChat from 'component/09MatchmarkingChat/MatchmarkingChat';
 import AdminReportChat from 'component/10AdminReportChat/AdminReportChat';
 import AdminPage from 'component/11AdminPage/AdminPage';
 import ErrorPage from 'component/12ErrorPage/ErrorPage';
+import SelfMeetingDetails from 'component/14SelfMeetingDetails/SelfMeetingDetails';
+import SelfMeetingList from './component/13SelfMeetingList/SelfMeetingList';
 
 const Router = () => (
   <Switch>
@@ -32,6 +34,8 @@ const Router = () => (
     <Route path="/adminreportchat" component={AdminReportChat} />
     <Route path="/adminpage" component={AdminPage} />
     <Route path="/errorpage" component={ErrorPage} />
+    <Route path="/selfmeetinglist" component={SelfMeetingList} />
+    <Route path="/selfmeetingdetails" component={SelfMeetingDetails} />
     <Route component={ErrorPage} />
   </Switch>
 );

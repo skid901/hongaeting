@@ -27,7 +27,7 @@ const useStyles1 = makeStyles({
     border: 0,
     borderRadius: 3,
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'black',
+    color: 'white',
     height: 48,
     padding: '0 30px',
   },
@@ -105,7 +105,9 @@ const SelfDatingList = ({ userList, setTableData, updated, IsLoading }) => {
           </div>
         </nav>
       </div> */}
-      <p className="title">홍익 셀프 소개팅😎 </p>
+      <p className="title" style={{ 'background-color': 'white' }}>
+        홍익 셀프 소개팅😎
+      </p>
       <div className="input" maxWidth="sm" style={{ 'padding-bottom': '0px' }}>
         {/* <SplitButton /> */}
         <Container
@@ -118,7 +120,7 @@ const SelfDatingList = ({ userList, setTableData, updated, IsLoading }) => {
               className={classes1.root}
               style={{ 'font-family': 'Do Hyeon, sans-serif' }}
             >
-              홍개팅 신청하기
+              셀프 소개팅 신청하기
             </Button>
           </div>
           <TextField
@@ -179,7 +181,6 @@ class Cards extends React.Component {
   render() {
     const { setSelectedUser, user, history } = this.props;
     const url = `/selfdatingdetails/${user.kakaoid}`;
-    const sex = '';
     return (
       <div className="CardsWrapper">
         <Card
@@ -209,11 +210,40 @@ class Cards extends React.Component {
             {`(${user.sex}) ${user.age}/${user.collage}`}
           </div>
           <CardContent style={{ 'padding-top': '6px' }}>
-            <Badge keyword={user.hashtag.split('#')[1]} color="primary" />
-            <Badge keyword={user.hashtag.split('#')[2]} color="rose" />
-            <Badge keyword={user.hashtag.split('#')[3]} color="rose" />
-            <Badge keyword={user.religion.substring(0, 5)} color="warning" />
-            <p className="body">{user.selfintro.substring(0, 60)}</p>
+            <Badge
+              keyword={user.hashtag.toString().split('#')[1]}
+              color="primary"
+            />
+            <Badge
+              keyword={user.hashtag.toString().split('#')[2]}
+              color="primary"
+            />
+            <Badge
+              keyword={user.hashtag.toString().split('#')[3]}
+              color="rose"
+            />
+            <Badge
+              keyword={user.hashtag.toString().split('#')[4]}
+              color="rose"
+            />
+            <Badge
+              keyword={user.hashtag.toString().split('#')[5]}
+              color="success"
+            />
+            <p
+              className="timebar"
+              style={{ float: 'right', 'text-align': 'right' }}
+            >
+              {`${user.time
+                .toString()
+                .substring(5, 7)}월${user.time.toString().substring(8, 10)}일`}
+            </p>
+            <p
+              className="body"
+              style={{ 'font-size': '14px', 'padding-top': '5px' }}
+            >
+              {user.selfintro.substring(0, 60)}
+            </p>
           </CardContent>
         </Card>
       </div>

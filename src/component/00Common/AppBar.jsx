@@ -33,7 +33,12 @@ const CustomAppBar = props => {
             <nav className="navbar">
               <div className="firstbar">
                 <div className="start">
-                  <a className="logo" href="http://localhost:3000">
+                  <a
+                    className="logo"
+                    onClick={() => {
+                      history.push(`/`);
+                    }}
+                  >
                     홍개팅
                   </a>
                   <div className="menu-wrapper">
@@ -41,7 +46,9 @@ const CustomAppBar = props => {
                       <li className="selso">
                         <a
                           className="atag"
-                          href="http://localhost:3000/selfdatinglist"
+                          onClick={() => {
+                            history.push(`/selfdatinglist`);
+                          }}
                         >
                           <span className="text">#홍셀소</span>
                         </a>
@@ -49,7 +56,9 @@ const CustomAppBar = props => {
                       <li className="meeting">
                         <a
                           className="atag"
-                          href="http://localhost:3000/selfdatinglist"
+                          onClick={() => {
+                            history.push(`/selfmeetinglist`);
+                          }}
                         >
                           <span className="text">#홍미팅</span>
                         </a>
@@ -60,7 +69,9 @@ const CustomAppBar = props => {
                 <div className="end">
                   <IconButton
                     color="inherit"
-                    src="http://localhost:3000/selfdatinglist"
+                    onClick={() => {
+                      history.push(`/mypage/test`);
+                    }}
                   >
                     <AccountCircle />
                   </IconButton>
