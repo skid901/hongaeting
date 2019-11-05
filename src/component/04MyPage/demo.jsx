@@ -16,31 +16,21 @@ const MyPage = observer(() => {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.post(
-          // `${process.env.REACT_APP_API_URI}/api/chat/userList`,
-          `/api/chat/userList`,
-          {},
-        );
+        const { data } = await axios.post('/api/chat/userList', {});
         setUserList(data);
       } catch (e) {
         console.log({ e });
       }
     })();
-    console.log({ user });
   }, []);
 
   const handleClick = async event => {
     const { email } = event.target.dataset;
     try {
-      const { data } = await axios.post(
-        // `${process.env.REACT_APP_API_URI}/api/chat/makeRoom`,
-        `/api/chat/makeRoom`,
-        {
-          roomType: `self`,
-          entryEmail: email,
-        },
-      );
-      console.log({ data });
+      const { data } = await axios.post(`/api/chat/makeRoom`, {
+        roomType: `self`,
+        entryEmail: email,
+      });
       if (data.message === 'roomMakeSuccess') {
         history.push(`/selfdatingchat/${data.roomId}`);
       }
