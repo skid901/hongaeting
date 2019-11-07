@@ -71,7 +71,7 @@ const SelfDatingList = ({
         >
           <div style={{ 'text-align': 'center' }}  
             onClick={()=>{
-              Axios.post("http://localhost:4000/api/datingusers/")
+              Axios.post("http://34.97.117.253:80/api/datingusers/")
                 .then(response => {console.log(response)})
             }}
           >

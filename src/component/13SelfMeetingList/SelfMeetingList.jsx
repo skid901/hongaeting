@@ -70,7 +70,7 @@ const SelfMeetingList = ({
           <div
             style={{ 'text-align': 'center' }}
             onClick = {() => {
-              Axios.post("http://localhost:4000/api/meetingusers/")
+              Axios.post("http://34.97.117.253:80/api/meetingusers/")
                 .then(res => {
                   console.log(res);
                 })
