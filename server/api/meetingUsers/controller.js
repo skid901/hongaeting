@@ -73,6 +73,7 @@ export const create = async (ctx) => {
   try {
     await meetingUser.save();
     await console.log("request come well");
+    await console.log(meetingUser);
   } catch (e) {
     return ctx.throw(500, e);
   }
