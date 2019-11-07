@@ -1,7 +1,7 @@
 import MeetingUser from '../../models/selfMeeting';
 
 export const create = async (ctx) => {
-  
+  console.log('ctx : ' + ctx.request.body);
   const {
     id,
     time,
@@ -25,6 +25,7 @@ export const create = async (ctx) => {
     tag,
     keysentence
   } = ctx.request.body;
+  console.log('tag : ',tag);
   
   // let id = 20;
   // let time ="2019-11-06T11:57:56.589Z";
