@@ -26,13 +26,13 @@ const app = new Koa();
 const router = new Router();
 
 // cors
-//app.use(cors());
+app.use(cors());
 app.use(bodyParser());
 // router 설정
 router.use('/api', api.routes());
 
 // router 적용 전 bodyParser 적용
-
+app.use(bodyParser());
 
 app.use(jwtMiddleware);
 

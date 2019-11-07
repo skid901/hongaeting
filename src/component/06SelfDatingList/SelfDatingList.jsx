@@ -15,6 +15,8 @@ import {
   useHistory,
 } from 'react-router-dom';
 
+import ReactPaginate from 'react-paginate';
+
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Badge from './Badge';
@@ -33,7 +35,15 @@ const useStyles1 = makeStyles({
   },
 });
 
-const SelfDatingList = ({ updated, IsLoading, getUsers, pageNumber, pagedUser, getAllUsers, userCount }) => {
+const SelfDatingList = ({
+  updated,
+  IsLoading,
+  getUsers,
+  pageNumber,
+  pagedUser,
+  getAllUsers,
+  userCount
+}) => {
   const history = useHistory();
   const [searchKeyword, setSearchKeyword] = useState('');
   // const [IsLoading, setIsLoading] = useState(false);
@@ -59,7 +69,12 @@ const SelfDatingList = ({ updated, IsLoading, getUsers, pageNumber, pagedUser, g
           maxWidth="sm"
           style={{ 'padding-bottom': '0px' }}
         >
-          <div style={{ 'text-align': 'center' }}>
+          <div style={{ 'text-align': 'center' }}  
+            onClick={()=>{
+              Axios.post("http://localhost:4000/api/datingusers/")
+                .then(response => {console.log(response)})
+            }}
+          >
             <Button
               className={classes1.root}
               style={{ 'font-family': 'Do Hyeon, sans-serif' }}
@@ -104,15 +119,27 @@ const SelfDatingList = ({ updated, IsLoading, getUsers, pageNumber, pagedUser, g
                           item.hobby.indexOf(searchKeyword) >= 0,
                       )
                       .map(user => <Cards user={user} history={history} />)
-                  : pagedUser.map(user => (
-                      <Cards user={user} history={history} />
-                    ));
+                  : pagedUser.filter((item) => {return item.self})
+                      .map(user => (
+                        <Cards user={user} history={history} />
+                      ));
               }
               return result;
             })()}
           </Container>
         </div>
       )}
+      <div className="page">
+        <ReactPaginate
+          pageCount={userCount / 20 ? userCount / 20 + 1: userCount/20}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={1}
+          onPageChange={e=>getUsers(e.selected+1)}
+          previousLabel={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/><path fill="none" d="M0 0h24v24H0V0z"/></svg>}
+          breakLabel={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>}
+          nextLabel={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/><path fill="none" d="M0 0h24v24H0V0z"/></svg>}
+        />
+      </div>
     </div>
   );
 };

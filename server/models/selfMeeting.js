@@ -9,7 +9,7 @@ const SelfMeetingSchema = new Schema({
   age1: Number,
   collage1: String,
   age2: Number,
-  collage2: Number,
+  collage2: String,
   age3: Number,
   collage3: String,
   age4: Number,

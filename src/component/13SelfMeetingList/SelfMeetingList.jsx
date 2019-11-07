@@ -20,6 +20,9 @@ import {
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Badge from './Badge';
+import Axios from '../../../node_modules/axios/index';
+
+import ReactPaginate from 'react-paginate';
 
 const useStyles1 = makeStyles({
   root: {
@@ -35,20 +38,24 @@ const useStyles1 = makeStyles({
 });
 
 const SelfMeetingList = ({
-  MeetingUserList,
-  setMeetingData,
-  meetingupdated,
-  meetingIsLoading,
+  updated,
+  IsLoading,
+  getUsers,
+  pageNumber,
+  pagedUser,
+  getAllUsers,
+  userCount
 }) => {
   const history = useHistory();
   const [searchKeyword, setSearchKeyword] = useState('');
   const classes1 = useStyles1();
   useEffect(() => {
-    setMeetingData();
+    getUsers(1);
+    getAllUsers();
     // console.log(searchKeyword === false);
     // console.log(updated);
     // console.log(IsLoading);
-  }, [meetingIsLoading]);
+  }, [IsLoading]);
 
   return (
     <div className="Template">
@@ -60,7 +67,15 @@ const SelfMeetingList = ({
           maxWidth="sm"
           style={{ 'padding-bottom': '0px' }}
         >
-          <div style={{ 'text-align': 'center' }}>
+          <div
+            style={{ 'text-align': 'center' }}
+            onClick = {() => {
+              Axios.post("http://localhost:4000/api/meetingusers/")
+                .then(res => {
+                  console.log(res);
+                })
+            }}
+          >
             <Button
               className={classes1.root}
               style={{ 'font-family': 'Do Hyeon, sans-serif' }}
@@ -81,7 +96,7 @@ const SelfMeetingList = ({
           />
         </Container>
       </div>
-      {meetingIsLoading ? (
+      {IsLoading ? (
         <div>
           <div> 잠시만기다려주세요...</div>
           <div>
@@ -94,16 +109,16 @@ const SelfMeetingList = ({
           <Container className="input" maxWidth="sm">
             {(() => {
               let result = null;
-              if (meetingupdated) {
+              if (updated) {
                 result = searchKeyword
-                  ? MeetingUserList.filter(
+                  ? pagedUser.filter(
                       item =>
                         item.collage.indexOf(searchKeyword) >= 0 ||
                         item.religion.indexOf(searchKeyword) >= 0 ||
                         item.personality.indexOf(searchKeyword) >= 0 ||
                         item.hobby.indexOf(searchKeyword) >= 0,
                     ).map(user => <Cards user={user} history={history} />)
-                  : MeetingUserList.map(user => (
+                  : pagedUser.map(user => (
                       <Cards user={user} history={history} />
                     ));
               }
@@ -112,75 +127,57 @@ const SelfMeetingList = ({
           </Container>
         </div>
       )}
+      <div className="page">
+        <ReactPaginate
+          pageCount={userCount / 20 ? userCount / 20 + 1: userCount/20}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={1}
+          onPageChange={e=>getUsers(e.selected+1)}
+          previousLabel={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/><path fill="none" d="M0 0h24v24H0V0z"/></svg>}
+          breakLabel={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>}
+          nextLabel={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/><path fill="none" d="M0 0h24v24H0V0z"/></svg>}
+        />
+      </div>
     </div>
   );
 };
 
-@inject(({ userlist }) => ({
-  setSelectedMeeting: userlist.setSelectedMeeting,
+@inject(({ selfMeetingUser }) => ({
+  setSelectedUser: selfMeetingUser.setSelectedUser,
 }))
 @observer
 class Cards extends React.Component {
   render() {
-    const { setSelectedMeeting, user, history } = this.props;
+    const { setSelectedUser, user, history } = this.props;
     const url = `/selfmeetingdetails/${user.email}`;
     return (
       <div className="CardsWrapper">
         <Card
           onClick={() => {
-            setSelectedMeeting(
-              user.time,
-              user.email,
-              user.sex,
-              user.type,
-              user.TwoTwoFirstAge,
-              user.TwoTwoFirstCollage,
-              user.TwoTwoSecondAge,
-              user.TwoTwoSecondCollage,
-              user.ThreeThreeFirstAge,
-              user.ThreeThreeFirstCollage,
-              user.ThreeThreeSecondAge,
-              user.ThreeThreeSecondCollage,
-              user.ThreeThreeThirdAge,
-              user.ThreeThreeThirdCollage,
-              user.FourFourFirstAge,
-              user.FourFourFirstCollage,
-              user.FourFourSecondAge,
-              user.FourFourSecondCollage,
-              user.FourFourThirdAge,
-              user.FourFourThirdCollage,
-              user.FourFourFourthAge,
-              user.FourFourFourthCollage,
-              user.appearance,
-              user.personality,
-              user.hobby,
-              user.drink,
-              user.idealtype,
-              user.openlink,
-              user.hashtag,
-              user.selfintro,
+            setSelectedUser(
+              user
             );
             history.push(url);
           }}
         >
           <div className="MuiCardHeader-root">
-            {`${user.sex}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
-            {`(${user.sex}) ${
-              user.type.toString().split(' ')[0]
+            {`${user.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
+            {`(${user.id}) ${
+              user.number
             } /(팀이름넣을예정)${user.openlink}`}
             {console.log(user.hashtag)}
           </div>
           <CardContent style={{ 'padding-top': '6px' }}>
             <Badge
-              keyword={`#${user.hashtag.toString().split('#')[1]}`}
+              keyword={`#${user.tag.toString().split('#')[1]}`}
               color="primary"
             />
             <Badge
-              keyword={`#${user.hashtag.toString().split('#')[2]}`}
+              keyword={`#${user.tag.toString().split('#')[2]}`}
               color="rose"
             />
             <Badge
-              keyword={user.hashtag.toString().split('#')[3]}
+              keyword={user.tag.toString().split('#')[3]}
               color="rose"
             />
 
@@ -198,7 +195,7 @@ class Cards extends React.Component {
               className="body"
               style={{ 'padding-top': '5px', 'font-size': '14px' }}
             >
-              {user.selfintro}
+              {user.keysentence}
             </p>
           </CardContent>
         </Card>
@@ -207,9 +204,12 @@ class Cards extends React.Component {
   }
 }
 
-export default inject(({ userlist }) => ({
-  MeetingUserList: userlist.MeetingUserList,
-  setMeetingData: userlist.setMeetingData,
-  meetingupdated: userlist.meetingupdated,
-  meetingIsLoading: userlist.meetingIsLoading,
+export default inject(({ selfMeetingUser }) => ({
+  updated: selfMeetingUser.updated,
+  IsLoading: selfMeetingUser.IsLoading,
+  getUsers: selfMeetingUser.getUsers,
+  pageNuber: selfMeetingUser.pageNumber,
+  pagedUser: selfMeetingUser.pagedUser,
+  getAllUsers: selfMeetingUser.getAllUsers,
+  usercount: selfMeetingUser.userCount,
 }))(observer(SelfMeetingList));

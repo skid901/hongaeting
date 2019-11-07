@@ -18,22 +18,20 @@ import Badge from '../06SelfDatingList/Badge';
 import { inject, observer } from 'mobx-react';
 import Grid from '@material-ui/core/Grid';
 
-const SelfMeetingDetails = ({ selectedMeeting }) => {
+const SelfMeetingDetails = ({ selectedUser }) => {
   useEffect(() => {
     // setSelectedUser();
   }, []);
-
-  console.log(selectedMeeting);
   return (
     <div className="Template">
       <Paper>
         <div className="topside">
           <div className="imoji">
-            {`${selectedMeeting.sex}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
+            {`${selectedUser.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
           </div>
           <div className="id">
-            ({selectedMeeting.sex}) {selectedMeeting.age} /{' '}
-            {selectedMeeting.collage}
+            ({selectedUser.gender}) {selectedUser.age} /{' '}
+            {selectedUser.collage}
           </div>
           <div className="Out">
             <div className="out">
@@ -41,39 +39,39 @@ const SelfMeetingDetails = ({ selectedMeeting }) => {
                 <div className="Row">
                   <div className="Q">나이</div>
                   <div className="A">
-                    {selectedMeeting.TwoTwoFirstAge},{' '}
-                    {selectedMeeting.TwoTwoSecondAge}
-                    {selectedMeeting.FourFourFirstAge}
-                    {selectedMeeting.FourFourSecondAge}
+                    {selectedUser.age1},{' '}
+                    {selectedUser.age2}
+                    {selectedUser.age3}
+                    {selectedUser.age4}
                   </div>
                 </div>
                 <div className="Row">
                   <div className="Q">학과</div>
                   <div className="A">
-                    {selectedMeeting.TwoTwoFirstCollage},
-                    {selectedMeeting.TwoTwoSecondCollage}
-                    {selectedMeeting.FourFourFirstCollage}
-                    {selectedMeeting.FourFourSecondCollage}
+                    {selectedUser.collage},
+                    {selectedUser.collage}
+                    {selectedUser.collage}
+                    {selectedUser.collage}
                   </div>
                 </div>
                 <div className="Row">
                   <div className="Q">해시태그</div>
                   <div className="A">
-                    <Badge keyword={selectedMeeting.hashtag} color="primary" />
+                    <Badge keyword={selectedUser.tag} color="primary" />
                   </div>
                 </div>
                 <div className="Row">
                   <div className="Q">자기소개</div>
                   <div className="A">
                     <Badge
-                      keyword={selectedMeeting.selfintro}
+                      keyword={selectedUser.keysentence}
                       color="primary"
                     />
                   </div>
                 </div>
                 <div className="Row">
                   <div className="Q">오픈채팅링크</div>
-                  <div className="A">{selectedMeeting.openlink}</div>
+                  <div className="A">{selectedUser.chatlink}</div>
                 </div>
               </div>
             </div>
@@ -90,7 +88,7 @@ const SelfMeetingDetails = ({ selectedMeeting }) => {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Do Hyeon , sans-serif' }}>
-                {selectedMeeting.appearance}
+                {selectedUser.appearance}
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
@@ -104,7 +102,7 @@ const SelfMeetingDetails = ({ selectedMeeting }) => {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Do Hyeon , sans-serif' }}>
-                {selectedMeeting.personality}
+                {selectedUser.personality}
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
@@ -118,7 +116,7 @@ const SelfMeetingDetails = ({ selectedMeeting }) => {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Do Hyeon , sans-serif' }}>
-                {selectedMeeting.hobby}
+                {selectedUser.hobby}
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
@@ -132,7 +130,7 @@ const SelfMeetingDetails = ({ selectedMeeting }) => {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Do Hyeon , sans-serif' }}>
-                {selectedMeeting.idealtype}
+                {selectedUser.idealtype}
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
@@ -143,7 +141,7 @@ const SelfMeetingDetails = ({ selectedMeeting }) => {
               id="panel3a-header"
             >
               <Typography>
-                <Badge keyword={selectedMeeting.religion} color="rose" />
+                <Badge keyword={selectedUser.religion} color="rose" />
               </Typography>
             </ExpansionPanelSummary>
           </ExpansionPanel>
@@ -152,8 +150,6 @@ const SelfMeetingDetails = ({ selectedMeeting }) => {
     </div>
   );
 };
-export default inject(({ userlist }) => ({
-  MeetingUserList: userlist.MeetingUserList,
-  selectedMeeting: userlist.selectedMeeting,
-  setSelectedMeeting: userlist.setSelectedMeeting,
+export default inject(({ selfMeetingUser }) => ({
+  selectedUser: selfMeetingUser.selectedUser,
 }))(observer(SelfMeetingDetails));

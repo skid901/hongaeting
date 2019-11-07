@@ -28,17 +28,17 @@ const SelfDatingDetails = ({
     // setSelectedUser();
   }, []);
 
-  console.log(selectedUser);
-  console.log(selectedUser.age);
+  //console.log(selectedUser);
+  //console.log(selectedUser.age);
   return (
     <div className="Template">
       <Paper>
         <div className="topside">
           <div className="imoji">
-            {`${selectedUser.sex}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
+            {`${selectedUser.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
           </div>
           <div className="id">
-            ({selectedUser.sex}) {selectedUser.age} / {selectedUser.collage}
+            ({selectedUser.gender}) {selectedUser.age} / {selectedUser.id}
           </div>
           <div className="Out">
             <div className="out">
@@ -46,7 +46,7 @@ const SelfDatingDetails = ({
                 <div className="Row">
                   <div className="Q">자기소개</div>
                   <div className="A">
-                    <Badge keyword={selectedUser.hashtag} color="primary" />
+                    <Badge keyword={selectedUser.tag} color="primary" />
                     <Badge keyword={selectedUser.religion} color="rose" />
                   </div>
                 </div>
@@ -57,7 +57,7 @@ const SelfDatingDetails = ({
                   </div>
                 </div>
                 <div className="Row">
-                  <div className="Q">오픈채팅링크</div>
+                  <div className="Q">대화하기</div>
                   <div className="A">Openlink@kakao.com/123121123</div>
                 </div>
               </div>
@@ -137,8 +137,8 @@ const SelfDatingDetails = ({
     </div>
   );
 };
-export default inject(({ userlist }) => ({
-  userList: userlist.userList,
-  selectedUser: userlist.selectedUser,
-  setSelectedUser: userlist.setSelectedUser,
+export default inject(({ selfDatingUser }) => ({
+  //userList: selfDatingUser.userList,
+  selectedUser: selfDatingUser.selectedUser,
+  //setSelectedUser: userlist.setSelectedUser,
 }))(observer(SelfDatingDetails));

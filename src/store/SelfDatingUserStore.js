@@ -16,7 +16,7 @@ class SelfDatingUserStore {
     time: '',
     email: '',
     address: '',
-    gendeer: '',
+    gender: '',
     age: '',
     collage: '',
     appearance: '',
@@ -35,21 +35,21 @@ class SelfDatingUserStore {
   getUsers = async(pagenumber) => {
     //this.pageNumber = await pagenumber;
     await Axios.get(`${this.URL}/${pagenumber}`)
-     .then(response => {
-       this.pagedUser = [];
-       this.pagedUser=response.data;
-       this.updated = true;
-       this.IsLoading = false;
-       console.log(this.pagedUser[0].id)
+      .then(response => {
+        this.pagedUser = [];
+        this.pagedUser=response.data;
+        this.updated = true;
+        this.IsLoading = false;
+        //console.log(this.pagedUser[0].id)
       });
   }
 
   getAllUsers = async() => {
     await Axios.get(`${this.URL}/`)
-      .then(response => this.userCount = response.data)
+      .then(response => {this.userCount = response.data; console.log(this.userCount)})
   }
 
-  setSelectUser = (user) => {
+  setSelectedUser = (user) => {
     this.selectedUser = user;
     console.log(this.selectedUser);
   }
