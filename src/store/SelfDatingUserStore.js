@@ -3,12 +3,13 @@ import Axios from 'axios';
 
 class SelfDatingUserStore {
   //
-  URL = 'http://34.97.117.253:80/api/datingusers';
+  //URL = 'http://34.97.117.253:80/api/datingusers';
+  URL = 'http://localhost:4000/api/datingusers';
   //@observable pageNumber = 1;
   @observable updated = false;
   @observable IsLoading = true;
 
-
+  @observable gender = 0;
   @observable pagedUser = [];
   
   @observable selectedUser = {
@@ -31,32 +32,30 @@ class SelfDatingUserStore {
   };
 
   @observable userCount = 0;
-  
+  setGender = (gender) => {
+    this.gender = gender;
+  }
   getUsers = async(pagenumber) => {
-    //this.pageNumber = await pagenumber;
-    await Axios.get(`${this.URL}/${pagenumber}`)
+    await Axios.get(`${this.URL}/pageNumber/${pagenumber}/gender/${this.gender}`)
       .then(response => {
         this.pagedUser = [];
         this.pagedUser=response.data;
         this.updated = true;
         this.IsLoading = false;
-        //console.log(this.pagedUser[0].id)
       });
   }
 
-  getAllUsers = async() => {
-    await Axios.get(`${this.URL}/`)
-      .then(response => {this.userCount = response.data; console.log(this.userCount)})
+  getAllUsers = () => {
+    Axios.get(`${this.URL}/gender/${this.gender}`)
+      .then(response => {this.userCount = response.data; console.log('this.userCount' + this.userCount)})
   }
+
+  // const response = await Axios(sdadasdas)/ .then(X)
+  // this.userCount = response.data
 
   setSelectedUser = (user) => {
     this.selectedUser = user;
     console.log(this.selectedUser);
-  }
-
-  getOneUser = async(id) => {
-    await Axios.get(`${this.URL}/${id}`)
-      .then(response => this.selectedUser = response.data)
   }
 }
 

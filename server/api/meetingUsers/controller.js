@@ -49,6 +49,7 @@ export const create = async (ctx) => {
   // let tag = "#첫번째 학우_긴생머리, 청순한, 조용한, 차분한, 여행 #두번째 학우_단발, 귀여운, 톡톡튀는, 필름사진 #세번째 학우_인싸, 활발한, 외향적인, 투머치토커";
   // let keysentence = "에벨벨베레베베벨베베벱레베벨";
   const meetingUser = new MeetingUser({
+    name,
     id,
     time,
     email,
@@ -83,22 +84,52 @@ export const create = async (ctx) => {
 }
 
 export const list = async (ctx) => {
-  const { pageNumber } = ctx.params;
+  const { pageNumber, gender} = ctx.params;
 
   let list ={};
-
-  try{
-    list = await MeetingUser.find()
-      .sort({_id: -1})
-      .skip((pageNumber-1) * 20)
-      .limit(20)
-      .exec();
-  } catch (e){
-    return ctx.throw(500, e);
+  if(gender == 0){
+    try{
+      list = await MeetingUser.find({gender: "남학우"})
+        .sort({_id: -1})
+        .skip((pageNumber-1) * 20)
+        .limit(20)
+        .exec();
+    } catch (e){
+      return ctx.throw(500, e);
+    }
+  }else if(gender == 1){
+    try{
+      list = await MeetingUser.find({gender: "여학우"})
+        .sort({_id: -1})
+        .skip((pageNumber-1) * 20)
+        .limit(20)
+        .exec();
+    } catch (e){
+      return ctx.throw(500, e);
+    }
+  }else if(gender == 2){
+    try{
+      list = await MeetingUser.find()
+        .sort({_id: -1})
+        .skip((pageNumber-1) * 20)
+        .limit(20)
+        .exec();
+    } catch (e){
+      return ctx.throw(500, e);
+    }
   }
+  // try{
+  //   list = await MeetingUser.find({gender: "남학우"})
+  //     .sort({_id: -1})
+  //     .skip((pageNumber-1) * 20)
+  //     .limit(20)
+  //     .exec();
+  // } catch (e){
+  //   return ctx.throw(500, e);
+  // }
   ctx.body = list;
 }
-
+/*
 const selected = async (ctx) => {
   const {id} = ctx.params;
 
@@ -117,4 +148,36 @@ const selected = async (ctx) => {
   }
 
   ctx.body = user;
+}
+*/
+
+export const count = async (ctx) => {
+  const {gender} = ctx.params;
+
+  let count;
+
+  if(gender == 0){
+    try{
+      count = await MeetingUser.find({gender: "남학우"}).count().exec();
+    }
+    catch (e){
+      return ctx.throw(500, e);
+    }
+  }else if(gender == 1){
+    try{
+      count = await MeetingUser.find({gender: "여학우"}).count().exec();
+    }
+    catch (e){
+      return ctx.throw(500, e);
+    }
+  }else if(gender == 2){
+    try{
+      count = await MeetingUser.find().count().exec();
+    }
+    catch (e){
+      return ctx.throw(500, e);
+    }
+  }
+  console.log(count);
+  ctx.body = count;
 }

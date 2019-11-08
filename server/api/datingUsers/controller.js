@@ -127,30 +127,72 @@ export const create = async (ctx) => {
 
 
 export const list = async (ctx) => {
-  const { pageNumber } = ctx.params;
-
-  let list;
-
-  try{
-    list = await DatingUser.find({self : 1})
-      .sort({_id: -1})
-      .skip((pageNumber-1) * 20)
-      .limit(20)
-      .exec();
-  } catch (e){
-    return ctx.throw(500, e);
+  const { pageNumber, gender} = await ctx.params;
+  await console.log("gender" ,gender);
+  let list ={};
+  if(gender == 0){
+    try{
+      list = await DatingUser.find({gender: "남학우", self: 1})
+        .sort({_id: -1})
+        .skip((pageNumber-1) * 20)
+        .limit(20)
+        .exec();
+    } catch (e){
+      return ctx.throw(500, e);
+    }
+  }else if(gender == 1){
+    try{
+      list = await DatingUser.find({gender: "여학우", self:1})
+        .sort({_id: -1})
+        .skip((pageNumber-1) * 20)
+        .limit(20)
+        .exec();
+    } catch (e){
+      return ctx.throw(500, e);
+    }
+  }else if(gender == 2){
+    try{
+      list = await DatingUser.find({self: 1})
+        .sort({_id: -1})
+        .skip((pageNumber-1) * 20)
+        .limit(20)
+        .exec();
+    } catch (e){
+      return ctx.throw(500, e);
+    }
   }
   ctx.body = list;
 }
 
-export const all = async (ctx) => {
-  let all;
-  try{
-    all = await DatingUser.find({self : 1}).count().exec();
-  }catch (e){
-    return ctx.throw(500, e);
+export const count = async (ctx) => {
+  const {gender} = ctx.params;
+
+  let count;
+
+  if(gender == 0){
+    try{
+      count = await DatingUser.find({gender: "남학우", self: 1}).count().exec();
+    }
+    catch (e){
+      return ctx.throw(500, e);
+    }
+  }else if(gender == 1){
+    try{
+      count = await DatingUser.find({gender: "여학우", self: 1}).count().exec();
+    }
+    catch (e){
+      return ctx.throw(500, e);
+    }
+  }else if(gender == 2){
+    try{
+      count = await DatingUser.find({self: 1}).count().exec();
+    }
+    catch (e){
+      return ctx.throw(500, e);
+    }
   }
-  ctx.body = all;
+  console.log(count);
+  ctx.body = count;
 }
 
 export const selected = async (ctx) => {

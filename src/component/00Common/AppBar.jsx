@@ -33,35 +33,35 @@ const CustomAppBar = props => {
             <nav className="navbar">
               <div className="firstbar">
                 <div className="start">
-                  <a
+                  <div
                     className="logo"
                     onClick={() => {
                       history.push(`/`);
                     }}
                   >
                     홍개팅
-                  </a>
+                  </div>
                   <div className="menu-wrapper">
                     <ol className="menulist">
                       <li className="selso">
-                        <a
+                        <div
                           className="atag"
                           onClick={() => {
                             history.push(`/selfdatinglist`);
                           }}
                         >
                           <span className="text">#홍셀소</span>
-                        </a>
+                        </div>
                       </li>
                       <li className="meeting">
-                        <a
+                        <div
                           className="atag"
                           onClick={() => {
                             history.push(`/selfmeetinglist`);
                           }}
                         >
                           <span className="text">#홍미팅</span>
-                        </a>
+                        </div>
                       </li>
                     </ol>
                   </div>
@@ -76,25 +76,6 @@ const CustomAppBar = props => {
                     <AccountCircle />
                   </IconButton>
                 </div>
-              </div>
-              <div className="secondbar">
-                <ol className="viewlist">
-                  <li className="view">
-                    <Button style={{ 'font-family': 'Do Hyeon, sans-serif' }}>
-                      전체보기
-                    </Button>
-                  </li>
-                  <li className="view">
-                    <Button style={{ 'font-family': 'Do Hyeon, sans-serif' }}>
-                      남자보기
-                    </Button>
-                  </li>
-                  <li className="view">
-                    <Button style={{ 'font-family': 'Do Hyeon, sans-serif' }}>
-                      여자보기
-                    </Button>
-                  </li>
-                </ol>
               </div>
             </nav>
           </div>

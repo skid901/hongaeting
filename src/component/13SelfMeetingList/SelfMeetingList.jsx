@@ -44,21 +44,46 @@ const SelfMeetingList = ({
   pageNumber,
   pagedUser,
   getAllUsers,
-  userCount
+  userCount,
+  setGender
 }) => {
   const history = useHistory();
   const [searchKeyword, setSearchKeyword] = useState('');
   const classes1 = useStyles1();
   useEffect(() => {
+    setGender(2);
     getUsers(1);
     getAllUsers();
-    // console.log(searchKeyword === false);
-    // console.log(updated);
-    // console.log(IsLoading);
-  }, [IsLoading]);
+  }, []);
 
   return (
     <div className="Template">
+      <div className="secondbar">
+        <ol className="viewlist">
+          <li className="view">
+            <Button 
+              style={{ 'font-family': 'Do Hyeon, sans-serif' }}
+              onClick={async()=>{await setGender(2);await getUsers(1);await getAllUsers();}}
+            >
+              전체보기
+            </Button>
+          </li>
+          <li className="view">
+            <Button 
+              style={{ 'font-family': 'Do Hyeon, sans-serif' }}
+              onClick={async()=>{await setGender(0);await getUsers(1); await getAllUsers();}}>
+              남자보기
+            </Button>
+          </li>
+          <li className="view">
+            <Button 
+              style={{ 'font-family': 'Do Hyeon, sans-serif' }}
+              onClick={async()=>{await setGender(1); await getUsers(1); await getAllUsers();}}>
+              여자보기
+            </Button>
+          </li>
+        </ol>
+      </div>
       <p className="title">홍익 셀프 미팅😎 </p>
       <div className="input" maxWidth="sm" style={{ 'padding-bottom': '0px' }}>
         {/* <SplitButton /> */}
@@ -129,8 +154,8 @@ const SelfMeetingList = ({
       )}
       <div className="page">
         <ReactPaginate
-          pageCount={userCount / 20 ? userCount / 20 + 1: userCount/20}
-          marginPagesDisplayed={2}
+          pageCount={(userCount / 20) + 1}
+          marginPagesDisplayed={1}
           pageRangeDisplayed={1}
           onPageChange={e=>getUsers(e.selected+1)}
           previousLabel={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/><path fill="none" d="M0 0h24v24H0V0z"/></svg>}
@@ -212,4 +237,5 @@ export default inject(({ selfMeetingUser }) => ({
   pagedUser: selfMeetingUser.pagedUser,
   getAllUsers: selfMeetingUser.getAllUsers,
   userCount: selfMeetingUser.userCount,
+  setGender: selfMeetingUser.setGender
 }))(observer(SelfMeetingList));
