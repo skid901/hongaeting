@@ -182,8 +182,10 @@ const SignUp = observer(() => {
         회원가입
       </Container>
       <Container className="input" maxWidth="sm">
-        <FormControl fullWidth>
-          <InputLabel htmlFor="id">이메일</InputLabel>
+        <FormControl fullWidth style={{ color: '#085F63' }}>
+          <InputLabel htmlFor="id" style={{ color: '#085F63' }}>
+            이메일
+          </InputLabel>
           <Input
             type="email"
             placeholder="이메일을 입력해주세요."
@@ -197,7 +199,9 @@ const SignUp = observer(() => {
       </Container>
       <Container className="input" maxWidth="sm">
         <FormControl fullWidth>
-          <InputLabel htmlFor="password">패스워드</InputLabel>
+          <InputLabel htmlFor="password" style={{ color: '#085F63' }}>
+            패스워드
+          </InputLabel>
           <Input
             placeholder="패스워드를 입력해주세요."
             type={state.showPassword ? 'text' : 'password'}
@@ -214,7 +218,9 @@ const SignUp = observer(() => {
       </Container>
       <Container className="input" maxWidth="sm">
         <FormControl fullWidth>
-          <InputLabel htmlFor="passwordConfirm">패스워드 확인</InputLabel>
+          <InputLabel htmlFor="passwordConfirm" style={{ color: '#085F63' }}>
+            패스워드 확인
+          </InputLabel>
           <Input
             id="SignUp-passwordConfirm"
             placeholder="패스워드를 확인해주세요."
@@ -230,7 +236,9 @@ const SignUp = observer(() => {
       </Container>
       <Container className="input" maxWidth="sm">
         <FormControl fullWidth>
-          <InputLabel htmlFor="nickName">닉네임</InputLabel>
+          <InputLabel htmlFor="nickName" style={{ color: '#085F63' }}>
+            닉네임
+          </InputLabel>
           <Input
             placeholder="닉네임을 입력해주세요."
             value={state.nickName}
@@ -255,13 +263,13 @@ const SignUp = observer(() => {
           >
             <FormControlLabel
               value="female"
-              control={<Radio color="primary" />}
+              control={<Radio style={{ color: '#085F63' }} />}
               labelPlacement="end"
               label="여성"
             />
             <FormControlLabel
               value="male"
-              control={<Radio color="primary" />}
+              control={<Radio style={{ color: '#085F63' }} />}
               labelPlacement="end"
               label="남성"
             />
@@ -270,7 +278,9 @@ const SignUp = observer(() => {
       </Container>
       <Container className="input" maxWidth="sm">
         <FormControl fullWidth>
-          <InputLabel htmlFor="authEmail">홍대 이메일 아이디</InputLabel>
+          <InputLabel htmlFor="authEmail" style={{ color: '#085F63' }}>
+            홍대 이메일 아이디
+          </InputLabel>
           <Input
             placeholder="아이디만 입력해주세요."
             value={state.authEmail}
@@ -333,7 +343,7 @@ const SignUp = observer(() => {
       <Container className="input button" maxWidth="sm">
         <Button
           variant="contained"
-          color="primary"
+          style={{ color: 'white', 'background-color': '#085F63' }}
           fullWidth
           onClick={handleClick}
         >

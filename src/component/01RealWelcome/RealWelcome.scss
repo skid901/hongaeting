@@ -1,5 +1,7 @@
 .image {
-  background-image: url('./offlin_main.jpg');
+  position: relative;
+  background-image: url('/images/offlin_main.jpg');
+  background-position: center;
   background-size: contain;
   max-width: 720px;
   background-repeat: no-repeat;
@@ -7,4 +9,10 @@
   max-height: 4792px;
   margin: 0 auto;
   padding: 0 auto;
+}
+
+.button {
+  position: absolute;
+  top: 0;
+  left: 0;
 }

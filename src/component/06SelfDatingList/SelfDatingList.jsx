@@ -6,19 +6,11 @@ import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { inject, observer } from 'mobx-react';
 import './SelfDatingList.scss';
-import {
-  BrowserRouter,
-  Switch,
-  Route,
-  Link,
-  withRouter,
-  useHistory,
-} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Badge from './Badge';
-import Axios from '../../../node_modules/axios/index';
 
 const useStyles1 = makeStyles({
   root: {
@@ -128,14 +120,14 @@ const SelfDatingList = ({ userList, setTableData, updated, IsLoading }) => {
   );
 };
 
-@inject(({ userlist }) => ({
-  setSelectedUser: userlist.setSelectedUser,
+@inject(({ userListStore }) => ({
+  setSelectedUser: userListStore.setSelectedUser,
 }))
 @observer
 class Cards extends React.Component {
   render() {
     const { setSelectedUser, user, history } = this.props;
-    const url = `/selfdatingdetails/${user.kakaoid}`;
+    const url = `/selfdatingdetails/test`;
     return (
       <div className="CardsWrapper">
         <Card
@@ -206,9 +198,9 @@ class Cards extends React.Component {
   }
 }
 
-export default inject(({ userlist }) => ({
-  userList: userlist.userList,
-  setTableData: userlist.setTableData,
-  updated: userlist.updated,
-  IsLoading: userlist.IsLoading,
+export default inject(({ userListStore }) => ({
+  userList: userListStore.userList,
+  setTableData: userListStore.setTableData,
+  updated: userListStore.updated,
+  IsLoading: userListStore.IsLoading,
 }))(observer(SelfDatingList));

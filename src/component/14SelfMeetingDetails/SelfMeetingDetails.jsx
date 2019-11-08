@@ -152,8 +152,8 @@ const SelfMeetingDetails = ({ selectedMeeting }) => {
     </div>
   );
 };
-export default inject(({ userlist }) => ({
-  MeetingUserList: userlist.MeetingUserList,
-  selectedMeeting: userlist.selectedMeeting,
-  setSelectedMeeting: userlist.setSelectedMeeting,
+export default inject(({ userListStore }) => ({
+  MeetingUserList: userListStore.MeetingUserList,
+  selectedMeeting: userListStore.selectedMeeting,
+  setSelectedMeeting: userListStore.setSelectedMeeting,
 }))(observer(SelfMeetingDetails));

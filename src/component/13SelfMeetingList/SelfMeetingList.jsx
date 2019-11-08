@@ -116,8 +116,8 @@ const SelfMeetingList = ({
   );
 };
 
-@inject(({ userlist }) => ({
-  setSelectedMeeting: userlist.setSelectedMeeting,
+@inject(({ userListStore }) => ({
+  setSelectedMeeting: userListStore.setSelectedMeeting,
 }))
 @observer
 class Cards extends React.Component {
@@ -207,9 +207,9 @@ class Cards extends React.Component {
   }
 }
 
-export default inject(({ userlist }) => ({
-  MeetingUserList: userlist.MeetingUserList,
-  setMeetingData: userlist.setMeetingData,
-  meetingupdated: userlist.meetingupdated,
-  meetingIsLoading: userlist.meetingIsLoading,
+export default inject(({ userListStore }) => ({
+  MeetingUserList: userListStore.MeetingUserList,
+  setMeetingData: userListStore.setMeetingData,
+  meetingupdated: userListStore.meetingupdated,
+  meetingIsLoading: userListStore.meetingIsLoading,
 }))(observer(SelfMeetingList));

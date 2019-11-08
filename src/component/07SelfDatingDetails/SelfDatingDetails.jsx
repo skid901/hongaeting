@@ -1,32 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './SelfDatingDetails.scss';
-import { useHistory } from 'react-router';
-import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Paper from '@material-ui/core/Paper';
-import CommentIcon from '@material-ui/icons/Comment';
-import TableBody from '@material-ui/core/TableBody';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
-import Table from '@material-ui/core/Table';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Badge from 'C:/Users/kocon/Desktop/Hongaeting_V1/hongaeting/src/component/06SelfDatingList/Badge.jsx';
 import { inject, observer } from 'mobx-react';
-import Grid from '@material-ui/core/Grid';
 
-const SelfDatingDetails = ({
-  userList,
-  setSelectedUser,
-  selectedUser,
-  history,
-}) => {
-  useEffect(() => {
-    // setSelectedUser();
-  }, []);
+const SelfDatingDetails = ({ selectedUser }) => {
+  useEffect(() => {}, []);
 
   console.log(selectedUser);
   console.log(selectedUser.age);
@@ -137,8 +121,8 @@ const SelfDatingDetails = ({
     </div>
   );
 };
-export default inject(({ userlist }) => ({
-  userList: userlist.userList,
-  selectedUser: userlist.selectedUser,
-  setSelectedUser: userlist.setSelectedUser,
+export default inject(({ userListStore }) => ({
+  userList: userListStore.userList,
+  selectedUser: userListStore.selectedUser,
+  setSelectedUser: userListStore.setSelectedUser,
 }))(observer(SelfDatingDetails));

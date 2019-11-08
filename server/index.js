@@ -60,6 +60,6 @@ socketServer(httpServer, app);
 
 httpServer.listen(process.env.SERVER_PORT, () => {
   console.log(
-    `Listening to http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`,
+    `Listening to http://${process.env.SERVER_IP}:${process.env.SERVER_PORT}`,
   );
 });

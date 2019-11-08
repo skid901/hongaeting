@@ -11,10 +11,12 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { inject, observer } from 'mobx-react';
 
 // app bar 스크롤 숨김
-const HideOnScroll = props => {
+const HideOnScroll = ({ props, email }) => {
   const { children } = props;
+  console.log(email);
   const trigger = useScrollTrigger();
   return (
     <Slide appear={false} direction="down" in={!trigger}>
@@ -27,6 +29,7 @@ const login = false;
 
 const CustomAppBar = props => {
   const history = useHistory();
+
   return (
     <>
       {login == true ? (
@@ -38,14 +41,14 @@ const CustomAppBar = props => {
                 <nav className="navbar">
                   <div className="firstbar">
                     <div className="start">
-                      <a
+                      <p
                         className="logo"
                         onClick={() => {
                           history.push(`/`);
                         }}
                       >
                         홍개팅
-                      </a>
+                      </p>
                       <div className="menu-wrapper">
                         <ol className="menulist">
                           <li className="selso">
@@ -130,35 +133,35 @@ const CustomAppBar = props => {
                 <nav className="navbar">
                   <div className="firstbar">
                     <div className="start">
-                      <a
+                      <p
                         className="logo"
                         onClick={() => {
                           history.push(`/`);
                         }}
                       >
                         홍개팅
-                      </a>
+                      </p>
                       <div className="menu-wrapper">
                         <ol className="menulist">
                           <li className="selso">
-                            <a
+                            <p
                               className="atag"
                               onClick={() => {
                                 history.push(`/selfdatinglist`);
                               }}
                             >
                               <span className="text">#홍셀소</span>
-                            </a>
+                            </p>
                           </li>
                           <li className="meeting">
-                            <a
+                            <p
                               className="atag"
                               onClick={() => {
                                 history.push(`/selfmeetinglist`);
                               }}
                             >
                               <span className="text">#홍미팅</span>
-                            </a>
+                            </p>
                           </li>
                         </ol>
                       </div>
@@ -167,7 +170,7 @@ const CustomAppBar = props => {
                       <IconButton
                         color="inherit"
                         onClick={() => {
-                          history.push(`/mypage/test`);
+                          history.push(`/signin`);
                         }}
                       >
                         <Button
@@ -189,31 +192,7 @@ const CustomAppBar = props => {
                       </IconButton>
                     </div>
                   </div>
-                  {/* <div className="secondbar">
-              <ol className="viewlist">
-                <li className="view">
-                  <Button
-                    style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
-                  >
-                    전체보기
-                  </Button>
-                </li>
-                <li className="view">
-                  <Button
-                    style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
-                  >
-                    남자보기
-                  </Button>
-                </li>
-                <li className="view">
-                  <Button
-                    style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
-                  >
-                    여자보기
-                  </Button>
-                </li>
-              </ol>
-            </div> */}
+                  <div className="secondbar"></div>
                 </nav>
               </div>
             </AppBar>
@@ -244,4 +223,7 @@ const CustomAppBar = props => {
   );
 };
 
-export default CustomAppBar;
+export default inject(({ user }) => ({
+  email: user.email,
+  authEmail: user.authEmail,
+}))(observer(CustomAppBar));
