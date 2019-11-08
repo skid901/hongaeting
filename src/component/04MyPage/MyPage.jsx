@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-
+import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -12,6 +12,8 @@ import Typography from '@material-ui/core/Typography';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import './MyPage.scss';
+
+import Badge from 'C:/Users/kocon/Desktop/Hongaeting_V1/hongaeting/src/component/06SelfDatingList/Badge.jsx';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -38,6 +40,46 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const userList = [
+  {
+    _id: '1',
+    nickName: 'outwater',
+    time: '2019-11-01T11:55:58.370Z',
+    email: 'emailtest@naver.com',
+    kakaoid: 'kakaoidor연락처',
+    sex: '여학우',
+    age: '26세',
+    collage: '사범대학',
+    appearance: '[외모]1:1소개팅만신청외모테스트',
+    personality: '[성격]1:1소개팅만신청외모테스트',
+    hobby: '[취미]1:1소개팅만신청외모테스트',
+    religion: '기독교',
+    smoke: '흡연자',
+    idealtype: '[연애관]1:1소개팅만신청외모테스트',
+    openchatlink: '',
+    hashtag: '#귀요미 #깜찍이 #끔찍이',
+    selfintro: '이성학우들에게한마디',
+  },
+  {
+    _id: '2',
+    nickName: 'inwater',
+    time: '2019-11-01T11:19:53.024Z',
+    email: 'kocon135@naver.com',
+    kakaoid: 123,
+    sex: '남학우',
+    age: '26세',
+    collage: '사범대학',
+    appearance: 'k',
+    personality: 'd',
+    hobby: 'd',
+    religion: '천주교',
+    smoke: '비흡연자',
+    idealtype: 'd',
+    openchatlink: '',
+    hashtag: '',
+    selfintro: '',
+  },
+];
 const MyPage = () => {
   //
   const { nickName } = useParams();
@@ -55,8 +97,15 @@ const MyPage = () => {
               <p className="nickname">outwater{`${nickName}`}</p>
             </div>
             <div className="inline-block-wrapper">
-              <span>#태그1 #태그2 #태그3</span>
-              <p> 자기소개 한마디 주르르르르를르르르르르르르륵</p>
+              <Badge keyword={'tag1'} color="primary" />
+              <Badge keyword={'tag2'} color="primary" />
+              <Badge keyword={'tag3'} color="primary" />
+            </div>
+            <div>
+              <Badge
+                keyword={'자기소개 한마디 주르르르르를르르르르르르르륵'}
+                color="info"
+              />
             </div>
           </div>
         </div>
@@ -65,148 +114,63 @@ const MyPage = () => {
         <p className="MenuName"> 채팅방 리스트</p>
       </div>
       <div>
-        <List className={classes.root}>
-          <ListItem alignItems="flex-start">
-            <ListItemAvatar>
-              <Avatar
-                className={classes.orangeAvatar}
-                style={{ 'font-size': '11px' }}
+        <ul>
+          {userList.map(val => (
+            <ListItem
+              alignItems="flex-start"
+              key={val._id}
+              className={classes.root}
+            >
+              <ListItemAvatar>
+                <Avatar
+                  className={classes.orangeAvatar}
+                  style={{ 'font-size': '11px' }}
+                >
+                  1:1매칭
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText
+                primary={val.nickName}
+                style={{ 'padding-top': '15px' }}
+                secondary={
+                  <React.Fragment>
+                    <Typography
+                      component="span"
+                      variant="body2"
+                      className={classes.inline}
+                      color="textPrimary"
+                    ></Typography>
+                    {/* {' — 대화내용이 여기에 나오게 하면 좋겠는데!!'} */}
+                  </React.Fragment>
+                }
+              />
+              <Button
+                // type="button"
+                data-email={val.email}
+                style={{ 'margin-top': '15px' }}
               >
-                1:1매칭
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary="닉네임1"
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    component="span"
-                    variant="body2"
-                    className={classes.inline}
-                    color="textPrimary"
-                  ></Typography>
-                  {' — 대화내용이 여기에 나오게 하면 좋겠는데!!'}
-                </React.Fragment>
-              }
-            />
-            <div className="timebar" style={{ 'font-size': '11px' }}>
-              11월14일
-            </div>
-          </ListItem>
-          <Divider variant="inset" component="li" />
-          <ListItem alignItems="flex-start">
-            <ListItemAvatar>
-              <Avatar
-                className={classes.orangeAvatar}
-                style={{ 'font-size': '14px' }}
-              >
-                셀소
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary="닉네임2"
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    component="span"
-                    variant="body2"
-                    className={classes.inline}
-                    color="textPrimary"
-                  ></Typography>
-                  {" — Wish I could come, but I'm out of town this…"}
-                </React.Fragment>
-              }
-            />
-            <div className="timebar" style={{ 'font-size': '11px' }}>
-              11월14일
-            </div>
-          </ListItem>{' '}
-          <Divider variant="inset" component="li" />
-          <ListItem alignItems="flex-start">
-            <ListItemAvatar>
-              <Avatar
-                className={classes.orangeAvatar}
-                style={{ 'font-size': '14px' }}
-              >
-                셀소
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary="닉네임2"
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    component="span"
-                    variant="body2"
-                    className={classes.inline}
-                    color="textPrimary"
-                  ></Typography>
-                  {" — Wish I could come, but I'm out of town this…"}
-                </React.Fragment>
-              }
-            />
-            <div className="timebar" style={{ 'font-size': '11px' }}>
-              11월14일
-            </div>
-          </ListItem>
-          <Divider variant="inset" component="li" />
-          <ListItem alignItems="flex-start">
-            <ListItemAvatar>
-              <Avatar
-                className={classes.orangeAvatar}
-                style={{ 'font-size': '14px' }}
-              >
-                셀소
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary="닉네임2"
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    component="span"
-                    variant="body2"
-                    className={classes.inline}
-                    color="textPrimary"
-                  ></Typography>
-                  {" — Wish I could come, but I'm out of town this…"}
-                </React.Fragment>
-              }
-            />
-            <div className="timebar" style={{ 'font-size': '11px' }}>
-              11월14일
-            </div>
-          </ListItem>
-          <Divider variant="inset" component="li" />
-          <ListItem alignItems="flex-start">
-            <ListItemAvatar>
-              <Avatar
-                className={classes.purpleAvatar}
-                style={{ 'font-size': '14px' }}
-              >
-                셀미
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary="Test1234"
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    component="span"
-                    variant="body2"
-                    className={classes.inline}
-                    color="textPrimary"
-                  ></Typography>
-                  {' — Do you have Paris recommendations? Have you ever…'}
-                </React.Fragment>
-              }
-            />
-            <div className="timebar" style={{ 'font-size': '11px' }}>
-              11월14일
-            </div>
-          </ListItem>
-        </List>
+                클릭
+              </Button>
+              {/* <div className="timebar" style={{ 'font-size': '11px' }}>
+                11월14일
+              </div> */}
+            </ListItem>
+          ))}
+        </ul>
       </div>
+      {/* <div>
+        <ul>
+          {userList.map(val => (
+            <li key={val._id}>
+              {val.nickName}와 채팅하려면{' '}
+              <button type="button" data-email={val.email}>
+                클릭
+              </button>
+            </li>
+          ))}
+          <li />
+        </ul>
+      </div> */}
     </div>
   );
 };

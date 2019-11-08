@@ -7,7 +7,7 @@
   right: 0px;
   z-index: 100;
   background-color: ghostwhite;
-  box-shadow: rgba(156, 20, 190, 0.12) 0px 2px 10px;
+  box-shadow: #F1F1F1(156, 20, 190, 0.12) 0px 2px 10px;
   transition: box-shadow 0.25s ease-in-out 0s;
   margin: auto;
   padding: 0;
@@ -16,6 +16,15 @@
 .navbar {
   min-height: 40px;
   height: 80px;
+  margin: 0px 14px 0px 12px;
+  max-width: 720px;
+  position: relative;
+  display: block;
+}
+
+.navbar2 {
+  min-height: 40px;
+  height: 40px;
   margin: 0px 14px 0px 12px;
   max-width: 720px;
   position: relative;
@@ -39,6 +48,7 @@
 }
 .logo {
   color: black;
+  font-weight: bold;
 }
 .menu-wrapper {
   flex: 0 0 auto;

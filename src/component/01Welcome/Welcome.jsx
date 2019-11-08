@@ -51,6 +51,12 @@ const Welcome = () => (
     <li>
       <Link to="/selfmeetingdetails">selfmeetingdetails</Link>
     </li>
+    <li>
+      <Link to="/meetingform">meetingform</Link>
+    </li>
+    <li>
+      <Link to="/realwelcome">RealWelcome</Link>
+    </li>
   </div>
 );
 

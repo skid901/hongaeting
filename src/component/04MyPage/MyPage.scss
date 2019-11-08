@@ -18,7 +18,7 @@
 }
 
 .Infobox {
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   display: inline-block;
   padding-left: 16px;
 }
@@ -30,7 +30,7 @@
   padding-bottom: 5px;
   margin: 0 auto;
   font-size: 20px;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 .timebar {
@@ -40,4 +40,12 @@
   float: right;
   font-size: 11px;
   color: grey;
+}
+
+.viewlist {
+  display: none;
+}
+
+.button {
+  margin-top: 17px;
 }

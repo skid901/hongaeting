@@ -23,10 +23,10 @@ import Axios from '../../../node_modules/axios/index';
 const useStyles1 = makeStyles({
   root: {
     width: 300,
-    background: 'linear-gradient(45deg, #1e3c72 30%, #2a5298 90%)',
+    background: 'linear-gradient(45deg, #085F63 30%, #085F63 90%)',
     border: 0,
     borderRadius: 3,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    boxShadow: '0 3px 5px 2px #F1F1F1',
     color: 'white',
     height: 48,
     padding: '0 30px',
@@ -47,66 +47,14 @@ const SelfDatingList = ({ userList, setTableData, updated, IsLoading }) => {
 
   return (
     <div className="Template">
-      {/* <div className="global-navbar">
-        <nav className="navbar">
-          <div className="firstbar">
-            <div className="start">
-              <a className="logo" href="http://localhost:3000">
-                홍개팅
-              </a>
-              <div className="menu-wrapper">
-                <ol className="menulist">
-                  <li className="selso">
-                    <a
-                      className="atag"
-                      href="http://localhost:3000/selfdatinglist"
-                    >
-                      <span className="text">#홍셀소</span>
-                    </a>
-                  </li>
-                  <li className="meeting">
-                    <a
-                      className="atag"
-                      href="http://localhost:3000/selfdatinglist"
-                    >
-                      <span className="text">#홍미팅</span>
-                    </a>
-                  </li>
-                </ol>
-              </div>
-            </div>
-            <div className="end">
-              <IconButton
-                color="inherit"
-                src="http://localhost:3000/selfdatinglist"
-              >
-                <AccountCircle />
-              </IconButton>
-            </div>
-          </div>
-          <div className="secondbar">
-            <ol className="viewlist">
-              <li className="view">
-                <Button style={{ 'font-family': 'Do Hyeon, sans-serif' }}>
-                  전체보기
-                </Button>
-              </li>
-              <li className="view">
-                <Button style={{ 'font-family': 'Do Hyeon, sans-serif' }}>
-                  남자보기
-                </Button>
-              </li>
-              <li className="view">
-                <Button style={{ 'font-family': 'Do Hyeon, sans-serif' }}>
-                  여자보기
-                </Button>
-              </li>
-            </ol>
-          </div>
-        </nav>
-      </div> */}
-      <p className="title" style={{ 'background-color': 'white' }}>
-        홍익 셀프 소개팅😎
+      <p
+        className="title"
+        style={{
+          'background-color': 'white',
+          'font-family': 'Noto Sans KR, sans-serif',
+        }}
+      >
+        홍익 셀프 소개팅
       </p>
       <div className="input" maxWidth="sm" style={{ 'padding-bottom': '0px' }}>
         {/* <SplitButton /> */}
@@ -118,7 +66,10 @@ const SelfDatingList = ({ userList, setTableData, updated, IsLoading }) => {
           <div style={{ 'text-align': 'center' }}>
             <Button
               className={classes1.root}
-              style={{ 'font-family': 'Do Hyeon, sans-serif' }}
+              style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
+              onClick={() => {
+                history.push('/introductionform');
+              }}
             >
               셀프 소개팅 신청하기
             </Button>
@@ -161,7 +112,11 @@ const SelfDatingList = ({ userList, setTableData, updated, IsLoading }) => {
                       )
                       .map(user => <Cards user={user} history={history} />)
                   : userList.map(user => (
-                      <Cards user={user} history={history} />
+                      <Cards
+                        user={user}
+                        history={history}
+                        style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
+                      />
                     ));
               }
               return result;

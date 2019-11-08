@@ -74,7 +74,7 @@ const SelfDatingDetails = ({
               <Typography>😊외모 </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <Typography style={{ 'font-family': 'Do Hyeon , sans-serif' }}>
+              <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
                 {selectedUser.appearance}
               </Typography>
             </ExpansionPanelDetails>
@@ -88,7 +88,7 @@ const SelfDatingDetails = ({
               <Typography> 🌵성격 </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <Typography style={{ 'font-family': 'Do Hyeon , sans-serif' }}>
+              <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
                 {selectedUser.personality}
               </Typography>
             </ExpansionPanelDetails>
@@ -102,7 +102,7 @@ const SelfDatingDetails = ({
               <Typography> 🍀여가생활 및 취미 </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <Typography style={{ 'font-family': 'Do Hyeon , sans-serif' }}>
+              <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
                 {selectedUser.hobby}
               </Typography>
             </ExpansionPanelDetails>
@@ -116,7 +116,7 @@ const SelfDatingDetails = ({
               <Typography> 💕연애관 및 바라는 이상형 </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <Typography style={{ 'font-family': 'Do Hyeon , sans-serif' }}>
+              <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
                 {selectedUser.idealtype}
               </Typography>
             </ExpansionPanelDetails>

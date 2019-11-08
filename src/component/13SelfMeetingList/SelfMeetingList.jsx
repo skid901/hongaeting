@@ -24,10 +24,10 @@ import Badge from './Badge';
 const useStyles1 = makeStyles({
   root: {
     width: 300,
-    background: 'linear-gradient(45deg, #1e3c72 30%, #2a5298 90%)',
+    background: 'linear-gradient(45deg, #085F63 30%, #085F63 90%)',
     border: 0,
     borderRadius: 3,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    boxShadow: '0 3px 5px 2px #F1F1F1',
     color: 'white',
     height: 48,
     padding: '0 30px',
@@ -52,7 +52,7 @@ const SelfMeetingList = ({
 
   return (
     <div className="Template">
-      <p className="title">홍익 셀프 미팅😎 </p>
+      <p className="title">홍익 셀프 미팅 </p>
       <div className="input" maxWidth="sm" style={{ 'padding-bottom': '0px' }}>
         {/* <SplitButton /> */}
         <Container
@@ -63,7 +63,7 @@ const SelfMeetingList = ({
           <div style={{ 'text-align': 'center' }}>
             <Button
               className={classes1.root}
-              style={{ 'font-family': 'Do Hyeon, sans-serif' }}
+              style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
             >
               홍미팅 신청하기
             </Button>

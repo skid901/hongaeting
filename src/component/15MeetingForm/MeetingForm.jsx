@@ -2,9 +2,9 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import './IntroductionForm.scss';
+import './MeetingForm.scss';
 
-function IntroductionForm() {
+function MeetingForm() {
   const useStyles1 = makeStyles({
     root: {
       width: 300,
@@ -30,10 +30,10 @@ function IntroductionForm() {
             className={classes1.root}
             style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
             onClick={() => {
-              history.push('/selfdatinglist');
+              history.push('/selfmeetinglist');
             }}
           >
-            셀프 리스트 보러가기
+            홍미팅 리스트 보러가기
           </Button>
         </div>
         {/* {`클릭`} */}
@@ -42,7 +42,7 @@ function IntroductionForm() {
       <div className="iframe-wrapper">
         <iframe
           title="introduction-form"
-          src="https://docs.google.com/forms/d/e/1FAIpQLSeoMtZdUinyboZnQf_vl69-Zl7912coTedQnlaWor8cvPjZKQ/viewform"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSfgViP8n8uXJKWXxUxrh1RsBQ0rIQ-t7j3ow4bDphcrQ4ZHvg/viewform"
           frameBorder="0"
           marginHeight="0"
           marginWidth="0"
@@ -54,4 +54,4 @@ function IntroductionForm() {
   );
 }
 
-export default IntroductionForm;
+export default MeetingForm;

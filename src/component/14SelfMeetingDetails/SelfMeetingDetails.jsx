@@ -89,7 +89,7 @@ const SelfMeetingDetails = ({ selectedMeeting }) => {
               <Typography>😊외모 </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <Typography style={{ 'font-family': 'Do Hyeon , sans-serif' }}>
+              <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
                 {selectedMeeting.appearance}
               </Typography>
             </ExpansionPanelDetails>
@@ -103,7 +103,7 @@ const SelfMeetingDetails = ({ selectedMeeting }) => {
               <Typography> 🌵성격 </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <Typography style={{ 'font-family': 'Do Hyeon , sans-serif' }}>
+              <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
                 {selectedMeeting.personality}
               </Typography>
             </ExpansionPanelDetails>
@@ -117,7 +117,7 @@ const SelfMeetingDetails = ({ selectedMeeting }) => {
               <Typography> 🍀여가생활 및 취미 </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <Typography style={{ 'font-family': 'Do Hyeon , sans-serif' }}>
+              <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
                 {selectedMeeting.hobby}
               </Typography>
             </ExpansionPanelDetails>
@@ -131,7 +131,7 @@ const SelfMeetingDetails = ({ selectedMeeting }) => {
               <Typography> 💕연애관 및 바라는 이상형 </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <Typography style={{ 'font-family': 'Do Hyeon , sans-serif' }}>
+              <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
                 {selectedMeeting.idealtype}
               </Typography>
             </ExpansionPanelDetails>
