@@ -21,11 +21,6 @@ const SignIn = observer(() => {
     password: '',
   });
 
-  // test용
-  useEffect(() => {
-    setState({ email: 'test@test.com', password: '123123q!' });
-  }, []);
-
   const handleChange = key => event => {
     setState({ ...state, [key]: event.target.value });
   };

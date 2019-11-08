@@ -2,9 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
@@ -12,8 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import './MyPage.scss';
-
-import Badge from 'C:/Users/kocon/Desktop/Hongaeting_V1/hongaeting/src/component/06SelfDatingList/Badge.jsx';
+import Badge from 'component/06SelfDatingList/Badge';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -97,13 +94,13 @@ const MyPage = () => {
               <p className="nickname">outwater{`${nickName}`}</p>
             </div>
             <div className="inline-block-wrapper">
-              <Badge keyword={'tag1'} color="primary" />
-              <Badge keyword={'tag2'} color="primary" />
-              <Badge keyword={'tag3'} color="primary" />
+              <Badge keyword="tag1" color="primary" />
+              <Badge keyword="tag2" color="primary" />
+              <Badge keyword="tag3" color="primary" />
             </div>
             <div>
               <Badge
-                keyword={'자기소개 한마디 주르르르르를르르르르르르르륵'}
+                keyword="자기소개 한마디 주르르르르를르르르르르르르륵"
                 color="info"
               />
             </div>
@@ -133,15 +130,15 @@ const MyPage = () => {
                 primary={val.nickName}
                 style={{ 'padding-top': '15px' }}
                 secondary={
-                  <React.Fragment>
-                    <Typography
-                      component="span"
+                                    <>
+  <Typography
+                                        component="span"
                       variant="body2"
-                      className={classes.inline}
-                      color="textPrimary"
-                    ></Typography>
-                    {/* {' — 대화내용이 여기에 나오게 하면 좋겠는데!!'} */}
-                  </React.Fragment>
+                                        className={classes.inline}
+                                        color="textPrimary"
+                    />
+  {/* {' — 대화내용이 여기에 나오게 하면 좋겠는데!!'} */}
+</>
                 }
               />
               <Button

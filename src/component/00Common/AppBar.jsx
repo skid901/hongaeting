@@ -4,8 +4,6 @@ import { useHistory } from 'react-router-dom';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from '@material-ui/core/Slide';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import IconButton from '@material-ui/core/IconButton';
@@ -14,9 +12,8 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { inject, observer } from 'mobx-react';
 
 // app bar 스크롤 숨김
-const HideOnScroll = ({ props, email }) => {
+const HideOnScroll = props => {
   const { children } = props;
-  console.log(email);
   const trigger = useScrollTrigger();
   return (
     <Slide appear={false} direction="down" in={!trigger}>
@@ -32,7 +29,7 @@ const CustomAppBar = props => {
 
   return (
     <>
-      {login == true ? (
+      {login === true ? (
         <div>
           <CssBaseline />
           <HideOnScroll {...props}>
@@ -46,30 +43,33 @@ const CustomAppBar = props => {
                         onClick={() => {
                           history.push(`/`);
                         }}
+                        role="presentation"
                       >
                         홍개팅
                       </p>
                       <div className="menu-wrapper">
                         <ol className="menulist">
                           <li className="selso">
-                            <a
+                            <span
                               className="atag"
                               onClick={() => {
                                 history.push(`/selfdatinglist`);
                               }}
+                              role="presentation"
                             >
                               <span className="text">#홍셀소</span>
-                            </a>
+                            </span>
                           </li>
                           <li className="meeting">
-                            <a
+                            <span
                               className="atag"
                               onClick={() => {
                                 history.push(`/selfmeetinglist`);
                               }}
+                              role="presentation"
                             >
                               <span className="text">#홍미팅</span>
-                            </a>
+                            </span>
                           </li>
                         </ol>
                       </div>
@@ -135,6 +135,7 @@ const CustomAppBar = props => {
                     <div className="start">
                       <p
                         className="logo"
+                        role="presentation"
                         onClick={() => {
                           history.push(`/`);
                         }}
@@ -146,6 +147,7 @@ const CustomAppBar = props => {
                           <li className="selso">
                             <p
                               className="atag"
+                              role="presentation"
                               onClick={() => {
                                 history.push(`/selfdatinglist`);
                               }}
@@ -156,6 +158,7 @@ const CustomAppBar = props => {
                           <li className="meeting">
                             <p
                               className="atag"
+                              role="presentation"
                               onClick={() => {
                                 history.push(`/selfmeetinglist`);
                               }}
@@ -186,13 +189,12 @@ const CustomAppBar = props => {
                             'line-height': '1.43',
                           }}
                         >
-                          {' '}
-                          로그인{' '}
+                          로그인
                         </Button>
                       </IconButton>
                     </div>
                   </div>
-                  <div className="secondbar"></div>
+                  <div className="secondbar" />
                 </nav>
               </div>
             </AppBar>

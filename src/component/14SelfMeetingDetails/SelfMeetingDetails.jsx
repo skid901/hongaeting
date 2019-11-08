@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './SelfMeetingDetails.scss';
-import { useHistory } from 'react-router';
-import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -14,7 +12,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import Table from '@material-ui/core/Table';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Badge from 'C:/Users/kocon/Desktop/Hongaeting_V1/hongaeting/src/component/06SelfDatingList/Badge.jsx';
+import Badge from 'component/06SelfDatingList/Badge';
 import { inject, observer } from 'mobx-react';
 import Grid from '@material-ui/core/Grid';
 
@@ -22,14 +20,12 @@ const SelfMeetingDetails = ({ selectedMeeting }) => {
   useEffect(() => {
     // setSelectedUser();
   }, []);
-
-  console.log(selectedMeeting);
   return (
     <div className="Template">
       <Paper>
         <div className="topside">
           <div className="imoji">
-            {`${selectedMeeting.sex}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
+            {`${selectedMeeting.sex}` === '남학우' ? <p>🤵</p> : <p>👧</p>}
           </div>
           <div className="id">
             ({selectedMeeting.sex}) {selectedMeeting.age} /{' '}

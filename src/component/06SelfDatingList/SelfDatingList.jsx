@@ -104,7 +104,7 @@ const SelfDatingList = ({ userList, setTableData, updated, IsLoading }) => {
                       )
                       .map(user => <Cards user={user} history={history} />)
                   : userList.map(user => (
-                      <Cards
+                    <Cards
                         user={user}
                         history={history}
                         style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
@@ -153,7 +153,7 @@ class Cards extends React.Component {
           }}
         >
           <div className="MuiCardHeader-root">
-            {`${user.sex}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
+            {`${user.sex}` === '남학우' ? <p>🤵</p> : <p>👧</p>}
             {`(${user.sex}) ${user.age}/${user.collage}`}
           </div>
           <CardContent style={{ 'padding-top': '6px' }}>

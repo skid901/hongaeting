@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './SelfDatingDetails.scss';
 import Typography from '@material-ui/core/Typography';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -6,20 +6,16 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Paper from '@material-ui/core/Paper';
-import Badge from 'C:/Users/kocon/Desktop/Hongaeting_V1/hongaeting/src/component/06SelfDatingList/Badge.jsx';
+import Badge from 'component/06SelfDatingList/Badge';
 import { inject, observer } from 'mobx-react';
 
 const SelfDatingDetails = ({ selectedUser }) => {
-  useEffect(() => {}, []);
-
-  console.log(selectedUser);
-  console.log(selectedUser.age);
   return (
     <div className="Template">
       <Paper>
         <div className="topside">
           <div className="imoji">
-            {`${selectedUser.sex}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
+            {`${selectedUser.sex}` === '남학우' ? <p>🤵</p> : <p>👧</p>}
           </div>
           <div className="id">
             ({selectedUser.sex}) {selectedUser.age} / {selectedUser.collage}

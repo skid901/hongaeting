@@ -104,7 +104,7 @@ const SelfMeetingList = ({
                         item.hobby.indexOf(searchKeyword) >= 0,
                     ).map(user => <Cards user={user} history={history} />)
                   : MeetingUserList.map(user => (
-                      <Cards user={user} history={history} />
+                    <Cards user={user} history={history} />
                     ));
               }
               return result;
@@ -164,11 +164,10 @@ class Cards extends React.Component {
           }}
         >
           <div className="MuiCardHeader-root">
-            {`${user.sex}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
+            {`${user.sex}` === '남학우' ? <p>🤵</p> : <p>👧</p>}
             {`(${user.sex}) ${
               user.type.toString().split(' ')[0]
             } /(팀이름넣을예정)${user.openlink}`}
-            {console.log(user.hashtag)}
           </div>
           <CardContent style={{ 'padding-top': '6px' }}>
             <Badge
