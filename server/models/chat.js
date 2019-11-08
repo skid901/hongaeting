@@ -5,7 +5,7 @@ const ChatSchema = new Schema({
   chatNum: String,
   user: { type: Schema.Types.ObjectId, required: true, ref: 'User' },
   chat: String,
-  gif: String,
+  image: String,
   createdAt: { type: Date, default: Date.now },
   isDeleted: { type: Boolean, default: false },
 });

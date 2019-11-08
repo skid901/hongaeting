@@ -1,7 +1,11 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 import socketIoClient from 'socket.io-client';
-import axios from 'axios';
+import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import PhotoCameraOutlinedIcon from '@material-ui/icons/PhotoCameraOutlined';
+import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
 
 import './SelfDatingChat.scss';
 
@@ -16,9 +20,12 @@ class SelfDatingChat extends React.Component {
     };
     this.alert = props.alert;
     this.inputRef = React.createRef();
-    this.setSocketEvent = this.setSocketEvent.bind(this);
+    this.chatWrapperRef = React.createRef();
     this.handleAlert = this.handleAlert.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.sendChat = this.sendChat.bind(this);
+    this.sendImage = this.sendImage.bind(this);
+    this.setScrollFloor = this.setScrollFloor.bind(this);
 
     this.socket = socketIoClient(`${process.env.REACT_APP_DOMAIN}/chat`, {
       path: '/socket.io',
@@ -27,7 +34,30 @@ class SelfDatingChat extends React.Component {
   }
 
   componentDidMount() {
-    this.setSocketEvent();
+    const { user, history } = this.props;
+    const { roomId } = this.state;
+    this.socket.on('log', res => {
+      const { chatLogList, message } = res;
+      if (message && message === 'entryDenied') {
+        this.handleAlert('접근 권한 오류', '접근 권한이 없습니다.');
+        history.push(`/errorpage`);
+        return;
+      }
+      this.setState({ log: [...chatLogList] });
+    });
+    this.socket.emit('log', {
+      roomId,
+      email: user.email,
+    });
+    this.socket.on('chat', res => {
+      const { chatLog } = res;
+      const { log } = this.state;
+      this.setState({ log: [...log, ...chatLog] });
+    });
+  }
+
+  componentDidUpdate() {
+    this.setScrollFloor();
   }
 
   componentWillUnmount() {
@@ -35,36 +65,46 @@ class SelfDatingChat extends React.Component {
     this.socket.close();
   }
 
-  async setSocketEvent() {
-    const { user, history } = this.props;
-    const { roomId, log } = this.state;
-    try {
-      const { data } = await axios.post(`/api/chat/checkUser`, {
-        roomId,
-        email: user.email,
-      });
-      console.log({ data });
-      if (data.message === 'entryDenied') {
-        this.handleAlert('접근 권한 오류', '접근 권한이 없습니다.');
-        alert.history.push(`/errorpage`);
-      }
-      this.socket.on('log', res => {
-        const { chatLogList } = res;
-        console.log({ chatLogList });
-        this.setState({ log: [...log, ...chatLogList] });
-      });
-      this.socket.emit('log', {
-        roomId,
-        email: user.email,
-      });
-      this.socket.on('chat', res => {
-        const { chatLog } = res;
-        console.log({ chatLog });
-        this.setState({ log: [...log, ...chatLog] });
-      });
-    } catch (e) {
-      history.push(`/errorpage`);
+  setScrollFloor() {
+    const element = this.chatWrapperRef.current;
+    if (element) {
+      element.scrollTop = element.scrollHeight;
     }
+  }
+
+  sendChat(event) {
+    event.preventDefault();
+    if (this.inputRef.current.value === '') return;
+    const { roomId } = this.state;
+    const { user } = this.props;
+    this.socket.emit('chat', {
+      roomId,
+      email: user.email,
+      msg: this.inputRef.current.value,
+    });
+    this.inputRef.current.value = '';
+  }
+
+  sendImage(event) {
+    event.preventDefault();
+    const { roomId } = this.state;
+    const { user } = this.props;
+
+    // Function that returns a promise to read the file data url
+    const reader = file => {
+      return new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
+        fileReader.onload = () => resolve(fileReader.result);
+        fileReader.readAsDataURL(file);
+      });
+    };
+    reader(event.target.files[0]).then(result => {
+      this.socket.emit('chat', {
+        roomId,
+        email: user.email,
+        image: result,
+      });
+    });
   }
 
   handleAlert($title, $message) {
@@ -87,17 +127,73 @@ class SelfDatingChat extends React.Component {
   }
 
   render() {
-    const { roomId, log } = this.state;
+    const { user } = this.props;
+    const { log } = this.state;
     return (
       <div className="self-dating-chat">
-        <div>{`채팅방 ID : ${roomId}`}</div>
-        {`input: `}
-        <input type="text" ref={this.inputRef} />
-        <input type="button" value="보내기" onClick={this.handleClick} />
-        {log.length &&
-          log.map(val => (
-            <div key={val.chatNum}>{`${val.user.nickName} : ${val.chat}`}</div>
-          ))}
+        <div className="chat-frame">
+          <div className="chat-wrapper" ref={this.chatWrapperRef}>
+            {/* <div>{`채팅방 ID : ${roomId}`}</div> */}
+            {log.length &&
+              log.map(curr => {
+                console.log({ curr });
+                return (
+                  <div
+                    className={`chat-log-${
+                      curr.user.nickName !== user.nickName ? 'left' : 'right'
+                    }`}
+                    key={curr.chatNum}
+                  >
+                    <div className="chat-nick">{curr.user.nickName}</div>
+                    <div className="chat-bubble">
+                      {curr.chat ? (
+                        <div className="chat-contents">{`${curr.chat}`}</div>
+                      ) : (
+                        <img
+                          className="img-contents"
+                          // key={curr.chatNum}
+                          src={curr.image}
+                          alt="img"
+                        />
+                      )}
+                      <div className="chat-arrow" />
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+        <div className="input-frame">
+          <div className="input-wrapper">
+            <input
+              className="input-chat"
+              type="textarea"
+              placeholder="채팅을 입력해주세요."
+              ref={this.inputRef}
+              onFocus={this.setScrollFloor}
+            />
+
+            <label className="send-image" htmlFor="send-image">
+              {/* <PhotoCameraOutlinedIcon
+                className="send-image-icon"
+                fontSize="large"
+                color="primary"
+              /> */}
+              <input
+                id="send-image"
+                className="send-image-input"
+                type="file"
+                name="image"
+                accept="image/*"
+                onChange={this.sendImage}
+              />
+            </label>
+
+            <button className="send-chat" type="button" onClick={this.sendChat}>
+              {/* <SendOutlinedIcon fontSize="large" color="primary" /> */}
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

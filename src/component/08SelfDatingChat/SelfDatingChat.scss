@@ -1,0 +1,183 @@
+// $max-width: 770px;
+$max-width: 500px;
+
+.self-dating-chat {
+  box-sizing: border-box;
+  position: relative;
+  height: 89.5vh;
+
+  .chat-frame {
+    box-sizing: border-box;
+    position: absolute;
+    text-align: center;
+    top: 1vh;
+    right: 0;
+    bottom: 6vh;
+    left: 0;
+
+    .chat-wrapper {
+      box-sizing: border-box;
+      display: inline-block;
+      width: 100vw;
+      max-width: $max-width;
+      height: 100%;
+      overflow: auto;
+
+      @mixin chat-log($target) {
+        .chat-log-#{$target} {
+          box-sizing: border-box;
+          display: block;
+          padding: 5px;
+
+          .chat-nick {
+            box-sizing: border-box;
+            display: block;
+            padding: 2px 19px;
+            @if $target == 'left' {
+              text-align: left;
+            } @else {
+              text-align: right;
+            }
+          }
+
+          .chat-bubble {
+            box-sizing: border-box;
+            display: block;
+            @if $target == 'left' {
+              text-align: left;
+            } @else {
+              text-align: right;
+            }
+
+            .chat-contents {
+              box-sizing: border-box;
+              display: inline-block;
+              max-width: 200px;
+              padding: 5px;
+              border: 2px solid #000000;
+              border-radius: 5px;
+              word-wrap: break-word;
+            }
+
+            .img-contents {
+              box-sizing: border-box;
+              display: inline-block;
+              width: 100%;
+              max-width: 200px;
+              padding: 5px;
+              border: 2px solid #000000;
+              border-radius: 5px;
+            }
+
+            .chat-arrow {
+              width: 0;
+              height: 0;
+              margin-top: 4px;
+              border-top: 0 solid transparent;
+              border-bottom: 5px solid transparent;
+              @if $target == 'left' {
+                float: left;
+                margin-left: 4px;
+                border-right: 10px solid rgb(0, 0, 0);
+              } @else {
+                float: right;
+                margin-right: 4px;
+                border-left: 10px solid rgb(0, 0, 0);
+              }
+            }
+          }
+
+          .chat-date {
+            box-sizing: border-box;
+            display: block;
+            padding: 2px 19px;
+            @if $target == 'left' {
+              text-align: left;
+            } @else {
+              text-align: right;
+            }
+          }
+        }
+      }
+
+      @include chat-log('left');
+
+      @include chat-log('right');
+    }
+  }
+
+  .input-frame {
+    box-sizing: border-box;
+    position: absolute;
+    text-align: center;
+    height: 6.5vh;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    .input-wrapper {
+      box-sizing: border-box;
+      position: relative;
+      box-sizing: border-box;
+      display: inline-block;
+      width: 100vw;
+      max-width: $max-width;
+      height: 100%;
+      // border-top: 1px solid #000000;
+
+      .input-chat {
+        box-sizing: border-box;
+        position: absolute;
+        display: inline-block;
+        width: 100%;
+        padding: {
+          top: 8px;
+          right: 110px;
+          bottom: 5px;
+          left: 15px;
+        }
+        border: 1px solid #ffffff;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        font-size: 17px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .send-image {
+        box-sizing: border-box;
+        position: absolute;
+        width: 35px;
+        top: 6px;
+        right: 60px;
+        bottom: 0;
+        background: url('/images/btn_icon_my_photo.png') no-repeat;
+        background-size: contain;
+
+        .send-image-input {
+          box-sizing: border-box;
+          display: none;
+        }
+      }
+
+      .send-chat {
+        box-sizing: border-box;
+        position: absolute;
+        width: 35px;
+        top: 6px;
+        right: 15px;
+        bottom: 0;
+        border: 0 solid;
+        background: url('/images/btn_icon_messege_send.png') no-repeat;
+        background-size: contain;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { observer, MobXProviderContext } from 'mobx-react';
 import axios from 'axios';
@@ -20,6 +20,11 @@ const SignIn = observer(() => {
     email: '',
     password: '',
   });
+
+  // test용
+  useEffect(() => {
+    setState({ email: 'test@test.com', password: '123123q!' });
+  }, []);
 
   const handleChange = key => event => {
     setState({ ...state, [key]: event.target.value });
