@@ -2,8 +2,8 @@ import { observable, action } from 'mobx';
 import Axios from 'axios';
 
 class SelfMeetingUserStore{
-  URL = 'http://34.97.117.253:80/api/meetingusers';
-  //URL = 'http://localhost:4000/api/meetingusers';
+  //URL = 'http://34.97.117.253:80/api/meetingusers';
+  URL = 'http://localhost:4000/api/meetingusers';
 
   @observable updated = false;
   @observable IsLoading = true;
@@ -51,19 +51,17 @@ class SelfMeetingUserStore{
   setGender = async(gender) => {
     this.gender = await gender;
   }
-  getUsers = async(pagenumber) => {
-    await Axios.get(`${this.URL}/pageNumber/${pagenumber}/gender/${this.gender}`)
-      .then(response => {
-        this.pagedUser = [];
-        this.pagedUser=response.data;
-        this.updated = true;
-        this.IsLoading = false;
-      });
+  setUsers = async(pagenumber) => {
+    const res = await Axios.get(`${this.URL}/pageNumber/${pagenumber}/gender/${this.gender}`);
+    this.pagedUser = [];
+    this.pagedUser=res.data;
+    this.updated = true;
+    this.IsLoading = false;
   }
 
-  getAllUsers = async() => {
-    await Axios.get(`${this.URL}/gender/${this.gender}`)
-      .then(response => {this.userCount = response.data; console.log(this.userCount);})
+  setUserCount = async() => {
+    const res = await Axios.get(`${this.URL}/gender/${this.gender}`);
+    this.userCount = res.data;
   }
 
   setSelectedUser = (user) => {

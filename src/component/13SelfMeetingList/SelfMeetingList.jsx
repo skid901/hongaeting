@@ -40,10 +40,10 @@ const useStyles1 = makeStyles({
 const SelfMeetingList = ({
   updated,
   IsLoading,
-  getUsers,
+  setUsers,
   pageNumber,
   pagedUser,
-  getAllUsers,
+  setUserCount,
   userCount,
   setGender
 }) => {
@@ -52,8 +52,8 @@ const SelfMeetingList = ({
   const classes1 = useStyles1();
   useEffect(() => {
     setGender(2);
-    getUsers(1);
-    getAllUsers();
+    setUsers(1);
+    setUserCount();
   }, []);
 
   return (
@@ -63,7 +63,7 @@ const SelfMeetingList = ({
           <li className="view">
             <Button 
               style={{ 'font-family': 'Do Hyeon, sans-serif' }}
-              onClick={async()=>{await setGender(2);await getUsers(1);await getAllUsers();}}
+              onClick={async()=>{await setGender(2);await setUsers(1);await setUserCount();}}
             >
               전체보기
             </Button>
@@ -71,14 +71,14 @@ const SelfMeetingList = ({
           <li className="view">
             <Button 
               style={{ 'font-family': 'Do Hyeon, sans-serif' }}
-              onClick={async()=>{await setGender(0);await getUsers(1); await getAllUsers();}}>
+              onClick={async()=>{await setGender(0);await setUsers(1); await setUserCount();}}>
               남자보기
             </Button>
           </li>
           <li className="view">
             <Button 
               style={{ 'font-family': 'Do Hyeon, sans-serif' }}
-              onClick={async()=>{await setGender(1); await getUsers(1); await getAllUsers();}}>
+              onClick={async()=>{await setGender(1); await setUsers(1); await setUserCount();}}>
               여자보기
             </Button>
           </li>
@@ -154,10 +154,10 @@ const SelfMeetingList = ({
       )}
       <div className="page">
         <ReactPaginate
-          pageCount={(userCount / 20) + 1}
+          pageCount={(parseInt(userCount/20))+1}
           marginPagesDisplayed={1}
           pageRangeDisplayed={1}
-          onPageChange={e=>getUsers(e.selected+1)}
+          onPageChange={e=>setUsers(e.selected+1)}
           previousLabel={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/><path fill="none" d="M0 0h24v24H0V0z"/></svg>}
           breakLabel={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>}
           nextLabel={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/><path fill="none" d="M0 0h24v24H0V0z"/></svg>}
@@ -232,10 +232,10 @@ class Cards extends React.Component {
 export default inject(({ selfMeetingUser }) => ({
   updated: selfMeetingUser.updated,
   IsLoading: selfMeetingUser.IsLoading,
-  getUsers: selfMeetingUser.getUsers,
+  setUsers: selfMeetingUser.setUsers,
   pageNuber: selfMeetingUser.pageNumber,
   pagedUser: selfMeetingUser.pagedUser,
-  getAllUsers: selfMeetingUser.getAllUsers,
+  setUserCount: selfMeetingUser.setUserCount,
   userCount: selfMeetingUser.userCount,
   setGender: selfMeetingUser.setGender
 }))(observer(SelfMeetingList));
