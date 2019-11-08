@@ -43,6 +43,7 @@ class SelfMeetingUserStore{
       this.IsLoading = false;
       console.log(this.pagedUser)
     });
+    console.log("pagedUser :" + this.pagedUser);
   }
 
   getAllUsers = async() => {

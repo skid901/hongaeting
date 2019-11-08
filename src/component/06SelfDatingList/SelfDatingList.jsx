@@ -151,7 +151,7 @@ const SelfDatingList = ({
 class Cards extends React.Component {
   render() {
     const { setSelectedUser, user, history } = this.props;
-    const url = `/selfdatingdetails/${user.kakaoid}`;
+    const url = `/selfdatingdetails/${user.chatlink}`;
     return (
       <div className="CardsWrapper">
         <Card

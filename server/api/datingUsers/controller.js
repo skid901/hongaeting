@@ -132,7 +132,7 @@ export const list = async (ctx) => {
   let list;
 
   try{
-    list = await DatingUser.find()
+    list = await DatingUser.find({self : 1})
       .sort({_id: -1})
       .skip((pageNumber-1) * 20)
       .limit(20)

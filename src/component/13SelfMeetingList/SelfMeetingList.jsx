@@ -165,31 +165,31 @@ class Cards extends React.Component {
             {`(${user.id}) ${
               user.number
             } /(팀이름넣을예정)${user.chatlink}`}
-            {console.log(user.tag)}
+            {console.log(user.tag); console.log(typeof(user.tag))}
           </div>
           <CardContent style={{ 'padding-top': '6px' }}>
             <Badge
-              keyword={`#${user.tag.split('#')[1]}`}
+              keyword={`#${user.tag.toString().split('#')[1]}`}
               color="primary"
             />
             <Badge
-              keyword={`#${user.tag.split('#')[2]}`}
+              keyword={`#${user.tag.toString().split('#')[2]}`}
               color="rose"
             />
             <Badge
-              keyword={user.tag.split('#')[3]}
+              keyword={user.tag.toString().split('#')[3]}
               color="rose"
             />
 
             <Badge
-              keyword={user.drink.substring(0, 5)}
+              keyword={user.drink.toString().substring(0, 5)}
               color="warning"
             />
             <p
               className="timebar"
               style={{ display: 'inline-flex', float: 'right' }}
             >
-              {user.time.substring(5, 10)}
+              {user.time.toString().substring(5, 10)}
             </p>
             <p
               className="body"
