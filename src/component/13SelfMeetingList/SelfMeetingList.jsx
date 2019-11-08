@@ -165,7 +165,7 @@ class Cards extends React.Component {
             {`(${user.id}) ${
               user.number
             } /(팀이름넣을예정)${user.chatlink}`}
-            {console.log(user.tag); console.log(typeof(user.tag))}
+            {console.log(user.tag + "타입은 " + typeof(user.tag))}
           </div>
           <CardContent style={{ 'padding-top': '6px' }}>
             <Badge
