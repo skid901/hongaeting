@@ -8,6 +8,10 @@ const RoomSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
+RoomSchema.statics.findByRoomId = async function(roomId) {
+  return this.findOne({ roomId });
+};
+
 RoomSchema.statics.findRoomCount = async function() {
   const roomList = await this.find();
   return roomList === 0 ? 0 : roomList.length;
@@ -20,10 +24,6 @@ RoomSchema.statics.findByTypeAndEntry = async function(roomType, ...entry) {
     condition.push({ entry: { $in: val } });
   });
   return this.find({ $and: condition });
-};
-
-RoomSchema.statics.findByRoomId = async function(roomId) {
-  return this.findOne({ roomId });
 };
 
 const Room = mongoose.model('Room', RoomSchema);

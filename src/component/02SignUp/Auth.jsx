@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 
 const Auth = () => {
   //
-  const { hashedAuthEmail } = useParams();
+  const { authNum } = useParams();
 
   const history = useHistory();
 
@@ -30,7 +30,7 @@ const Auth = () => {
       const { data } = await axios.post(
         // `${process.env.REACT_APP_API_URI}/api/auth/authEmail`,
         `/api/auth/authEmail`,
-        { hashedAuthEmail },
+        { authNum },
       );
 
       // 결과 처리

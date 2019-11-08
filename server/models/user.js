@@ -8,7 +8,7 @@ const UserSchema = new Schema({
   nickName: String,
   sex: String,
   authEmail: String,
-  hashedAuthEmail: String,
+  authNum: String,
   isAuthed: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now },
 });
@@ -26,14 +26,12 @@ UserSchema.methods.checkPassword = async function(password) {
   return result;
 };
 
-UserSchema.methods.setHashedAuthEmail = async function(authEmail) {
-  const hash = await bcrypt.hash(authEmail, 10);
-  this.hashedAuthEmail = hash;
-};
-
-UserSchema.methods.checkHashedAuthEmail = async function(authEmail) {
-  const result = await bcrypt.compare(authEmail, this.hashedAuthEmail);
-  return result;
+UserSchema.methods.setAuthNum = async function() {
+  const authNum = ((min, max) => {
+    const ranNum = Math.floor(Math.random() * (max - min + 1)) + min;
+    return ranNum;
+  })(100000000, 999999999);
+  this.authNum = authNum;
 };
 
 UserSchema.methods.checkIsAuthed = async function() {
@@ -44,7 +42,7 @@ UserSchema.methods.checkIsAuthed = async function() {
 UserSchema.methods.serialize = function() {
   const data = this.toJSON();
   delete data.hashedPassword;
-  delete data.hashedAuthEmail;
+  delete data.authNum;
   return data;
 };
 
@@ -86,6 +84,10 @@ UserSchema.statics.findByAuthEmail = function(authEmail) {
 
 UserSchema.statics.findByHashedAuthEmail = function(hashedAuthEmail) {
   return this.findOne({ hashedAuthEmail });
+};
+
+UserSchema.statics.findBydAuthNum = function(authNum) {
+  return this.findOne({ authNum });
 };
 
 UserSchema.statics.findAllUsers = async function() {

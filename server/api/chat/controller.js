@@ -53,3 +53,25 @@ export const makeRoom = async ctx => {
     ctx.throw(500, e);
   }
 };
+
+/*
+ *  유저권한 확인
+ */
+// export const checkUser = async ctx => {
+//   const { roomId, email } = ctx.request.body;
+//   const { user } = ctx.state;
+//   try {
+//     const room = await Room.findByRoomId(roomId);
+//     const entry = await User.findById(user._id);
+//     if (room.entry.indexOf(entry._id) === -1) {
+//       ctx.status = 200;
+//       ctx.body = `{ "message" : "entryDenied" }`;
+//       return;
+//     }
+//     ctx.status = 200;
+//     ctx.body = `{ "message" : "entryAllowed" }`;
+//     return;
+//   } catch (e) {
+//     ctx.throw(500, e);
+//   }
+// };
