@@ -211,5 +211,5 @@ export default inject(({ selfMeetingUser }) => ({
   pageNuber: selfMeetingUser.pageNumber,
   pagedUser: selfMeetingUser.pagedUser,
   getAllUsers: selfMeetingUser.getAllUsers,
-  usercount: selfMeetingUser.userCount,
+  userCount: selfMeetingUser.userCount,
 }))(observer(SelfMeetingList));

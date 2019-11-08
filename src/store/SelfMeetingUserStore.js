@@ -41,7 +41,7 @@ class SelfMeetingUserStore{
       this.pagedUser=response.data;
       this.updated = true;
       this.IsLoading = false;
-      //console.log(this.pagedUser[0].id)
+      console.log(this.pagedUser)
     });
   }
 
