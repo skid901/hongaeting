@@ -1,7 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
 const SelfMeetingSchema = new Schema({
-  name: String,
   id: Number,
   time: String,
   email: String,
@@ -20,7 +19,7 @@ const SelfMeetingSchema = new Schema({
   hobby: String,
   drink: String,
   idealtype: String,
-  chatlink: String,
+  nickname: String,
   tag: String,
   keysentence: String
 });
