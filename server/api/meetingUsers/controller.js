@@ -1,7 +1,6 @@
 import MeetingUser from '../../models/selfMeeting';
 
 export const create = async (ctx) => {
-  console.log('ctx : ' + ctx.request.body);
   const {
     id,
     time,
@@ -21,11 +20,10 @@ export const create = async (ctx) => {
     hobby,
     drink,
     idealtype,
-    chatlink,
+    nickname,
     tag,
     keysentence
   } = ctx.request.body;
-  console.log('tag : ',tag);
   
   // let id = 20;
   // let time ="2019-11-06T11:57:56.589Z";
@@ -49,7 +47,6 @@ export const create = async (ctx) => {
   // let tag = "#첫번째 학우_긴생머리, 청순한, 조용한, 차분한, 여행 #두번째 학우_단발, 귀여운, 톡톡튀는, 필름사진 #세번째 학우_인싸, 활발한, 외향적인, 투머치토커";
   // let keysentence = "에벨벨베레베베벨베베벱레베벨";
   const meetingUser = new MeetingUser({
-    name,
     id,
     time,
     email,
@@ -68,14 +65,13 @@ export const create = async (ctx) => {
     hobby,
     drink,
     idealtype,
-    chatlink,
+    nickname,
     tag,
     keysentence
   })
   try {
     await meetingUser.save();
     await console.log("request come well");
-    await console.log(meetingUser);
   } catch (e) {
     return ctx.throw(500, e);
   }
