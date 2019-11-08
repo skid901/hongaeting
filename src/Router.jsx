@@ -18,6 +18,10 @@ import ErrorPage from 'component/12ErrorPage/ErrorPage';
 
 import demo from 'component/04MyPage/demo';
 
+import SelfMeetingDetails from 'component/14SelfMeetingDetails/SelfMeetingDetails';
+import SelfMeetingList from './component/13SelfMeetingList/SelfMeetingList';
+import MeetingForm from 'component/15MeetingForm/MeetingForm';
+import RealWelcome from 'component/01RealWelcome/RealWelcome';
 const Router = () => (
   <Switch>
     <Route exact path="/" component={Welcome} />
@@ -35,6 +39,10 @@ const Router = () => (
     <Route path="/adminpage" component={AdminPage} />
     <Route path="/errorpage" component={ErrorPage} />
     <Route path="/demo" component={demo} />
+    <Route path="/selfmeetinglist" component={SelfMeetingList} />
+    <Route path="/selfmeetingdetails" component={SelfMeetingDetails} />
+    <Route path="/meetingform" component={MeetingForm} />
+    <Route path="/realwelcome" component={RealWelcome} />
     <Route component={ErrorPage} />
   </Switch>
 );

@@ -2,10 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { inject, observer } from 'mobx-react';
-import './SelfDatingList.scss';
+import './SelfMeetingList.scss';
+
 import {
   BrowserRouter,
   Switch,
@@ -18,7 +20,6 @@ import {
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Badge from './Badge';
-import Axios from '../../../node_modules/axios/index';
 
 const useStyles1 = makeStyles({
   root: {
@@ -33,29 +34,25 @@ const useStyles1 = makeStyles({
   },
 });
 
-const SelfDatingList = ({ userList, setTableData, updated, IsLoading }) => {
+const SelfMeetingList = ({
+  MeetingUserList,
+  setMeetingData,
+  meetingupdated,
+  meetingIsLoading,
+}) => {
   const history = useHistory();
   const [searchKeyword, setSearchKeyword] = useState('');
-  // const [IsLoading, setIsLoading] = useState(false);
   const classes1 = useStyles1();
   useEffect(() => {
-    setTableData();
-    console.log(searchKeyword === false);
-    console.log(updated);
-    console.log(IsLoading);
-  }, [IsLoading]);
+    setMeetingData();
+    // console.log(searchKeyword === false);
+    // console.log(updated);
+    // console.log(IsLoading);
+  }, [meetingIsLoading]);
 
   return (
     <div className="Template">
-      <p
-        className="title"
-        style={{
-          'background-color': 'white',
-          'font-family': 'Noto Sans KR, sans-serif',
-        }}
-      >
-        홍익 셀프 소개팅
-      </p>
+      <p className="title">홍익 셀프 미팅 </p>
       <div className="input" maxWidth="sm" style={{ 'padding-bottom': '0px' }}>
         {/* <SplitButton /> */}
         <Container
@@ -67,11 +64,8 @@ const SelfDatingList = ({ userList, setTableData, updated, IsLoading }) => {
             <Button
               className={classes1.root}
               style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
-              onClick={() => {
-                history.push('/introductionform');
-              }}
             >
-              셀프 소개팅 신청하기
+              홍미팅 신청하기
             </Button>
           </div>
           <TextField
@@ -87,7 +81,7 @@ const SelfDatingList = ({ userList, setTableData, updated, IsLoading }) => {
           />
         </Container>
       </div>
-      {IsLoading ? (
+      {meetingIsLoading ? (
         <div>
           <div> 잠시만기다려주세요...</div>
           <div>
@@ -100,23 +94,17 @@ const SelfDatingList = ({ userList, setTableData, updated, IsLoading }) => {
           <Container className="input" maxWidth="sm">
             {(() => {
               let result = null;
-              if (updated) {
+              if (meetingupdated) {
                 result = searchKeyword
-                  ? userList
-                      .filter(
-                        item =>
-                          item.collage.indexOf(searchKeyword) >= 0 ||
-                          item.religion.indexOf(searchKeyword) >= 0 ||
-                          item.personality.indexOf(searchKeyword) >= 0 ||
-                          item.hobby.indexOf(searchKeyword) >= 0,
-                      )
-                      .map(user => <Cards user={user} history={history} />)
-                  : userList.map(user => (
-                      <Cards
-                        user={user}
-                        history={history}
-                        style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
-                      />
+                  ? MeetingUserList.filter(
+                      item =>
+                        item.collage.indexOf(searchKeyword) >= 0 ||
+                        item.religion.indexOf(searchKeyword) >= 0 ||
+                        item.personality.indexOf(searchKeyword) >= 0 ||
+                        item.hobby.indexOf(searchKeyword) >= 0,
+                    ).map(user => <Cards user={user} history={history} />)
+                  : MeetingUserList.map(user => (
+                      <Cards user={user} history={history} />
                     ));
               }
               return result;
@@ -129,31 +117,46 @@ const SelfDatingList = ({ userList, setTableData, updated, IsLoading }) => {
 };
 
 @inject(({ userlist }) => ({
-  setSelectedUser: userlist.setSelectedUser,
+  setSelectedMeeting: userlist.setSelectedMeeting,
 }))
 @observer
 class Cards extends React.Component {
   render() {
-    const { setSelectedUser, user, history } = this.props;
-    const url = `/selfdatingdetails/${user.kakaoid}`;
+    const { setSelectedMeeting, user, history } = this.props;
+    const url = `/selfmeetingdetails/${user.email}`;
     return (
       <div className="CardsWrapper">
         <Card
           onClick={() => {
-            setSelectedUser(
+            setSelectedMeeting(
               user.time,
               user.email,
-              user.kakaoid,
               user.sex,
-              user.age,
-              user.collage,
+              user.type,
+              user.TwoTwoFirstAge,
+              user.TwoTwoFirstCollage,
+              user.TwoTwoSecondAge,
+              user.TwoTwoSecondCollage,
+              user.ThreeThreeFirstAge,
+              user.ThreeThreeFirstCollage,
+              user.ThreeThreeSecondAge,
+              user.ThreeThreeSecondCollage,
+              user.ThreeThreeThirdAge,
+              user.ThreeThreeThirdCollage,
+              user.FourFourFirstAge,
+              user.FourFourFirstCollage,
+              user.FourFourSecondAge,
+              user.FourFourSecondCollage,
+              user.FourFourThirdAge,
+              user.FourFourThirdCollage,
+              user.FourFourFourthAge,
+              user.FourFourFourthCollage,
               user.appearance,
               user.personality,
               user.hobby,
-              user.religion,
-              user.smoke,
+              user.drink,
               user.idealtype,
-              user.openchatlink,
+              user.openlink,
               user.hashtag,
               user.selfintro,
             );
@@ -162,42 +165,40 @@ class Cards extends React.Component {
         >
           <div className="MuiCardHeader-root">
             {`${user.sex}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
-            {`(${user.sex}) ${user.age}/${user.collage}`}
+            {`(${user.sex}) ${
+              user.type.toString().split(' ')[0]
+            } /(팀이름넣을예정)${user.openlink}`}
+            {console.log(user.hashtag)}
           </div>
           <CardContent style={{ 'padding-top': '6px' }}>
             <Badge
-              keyword={user.hashtag.toString().split('#')[1]}
+              keyword={`#${user.hashtag.toString().split('#')[1]}`}
               color="primary"
             />
             <Badge
-              keyword={user.hashtag.toString().split('#')[2]}
-              color="primary"
+              keyword={`#${user.hashtag.toString().split('#')[2]}`}
+              color="rose"
             />
             <Badge
               keyword={user.hashtag.toString().split('#')[3]}
               color="rose"
             />
+
             <Badge
-              keyword={user.hashtag.toString().split('#')[4]}
-              color="rose"
-            />
-            <Badge
-              keyword={user.hashtag.toString().split('#')[5]}
-              color="success"
+              keyword={user.drink.toString().substring(0, 5)}
+              color="warning"
             />
             <p
               className="timebar"
-              style={{ float: 'right', 'text-align': 'right' }}
+              style={{ display: 'inline-flex', float: 'right' }}
             >
-              {`${user.time
-                .toString()
-                .substring(5, 7)}월${user.time.toString().substring(8, 10)}일`}
+              {user.time.toString().substring(5, 10)}
             </p>
             <p
               className="body"
-              style={{ 'font-size': '14px', 'padding-top': '5px' }}
+              style={{ 'padding-top': '5px', 'font-size': '14px' }}
             >
-              {user.selfintro.substring(0, 60)}
+              {user.selfintro}
             </p>
           </CardContent>
         </Card>
@@ -207,8 +208,8 @@ class Cards extends React.Component {
 }
 
 export default inject(({ userlist }) => ({
-  userList: userlist.userList,
-  setTableData: userlist.setTableData,
-  updated: userlist.updated,
-  IsLoading: userlist.IsLoading,
-}))(observer(SelfDatingList));
+  MeetingUserList: userlist.MeetingUserList,
+  setMeetingData: userlist.setMeetingData,
+  meetingupdated: userlist.meetingupdated,
+  meetingIsLoading: userlist.meetingIsLoading,
+}))(observer(SelfMeetingList));
