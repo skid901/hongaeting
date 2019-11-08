@@ -3,8 +3,8 @@ import Axios from 'axios';
 
 class SelfDatingUserStore {
   //
-  //URL = 'http://34.97.117.253:80/api/datingusers';
-  URL = 'http://localhost:4000/api/datingusers';
+  URL = 'http://34.97.117.253:80/api/datingusers';
+  //URL = 'http://localhost:4000/api/datingusers';
   //@observable pageNumber = 1;
   @observable updated = false;
   @observable IsLoading = true;
