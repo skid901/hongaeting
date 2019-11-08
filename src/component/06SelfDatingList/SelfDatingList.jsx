@@ -8,6 +8,8 @@ import { inject, observer } from 'mobx-react';
 import './SelfDatingList.scss';
 import { useHistory } from 'react-router-dom';
 
+import ReactPaginate from 'react-paginate';
+
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Badge from './Badge';
@@ -25,31 +27,59 @@ const useStyles1 = makeStyles({
   },
 });
 
-const SelfDatingList = ({ userList, setTableData, updated, IsLoading }) => {
+const SelfDatingList = ({
+  updated,
+  IsLoading,
+  setUsers,
+  pageNumber,
+  pagedUser,
+  setUserCount,
+  userCount,
+  setGender
+}) => {
   const history = useHistory();
   const [searchKeyword, setSearchKeyword] = useState('');
   // const [IsLoading, setIsLoading] = useState(false);
   const classes1 = useStyles1();
   useEffect(() => {
-    setTableData();
-    console.log(searchKeyword === false);
-    console.log(updated);
-    console.log(IsLoading);
-  }, [IsLoading]);
+    setGender(2);
+    setUsers(1);
+    setUserCount();
+  }, []);
 
   return (
     <div className="Template">
-      <p
-        className="title"
-        style={{
-          'background-color': 'white',
-          'font-family': 'Noto Sans KR, sans-serif',
-        }}
-      >
+      <div className="secondbar">
+        <ol className="viewlist">
+          <li className="view">
+            <Button 
+              style={{ 'font-family': 'Do Hyeon, sans-serif' }}
+              onClick={()=>{setGender(2); setUsers(1); setUserCount();}}
+            >
+              전체보기
+            </Button>
+          </li>
+          <li className="view">
+            <Button 
+              style={{ 'font-family': 'Do Hyeon, sans-serif' }}
+              onClick={()=>{ setGender(0); setUsers(1); setUserCount();}}>
+              남자보기
+            </Button>
+          </li>
+          <li className="view">
+            <Button 
+              style={{ 'font-family': 'Do Hyeon, sans-serif' }}
+              onClick={()=>{setGender(1);setUsers(1);setUserCount();}}>
+              여자보기
+            </Button>
+          </li>
+        </ol>
+      </div>
+      <p className="title" style={{ 'background-color': 'white',
+          'font-family': 'Noto Sans KR, sans-serif', }}>
         홍익 셀프 소개팅
       </p>
       <div className="input" maxWidth="sm" style={{ 'padding-bottom': '0px' }}>
-        {/* <SplitButton /> */}
         <Container
           className="input"
           maxWidth="sm"
@@ -94,7 +124,7 @@ const SelfDatingList = ({ userList, setTableData, updated, IsLoading }) => {
               let result = null;
               if (updated) {
                 result = searchKeyword
-                  ? userList
+                  ? pagedUser
                       .filter(
                         item =>
                           item.collage.indexOf(searchKeyword) >= 0 ||
@@ -103,78 +133,72 @@ const SelfDatingList = ({ userList, setTableData, updated, IsLoading }) => {
                           item.hobby.indexOf(searchKeyword) >= 0,
                       )
                       .map(user => <Cards user={user} history={history} />)
-                  : userList.map(user => (
-                    <Cards
-                        user={user}
-                        history={history}
-                        style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
-                      />
-                    ));
+                  : pagedUser
+                      .map(user => (
+                        <Cards user={user} history={history}
+                          style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
+                        />
+                      ));
               }
               return result;
             })()}
           </Container>
         </div>
       )}
+      <div className="page">
+        <ReactPaginate
+          pageCount={(parseInt(userCount/20))+1}
+          marginPagesDisplayed={1}
+          pageRangeDisplayed={1}
+          onPageChange={e=>setUsers(e.selected+1)}
+          previousLabel={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/><path fill="none" d="M0 0h24v24H0V0z"/></svg>}
+          breakLabel={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>}
+          nextLabel={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/><path fill="none" d="M0 0h24v24H0V0z"/></svg>}
+        />
+      </div>
     </div>
   );
 };
 
-@inject(({ userListStore }) => ({
-  setSelectedUser: userListStore.setSelectedUser,
+@inject(({ selfDatingUser }) => ({
+  setSelectedUser: selfDatingUser.setSelectedUser,
 }))
 @observer
 class Cards extends React.Component {
   render() {
     const { setSelectedUser, user, history } = this.props;
-    const url = `/selfdatingdetails/test`;
+    const url = `/selfdatingdetails/user`;
     return (
       <div className="CardsWrapper">
         <Card
           onClick={() => {
-            setSelectedUser(
-              user.time,
-              user.email,
-              user.kakaoid,
-              user.sex,
-              user.age,
-              user.collage,
-              user.appearance,
-              user.personality,
-              user.hobby,
-              user.religion,
-              user.smoke,
-              user.idealtype,
-              user.openchatlink,
-              user.hashtag,
-              user.selfintro,
-            );
+            setSelectedUser(user);
             history.push(url);
           }}
         >
           <div className="MuiCardHeader-root">
-            {`${user.sex}` === '남학우' ? <p>🤵</p> : <p>👧</p>}
-            {`(${user.sex}) ${user.age}/${user.collage}`}
+            {`${user.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
+            {`(${user.id}) ${user.age}/${user.collage}`}
           </div>
           <CardContent style={{ 'padding-top': '6px' }}>
             <Badge
-              keyword={user.hashtag.toString().split('#')[1]}
+              keyword={user.tag.toString().split('#')[1]}
               color="primary"
             />
             <Badge
-              keyword={user.hashtag.toString().split('#')[2]}
+              keyword={user.tag.toString().split('#')[2]}
               color="primary"
             />
             <Badge
-              keyword={user.hashtag.toString().split('#')[3]}
+              keyword={user.tag.toString().split('#')[3]}
               color="rose"
             />
             <Badge
-              keyword={user.hashtag.toString().split('#')[4]}
+              keyword={user.tag.toString().split('#')[4]}
               color="rose"
             />
             <Badge
-              keyword={user.hashtag.toString().split('#')[5]}
+              keyword={user.tag.toString().split('#')[5]}
               color="success"
             />
             <p
@@ -189,7 +213,7 @@ class Cards extends React.Component {
               className="body"
               style={{ 'font-size': '14px', 'padding-top': '5px' }}
             >
-              {user.selfintro.substring(0, 60)}
+              {user.keysentence.substring(0, 60)}
             </p>
           </CardContent>
         </Card>
@@ -198,9 +222,13 @@ class Cards extends React.Component {
   }
 }
 
-export default inject(({ userListStore }) => ({
-  userList: userListStore.userList,
-  setTableData: userListStore.setTableData,
-  updated: userListStore.updated,
-  IsLoading: userListStore.IsLoading,
+export default inject(({ selfDatingUser }) => ({
+  updated: selfDatingUser.updated,
+  IsLoading: selfDatingUser.IsLoading,
+  setUsers: selfDatingUser.setUsers,
+  pageNumber: selfDatingUser.pageNumber,
+  pagedUser: selfDatingUser.pagedUser,
+  setUserCount: selfDatingUser.setUserCount,
+  userCount: selfDatingUser.userCount,
+  setGender: selfDatingUser.setGender
 }))(observer(SelfDatingList));

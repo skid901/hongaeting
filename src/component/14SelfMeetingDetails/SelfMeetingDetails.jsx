@@ -16,7 +16,7 @@ import Badge from 'component/06SelfDatingList/Badge';
 import { inject, observer } from 'mobx-react';
 import Grid from '@material-ui/core/Grid';
 
-const SelfMeetingDetails = ({ selectedMeeting }) => {
+const SelfMeetingDetails = ({ selectedUser }) => {
   useEffect(() => {
     // setSelectedUser();
   }, []);
@@ -25,11 +25,11 @@ const SelfMeetingDetails = ({ selectedMeeting }) => {
       <Paper>
         <div className="topside">
           <div className="imoji">
-            {`${selectedMeeting.sex}` === '남학우' ? <p>🤵</p> : <p>👧</p>}
+            {`${selectedUser.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
           </div>
           <div className="id">
-            ({selectedMeeting.sex}) {selectedMeeting.age} /{' '}
-            {selectedMeeting.collage}
+            ({selectedUser.nickname}) {selectedUser.age} /{' '}
+            {selectedUser.collage}
           </div>
           <div className="Out">
             <div className="out">
@@ -37,39 +37,39 @@ const SelfMeetingDetails = ({ selectedMeeting }) => {
                 <div className="Row">
                   <div className="Q">나이</div>
                   <div className="A">
-                    {selectedMeeting.TwoTwoFirstAge},{' '}
-                    {selectedMeeting.TwoTwoSecondAge}
-                    {selectedMeeting.FourFourFirstAge}
-                    {selectedMeeting.FourFourSecondAge}
+                    {selectedUser.age1},{' '}
+                    {selectedUser.age2}
+                    {selectedUser.age3}
+                    {selectedUser.age4}
                   </div>
                 </div>
                 <div className="Row">
                   <div className="Q">학과</div>
                   <div className="A">
-                    {selectedMeeting.TwoTwoFirstCollage},
-                    {selectedMeeting.TwoTwoSecondCollage}
-                    {selectedMeeting.FourFourFirstCollage}
-                    {selectedMeeting.FourFourSecondCollage}
+                    {selectedUser.collage1},
+                    {selectedUser.collage2}
+                    {selectedUser.collage3}
+                    {selectedUser.collage4}
                   </div>
                 </div>
                 <div className="Row">
                   <div className="Q">해시태그</div>
                   <div className="A">
-                    <Badge keyword={selectedMeeting.hashtag} color="primary" />
+                    <Badge keyword={selectedUser.tag} color="primary" />
                   </div>
                 </div>
                 <div className="Row">
                   <div className="Q">자기소개</div>
                   <div className="A">
                     <Badge
-                      keyword={selectedMeeting.selfintro}
+                      keyword={selectedUser.keysentence}
                       color="primary"
                     />
                   </div>
                 </div>
                 <div className="Row">
                   <div className="Q">오픈채팅링크</div>
-                  <div className="A">{selectedMeeting.openlink}</div>
+                  <div className="A">{selectedUser.address}</div>
                 </div>
               </div>
             </div>
@@ -86,7 +86,7 @@ const SelfMeetingDetails = ({ selectedMeeting }) => {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
-                {selectedMeeting.appearance}
+                {selectedUser.appearance}
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
@@ -99,8 +99,8 @@ const SelfMeetingDetails = ({ selectedMeeting }) => {
               <Typography> 🌵성격 </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
-                {selectedMeeting.personality}
+              <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif'}}>
+                {selectedUser.personality}
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
@@ -113,8 +113,8 @@ const SelfMeetingDetails = ({ selectedMeeting }) => {
               <Typography> 🍀여가생활 및 취미 </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
-                {selectedMeeting.hobby}
+              <Typography style={{ 'font-family':'Noto Sans KR, sans-serif'}}>
+                {selectedUser.hobby}
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
@@ -127,8 +127,8 @@ const SelfMeetingDetails = ({ selectedMeeting }) => {
               <Typography> 💕연애관 및 바라는 이상형 </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
-                {selectedMeeting.idealtype}
+              <Typography style={{ 'font-Family':'Noto Sans KR, sans-serif' }}>
+                {selectedUser.idealtype}
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
@@ -139,7 +139,7 @@ const SelfMeetingDetails = ({ selectedMeeting }) => {
               id="panel3a-header"
             >
               <Typography>
-                <Badge keyword={selectedMeeting.religion} color="rose" />
+                <Badge keyword={selectedUser.keysentence} color="rose" />
               </Typography>
             </ExpansionPanelSummary>
           </ExpansionPanel>
@@ -148,8 +148,6 @@ const SelfMeetingDetails = ({ selectedMeeting }) => {
     </div>
   );
 };
-export default inject(({ userListStore }) => ({
-  MeetingUserList: userListStore.MeetingUserList,
-  selectedMeeting: userListStore.selectedMeeting,
-  setSelectedMeeting: userListStore.setSelectedMeeting,
+export default inject(({ selfMeetingUser }) => ({
+  selectedUser: selfMeetingUser.selectedUser,
 }))(observer(SelfMeetingDetails));

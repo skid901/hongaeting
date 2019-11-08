@@ -5,6 +5,7 @@ class UserListStore {
   @observable userList = [];
 
   @observable selectedUser = {
+    id: '',
     time: '',
     email: '',
     kakaoid: '',

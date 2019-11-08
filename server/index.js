@@ -13,7 +13,6 @@ import jwtMiddleware from './lib/jwtMiddleware';
 import socketServer from './socket';
 
 require('dotenv').config();
-
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -25,7 +24,6 @@ mongoose
   .catch(e => {
     console.error(e);
   });
-
 const app = new Koa();
 const router = new Router();
 
