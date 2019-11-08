@@ -1,11 +1,7 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 import socketIoClient from 'socket.io-client';
-import Input from '@material-ui/core/Input';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import IconButton from '@material-ui/core/IconButton';
-import PhotoCameraOutlinedIcon from '@material-ui/icons/PhotoCameraOutlined';
-import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
+import moment from 'moment';
 
 import './SelfDatingChat.scss';
 
@@ -26,6 +22,7 @@ class SelfDatingChat extends React.Component {
     this.sendChat = this.sendChat.bind(this);
     this.sendImage = this.sendImage.bind(this);
     this.setScrollFloor = this.setScrollFloor.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
 
     this.socket = socketIoClient(`${process.env.REACT_APP_DOMAIN}/chat`, {
       path: '/socket.io',
@@ -117,13 +114,18 @@ class SelfDatingChat extends React.Component {
     event.preventDefault();
     const { roomId } = this.state;
     const { user } = this.props;
-    console.log({ user });
     this.socket.emit('chat', {
       roomId,
       email: user.email,
       msg: this.inputRef.current.value,
     });
     this.inputRef.current.value = '';
+  }
+
+  handleKeyUp(event) {
+    if (event.keyCode === 13) {
+      this.sendChat(event);
+    }
   }
 
   render() {
@@ -133,10 +135,8 @@ class SelfDatingChat extends React.Component {
       <div className="self-dating-chat">
         <div className="chat-frame">
           <div className="chat-wrapper" ref={this.chatWrapperRef}>
-            {/* <div>{`채팅방 ID : ${roomId}`}</div> */}
             {log.length &&
               log.map(curr => {
-                console.log({ curr });
                 return (
                   <div
                     className={`chat-log-${
@@ -146,17 +146,19 @@ class SelfDatingChat extends React.Component {
                   >
                     <div className="chat-nick">{curr.user.nickName}</div>
                     <div className="chat-bubble">
-                      {curr.chat ? (
+                      {!curr.image ? (
                         <div className="chat-contents">{`${curr.chat}`}</div>
                       ) : (
                         <img
                           className="img-contents"
-                          // key={curr.chatNum}
                           src={curr.image}
                           alt="img"
                         />
                       )}
                       <div className="chat-arrow" />
+                    </div>
+                    <div className="chat-date">
+                      {`${moment(curr.createdAt).format('YYYY/MM/DD hh:mm')}`}
                     </div>
                   </div>
                 );
@@ -171,14 +173,9 @@ class SelfDatingChat extends React.Component {
               placeholder="채팅을 입력해주세요."
               ref={this.inputRef}
               onFocus={this.setScrollFloor}
+              onKeyUp={this.handleKeyUp}
             />
-
             <label className="send-image" htmlFor="send-image">
-              {/* <PhotoCameraOutlinedIcon
-                className="send-image-icon"
-                fontSize="large"
-                color="primary"
-              /> */}
               <input
                 id="send-image"
                 className="send-image-input"
@@ -188,10 +185,11 @@ class SelfDatingChat extends React.Component {
                 onChange={this.sendImage}
               />
             </label>
-
-            <button className="send-chat" type="button" onClick={this.sendChat}>
-              {/* <SendOutlinedIcon fontSize="large" color="primary" /> */}
-            </button>
+            <button
+              className="send-chat"
+              type="button"
+              onClick={this.sendChat}
+            />
           </div>
         </div>
       </div>

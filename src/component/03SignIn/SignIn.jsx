@@ -109,6 +109,12 @@ const SignIn = observer(() => {
     }
   };
 
+  const handleKeyUp = event => {
+    if (event.keyCode === 13) {
+      handleClick(event);
+    }
+  };
+
   return (
     <div className="SignIn">
       <Container className="title" maxWidth="sm">
@@ -135,6 +141,7 @@ const SignIn = observer(() => {
             placeholder="패스워드를 입력해주세요."
             value={state.password}
             onChange={handleChange('password')}
+            onKeyUp={handleKeyUp}
             autoComplete="off"
             required
           />
