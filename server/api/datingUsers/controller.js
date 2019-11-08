@@ -146,7 +146,7 @@ export const list = async (ctx) => {
 export const all = async (ctx) => {
   let all;
   try{
-    all = await DatingUser.count().exec();
+    all = await DatingUser.find({self : 1}).count().exec();
   }catch (e){
     return ctx.throw(500, e);
   }
