@@ -17,9 +17,9 @@ const selfMeetingUser = new SelfMeetingUserStore();
 const rootStore = new RootStore();
 
 const App = () => (
-  <Provider 
+  <Provider
     {...rootStore}
-    userlist = {userlist}
+    userlist={userlist}
     selfDatingUser={selfDatingUser}
     selfMeetingUser={selfMeetingUser}
   >

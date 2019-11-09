@@ -60,6 +60,9 @@ const Welcome = () => (
     <li>
       <Link to="/realwelcome">RealWelcome</Link>
     </li>
+    <li>
+      <Link to="/waitinginfo">WaitingInfo</Link>
+    </li>
   </div>
 );
 

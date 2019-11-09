@@ -22,14 +22,13 @@ const mail = (authEmail, authNum) => {
   // 메일 내용
   const htmlContents = `<div>
   <p><span style="color:blue;">홍개팅</span> 계정 인증용 메일입니다.</p><br/>
-  <div style="background-color: #0045ce;">html css test</div>
-  <a target="_blank" rel="noopener noreferrer" href="${process.env.REACT_APP_DOMAIN}/signup/auth/${authNum}">홍개팅 계정 인증하기</a>
+  <a target="_blank" rel="noopener noreferrer" href="${process.env.REACT_APP_DOMAIN}/signup/auth/${authNum}">홍개팅 계정 인증하기 클릭</a>
 </div>`;
   // 메일 작성
   const mailConfig = {
     from: '', // 발송할 이메일
     to: authEmail, // 수신할 이메일
-    subject: '홍개팅 인증 메일 테스트', // 메일 제목
+    subject: '홍개팅 인증 메일', // 메일 제목
     html: htmlContents,
   };
   // 메일 발송
@@ -98,6 +97,7 @@ export const authMail = async ctx => {
     }
     const { authEmail } = await user.serialize();
     const isAuthed = await user.checkIsAuthed();
+    console.log({ isAuthed });
     if (isAuthed) {
       ctx.status = 200;
       ctx.body = `{ "message" : "alreadyAuthed"}`;

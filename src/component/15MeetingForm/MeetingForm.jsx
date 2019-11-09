@@ -11,9 +11,8 @@ function MeetingForm() {
       background: 'linear-gradient(45deg, #085F63 30%, #085F63 90%)',
       border: 0,
       borderRadius: 3,
-      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
       color: 'white',
-      height: 48,
+      height: '48px',
       padding: '0 30px',
     },
   });
@@ -24,7 +23,7 @@ function MeetingForm() {
   return (
     <div className="intriduction-form">
       <div className="comment">
-        {`설문지 제출을 완료 했다면!! `}
+        {/* {`설문지 제출을 완료 했다면!! `} */}
         <div style={{ 'text-align': 'center' }}>
           <Button
             className={classes1.root}

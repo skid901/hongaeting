@@ -29,12 +29,12 @@ const useStyles = makeStyles(theme => ({
   orangeAvatar: {
     margin: 10,
     color: '#fff',
-    backgroundColor: deepOrange[500],
+    backgroundColor: '#085f63',
   },
   purpleAvatar: {
     margin: 10,
     color: '#fff',
-    backgroundColor: deepPurple[500],
+    backgroundColor: '#085f63',
   },
 }));
 
@@ -146,8 +146,8 @@ const MyPage = () => {
               <ListItemText
                 primary={val.nickName}
                 style={{ 'padding-top': '15px' }}
-                secondary={
-                  <>
+                secondary={(
+<>
                     <Typography
                       component="span"
                       variant="body2"
@@ -156,12 +156,13 @@ const MyPage = () => {
                     />
                     {/* {' — 대화내용이 여기에 나오게 하면 좋겠는데!!'} */}
                   </>
-                }
+)}
               />
               <Button
                 // type="button"
                 data-email={val.email}
-                style={{ 'margin-top': '15px' }}
+                outlined
+                style={{ 'margin-top': '15px', color: '#085f63' }}
               >
                 클릭
               </Button>
@@ -172,19 +173,6 @@ const MyPage = () => {
           ))}
         </ul>
       </div>
-      {/* <div>
-        <ul>
-          {userList.map(val => (
-            <li key={val._id}>
-              {val.nickName}와 채팅하려면{' '}
-              <button type="button" data-email={val.email}>
-                클릭
-              </button>
-            </li>
-          ))}
-          <li />
-        </ul>
-      </div> */}
     </div>
   );
 };

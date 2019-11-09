@@ -24,6 +24,8 @@
       weight: bold;
     }
   }
+  .MuiInputBase-input:focus {
+  }
 
   .input {
     @include SignUp;

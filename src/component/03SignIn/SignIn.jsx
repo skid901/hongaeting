@@ -9,6 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const SignIn = observer(() => {
   //
@@ -109,55 +110,66 @@ const SignIn = observer(() => {
       handleClick(event);
     }
   };
-
+  const mainTheme = createMuiTheme({
+    palette: {
+      primary: {
+        light: '#085F63',
+        main: '#085F63',
+        dark: '#085F63',
+        contrastText: '#fff',
+      },
+    },
+  });
   return (
     <div className="SignIn">
-      <Container className="title" maxWidth="sm">
-        로그인
-      </Container>
-      <Container className="input" maxWidth="sm">
-        <FormControl fullWidth>
-          <InputLabel htmlFor="id">이메일</InputLabel>
-          <Input
-            type="email"
-            placeholder="이메일을 입력해주세요."
-            value={state.email}
-            onChange={handleChange('email')}
-            autoComplete="off"
-            required
-          />
-        </FormControl>
-      </Container>
-      <Container className="input" maxWidth="sm">
-        <FormControl fullWidth>
-          <InputLabel htmlFor="password">패스워드</InputLabel>
-          <Input
-            type="password"
-            placeholder="패스워드를 입력해주세요."
-            value={state.password}
-            onChange={handleChange('password')}
-            onKeyUp={handleKeyUp}
-            autoComplete="off"
-            required
-          />
-        </FormControl>
-      </Container>
-      <Container className="input button" maxWidth="sm">
-        <Button
-          variant="contained"
-          style={{ 'background-color': '#085F63', color: 'white' }}
-          fullWidth
-          onClick={handleClick}
-        >
+      <ThemeProvider theme={mainTheme}>
+        <Container className="title" maxWidth="sm">
           로그인
-        </Button>
-      </Container>
-      <Container className="signUpLink" maxWidth="sm">
-        <span>
-          {`아직 홍개팅 계정이 없으신가요?`}&nbsp;&nbsp;
-          <Link to="/signup/form">회원가입</Link>
-        </span>
-      </Container>
+        </Container>
+        <Container className="input" maxWidth="sm">
+          <FormControl fullWidth>
+            <InputLabel htmlFor="id">이메일</InputLabel>
+            <Input
+              type="email"
+              placeholder="이메일을 입력해주세요."
+              value={state.email}
+              onChange={handleChange('email')}
+              autoComplete="off"
+              required
+            />
+          </FormControl>
+        </Container>
+        <Container className="input" maxWidth="sm">
+          <FormControl fullWidth>
+            <InputLabel htmlFor="password">패스워드</InputLabel>
+            <Input
+              type="password"
+              placeholder="패스워드를 입력해주세요."
+              value={state.password}
+              onChange={handleChange('password')}
+              onKeyUp={handleKeyUp}
+              autoComplete="off"
+              required
+            />
+          </FormControl>
+        </Container>
+        <Container className="input button" maxWidth="sm">
+          <Button
+            variant="contained"
+            style={{ 'background-color': '#085F63', color: 'white' }}
+            fullWidth
+            onClick={handleClick}
+          >
+            로그인
+          </Button>
+        </Container>
+        <Container className="signUpLink" maxWidth="sm">
+          <span>
+            {`아직 홍개팅 계정이 없으신가요?`}&nbsp;&nbsp;
+            <Link to="/signup/form">회원가입</Link>
+          </span>
+        </Container>
+      </ThemeProvider>
     </div>
   );
 });

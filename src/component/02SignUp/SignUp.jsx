@@ -22,12 +22,13 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
 const SignUp = observer(() => {
   //
   const history = useHistory();
 
   const { alert } = useContext(MobXProviderContext);
-
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -176,180 +177,186 @@ const SignUp = observer(() => {
     </InputAdornment>
   );
 
+  const mainTheme = createMuiTheme({
+    palette: {
+      primary: {
+        light: '#085F63',
+        main: '#085F63',
+        dark: '#085F63',
+        contrastText: '#fff',
+      },
+    },
+  });
   return (
     <div className="SignUp">
-      <Container className="title" maxWidth="sm">
-        회원가입
-      </Container>
-      <Container className="input" maxWidth="sm">
-        <FormControl fullWidth style={{ color: '#085F63' }}>
-          <InputLabel htmlFor="id" style={{ color: '#085F63' }}>
-            이메일
-          </InputLabel>
-          <Input
-            type="email"
-            placeholder="이메일을 입력해주세요."
-            value={state.email}
-            onChange={handleChange('email')}
-            autoComplete="off"
-            required
-          />
-          <FormHelperText>자주 사용하는 이메일을 입력해주세요.</FormHelperText>
-        </FormControl>
-      </Container>
-      <Container className="input" maxWidth="sm">
-        <FormControl fullWidth>
-          <InputLabel htmlFor="password" style={{ color: '#085F63' }}>
-            패스워드
-          </InputLabel>
-          <Input
-            placeholder="패스워드를 입력해주세요."
-            type={state.showPassword ? 'text' : 'password'}
-            value={state.password}
-            onChange={handleChange('password')}
-            endAdornment={endAdornment('showPassword')}
-            autoComplete="off"
-            required
-          />
-          <FormHelperText>
-            영문, 숫자 및 특수문자를 모두 사용해 8-15자로 입력해주세요.
-          </FormHelperText>
-        </FormControl>
-      </Container>
-      <Container className="input" maxWidth="sm">
-        <FormControl fullWidth>
-          <InputLabel htmlFor="passwordConfirm" style={{ color: '#085F63' }}>
-            패스워드 확인
-          </InputLabel>
-          <Input
-            id="SignUp-passwordConfirm"
-            placeholder="패스워드를 확인해주세요."
-            type={state.showPasswordConfirm ? 'text' : 'password'}
-            value={state.passwordConfirm}
-            onChange={handleChange('passwordConfirm')}
-            endAdornment={endAdornment('showPasswordConfirm')}
-            autoComplete="off"
-            required
-          />
-          <FormHelperText>패스워드와 동일하게 입력해주세요.</FormHelperText>
-        </FormControl>
-      </Container>
-      <Container className="input" maxWidth="sm">
-        <FormControl fullWidth>
-          <InputLabel htmlFor="nickName" style={{ color: '#085F63' }}>
-            닉네임
-          </InputLabel>
-          <Input
-            placeholder="닉네임을 입력해주세요."
-            value={state.nickName}
-            onChange={handleChange('nickName')}
-            autoComplete="off"
-            required
-          />
-          <FormHelperText>
-            홍게팅에서 사용할 닉네임을 특수문자 제외 2-10자 입력해주세요.
-          </FormHelperText>
-        </FormControl>
-      </Container>
-      <Container className="input" maxWidth="sm">
-        <FormControl component="fieldset" fullWidth>
-          <FormLabel component="legend">성별</FormLabel>
-          <RadioGroup
-            aria-label="sex"
-            name="sex"
-            value={state.sex}
-            onChange={handleChange('sex')}
-            row
-          >
-            <FormControlLabel
-              value="female"
-              control={<Radio style={{ color: '#085F63' }} />}
-              labelPlacement="end"
-              label="여성"
-            />
-            <FormControlLabel
-              value="male"
-              control={<Radio style={{ color: '#085F63' }} />}
-              labelPlacement="end"
-              label="남성"
-            />
-          </RadioGroup>
-        </FormControl>
-      </Container>
-      <Container className="input" maxWidth="sm">
-        <FormControl fullWidth>
-          <InputLabel htmlFor="authEmail" style={{ color: '#085F63' }}>
-            홍대 이메일 아이디
-          </InputLabel>
-          <Input
-            placeholder="아이디만 입력해주세요."
-            value={state.authEmail}
-            onChange={handleChange('authEmail')}
-            endAdornment={
-              <InputAdornment position="end">{`@${process.env.REACT_APP_AUTH_EMAIL_DOMAIN}`}</InputAdornment>
-            }
-            autoComplete="off"
-            required
-          />
-          <FormHelperText>
-            {`홍대생 인증을 위해 "홍익대학교" 이메일 아이디만 입력해주세요.`}
-          </FormHelperText>
-        </FormControl>
-        <Paper className="notice">
-          <Typography variant="h6" gutterBottom>
-            {`아직 홍익대학교 이메일이 없으신가요?`}
-          </Typography>
-          <Typography variant="body2" gutterBottom>
-            {`홍익대학교 이메일을 만들지 않았거나 잊어버렸다면, `}
-          </Typography>
-          <Typography variant="body2" gutterBottom>
-            <a
-              href="http://it.hongik.ac.kr/dept/it/0204.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              color="#0045ce"
-            >
-              이 곳
-            </a>
-            {`으로 들어가 "Office365 가입하기"를 눌러주세요. `}
-          </Typography>
-          <Typography variant="body2" gutterBottom>
-            {`비밀번호가 기억나지 않는다면 `}
-            <a
-              href="http://it.hongik.ac.kr/dept/it/o365_pw_reset.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              color="#0045ce"
-            >
-              이 곳
-            </a>
-            {`을 참고해주세요.`}
-          </Typography>
-        </Paper>
-      </Container>
-      <Container className="input" maxWidth="sm">
-        <Checkbox
-          checked={state.checked}
-          onChange={() => {
-            setState({ ...state, checked: !state.checked });
-          }}
-          value="checked"
-          color="primary"
-        />
-        <span className="service-agreement">
-          {`홍개팅의 이용약관 및 개인정보 처리방침에 동의합니다.`}
-        </span>
-      </Container>
-      <Container className="input button" maxWidth="sm">
-        <Button
-          variant="contained"
-          style={{ color: 'white', 'background-color': '#085F63' }}
-          fullWidth
-          onClick={handleClick}
-        >
+      <ThemeProvider theme={mainTheme}>
+        <Container className="title" maxWidth="sm">
           회원가입
-        </Button>
-      </Container>
+        </Container>
+        <Container className="input" maxWidth="sm">
+          <FormControl fullWidth style={{ color: '#085F63' }}>
+            <InputLabel htmlFor="id">이메일</InputLabel>
+            <Input
+              type="email"
+              placeholder="이메일을 입력해주세요."
+              value={state.email}
+              onChange={handleChange('email')}
+              autoComplete="off"
+              required
+              color="primary"
+            />
+            <FormHelperText>
+              자주 사용하는 이메일을 입력해주세요.
+            </FormHelperText>
+          </FormControl>
+        </Container>
+        <Container className="input" maxWidth="sm">
+          <FormControl fullWidth>
+            <InputLabel htmlFor="password">패스워드</InputLabel>
+            <Input
+              placeholder="패스워드를 입력해주세요."
+              type={state.showPassword ? 'text' : 'password'}
+              value={state.password}
+              onChange={handleChange('password')}
+              endAdornment={endAdornment('showPassword')}
+              autoComplete="off"
+              required
+            />
+            <FormHelperText>
+              영문, 숫자 및 특수문자를 모두 사용해 8-15자로 입력해주세요.
+            </FormHelperText>
+          </FormControl>
+        </Container>
+        <Container className="input" maxWidth="sm">
+          <FormControl fullWidth>
+            <InputLabel htmlFor="passwordConfirm">패스워드 확인</InputLabel>
+            <Input
+              id="SignUp-passwordConfirm"
+              placeholder="패스워드를 확인해주세요."
+              type={state.showPasswordConfirm ? 'text' : 'password'}
+              value={state.passwordConfirm}
+              onChange={handleChange('passwordConfirm')}
+              endAdornment={endAdornment('showPasswordConfirm')}
+              autoComplete="off"
+              required
+              color="#085F63"
+            />
+            <FormHelperText>패스워드와 동일하게 입력해주세요.</FormHelperText>
+          </FormControl>
+        </Container>
+        <Container className="input" maxWidth="sm">
+          <FormControl fullWidth>
+            <InputLabel htmlFor="nickName">닉네임</InputLabel>
+            <Input
+              placeholder="닉네임을 입력해주세요."
+              value={state.nickName}
+              onChange={handleChange('nickName')}
+              autoComplete="off"
+              required
+            />
+            <FormHelperText>
+              홍게팅에서 사용할 닉네임을 특수문자 제외 2-10자 입력해주세요.
+            </FormHelperText>
+          </FormControl>
+        </Container>
+        <Container className="input" maxWidth="sm">
+          <FormControl component="fieldset" fullWidth>
+            <FormLabel component="legend">성별</FormLabel>
+            <RadioGroup
+              aria-label="sex"
+              name="sex"
+              value={state.sex}
+              onChange={handleChange('sex')}
+              row
+            >
+              <FormControlLabel
+                value="female"
+                control={<Radio style={{ color: '#085F63' }} />}
+                labelPlacement="end"
+                label="여성"
+              />
+              <FormControlLabel
+                value="male"
+                control={<Radio style={{ color: '#085F63' }} />}
+                labelPlacement="end"
+                label="남성"
+              />
+            </RadioGroup>
+          </FormControl>
+        </Container>
+        <Container className="input" maxWidth="sm">
+          <FormControl fullWidth>
+            <InputLabel htmlFor="authEmail">홍대 이메일 아이디</InputLabel>
+            <Input
+              placeholder="아이디만 입력해주세요."
+              value={state.authEmail}
+              onChange={handleChange('authEmail')}
+              endAdornment={
+                <InputAdornment position="end">{`@${process.env.REACT_APP_AUTH_EMAIL_DOMAIN}`}</InputAdornment>
+              }
+              autoComplete="off"
+              required
+            />
+            <FormHelperText>
+              {`홍대생 인증을 위해 "홍익대학교" 이메일 아이디만 입력해주세요.`}
+            </FormHelperText>
+          </FormControl>
+          <Paper className="notice">
+            <Typography variant="h6" gutterBottom>
+              {`아직 홍익대학교 이메일이 없으신가요?`}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              {`홍익대학교 이메일을 만들지 않았거나 잊어버렸다면, `}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              <a
+                href="http://it.hongik.ac.kr/dept/it/0204.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                color="#0045ce"
+              >
+                이 곳
+              </a>
+              {`으로 들어가 "Office365 가입하기"를 눌러주세요. `}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              {`비밀번호가 기억나지 않는다면 `}
+              <a
+                href="http://it.hongik.ac.kr/dept/it/o365_pw_reset.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                color="#0045ce"
+              >
+                이 곳
+              </a>
+              {`을 참고해주세요.`}
+            </Typography>
+          </Paper>
+        </Container>
+        <Container className="input" maxWidth="sm">
+          <Checkbox
+            checked={state.checked}
+            onChange={() => {
+              setState({ ...state, checked: !state.checked });
+            }}
+            value="checked"
+            color="primary"
+          />
+          <span className="service-agreement">
+            {`홍개팅의 이용약관 및 개인정보 처리방침에 동의합니다.`}
+          </span>
+        </Container>
+        <Container className="input button" maxWidth="sm">
+          <Button
+            variant="contained"
+            style={{ color: 'white', 'background-color': '#085F63' }}
+            fullWidth
+            onClick={handleClick}
+          >
+            회원가입
+          </Button>
+        </Container>
+      </ThemeProvider>
     </div>
   );
 });

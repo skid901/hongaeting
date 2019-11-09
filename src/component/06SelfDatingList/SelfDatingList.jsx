@@ -107,6 +107,7 @@ const SelfDatingList = ({
       <p
         className="title"
         style={{
+          'text-align': 'center',
           'background-color': 'white',
           'font-family': 'Noto Sans KR, sans-serif',
         }}

@@ -40,7 +40,7 @@ const Summit = () => {
         </Paper>
         <Button
           variant="contained"
-          color="primary"
+          style={{ 'background-color': '#085F63', color: 'white' }}
           fullWidth
           onClick={() => {
             history.push(`/signin`);
