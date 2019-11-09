@@ -1,5 +1,5 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
@@ -11,6 +11,7 @@ import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import './MyPage.scss';
 import Badge from 'component/06SelfDatingList/Badge';
+import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -81,7 +82,23 @@ const MyPage = () => {
   //
   const { nickName } = useParams();
   const classes = useStyles();
-
+  const history = useHistory();
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await axios.get(`api/auth/check`, {});
+        console.log(data);
+        const message = data.message || ``;
+        console.log(message);
+        if (message === 'noSignIn') {
+          history.push(`/signin`);
+          return;
+        }
+      } catch (e) {
+        history.push(`/signup/form`);
+      }
+    })();
+  }, []);
   return (
     <div>
       <div className="profile-wrapper">
@@ -130,15 +147,15 @@ const MyPage = () => {
                 primary={val.nickName}
                 style={{ 'padding-top': '15px' }}
                 secondary={
-                                    <>
-  <Typography
-                                        component="span"
+                  <>
+                    <Typography
+                      component="span"
                       variant="body2"
-                                        className={classes.inline}
-                                        color="textPrimary"
+                      className={classes.inline}
+                      color="textPrimary"
                     />
-  {/* {' — 대화내용이 여기에 나오게 하면 좋겠는데!!'} */}
-</>
+                    {/* {' — 대화내용이 여기에 나오게 하면 좋겠는데!!'} */}
+                  </>
                 }
               />
               <Button

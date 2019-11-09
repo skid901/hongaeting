@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { inject, observer } from 'mobx-react';
 import './SelfMeetingList.scss';
-
 import {
   BrowserRouter,
   Switch,
@@ -21,7 +20,7 @@ import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import ReactPaginate from 'react-paginate';
 import Badge from './Badge';
-import Axios from '../../../node_modules/axios/index';
+import axios from '../../../node_modules/axios/index';
 
 const useStyles1 = makeStyles({
   root: {
@@ -53,6 +52,20 @@ const SelfMeetingList = ({
     setGender(2);
     setUsers(1);
     setUserCount();
+    (async () => {
+      try {
+        const { data } = await axios.get(`api/auth/check`, {});
+        console.log(data);
+        const message = data.message || ``;
+        console.log(message);
+        if (message === 'noSignIn') {
+          history.push(`/signin`);
+          return;
+        }
+      } catch (e) {
+        history.push(`/signup/form`);
+      }
+    })();
   }, []);
 
   return (
@@ -151,7 +164,7 @@ const SelfMeetingList = ({
                       )
                       .map(user => <Cards user={user} history={history} />)
                   : pagedUser.map(user => (
-                      <Cards user={user} history={history} />
+                    <Cards user={user} history={history} />
                     ));
               }
               return result;
@@ -165,8 +178,8 @@ const SelfMeetingList = ({
           marginPagesDisplayed={1}
           pageRangeDisplayed={1}
           onPageChange={e => setUsers(e.selected + 1)}
-          previousLabel={
-            <svg
+          previousLabel={(
+<svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -175,9 +188,9 @@ const SelfMeetingList = ({
               <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z" />
               <path fill="none" d="M0 0h24v24H0V0z" />
             </svg>
-          }
-          breakLabel={
-            <svg
+)}
+          breakLabel={(
+<svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -186,9 +199,9 @@ const SelfMeetingList = ({
               <path fill="none" d="M0 0h24v24H0V0z" />
               <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
             </svg>
-          }
-          nextLabel={
-            <svg
+)}
+          nextLabel={(
+<svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -197,7 +210,7 @@ const SelfMeetingList = ({
               <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
               <path fill="none" d="M0 0h24v24H0V0z" />
             </svg>
-          }
+)}
         />
       </div>
     </div>
