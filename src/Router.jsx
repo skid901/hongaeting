@@ -31,18 +31,18 @@ const Router = () => (
     <Route path="/signup/summit" component={Summit} />
     <Route path="/signup/auth/:authNum" component={Auth} />
     <Route path="/signin" component={SignIn} />
-    <Route path="/mypage/:nickName" component={WaitingInfo} />
+    <Route path="/mypage/:nickName" component={MyPage} />
     <Route path="/introductionform" component={IntroductionForm} />
-    <Route path="/selfdatinglist" component={WaitingInfo} />
-    <Route path="/selfdatingdetails" component={WaitingInfo} />
-    <Route path="/selfdatingchat/:roomId" component={WaitingInfo} />
+    <Route path="/selfdatinglist" component={SelfDatingList} />
+    <Route path="/selfdatingdetails" component={SelfDatingDetails} />
+    <Route path="/selfdatingchat/:roomId" component={SelfDatingChat} />
     <Route path="/matchmarkingchat" component={MatchmarkingChat} />
     <Route path="/adminreportchat" component={AdminReportChat} />
     <Route path="/adminpage" component={AdminPage} />
     <Route path="/errorpage" component={ErrorPage} />
-    <Route path="/demo" component={WaitingInfo} />
-    <Route path="/selfmeetinglist" component={WaitingInfo} />
-    <Route path="/selfmeetingdetails" component={WaitingInfo} />
+    <Route path="/demo" component={demo} />
+    <Route path="/selfmeetinglist" component={SelfMeetingList} />
+    <Route path="/selfmeetingdetails" component={SelfMeetingDetails} />
     <Route path="/meetingform" component={MeetingForm} />
     <Route path="/realwelcome" component={RealWelcome} />
     <Route path="/waitinginfo" component={WaitingInfo} />

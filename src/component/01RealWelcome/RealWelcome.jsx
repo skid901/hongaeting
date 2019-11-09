@@ -6,7 +6,6 @@ const RealWelcome = () => {
   return (
     <div className="image">
       <div className="tiledBackground" />
-      Test
     </div>
   );
 };
