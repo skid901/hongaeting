@@ -10,6 +10,8 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 
+import storage from '../../store/storage';
+
 const SignIn = observer(() => {
   //
   const history = useHistory();
@@ -95,7 +97,11 @@ const SignIn = observer(() => {
       user.setNickName(data.nickName);
       user.setSex(data.sex);
       user.setAuthEmail(data.authEmail);
-
+      const loggedInfo = {email : '', password : ''};
+      loggedInfo.email = data.email;
+      loggedInfo.password = state.password;
+      console.log({loggedInfo});
+      storage.set('loggedInfo', loggedInfo);
       // 마이페이지로 이동
       // history.push(`/mypage/${data.nickName || ``}`);
       history.push(`/demo`);

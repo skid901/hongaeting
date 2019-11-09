@@ -1,13 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'mobx-react';
 import './index.scss';
 import dotenv from 'dotenv';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+//import UserListStore from './store/UserListStore';
+import SelfDatingUserStore from './store/SelfDatingUserStore';
+import SelfMeetingUserStore from './store/SelfMeetingUserStore';
+import RootStore from './store/RootStore';
 dotenv.config();
+//const userlist = new UserListStore();
+const selfDatingUser = new SelfDatingUserStore();
+const selfMeetingUser = new SelfMeetingUserStore();
+const rootStore = new RootStore();
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <Provider
+    {...rootStore}
+    selfDatingUser={selfDatingUser}
+    selfMeetingUser={selfMeetingUser}
+  >
+    <App />
+  </Provider>, 
+  document.getElementById('root')
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
