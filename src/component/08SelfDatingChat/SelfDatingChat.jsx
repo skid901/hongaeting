@@ -135,7 +135,7 @@ class SelfDatingChat extends React.Component {
       <div className="self-dating-chat">
         <div className="chat-frame">
           <div className="chat-wrapper" ref={this.chatWrapperRef}>
-            {log.length &&
+            {log &&
               log.map(curr => {
                 return (
                   <div
@@ -158,7 +158,7 @@ class SelfDatingChat extends React.Component {
                       <div className="chat-arrow" />
                     </div>
                     <div className="chat-date">
-                      {`${moment(curr.createdAt).format('YYYY/MM/DD hh:mm')}`}
+                      {`${moment(curr.createdAt).format('hh:mm')}`}
                     </div>
                   </div>
                 );
