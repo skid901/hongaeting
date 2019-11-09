@@ -13,32 +13,35 @@
   }
 }
 
-.title {
-  @include SignIn;
-  background-color: #f6f6f6;
-  color: #333333;
-  text-align: center;
-  font: {
-    size: 2rem;
-    weight: bold;
+.SignIn {
+  .title {
+    @include SignIn;
+    background-color: #f6f6f6;
+    color: #333333;
+    text-align: center;
+    font: {
+      size: 2rem;
+      weight: bold;
+    }
   }
-}
 
-.input {
-  @include SignIn;
-}
-
-.button {
-  margin: {
-    bottom: 20px;
+  .input {
+    @include SignIn;
   }
-}
 
-.signUpLink {
-  text-align: center;
-  font-size: 13px;
-  margin: {
-    left: auto;
-    right: auto;
+  .button {
+    position: relative;
+    margin: {
+      bottom: 20px;
+    }
+  }
+
+  .signUpLink {
+    text-align: center;
+    font-size: 13px;
+    margin: {
+      left: auto;
+      right: auto;
+    }
   }
 }

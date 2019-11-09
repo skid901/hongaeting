@@ -19,10 +19,9 @@ import {
 
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
+import ReactPaginate from 'react-paginate';
 import Badge from './Badge';
 import Axios from '../../../node_modules/axios/index';
-
-import ReactPaginate from 'react-paginate';
 
 const useStyles1 = makeStyles({
   root: {
@@ -45,7 +44,7 @@ const SelfMeetingList = ({
   pagedUser,
   setUserCount,
   userCount,
-  setGender
+  setGender,
 }) => {
   const history = useHistory();
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -61,24 +60,38 @@ const SelfMeetingList = ({
       <div className="secondbar">
         <ol className="viewlist">
           <li className="view">
-            <Button 
+            <Button
               style={{ 'font-family': 'Do Hyeon, sans-serif' }}
-              onClick={()=>{setGender(2);setUsers(1);setUserCount();}}
+              onClick={() => {
+                setGender(2);
+                setUsers(1);
+                setUserCount();
+              }}
             >
               전체보기
             </Button>
           </li>
           <li className="view">
-            <Button 
+            <Button
               style={{ 'font-family': 'Do Hyeon, sans-serif' }}
-              onClick={()=>{setGender(0);setUsers(1); setUserCount();}}>
+              onClick={() => {
+                setGender(0);
+                setUsers(1);
+                setUserCount();
+              }}
+            >
               남자보기
             </Button>
           </li>
           <li className="view">
-            <Button 
+            <Button
               style={{ 'font-family': 'Do Hyeon, sans-serif' }}
-              onClick={()=>{setGender(1); setUsers(1); setUserCount();}}>
+              onClick={() => {
+                setGender(1);
+                setUsers(1);
+                setUserCount();
+              }}
+            >
               여자보기
             </Button>
           </li>
@@ -114,11 +127,11 @@ const SelfMeetingList = ({
         </Container>
       </div>
       {IsLoading ? (
-        <div>
+        <div style={{ 'text-align': 'center' }}>
           <div> 잠시만기다려주세요...</div>
           <div>
             <CircularProgress />
-            <CircularProgress color="secondary" />
+            {/* <CircularProgress color="secondary" /> */}
           </div>
         </div>
       ) : (
@@ -128,13 +141,15 @@ const SelfMeetingList = ({
               let result = null;
               if (updated) {
                 result = searchKeyword
-                  ? pagedUser.filter(
-                      item =>
-                        item.collage.indexOf(searchKeyword) >= 0 ||
-                        item.religion.indexOf(searchKeyword) >= 0 ||
-                        item.personality.indexOf(searchKeyword) >= 0 ||
-                        item.hobby.indexOf(searchKeyword) >= 0,
-                    ).map(user => <Cards user={user} history={history} />)
+                  ? pagedUser
+                      .filter(
+                        item =>
+                          item.collage.indexOf(searchKeyword) >= 0 ||
+                          item.religion.indexOf(searchKeyword) >= 0 ||
+                          item.personality.indexOf(searchKeyword) >= 0 ||
+                          item.hobby.indexOf(searchKeyword) >= 0,
+                      )
+                      .map(user => <Cards user={user} history={history} />)
                   : pagedUser.map(user => (
                       <Cards user={user} history={history} />
                     ));
@@ -144,15 +159,45 @@ const SelfMeetingList = ({
           </Container>
         </div>
       )}
-      <div className="page">
+      <div className="page" style={{ 'text-align': 'center' }}>
         <ReactPaginate
-          pageCount={(parseInt(userCount/20))+1}
+          pageCount={parseInt(userCount / 20) + 1}
           marginPagesDisplayed={1}
           pageRangeDisplayed={1}
-          onPageChange={e=>setUsers(e.selected+1)}
-          previousLabel={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/><path fill="none" d="M0 0h24v24H0V0z"/></svg>}
-          breakLabel={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>}
-          nextLabel={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/><path fill="none" d="M0 0h24v24H0V0z"/></svg>}
+          onPageChange={e => setUsers(e.selected + 1)}
+          previousLabel={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z" />
+              <path fill="none" d="M0 0h24v24H0V0z" />
+            </svg>
+          }
+          breakLabel={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path fill="none" d="M0 0h24v24H0V0z" />
+              <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+            </svg>
+          }
+          nextLabel={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+              <path fill="none" d="M0 0h24v24H0V0z" />
+            </svg>
+          }
         />
       </div>
     </div>
@@ -178,7 +223,7 @@ class Cards extends React.Component {
           <div className="MuiCardHeader-root">
             {`${user.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
             {`(${user.id}) ${user.number} /${user.nickname}${user.address}`}
-            {console.log(user.tag + "타입은 " + typeof(user.tag))}
+            {console.log(`${user.tag}타입은 ${typeof user.tag}`)}
           </div>
           <CardContent style={{ 'padding-top': '6px' }}>
             <Badge
@@ -189,10 +234,7 @@ class Cards extends React.Component {
               keyword={`#${user.tag.toString().split('#')[2]}`}
               color="rose"
             />
-            <Badge
-              keyword={user.tag.toString().split('#')[3]}
-              color="rose"
-            />
+            <Badge keyword={user.tag.toString().split('#')[3]} color="rose" />
 
             <Badge
               keyword={user.drink.toString().substring(0, 5)}
@@ -225,5 +267,5 @@ export default inject(({ selfMeetingUser }) => ({
   pagedUser: selfMeetingUser.pagedUser,
   setUserCount: selfMeetingUser.setUserCount,
   userCount: selfMeetingUser.userCount,
-  setGender: selfMeetingUser.setGender
+  setGender: selfMeetingUser.setGender,
 }))(observer(SelfMeetingList));

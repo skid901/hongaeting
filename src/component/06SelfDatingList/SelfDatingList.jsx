@@ -35,7 +35,7 @@ const SelfDatingList = ({
   pagedUser,
   setUserCount,
   userCount,
-  setGender
+  setGender,
 }) => {
   const history = useHistory();
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -52,31 +52,50 @@ const SelfDatingList = ({
       <div className="secondbar">
         <ol className="viewlist">
           <li className="view">
-            <Button 
+            <Button
               style={{ 'font-family': 'Do Hyeon, sans-serif' }}
-              onClick={()=>{setGender(2); setUsers(1); setUserCount();}}
+              onClick={() => {
+                setGender(2);
+                setUsers(1);
+                setUserCount();
+              }}
             >
               전체보기
             </Button>
           </li>
           <li className="view">
-            <Button 
+            <Button
               style={{ 'font-family': 'Do Hyeon, sans-serif' }}
-              onClick={()=>{ setGender(0); setUsers(1); setUserCount();}}>
+              onClick={() => {
+                setGender(0);
+                setUsers(1);
+                setUserCount();
+              }}
+            >
               남자보기
             </Button>
           </li>
           <li className="view">
-            <Button 
+            <Button
               style={{ 'font-family': 'Do Hyeon, sans-serif' }}
-              onClick={()=>{setGender(1);setUsers(1);setUserCount();}}>
+              onClick={() => {
+                setGender(1);
+                setUsers(1);
+                setUserCount();
+              }}
+            >
               여자보기
             </Button>
           </li>
         </ol>
       </div>
-      <p className="title" style={{ 'background-color': 'white',
-          'font-family': 'Noto Sans KR, sans-serif', }}>
+      <p
+        className="title"
+        style={{
+          'background-color': 'white',
+          'font-family': 'Noto Sans KR, sans-serif',
+        }}
+      >
         홍익 셀프 소개팅
       </p>
       <div className="input" maxWidth="sm" style={{ 'padding-bottom': '0px' }}>
@@ -111,9 +130,9 @@ const SelfDatingList = ({
       </div>
       {IsLoading ? (
         <div>
-          <div> 잠시만기다려주세요...</div>
-          <div>
-            <CircularProgress />
+          <div style={{ 'text-align': 'center' }}> 잠시만기다려주세요...</div>
+          <div style={{ 'text-align-last': 'center' }}>
+            {/* <CircularProgress /> */}
             <CircularProgress color="secondary" />
           </div>
         </div>
@@ -133,27 +152,58 @@ const SelfDatingList = ({
                           item.hobby.indexOf(searchKeyword) >= 0,
                       )
                       .map(user => <Cards user={user} history={history} />)
-                  : pagedUser
-                      .map(user => (
-                        <Cards user={user} history={history}
-                          style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
-                        />
-                      ));
+                  : pagedUser.map(user => (
+                      <Cards
+                        user={user}
+                        history={history}
+                        style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
+                      />
+                    ));
               }
               return result;
             })()}
           </Container>
         </div>
       )}
-      <div className="page">
+      <div className="page" style={{ 'text-align': 'center' }}>
         <ReactPaginate
-          pageCount={(parseInt(userCount/20))+1}
+          pageCount={parseInt(userCount / 20) + 1}
           marginPagesDisplayed={1}
           pageRangeDisplayed={1}
-          onPageChange={e=>setUsers(e.selected+1)}
-          previousLabel={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/><path fill="none" d="M0 0h24v24H0V0z"/></svg>}
-          breakLabel={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>}
-          nextLabel={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/><path fill="none" d="M0 0h24v24H0V0z"/></svg>}
+          onPageChange={e => setUsers(e.selected + 1)}
+          previousLabel={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z" />
+              <path fill="none" d="M0 0h24v24H0V0z" />
+            </svg>
+          }
+          breakLabel={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path fill="none" d="M0 0h24v24H0V0z" />
+              <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+            </svg>
+          }
+          nextLabel={
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+              <path fill="none" d="M0 0h24v24H0V0z" />
+            </svg>
+          }
         />
       </div>
     </div>
@@ -189,14 +239,8 @@ class Cards extends React.Component {
               keyword={user.tag.toString().split('#')[2]}
               color="primary"
             />
-            <Badge
-              keyword={user.tag.toString().split('#')[3]}
-              color="rose"
-            />
-            <Badge
-              keyword={user.tag.toString().split('#')[4]}
-              color="rose"
-            />
+            <Badge keyword={user.tag.toString().split('#')[3]} color="rose" />
+            <Badge keyword={user.tag.toString().split('#')[4]} color="rose" />
             <Badge
               keyword={user.tag.toString().split('#')[5]}
               color="success"
@@ -230,5 +274,5 @@ export default inject(({ selfDatingUser }) => ({
   pagedUser: selfDatingUser.pagedUser,
   setUserCount: selfDatingUser.setUserCount,
   userCount: selfDatingUser.userCount,
-  setGender: selfDatingUser.setGender
+  setGender: selfDatingUser.setGender,
 }))(observer(SelfDatingList));

@@ -13,44 +13,47 @@
   }
 }
 
-.title {
-  @include SignUp;
-  background-color: #f6f6f6;
-  color: #333333;
-  text-align: center;
-  font: {
-    size: 2rem;
-    weight: bold;
+.SignUp {
+  .title {
+    @include SignUp;
+    background-color: #f6f6f6;
+    color: #333333;
+    text-align: center;
+    font: {
+      size: 2rem;
+      weight: bold;
+    }
   }
-}
 
-.input {
-  @include SignUp;
-}
-
-.notice {
-  @include SignUp;
-  max-width: 965px;
-  text-align: center;
-  padding: {
-    top: 10px;
-    left: 10px;
-    bottom: 10px;
-    right: 10px;
+  .input {
+    @include SignUp;
   }
-}
 
-.service-agreement {
-  text-align: center;
-  font-size: 13px;
-  margin: {
-    left: auto;
-    right: auto;
+  .notice {
+    @include SignUp;
+    max-width: 965px;
+    text-align: center;
+    padding: {
+      top: 10px;
+      left: 10px;
+      bottom: 10px;
+      right: 10px;
+    }
   }
-}
 
-.button {
-  margin: {
-    bottom: 20px;
+  .service-agreement {
+    text-align: center;
+    font-size: 13px;
+    margin: {
+      left: auto;
+      right: auto;
+    }
+  }
+
+  .button {
+    position: relative;
+    margin: {
+      bottom: 20px;
+    }
   }
 }
