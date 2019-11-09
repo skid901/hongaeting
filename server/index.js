@@ -28,7 +28,7 @@ const app = new Koa();
 const router = new Router();
 
 // cors
-// app.use(cors());
+ app.use(cors());
 
 // router 설정
 router.use('/api', api.routes());

@@ -2,8 +2,9 @@ import { observable, action } from 'mobx';
 import Axios from 'axios';
 
 class SelfMeetingUserStore{
-  URL = 'http://34.97.117.253:80/api/meetingusers';
-  //URL = 'http://localhost:4000/api/meetingusers';
+  //URL = 'http://34.97.117.253:80/api/meetingusers';
+ // URL = 'http://localhost:4000/api/meetingusers';
+ URL = `${process.env.REACT_APP_DOMAIN}/api/meetingusers`;
 
   @observable updated = false;
   @observable IsLoading = true;
