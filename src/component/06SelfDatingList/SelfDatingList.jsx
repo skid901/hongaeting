@@ -128,7 +128,7 @@ const SelfDatingList = ({
                 history.push('/introductionform');
               }}
             >
-              셀프 소개팅 신청하기
+              셀프 소개팅 신청하기2
             </Button>
           </div>
           <TextField
@@ -169,7 +169,7 @@ const SelfDatingList = ({
                       )
                       .map(user => <Cards user={user} history={history} />)
                   : pagedUser.map(user => (
-                    <Cards
+                      <Cards
                         user={user}
                         history={history}
                         style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
@@ -187,8 +187,8 @@ const SelfDatingList = ({
           marginPagesDisplayed={1}
           pageRangeDisplayed={1}
           onPageChange={e => setUsers(e.selected + 1)}
-          previousLabel={(
-<svg
+          previousLabel={
+            <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -197,9 +197,9 @@ const SelfDatingList = ({
               <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z" />
               <path fill="none" d="M0 0h24v24H0V0z" />
             </svg>
-)}
-          breakLabel={(
-<svg
+          }
+          breakLabel={
+            <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -208,9 +208,9 @@ const SelfDatingList = ({
               <path fill="none" d="M0 0h24v24H0V0z" />
               <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
             </svg>
-)}
-          nextLabel={(
-<svg
+          }
+          nextLabel={
+            <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -219,7 +219,7 @@ const SelfDatingList = ({
               <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
               <path fill="none" d="M0 0h24v24H0V0z" />
             </svg>
-)}
+          }
         />
       </div>
     </div>
