@@ -103,7 +103,7 @@ const SelfMeetingList = ({
           </li>
         </ol>
       </div>
-      <p className="title">홍익 셀프 미팅</p>
+      <p className="title"></p>
       <div className="input" maxWidth="sm" style={{ 'padding-bottom': '0px' }}>
         {/* <SplitButton /> */}
         <Container

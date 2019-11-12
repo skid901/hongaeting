@@ -111,9 +111,7 @@ const SelfDatingList = ({
           'background-color': 'white',
           'font-family': 'Noto Sans KR, sans-serif',
         }}
-      >
-        홍익 셀프 소개팅
-      </p>
+      ></p>
       <div className="input" maxWidth="sm" style={{ 'padding-bottom': '0px' }}>
         <Container
           className="input"
@@ -244,7 +242,7 @@ class Cards extends React.Component {
         >
           <div className="MuiCardHeader-root">
             {`${user.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
-            {`(${user.id}) ${user.age}/${user.collage}`}
+            {`(${user.id}) ${user.age}/${user.gender}`}
           </div>
           <CardContent style={{ 'padding-top': '6px' }}>
             <Badge

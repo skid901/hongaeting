@@ -26,6 +26,7 @@
     height: 100%;
     max-width: 770px;
     overflow: hidden;
+    -webkit-overflow-scrolling: touch;
 
     iframe {
       width: 100%;

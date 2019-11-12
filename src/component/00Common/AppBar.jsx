@@ -96,7 +96,7 @@ const CustomAppBar = ({ props }) => {
                         </ol>
                       </div>
                     </div>
-                    <div className="end">
+                    {/* <div className="end">
                       <IconButton
                         color="inherit"
                         onClick={() => {
@@ -119,7 +119,7 @@ const CustomAppBar = ({ props }) => {
                           로그인
                         </Button>
                       </IconButton>
-                    </div>
+                    </div> */}
                   </div>
                 </nav>
               </div>
@@ -169,7 +169,7 @@ const CustomAppBar = ({ props }) => {
                         </ol>
                       </div>
                     </div>
-                    <div className="end">
+                    {/* <div className="end">
                       <IconButton color="inherit" onClick={handleLogout}>
                         <ExitToAppIcon />
                       </IconButton>
@@ -181,7 +181,7 @@ const CustomAppBar = ({ props }) => {
                       >
                         <AccountCircle />
                       </IconButton>
-                    </div>
+                    </div> */}
                   </div>
                 </nav>
               </div>
