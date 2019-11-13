@@ -23,7 +23,7 @@ const SelfDatingDetails = ({ selectedUser }) => {
             {`${selectedUser.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
           </div>
           <div className="id">
-            ({selectedUser.gender}) {selectedUser.age} / {selectedUser.id}
+            ({selectedUser.id}) {selectedUser.age} / {selectedUser.gender}
           </div>
           <div className="Out">
             <div className="out">
