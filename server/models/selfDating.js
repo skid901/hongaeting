@@ -19,6 +19,7 @@ const SelfDatingSchema = new Schema({
   idealtype: String,
   religion: String,
   smoke: String,
+  chatlink: String,
   tag: String,
   keysentence: String,
   appearance2: String,
