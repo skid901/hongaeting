@@ -36,23 +36,23 @@ const SelfDatingDetails = ({ selectedUser }) => {
                   <div className="A">
                     <Badge
                       keyword={selectedUser.tag.toString().split('#')[1]}
-                      color="primary"
+                      color="a"
                     />
                     <Badge
                       keyword={selectedUser.tag.toString().split('#')[2]}
-                      color="primary"
+                      color="b"
                     />
                     <Badge
                       keyword={selectedUser.tag.toString().split('#')[3]}
-                      color="rose"
+                      color="c"
                     />
                     <Badge
                       keyword={selectedUser.tag.toString().split('#')[4]}
-                      color="rose"
+                      color="d"
                     />
                     <Badge
                       keyword={selectedUser.tag.toString().split('#')[5]}
-                      color="success"
+                      color="e"
                     />
                   </div>
                 </div>

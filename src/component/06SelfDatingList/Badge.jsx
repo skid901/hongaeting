@@ -5,6 +5,11 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 
 const primaryColor = '#9c27b0';
+const a = '#ffccd1';
+const b = '#cce7e1';
+const c = '#fbeecc';
+const d = '#e1d3f8';
+const e = '#545454';
 const warningColor = '#ff9800';
 const dangerColor = '#f44336';
 const successColor = '#4caf50';
@@ -26,6 +31,21 @@ const styles = {
     whiteSpace: 'nowrap',
     verticalAlign: 'baseline',
     display: 'inline-block',
+  },
+  a : {
+    backgroundColor: a,
+  },
+  b : {
+    backgroundColor: b,
+  },
+  c : {
+    backgroundColor: c,
+  },
+  d : {
+    backgroundColor: d,
+  },
+  e : {
+    backgroundColor: e,
   },
   primary: {
     backgroundColor: primaryColor,
@@ -65,7 +85,7 @@ Badge.defaultProps = {
 };
 
 Badge.propTypes = {
-  color: PropTypes.oneOf([
+  color: PropTypes.oneOf(['a','b','c','d','e',
     'primary',
     'warning',
     'danger',
