@@ -257,25 +257,25 @@ class Cards extends React.Component {
               <Badge
                 keyword={user.tag.toString().split('#')[1]}
                 color="#ffccd1"
-              /> : 
+              /> : {}
             }
             {user.tag.toString().split('#')[2] ?
               <Badge
                 keyword={user.tag.toString().split('#')[2]}
                 color="#cce7e1"
-              /> : 
+              /> : {}
             }
             {user.tag.toString().split('#')[3] ?
-              <Badge keyword={user.tag.toString().split('#')[3]} color="#fbeecc" /> :
+              <Badge keyword={user.tag.toString().split('#')[3]} color="#fbeecc" /> : {}
             }
             {user.tag.toString().split('#')[4] ? 
-              <Badge keyword={user.tag.toString().split('#')[4]} color="#e1d3f8" /> :
+              <Badge keyword={user.tag.toString().split('#')[4]} color="#e1d3f8" /> : {}
             }
             {user.tag.toString().split('#')[5] ?
               <Badge
                 keyword={user.tag.toString().split('#')[5]}
                 color="#545454"
-              /> : 
+              /> : {}
             }
             
             {/* <p
