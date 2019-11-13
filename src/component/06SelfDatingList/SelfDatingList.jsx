@@ -257,7 +257,7 @@ class Cards extends React.Component {
               if(user.tag.toString().split('#')[1]){
                 return <Badge
                 keyword={user.tag.toString().split('#')[1]}
-                color="#ffccd1"
+                color="a"
               />
               }
             })()}
@@ -265,7 +265,7 @@ class Cards extends React.Component {
               if(user.tag.toString().split('#')[2]){
                 return <Badge
                 keyword={user.tag.toString().split('#')[2]}
-                color="#cce7e1"
+                color="b"
               />
               }
             })()}
@@ -273,7 +273,7 @@ class Cards extends React.Component {
               if(user.tag.toString().split('#')[3]){
                 return <Badge
                 keyword={user.tag.toString().split('#')[3]}
-                color="#fbeecc"
+                color="c"
               />
               }
             })()}
@@ -281,7 +281,7 @@ class Cards extends React.Component {
               if(user.tag.toString().split('#')[4]){
                 return <Badge
                 keyword={user.tag.toString().split('#')[4]}
-                color="#e1d3f8"
+                color="d"
               />
               }
             })()}
@@ -289,7 +289,7 @@ class Cards extends React.Component {
               if(user.tag.toString().split('#')[5]){
                 return <Badge
                 keyword={user.tag.toString().split('#')[5]}
-                color="#545454"
+                color="e"
               />
               }
             })()}            
