@@ -253,31 +253,46 @@ class Cards extends React.Component {
              // .substring(5, 7)}월${user.time.toString().substring(8, 10)}일`}
           </p> */}
           <CardContent style={{ 'padding-top': '6px' }}>
-            {user.tag.toString().split('#')[1] ? 
-              <Badge
+            {(()=>{
+              if(user.tag.toString().split('#')[1]){
+                return <Badge
                 keyword={user.tag.toString().split('#')[1]}
                 color="#ffccd1"
-              /> : {}
-            }
-            {user.tag.toString().split('#')[2] ?
-              <Badge
+              />
+              }
+            })()}
+            {(()=>{
+              if(user.tag.toString().split('#')[2]){
+                return <Badge
                 keyword={user.tag.toString().split('#')[2]}
                 color="#cce7e1"
-              /> : {}
-            }
-            {user.tag.toString().split('#')[3] ?
-              <Badge keyword={user.tag.toString().split('#')[3]} color="#fbeecc" /> : {}
-            }
-            {user.tag.toString().split('#')[4] ? 
-              <Badge keyword={user.tag.toString().split('#')[4]} color="#e1d3f8" /> : {}
-            }
-            {user.tag.toString().split('#')[5] ?
-              <Badge
+              />
+              }
+            })()}
+            {(()=>{
+              if(user.tag.toString().split('#')[3]){
+                return <Badge
+                keyword={user.tag.toString().split('#')[3]}
+                color="#fbeecc"
+              />
+              }
+            })()}
+            {(()=>{
+              if(user.tag.toString().split('#')[4]){
+                return <Badge
+                keyword={user.tag.toString().split('#')[4]}
+                color="#e1d3f8"
+              />
+              }
+            })()}
+            {(()=>{
+              if(user.tag.toString().split('#')[5]){
+                return <Badge
                 keyword={user.tag.toString().split('#')[5]}
                 color="#545454"
-              /> : {}
-            }
-            
+              />
+              }
+            })()}            
             {/* <p
               className="timebar"
               style={{ float: 'right', 'text-align': 'right' }}
