@@ -21,7 +21,7 @@ function MeetingForm() {
   const classes1 = useStyles1();
 
   return (
-    <div className="intriduction-form">
+    <div className="meeting-form">
       <div className="comment">
         {/* {`설문지 제출을 완료 했다면!! `} */}
         <div style={{ 'text-align': 'center' }}>
@@ -38,9 +38,9 @@ function MeetingForm() {
         {/* {`클릭`} */}
       </div>
 
-      <div className="iframe-wrapper">
+      <div className="iframe-wrapper-meeting">
         <iframe
-          title="introduction-form"
+          title="meeting-form"
           src="https://docs.google.com/forms/d/e/1FAIpQLSfgViP8n8uXJKWXxUxrh1RsBQ0rIQ-t7j3ow4bDphcrQ4ZHvg/viewform"
           frameBorder="0"
           marginHeight="0"
