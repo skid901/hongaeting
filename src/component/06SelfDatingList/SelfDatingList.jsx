@@ -244,6 +244,14 @@ class Cards extends React.Component {
             {`${user.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
             {`(${user.id}) ${user.age}/${user.gender}`}
           </div>
+          <p
+            className="timebar"
+            style={{ float: 'right', 'text-align': 'right' }}
+          >
+            {`${user.time
+              .toString()
+              .substring(5, 7)}월${user.time.toString().substring(8, 10)}일`}
+          </p>
           <CardContent style={{ 'padding-top': '6px' }}>
             <Badge
               keyword={user.tag.toString().split('#')[1]}
@@ -259,17 +267,21 @@ class Cards extends React.Component {
               keyword={user.tag.toString().split('#')[5]}
               color="success"
             />
-            <p
+            {/* <p
               className="timebar"
               style={{ float: 'right', 'text-align': 'right' }}
             >
               {`${user.time
                 .toString()
                 .substring(5, 7)}월${user.time.toString().substring(8, 10)}일`}
-            </p>
+            </p> */}
             <p
               className="body"
-              style={{ 'font-size': '14px', 'padding-top': '5px' }}
+              style={{
+                'font-size': '12px',
+                'padding-top': '5px',
+                color: 'rgba(55, 53, 47, 0.4)',
+              }}
             >
               {user.keysentence.substring(0, 60)}
             </p>

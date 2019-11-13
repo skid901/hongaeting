@@ -8,6 +8,11 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Paper from '@material-ui/core/Paper';
 import Badge from 'component/06SelfDatingList/Badge';
 import { inject, observer } from 'mobx-react';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import ListIcon from '@material-ui/icons/List';
+import ChatIcon from '@material-ui/icons/Chat';
+import SmokeFreeIcon from '@material-ui/icons/SmokeFree';
+import LooksIcon from '@material-ui/icons/Looks';
 
 const SelfDatingDetails = ({ selectedUser }) => {
   return (
@@ -24,21 +29,53 @@ const SelfDatingDetails = ({ selectedUser }) => {
             <div className="out">
               <div className="Box">
                 <div className="Row">
-                  <div className="Q">자기소개</div>
+                  <div className="Q">
+                    <ListIcon style={{ 'margin-right': '8px' }} />
+                    자기소개
+                  </div>
                   <div className="A">
-                    <Badge keyword={selectedUser.tag} color="primary" />
-                    <Badge keyword={selectedUser.religion} color="rose" />
+                    <Badge
+                      keyword={selectedUser.tag.toString().split('#')[1]}
+                      color="primary"
+                    />
+                    <Badge
+                      keyword={selectedUser.tag.toString().split('#')[2]}
+                      color="primary"
+                    />
+                    <Badge
+                      keyword={selectedUser.tag.toString().split('#')[3]}
+                      color="rose"
+                    />
+                    <Badge
+                      keyword={selectedUser.tag.toString().split('#')[4]}
+                      color="rose"
+                    />
+                    <Badge
+                      keyword={selectedUser.tag.toString().split('#')[5]}
+                      color="success"
+                    />
                   </div>
                 </div>
                 <div className="Row">
-                  <div className="Q">추가정보</div>
-                  <div className="A">
-                    {selectedUser.smoke} {selectedUser.religion}
+                  <div className="Q">
+                    <LooksIcon style={{ 'margin-right': '8px' }} />
+                    종교
                   </div>
+                  <div className="A">{selectedUser.religion}</div>
                 </div>
                 <div className="Row">
-                  <div className="Q">대화하기</div>
-                  <div className="A">Openlink@kakao.com/123121123</div>
+                  <div className="Q">
+                    <SmokeFreeIcon style={{ 'margin-right': '8px' }} />
+                    흡연여부
+                  </div>
+                  <div className="A">{selectedUser.smoke}</div>
+                </div>
+                <div className="Row">
+                  <div className="Q">
+                    <ChatIcon style={{ 'margin-right': '8px' }} />
+                    대화하기
+                  </div>
+                  <div className="A">{selectedUser.chatlink}</div>
                 </div>
               </div>
             </div>
@@ -51,7 +88,15 @@ const SelfDatingDetails = ({ selectedUser }) => {
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>😊외모 </Typography>
+              <Typography
+                style={{
+                  'font-family': 'Noto Sans KR, sans-serif',
+                  'font-weight': 'bold',
+                  'font-size': '18px',
+                }}
+              >
+                😊외모
+              </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
@@ -65,7 +110,15 @@ const SelfDatingDetails = ({ selectedUser }) => {
               aria-controls="panel2a-content"
               id="panel2a-header"
             >
-              <Typography> 🌵성격 </Typography>
+              <Typography
+                style={{
+                  'font-family': 'Noto Sans KR, sans-serif',
+                  'font-weight': 'bold',
+                  'font-size': '18px',
+                }}
+              >
+                🌵성격
+              </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
@@ -79,7 +132,15 @@ const SelfDatingDetails = ({ selectedUser }) => {
               aria-controls="panel2a-content"
               id="panel2a-header"
             >
-              <Typography> 🍀여가생활 및 취미 </Typography>
+              <Typography
+                style={{
+                  'font-family': 'Noto Sans KR, sans-serif',
+                  'font-weight': 'bold',
+                  'font-size': '18px',
+                }}
+              >
+                🍀여가생활 및 취미
+              </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
@@ -93,7 +154,15 @@ const SelfDatingDetails = ({ selectedUser }) => {
               aria-controls="panel2a-content"
               id="panel2a-header"
             >
-              <Typography> 💕연애관 및 바라는 이상형 </Typography>
+              <Typography
+                style={{
+                  'font-family': 'Noto Sans KR, sans-serif',
+                  'font-weight': 'bold',
+                  'font-size': '18px',
+                }}
+              >
+                💕연애관 및 바라는 이상형
+              </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
@@ -107,9 +176,7 @@ const SelfDatingDetails = ({ selectedUser }) => {
               aria-controls="panel3a-content"
               id="panel3a-header"
             >
-              <Typography>
-                <Badge keyword={selectedUser.religion} color="rose" />
-              </Typography>
+              <Typography></Typography>
             </ExpansionPanelSummary>
           </ExpansionPanel>
         </div>
