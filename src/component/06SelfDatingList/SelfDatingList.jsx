@@ -248,25 +248,36 @@ class Cards extends React.Component {
             className="timebar"
             style={{ float: 'right', 'text-align': 'right' }}
           >
-            {`${user.time
-              .toString()
-              .substring(5, 7)}월${user.time.toString().substring(8, 10)}일`}
+            {//`${user.time
+             // .toString()
+             // .substring(5, 7)}월${user.time.toString().substring(8, 10)}일`}
           </p>
           <CardContent style={{ 'padding-top': '6px' }}>
-            <Badge
-              keyword={user.tag.toString().split('#')[1]}
-              color="primary"
-            />
-            <Badge
-              keyword={user.tag.toString().split('#')[2]}
-              color="primary"
-            />
-            <Badge keyword={user.tag.toString().split('#')[3]} color="rose" />
-            <Badge keyword={user.tag.toString().split('#')[4]} color="rose" />
-            <Badge
-              keyword={user.tag.toString().split('#')[5]}
-              color="success"
-            />
+            {user.tag.toString().split('#')[1] ? 
+              <Badge
+                keyword={user.tag.toString().split('#')[1]}
+                color="#ffccd1"
+              /> : 
+            }
+            {user.tag.toString().split('#')[2] ?
+              <Badge
+                keyword={user.tag.toString().split('#')[2]}
+                color="#cce7e1"
+              /> : 
+            }
+            {user.tag.toString().split('#')[3] ?
+              <Badge keyword={user.tag.toString().split('#')[3]} color="#fbeecc" /> :
+            }
+            {user.tag.toString().split('#')[4] ? 
+              <Badge keyword={user.tag.toString().split('#')[4]} color="#e1d3f8" /> :
+            }
+            {user.tag.toString().split('#')[5] ?
+              <Badge
+                keyword={user.tag.toString().split('#')[5]}
+                color="#545454"
+              /> : 
+            }
+            
             {/* <p
               className="timebar"
               style={{ float: 'right', 'text-align': 'right' }}
@@ -280,7 +291,7 @@ class Cards extends React.Component {
               style={{
                 'font-size': '12px',
                 'padding-top': '5px',
-                color: 'rgba(55, 53, 47, 0.4)',
+                color: "#545454",
               }}
             >
               {user.keysentence.substring(0, 60)}
