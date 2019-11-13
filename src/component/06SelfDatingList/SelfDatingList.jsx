@@ -244,14 +244,14 @@ class Cards extends React.Component {
             {`${user.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
             {`(${user.id}) ${user.age}/${user.gender}`}
           </div>
-          <p
+          {/* <p
             className="timebar"
             style={{ float: 'right', 'text-align': 'right' }}
           >
             {//`${user.time
              // .toString()
              // .substring(5, 7)}월${user.time.toString().substring(8, 10)}일`}
-          </p>
+          </p> */}
           <CardContent style={{ 'padding-top': '6px' }}>
             {user.tag.toString().split('#')[1] ? 
               <Badge
