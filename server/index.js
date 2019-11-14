@@ -12,6 +12,9 @@ import api from './api';
 import jwtMiddleware from './lib/jwtMiddleware';
 import socketServer from './socket';
 
+import fs from 'fs';
+import https from 'https';
+
 require('dotenv').config();
 mongoose
   .connect(process.env.MONGO_URI, {
@@ -59,5 +62,30 @@ socketServer(httpServer, app);
 httpServer.listen(process.env.SERVER_PORT, () => {
   console.log(
     `Listening to http://${process.env.SERVER_IP}:${process.env.SERVER_PORT}`,
+  );
+});
+
+// https 서버
+const options = {
+  key: fs
+    .readFileSync(
+      path.resolve(process.cwd(), `certs/${process.env.SSL_KEY}`),
+      'utf8',
+    )
+    .toString(),
+
+  cert: fs
+    .readFileSync(
+      path.resolve(process.cwd(), `certs/${process.env.SSL_CERT}`),
+      'utf8',
+    )
+    .toString(),
+};
+
+const httpsServer = https.createServer(options, app.callback());
+
+httpsServer.listen(process.env.SERVER_PORT_HTTPS, () => {
+  console.log(
+    `Listening to https://${process.env.SERVER_IP}:${process.env.SERVER_PORT_HTTPS}`,
   );
 });
