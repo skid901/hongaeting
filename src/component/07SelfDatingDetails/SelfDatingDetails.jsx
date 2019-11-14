@@ -35,7 +35,8 @@ const SelfDatingDetails = ({ selectedUser }) => {
                   </div>
                   <div className="A">
                     <Badge
-                      keyword={selectedUser.tag.toString().split('#')[1]}
+                      keyword={selectedUser.tag.toString().split('#')[1] + '33'}
+                      style={{ color: 'black' }}
                       color="a"
                     />
                     <Badge
@@ -75,7 +76,9 @@ const SelfDatingDetails = ({ selectedUser }) => {
                     <ChatIcon style={{ 'margin-right': '8px' }} />
                     대화하기
                   </div>
-                  <div className="A">{selectedUser.chatlink}</div>
+                  <div className="A">
+                    <a href={selectedUser.chatlink}>{selectedUser.chatlink}</a>
+                  </div>
                 </div>
               </div>
             </div>

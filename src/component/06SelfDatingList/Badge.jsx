@@ -9,7 +9,7 @@ const a = '#ffccd1';
 const b = '#cce7e1';
 const c = '#fbeecc';
 const d = '#e1d3f8';
-const e = '#545454';
+const e = 'rgba(140, 46, 0, 0.2)';
 const warningColor = '#ff9800';
 const dangerColor = '#f44336';
 const successColor = '#4caf50';
@@ -26,25 +26,25 @@ const styles = {
     fontSize: '10px',
     fontWeight: '500',
     lineHeight: '1',
-    color: '#fff',
+    color: 'black',
     textAlign: 'center',
     whiteSpace: 'nowrap',
     verticalAlign: 'baseline',
     display: 'inline-block',
   },
-  a : {
+  a: {
     backgroundColor: a,
   },
-  b : {
+  b: {
     backgroundColor: b,
   },
-  c : {
+  c: {
     backgroundColor: c,
   },
-  d : {
+  d: {
     backgroundColor: d,
   },
-  e : {
+  e: {
     backgroundColor: e,
   },
   primary: {
@@ -85,7 +85,12 @@ Badge.defaultProps = {
 };
 
 Badge.propTypes = {
-  color: PropTypes.oneOf(['a','b','c','d','e',
+  color: PropTypes.oneOf([
+    'a',
+    'b',
+    'c',
+    'd',
+    'e',
     'primary',
     'warning',
     'danger',

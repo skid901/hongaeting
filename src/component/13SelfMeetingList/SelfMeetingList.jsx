@@ -45,20 +45,20 @@ const SelfMeetingList = ({
     setGender(2);
     setUsers(1);
     setUserCount();
-    (async () => {
-      try {
-        const { data } = await axios.get(`api/auth/check`, {});
-        console.log(data);
-        const message = data.message || ``;
-        console.log(message);
-        if (message === 'noSignIn') {
-          history.push(`/signin`);
-          return;
-        }
-      } catch (e) {
-        history.push(`/signup/form`);
-      }
-    })();
+    // (async () => {
+    //   try {
+    //     const { data } = await axios.get(`api/auth/check`, {});
+    //     console.log(data);
+    //     const message = data.message || ``;
+    //     console.log(message);
+    //     if (message === 'noSignIn') {
+    //       history.push(`/signin`);
+    //       return;
+    //     }
+    //   } catch (e) {
+    //     history.push(`/signup/form`);
+    //   }
+    // })();
   }, []);
 
   return (
@@ -116,7 +116,9 @@ const SelfMeetingList = ({
               className={classes1.root}
               style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
               onClick={() => {
-                history.push('/meetingform');
+                window.open(
+                  'https://docs.google.com/forms/d/e/1FAIpQLSfgViP8n8uXJKWXxUxrh1RsBQ0rIQ-t7j3ow4bDphcrQ4ZHvg/viewform',
+                );
               }}
             >
               홍미팅 신청하기
