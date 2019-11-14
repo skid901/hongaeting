@@ -138,7 +138,7 @@ const SelfDatingList = ({
             label="키워드를 검색하세요🔍"
             type="search"
             className="searchfield"
-            margin="normal"
+            margin="dense"
             variant="outlined"
             value={searchKeyword}
             onChange={e => setSearchKeyword(e.target.value)}
