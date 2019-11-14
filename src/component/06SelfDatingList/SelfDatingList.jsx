@@ -49,9 +49,7 @@ const SelfDatingList = ({
     (async () => {
       try {
         const { data } = await axios.get(`api/auth/check`, {});
-        console.log(data);
         const message = data.message || ``;
-        console.log(message);
         if (message === 'noSignIn') {
           history.push(`/signin`);
           return;
@@ -123,13 +121,13 @@ const SelfDatingList = ({
               className={classes1.root}
               style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
               onClick={() => {
-                history.push('/introductionform');
+                //history.push('/introductionform');
               }}
             >
-              셀프 소개팅 신청하기2
+              셀프 소개팅
             </Button>
           </div>
-          <TextField
+          {/* <TextField
             label="키워드를 검색하세요🔍"
             type="search"
             className="searchfield"
@@ -139,7 +137,7 @@ const SelfDatingList = ({
             onChange={e => setSearchKeyword(e.target.value)}
             autoComplete="off"
             fullWidth
-          />
+          /> */}
         </Container>
       </div>
       {IsLoading ? (

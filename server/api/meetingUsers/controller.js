@@ -174,6 +174,5 @@ export const count = async (ctx) => {
       return ctx.throw(500, e);
     }
   }
-  console.log(count);
   ctx.body = count;
 }

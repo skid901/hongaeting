@@ -128,7 +128,6 @@ export const create = async (ctx) => {
 
 export const list = async (ctx) => {
   const { pageNumber, gender} = await ctx.params;
-  await console.log("gender" ,gender);
   let list ={};
   if(gender == 0){
     try{
@@ -191,7 +190,6 @@ export const count = async (ctx) => {
       return ctx.throw(500, e);
     }
   }
-  console.log(count);
   ctx.body = count;
 }
 

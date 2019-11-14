@@ -51,7 +51,6 @@ const CustomAppBar = ({ props }) => {
       history.push(`/signin`);
     }
   };
-  console.log(history);
   return (
     <>
       {user.email === '' ? (

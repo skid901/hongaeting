@@ -48,9 +48,7 @@ const SelfMeetingList = ({
     (async () => {
       try {
         const { data } = await axios.get(`api/auth/check`, {});
-        console.log(data);
         const message = data.message || ``;
-        console.log(message);
         if (message === 'noSignIn') {
           history.push(`/signin`);
           return;
@@ -116,13 +114,13 @@ const SelfMeetingList = ({
               className={classes1.root}
               style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
               onClick={() => {
-                history.push('/meetingform');
+                //history.push('/meetingform');
               }}
             >
-              홍미팅 신청하기
+              홍미팅
             </Button>
           </div>
-          <TextField
+          {/* <TextField
             label="키워드를 검색하세요🔍"
             type="search"
             className="searchfield"
@@ -132,7 +130,7 @@ const SelfMeetingList = ({
             onChange={e => setSearchKeyword(e.target.value)}
             autoComplete="off"
             fullWidth
-          />
+          /> */}
         </Container>
       </div>
       {IsLoading ? (
@@ -232,7 +230,6 @@ class Cards extends React.Component {
           <div className="MuiCardHeader-root">
             {`${user.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
             {`(${user.id}) ${user.number} /${user.nickname}${user.address}`}
-            {console.log(`${user.tag}타입은 ${typeof user.tag}`)}
           </div>
           <CardContent style={{ 'padding-top': '6px' }}>
             <Badge
