@@ -165,10 +165,10 @@ const SelfDatingList = ({
                   ? pagedUser
                       .filter(
                         item =>
-                          item.collage.indexOf(searchKeyword) >= 0 ||
-                          item.religion.indexOf(searchKeyword) >= 0 ||
-                          item.personality.indexOf(searchKeyword) >= 0 ||
-                          item.hobby.indexOf(searchKeyword) >= 0,
+                          // item.collage.indexOf(searchKeyword) >= 0 ||
+                          // item.religion.indexOf(searchKeyword) >= 0 ||
+                          // item.personality.indexOf(searchKeyword) >= 0 ||
+                          item.tag.indexOf(searchKeyword) >= 0,
                       )
                       .map(user => <Cards user={user} history={history} />)
                   : pagedUser.map(user => (

@@ -77,11 +77,12 @@ const SelfDatingDetails = ({ selectedUser }) => {
                   </div>
                   <div
                     className="A"
+                    style={{ 'overflow-wrap': 'break-word' }}
                     onClick={() => {
                       window.open(`${selectedUser.chatlink}`);
                     }}
                   >
-                    {selectedUser.chatlink}
+                    <a>{selectedUser.chatlink}</a>
                   </div>
                 </div>
               </div>
