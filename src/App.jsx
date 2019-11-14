@@ -6,6 +6,7 @@ import './App.scss';
 
 import CustomAppBar from 'component/00Common/AppBar';
 import AlertDialog from 'component/00Common/AlertDialog';
+import SelfDatingList from 'component/06SelfDatingList/SelfDatingList';
 import Router from './Router';
 import UserListStore from './store/UserListStore';
 import SelfDatingUserStore from './store/SelfDatingUserStore';
@@ -27,7 +28,8 @@ const App = () => (
       <div className="App">
         <CustomAppBar />
         <AlertDialog />
-        <Router />
+        <SelfDatingList/>
+        {/* <Router /> */}
       </div>
     </BrowserRouter>
   </Provider>
