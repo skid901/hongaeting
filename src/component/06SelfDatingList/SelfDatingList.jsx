@@ -309,7 +309,7 @@ class Cards extends React.Component {
                 color: "#545454",
               }}
             >
-              {user.keysentence.substring(0, 60)}
+              {user.keysentence}
             </p>
           </CardContent>
         </Card>

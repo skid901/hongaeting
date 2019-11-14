@@ -28,8 +28,8 @@ const App = () => (
       <div className="App">
         <CustomAppBar />
         <AlertDialog />
-        <SelfDatingList/>
-        {/* <Router /> */}
+        {/* <SelfDatingList/> */}
+        <Router />
       </div>
     </BrowserRouter>
   </Provider>
