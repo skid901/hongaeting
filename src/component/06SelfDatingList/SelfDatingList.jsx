@@ -126,6 +126,12 @@ const SelfDatingList = ({
             >
               셀프 소개팅
             </Button>
+            <a
+              className={classes1.root}
+              style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
+              href="https://docs.google.com/forms/d/e/1FAIpQLSeoMtZdUinyboZnQf_vl69-Zl7912coTedQnlaWor8cvPjZKQ/viewform?usp=sf_link">
+              셀프 소개팅
+            </a>
           </div>
           {/* <TextField
             label="키워드를 검색하세요🔍"
