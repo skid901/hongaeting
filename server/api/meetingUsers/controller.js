@@ -2,7 +2,6 @@ import MeetingUser from '../../models/selfMeeting';
 
 export const create = async (ctx) => {
   const {
-    id,
     time,
     email,
     gender,
@@ -20,6 +19,7 @@ export const create = async (ctx) => {
     hobby,
     drink,
     idealtype,
+    chatlink,
     nickname,
     tag,
     keysentence
@@ -47,7 +47,6 @@ export const create = async (ctx) => {
   // let tag = "#첫번째 학우_긴생머리, 청순한, 조용한, 차분한, 여행 #두번째 학우_단발, 귀여운, 톡톡튀는, 필름사진 #세번째 학우_인싸, 활발한, 외향적인, 투머치토커";
   // let keysentence = "에벨벨베레베베벨베베벱레베벨";
   const meetingUser = new MeetingUser({
-    id,
     time,
     email,
     gender,
@@ -65,6 +64,7 @@ export const create = async (ctx) => {
     hobby,
     drink,
     idealtype,
+    chatlink,
     nickname,
     tag,
     keysentence
@@ -87,8 +87,8 @@ export const list = async (ctx) => {
     try{
       list = await MeetingUser.find({gender: "남학우"})
         .sort({_id: -1})
-        .skip((pageNumber-1) * 20)
-        .limit(20)
+        // .skip((pageNumber-1) * 20)
+        // .limit(20)
         .exec();
     } catch (e){
       return ctx.throw(500, e);
@@ -97,8 +97,8 @@ export const list = async (ctx) => {
     try{
       list = await MeetingUser.find({gender: "여학우"})
         .sort({_id: -1})
-        .skip((pageNumber-1) * 20)
-        .limit(20)
+        // .skip((pageNumber-1) * 20)
+        // .limit(20)
         .exec();
     } catch (e){
       return ctx.throw(500, e);
@@ -107,8 +107,8 @@ export const list = async (ctx) => {
     try{
       list = await MeetingUser.find()
         .sort({_id: -1})
-        .skip((pageNumber-1) * 20)
-        .limit(20)
+        // .skip((pageNumber-1) * 20)
+        // .limit(20)
         .exec();
     } catch (e){
       return ctx.throw(500, e);
@@ -174,6 +174,5 @@ export const count = async (ctx) => {
       return ctx.throw(500, e);
     }
   }
-  console.log(count);
   ctx.body = count;
 }

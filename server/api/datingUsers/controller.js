@@ -128,14 +128,13 @@ export const create = async (ctx) => {
 
 export const list = async (ctx) => {
   const { pageNumber, gender} = await ctx.params;
-  await console.log("gender" ,gender);
   let list ={};
   if(gender == 0){
     try{
       list = await DatingUser.find({gender: "남학우", self: 1})
         .sort({_id: -1})
-        .skip((pageNumber-1) * 20)
-        .limit(20)
+        // .skip((pageNumber-1) * 1000)
+        // .limit(1000)
         .exec();
     } catch (e){
       return ctx.throw(500, e);
@@ -144,8 +143,8 @@ export const list = async (ctx) => {
     try{
       list = await DatingUser.find({gender: "여학우", self:1})
         .sort({_id: -1})
-        .skip((pageNumber-1) * 20)
-        .limit(20)
+        // .skip((pageNumber-1) * 1000)
+        // .limit(1000)
         .exec();
     } catch (e){
       return ctx.throw(500, e);
@@ -154,8 +153,8 @@ export const list = async (ctx) => {
     try{
       list = await DatingUser.find({self: 1})
         .sort({_id: -1})
-        .skip((pageNumber-1) * 20)
-        .limit(20)
+        // .skip((pageNumber-1) * 1000)
+        // .limit(1000)
         .exec();
     } catch (e){
       return ctx.throw(500, e);
@@ -191,7 +190,6 @@ export const count = async (ctx) => {
       return ctx.throw(500, e);
     }
   }
-  console.log(count);
   ctx.body = count;
 }
 

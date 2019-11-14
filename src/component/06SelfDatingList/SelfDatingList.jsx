@@ -46,20 +46,6 @@ const SelfDatingList = ({
     setGender(2);
     setUsers(1);
     setUserCount();
-    // (async () => {
-    //   try {
-    //     const { data } = await axios.get(`api/auth/check`, {});
-    //     console.log(data);
-    //     const message = data.message || ``;
-    //     console.log(message);
-    //     if (message === 'noSignIn') {
-    //       history.push(`/signin`);
-    //       return;
-    //     }
-    //   } catch (e) {
-    //     history.push(`/signup/form`);
-    //   }
-    // })();
   }, []);
 
   return (
@@ -133,8 +119,16 @@ const SelfDatingList = ({
             >
               셀프 소개팅 신청하기
             </Button>
+            <a
+              className={classes1.root}
+              style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
+              target="_blank"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSeoMtZdUinyboZnQf_vl69-Zl7912coTedQnlaWor8cvPjZKQ/viewform?usp=sf_link"
+            >
+              셀프 소개팅 신청하기
+            </a>
           </div>
-          <TextField
+          {/* <TextField
             label="키워드를 검색하세요🔍"
             type="search"
             className="searchfield"
@@ -144,7 +138,7 @@ const SelfDatingList = ({
             onChange={e => setSearchKeyword(e.target.value)}
             autoComplete="off"
             fullWidth
-          />
+          /> */}
         </Container>
       </div>
       {IsLoading ? (
@@ -185,7 +179,7 @@ const SelfDatingList = ({
         </div>
       )}
       <div className="page" style={{ 'text-align': 'center' }}>
-        <ReactPaginate
+        {/* <ReactPaginate
           pageCount={parseInt(userCount / 20) + 1}
           marginPagesDisplayed={1}
           pageRangeDisplayed={1}
@@ -223,7 +217,7 @@ const SelfDatingList = ({
               <path fill="none" d="M0 0h24v24H0V0z" />
             </svg>
           }
-        />
+        /> */}
       </div>
     </div>
   );
@@ -324,7 +318,7 @@ class Cards extends React.Component {
                 color: '#545454',
               }}
             >
-              {user.keysentence.substring(0, 60)}
+              {user.keysentence}
             </p>
           </CardContent>
         </Card>

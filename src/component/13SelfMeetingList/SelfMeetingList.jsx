@@ -45,20 +45,6 @@ const SelfMeetingList = ({
     setGender(2);
     setUsers(1);
     setUserCount();
-    // (async () => {
-    //   try {
-    //     const { data } = await axios.get(`api/auth/check`, {});
-    //     console.log(data);
-    //     const message = data.message || ``;
-    //     console.log(message);
-    //     if (message === 'noSignIn') {
-    //       history.push(`/signin`);
-    //       return;
-    //     }
-    //   } catch (e) {
-    //     history.push(`/signup/form`);
-    //   }
-    // })();
   }, []);
 
   return (
@@ -121,10 +107,10 @@ const SelfMeetingList = ({
                 );
               }}
             >
-              홍미팅 신청하기
+              홍미팅
             </Button>
           </div>
-          <TextField
+          {/* <TextField
             label="키워드를 검색하세요🔍"
             type="search"
             className="searchfield"
@@ -134,7 +120,7 @@ const SelfMeetingList = ({
             onChange={e => setSearchKeyword(e.target.value)}
             autoComplete="off"
             fullWidth
-          />
+          /> */}
         </Container>
       </div>
       {IsLoading ? (
@@ -171,7 +157,7 @@ const SelfMeetingList = ({
         </div>
       )}
       <div className="page" style={{ 'text-align': 'center' }}>
-        <ReactPaginate
+        {/* <ReactPaginate
           pageCount={parseInt(userCount / 20) + 1}
           marginPagesDisplayed={1}
           pageRangeDisplayed={1}
@@ -208,7 +194,7 @@ const SelfMeetingList = ({
               <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
               <path fill="none" d="M0 0h24v24H0V0z" />
             </svg>
-          }
+          } */}
         />
       </div>
     </div>
