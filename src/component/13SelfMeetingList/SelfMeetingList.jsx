@@ -45,18 +45,6 @@ const SelfMeetingList = ({
     setGender(2);
     setUsers(1);
     setUserCount();
-    (async () => {
-      try {
-        const { data } = await axios.get(`api/auth/check`, {});
-        const message = data.message || ``;
-        if (message === 'noSignIn') {
-          history.push(`/signin`);
-          return;
-        }
-      } catch (e) {
-        history.push(`/signup/form`);
-      }
-    })();
   }, []);
 
   return (

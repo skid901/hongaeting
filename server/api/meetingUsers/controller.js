@@ -2,7 +2,6 @@ import MeetingUser from '../../models/selfMeeting';
 
 export const create = async (ctx) => {
   const {
-    id,
     time,
     email,
     gender,
@@ -20,6 +19,7 @@ export const create = async (ctx) => {
     hobby,
     drink,
     idealtype,
+    chatlink,
     nickname,
     tag,
     keysentence
