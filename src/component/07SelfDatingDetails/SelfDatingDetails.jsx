@@ -8,7 +8,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Paper from '@material-ui/core/Paper';
 import Badge from 'component/06SelfDatingList/Badge';
 import { inject, observer } from 'mobx-react';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import ListIcon from '@material-ui/icons/List';
 import ChatIcon from '@material-ui/icons/Chat';
 import SmokeFreeIcon from '@material-ui/icons/SmokeFree';
@@ -35,7 +34,7 @@ const SelfDatingDetails = ({ selectedUser }) => {
                   </div>
                   <div className="A">
                     <Badge
-                      keyword={selectedUser.tag.toString().split('#')[1] + '33'}
+                      keyword={selectedUser.tag.toString().split('#')[1]}
                       style={{ color: 'black' }}
                       color="a"
                     />
@@ -76,8 +75,13 @@ const SelfDatingDetails = ({ selectedUser }) => {
                     <ChatIcon style={{ 'margin-right': '8px' }} />
                     대화하기
                   </div>
-                  <div className="A">
-                    <a href={selectedUser.chatlink}>{selectedUser.chatlink}</a>
+                  <div
+                    className="A"
+                    onClick={() => {
+                      window.open(`${selectedUser.chatlink}`);
+                    }}
+                  >
+                    {selectedUser.chatlink}
                   </div>
                 </div>
               </div>

@@ -131,7 +131,7 @@ const SelfDatingList = ({
               //   history.push('/introductionform');
               // }}
             >
-              셀프 소개팅 신청하기2
+              셀프 소개팅 신청하기
             </Button>
           </div>
           <TextField

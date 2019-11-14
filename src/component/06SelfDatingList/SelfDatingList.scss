@@ -19,6 +19,7 @@
   align-items: center;
   padding-left: 16px;
   padding-top: 16px;
+  font-weight: bold;
 }
 
 .CardsWrapper {
@@ -124,7 +125,14 @@
   text-align: '-webkit-match-parent';
   white-space: nowrap;
 }
-.text {
+.text1 {
+  color: #085f63;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: -0.4px;
+  line-height: 1.43;
+}
+.text2 {
   color: #085f63;
   font-weight: normal;
   font-size: 14px;

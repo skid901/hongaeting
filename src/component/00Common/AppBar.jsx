@@ -80,7 +80,7 @@ const CustomAppBar = ({ props }) => {
                                 history.push(`/selfdatinglist`);
                               }}
                             >
-                              <span className="text">#홍셀소</span>
+                              <span className="text1">#홍셀소</span>
                             </div>
                           </li>
                           <li className="meeting">
@@ -90,7 +90,7 @@ const CustomAppBar = ({ props }) => {
                                 history.push(`/selfmeetinglist`);
                               }}
                             >
-                              <span className="text">#홍미팅</span>
+                              <span className="text2">#홍미팅</span>
                             </div>
                           </li>
                         </ol>
@@ -153,7 +153,7 @@ const CustomAppBar = ({ props }) => {
                                 history.push(`/selfdatinglist`);
                               }}
                             >
-                              <span className="text">#홍셀소</span>
+                              <span className="text1">#홍셀소</span>
                             </p>
                           </li>
                           <li className="meeting">
@@ -163,7 +163,7 @@ const CustomAppBar = ({ props }) => {
                                 history.push(`/selfmeetinglist`);
                               }}
                             >
-                              <span className="text">#홍미팅</span>
+                              <span className="text2">#홍미팅</span>
                             </p>
                           </li>
                         </ol>
