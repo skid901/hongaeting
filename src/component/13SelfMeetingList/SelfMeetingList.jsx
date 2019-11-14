@@ -107,10 +107,10 @@ const SelfMeetingList = ({
                 );
               }}
             >
-              홍미팅
+              홍미팅 신청하기
             </Button>
           </div>
-          {/* <TextField
+          <TextField
             label="키워드를 검색하세요🔍"
             type="search"
             className="searchfield"
@@ -120,7 +120,7 @@ const SelfMeetingList = ({
             onChange={e => setSearchKeyword(e.target.value)}
             autoComplete="off"
             fullWidth
-          /> */}
+          />
         </Container>
       </div>
       {IsLoading ? (

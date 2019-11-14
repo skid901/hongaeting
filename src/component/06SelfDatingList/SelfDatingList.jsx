@@ -119,16 +119,8 @@ const SelfDatingList = ({
             >
               셀프 소개팅 신청하기
             </Button>
-            <a
-              className={classes1.root}
-              style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
-              target="_blank"
-              href="https://docs.google.com/forms/d/e/1FAIpQLSeoMtZdUinyboZnQf_vl69-Zl7912coTedQnlaWor8cvPjZKQ/viewform?usp=sf_link"
-            >
-              셀프 소개팅 신청하기
-            </a>
           </div>
-          {/* <TextField
+          <TextField
             label="키워드를 검색하세요🔍"
             type="search"
             className="searchfield"
@@ -138,7 +130,7 @@ const SelfDatingList = ({
             onChange={e => setSearchKeyword(e.target.value)}
             autoComplete="off"
             fullWidth
-          /> */}
+          />
         </Container>
       </div>
       {IsLoading ? (
