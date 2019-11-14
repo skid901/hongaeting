@@ -45,20 +45,20 @@ const SelfMeetingList = ({
     setGender(2);
     setUsers(1);
     setUserCount();
-    (async () => {
-      try {
-        const { data } = await axios.get(`api/auth/check`, {});
-        console.log(data);
-        const message = data.message || ``;
-        console.log(message);
-        if (message === 'noSignIn') {
-          history.push(`/signin`);
-          return;
-        }
-      } catch (e) {
-        history.push(`/signup/form`);
-      }
-    })();
+    // (async () => {
+    //   try {
+    //     const { data } = await axios.get(`api/auth/check`, {});
+    //     console.log(data);
+    //     const message = data.message || ``;
+    //     console.log(message);
+    //     if (message === 'noSignIn') {
+    //       history.push(`/signin`);
+    //       return;
+    //     }
+    //   } catch (e) {
+    //     history.push(`/signup/form`);
+    //   }
+    // })();
   }, []);
 
   return (
@@ -116,7 +116,9 @@ const SelfMeetingList = ({
               className={classes1.root}
               style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
               onClick={() => {
-                history.push('/meetingform');
+                window.open(
+                  'https://docs.google.com/forms/d/e/1FAIpQLSfgViP8n8uXJKWXxUxrh1RsBQ0rIQ-t7j3ow4bDphcrQ4ZHvg/viewform',
+                );
               }}
             >
               홍미팅 신청하기
@@ -126,7 +128,7 @@ const SelfMeetingList = ({
             label="키워드를 검색하세요🔍"
             type="search"
             className="searchfield"
-            margin="normal"
+            margin="dense"
             variant="outlined"
             value={searchKeyword}
             onChange={e => setSearchKeyword(e.target.value)}
@@ -153,10 +155,10 @@ const SelfMeetingList = ({
                   ? pagedUser
                       .filter(
                         item =>
-                          item.collage.indexOf(searchKeyword) >= 0 ||
-                          item.religion.indexOf(searchKeyword) >= 0 ||
-                          item.personality.indexOf(searchKeyword) >= 0 ||
-                          item.hobby.indexOf(searchKeyword) >= 0,
+                          // item.collage.indexOf(searchKeyword) >= 0 ||
+                          // item.religion.indexOf(searchKeyword) >= 0 ||
+                          // item.personality.indexOf(searchKeyword) >= 0 ||
+                          item.tag.indexOf(searchKeyword) >= 0,
                       )
                       .map(user => <Cards user={user} history={history} />)
                   : pagedUser.map(user => (
@@ -232,7 +234,6 @@ class Cards extends React.Component {
           <div className="MuiCardHeader-root">
             {`${user.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
             {`(${user.id}) ${user.number} /${user.nickname}${user.address}`}
-            {console.log(`${user.tag}타입은 ${typeof user.tag}`)}
           </div>
           <CardContent style={{ 'padding-top': '6px' }}>
             <Badge
@@ -249,12 +250,6 @@ class Cards extends React.Component {
               keyword={user.drink.toString().substring(0, 5)}
               color="warning"
             />
-            <p
-              className="timebar"
-              style={{ display: 'inline-flex', float: 'right' }}
-            >
-              {user.time.toString().substring(5, 10)}
-            </p>
             <p
               className="body"
               style={{ 'padding-top': '5px', 'font-size': '14px' }}

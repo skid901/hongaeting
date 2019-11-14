@@ -8,7 +8,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Paper from '@material-ui/core/Paper';
 import Badge from 'component/06SelfDatingList/Badge';
 import { inject, observer } from 'mobx-react';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import ListIcon from '@material-ui/icons/List';
 import ChatIcon from '@material-ui/icons/Chat';
 import SmokeFreeIcon from '@material-ui/icons/SmokeFree';
@@ -23,7 +22,7 @@ const SelfDatingDetails = ({ selectedUser }) => {
             {`${selectedUser.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
           </div>
           <div className="id">
-            ({selectedUser.gender}) {selectedUser.age} / {selectedUser.id}
+            ({selectedUser.id}) {selectedUser.age} / {selectedUser.gender}
           </div>
           <div className="Out">
             <div className="out">
@@ -36,23 +35,24 @@ const SelfDatingDetails = ({ selectedUser }) => {
                   <div className="A">
                     <Badge
                       keyword={selectedUser.tag.toString().split('#')[1]}
-                      color="primary"
+                      style={{ color: 'black' }}
+                      color="a"
                     />
                     <Badge
                       keyword={selectedUser.tag.toString().split('#')[2]}
-                      color="primary"
+                      color="b"
                     />
                     <Badge
                       keyword={selectedUser.tag.toString().split('#')[3]}
-                      color="rose"
+                      color="c"
                     />
                     <Badge
                       keyword={selectedUser.tag.toString().split('#')[4]}
-                      color="rose"
+                      color="d"
                     />
                     <Badge
                       keyword={selectedUser.tag.toString().split('#')[5]}
-                      color="success"
+                      color="e"
                     />
                   </div>
                 </div>
@@ -75,7 +75,15 @@ const SelfDatingDetails = ({ selectedUser }) => {
                     <ChatIcon style={{ 'margin-right': '8px' }} />
                     대화하기
                   </div>
-                  <div className="A">{selectedUser.chatlink}</div>
+                  <div
+                    className="A"
+                    style={{ 'overflow-wrap': 'break-word' }}
+                    onClick={() => {
+                      window.open(`${selectedUser.chatlink}`);
+                    }}
+                  >
+                    <a>{selectedUser.chatlink}</a>
+                  </div>
                 </div>
               </div>
             </div>

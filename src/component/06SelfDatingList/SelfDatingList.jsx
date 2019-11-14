@@ -46,20 +46,20 @@ const SelfDatingList = ({
     setGender(2);
     setUsers(1);
     setUserCount();
-    (async () => {
-      try {
-        const { data } = await axios.get(`api/auth/check`, {});
-        console.log(data);
-        const message = data.message || ``;
-        console.log(message);
-        if (message === 'noSignIn') {
-          history.push(`/signin`);
-          return;
-        }
-      } catch (e) {
-        history.push(`/signup/form`);
-      }
-    })();
+    // (async () => {
+    //   try {
+    //     const { data } = await axios.get(`api/auth/check`, {});
+    //     console.log(data);
+    //     const message = data.message || ``;
+    //     console.log(message);
+    //     if (message === 'noSignIn') {
+    //       history.push(`/signin`);
+    //       return;
+    //     }
+    //   } catch (e) {
+    //     history.push(`/signup/form`);
+    //   }
+    // })();
   }, []);
 
   return (
@@ -123,17 +123,22 @@ const SelfDatingList = ({
               className={classes1.root}
               style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
               onClick={() => {
-                history.push('/introductionform');
+                window.open(
+                  'https://docs.google.com/forms/d/e/1FAIpQLSeoMtZdUinyboZnQf_vl69-Zl7912coTedQnlaWor8cvPjZKQ/viewform',
+                );
               }}
+              // onClick={() => {
+              //   history.push('/introductionform');
+              // }}
             >
-              셀프 소개팅 신청하기2
+              셀프 소개팅 신청하기
             </Button>
           </div>
           <TextField
             label="키워드를 검색하세요🔍"
             type="search"
             className="searchfield"
-            margin="normal"
+            margin="dense"
             variant="outlined"
             value={searchKeyword}
             onChange={e => setSearchKeyword(e.target.value)}
@@ -160,10 +165,10 @@ const SelfDatingList = ({
                   ? pagedUser
                       .filter(
                         item =>
-                          item.collage.indexOf(searchKeyword) >= 0 ||
-                          item.religion.indexOf(searchKeyword) >= 0 ||
-                          item.personality.indexOf(searchKeyword) >= 0 ||
-                          item.hobby.indexOf(searchKeyword) >= 0,
+                          // item.collage.indexOf(searchKeyword) >= 0 ||
+                          // item.religion.indexOf(searchKeyword) >= 0 ||
+                          // item.personality.indexOf(searchKeyword) >= 0 ||
+                          item.tag.indexOf(searchKeyword) >= 0,
                       )
                       .map(user => <Cards user={user} history={history} />)
                   : pagedUser.map(user => (
@@ -244,29 +249,65 @@ class Cards extends React.Component {
             {`${user.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
             {`(${user.id}) ${user.age}/${user.gender}`}
           </div>
-          <p
+          {/* <p
             className="timebar"
             style={{ float: 'right', 'text-align': 'right' }}
           >
-            {`${user.time
-              .toString()
-              .substring(5, 7)}월${user.time.toString().substring(8, 10)}일`}
-          </p>
+            {//`${user.time
+             // .toString()
+             // .substring(5, 7)}월${user.time.toString().substring(8, 10)}일`}
+          </p> */}
           <CardContent style={{ 'padding-top': '6px' }}>
-            <Badge
-              keyword={user.tag.toString().split('#')[1]}
-              color="primary"
-            />
-            <Badge
-              keyword={user.tag.toString().split('#')[2]}
-              color="primary"
-            />
-            <Badge keyword={user.tag.toString().split('#')[3]} color="rose" />
-            <Badge keyword={user.tag.toString().split('#')[4]} color="rose" />
-            <Badge
-              keyword={user.tag.toString().split('#')[5]}
-              color="success"
-            />
+            {(() => {
+              if (user.tag.toString().split('#')[1]) {
+                return (
+                  <Badge
+                    keyword={user.tag.toString().split('#')[1]}
+                    color="a"
+                  />
+                );
+              }
+            })()}
+            {(() => {
+              if (user.tag.toString().split('#')[2]) {
+                return (
+                  <Badge
+                    keyword={user.tag.toString().split('#')[2]}
+                    color="b"
+                  />
+                );
+              }
+            })()}
+            {(() => {
+              if (user.tag.toString().split('#')[3]) {
+                return (
+                  <Badge
+                    keyword={user.tag.toString().split('#')[3]}
+                    color="c"
+                  />
+                );
+              }
+            })()}
+            {(() => {
+              if (user.tag.toString().split('#')[4]) {
+                return (
+                  <Badge
+                    keyword={user.tag.toString().split('#')[4]}
+                    color="d"
+                  />
+                );
+              }
+            })()}
+            {(() => {
+              if (user.tag.toString().split('#')[5]) {
+                return (
+                  <Badge
+                    keyword={user.tag.toString().split('#')[5]}
+                    color="e"
+                  />
+                );
+              }
+            })()}
             {/* <p
               className="timebar"
               style={{ float: 'right', 'text-align': 'right' }}
@@ -280,7 +321,7 @@ class Cards extends React.Component {
               style={{
                 'font-size': '12px',
                 'padding-top': '5px',
-                color: 'rgba(55, 53, 47, 0.4)',
+                color: '#545454',
               }}
             >
               {user.keysentence.substring(0, 60)}

@@ -13,7 +13,7 @@ class SelfDatingUserStore {
 
   @observable gender = 0;
   @observable pagedUser = [];
-  
+
   @observable selectedUser = {
     id: '',
     time: '',
@@ -34,30 +34,31 @@ class SelfDatingUserStore {
   };
 
   @observable userCount = 0;
-  setGender = (gender) => {
+  setGender = gender => {
     this.gender = gender;
-  }
-  setUsers = async(pagenumber) => {
-    const res = await Axios.get(`${this.URL}/pageNumber/${pagenumber}/gender/${this.gender}`);
+  };
+  setUsers = async pagenumber => {
+    const res = await Axios.get(
+      `${this.URL}/pageNumber/${pagenumber}/gender/${this.gender}`,
+    );
     this.pagedUser = [];
-    this.pagedUser=res.data;
+    this.pagedUser = res.data;
     this.updated = true;
     this.IsLoading = false;
-    
-  }
+  };
 
   setUserCount = async () => {
     const res = await Axios.get(`${this.URL}/gender/${this.gender}`);
     this.userCount = res.data;
-  }
+  };
 
   // const response = await Axios(sdadasdas)/ .then(X)
   // this.userCount = response.data
 
-  setSelectedUser = (user) => {
+  setSelectedUser = user => {
     this.selectedUser = user;
     console.log(this.selectedUser);
-  }
+  };
 }
 
 export default SelfDatingUserStore;
