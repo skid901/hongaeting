@@ -183,7 +183,7 @@ const SelfDatingList = ({
         </div>
       )}
       <div className="page" style={{ 'text-align': 'center' }}>
-        <ReactPaginate
+        {/* <ReactPaginate
           pageCount={parseInt(userCount / 20) + 1}
           marginPagesDisplayed={1}
           pageRangeDisplayed={1}
@@ -221,7 +221,7 @@ const SelfDatingList = ({
               <path fill="none" d="M0 0h24v24H0V0z" />
             </svg>
           }
-        />
+        /> */}
       </div>
     </div>
   );
