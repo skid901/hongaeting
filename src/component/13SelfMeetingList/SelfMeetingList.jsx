@@ -197,7 +197,6 @@ const SelfMeetingList = ({
               <path fill="none" d="M0 0h24v24H0V0z" />
             </svg>
           } />*/}
-
       </div>
     </div>
   );
@@ -226,13 +225,13 @@ class Cards extends React.Component {
           <CardContent style={{ 'padding-top': '6px' }}>
             <Badge
               keyword={`#${user.tag.toString().split('#')[1]}`}
-              color="primary"
+              color="a"
             />
             <Badge
               keyword={`#${user.tag.toString().split('#')[2]}`}
-              color="rose"
+              color="b"
             />
-            <Badge keyword={user.tag.toString().split('#')[3]} color="rose" />
+            <Badge keyword={user.tag.toString().split('#')[3]} color="c" />
 
             {/* <Badge
               keyword={user.drink.toString().substring(0, 5)}
