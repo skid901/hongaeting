@@ -208,7 +208,7 @@ const SelfMeetingList = ({
 class Cards extends React.Component {
   render() {
     const { setSelectedUser, user, history } = this.props;
-    const url = `/selfmeetingdetails/${user.email}`;
+    const url = `/selfmeetingdetails/user`;
     return (
       <div className="CardsWrapper">
         <Card
@@ -219,7 +219,7 @@ class Cards extends React.Component {
         >
           <div className="MuiCardHeader-root">
             {`${user.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
-            {`(${user.id}) ${user.number} /${user.nickname}${user.address}`}
+            {`(${user.number}) /${user.nickname}`}
           </div>
           <CardContent style={{ 'padding-top': '6px' }}>
             <Badge
@@ -232,10 +232,10 @@ class Cards extends React.Component {
             />
             <Badge keyword={user.tag.toString().split('#')[3]} color="rose" />
 
-            <Badge
+            {/* <Badge
               keyword={user.drink.toString().substring(0, 5)}
               color="warning"
-            />
+            /> */}
             <p
               className="body"
               style={{ 'padding-top': '5px', 'font-size': '14px' }}

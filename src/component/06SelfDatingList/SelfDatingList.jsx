@@ -42,7 +42,8 @@ const SelfDatingList = ({
   // const [IsLoading, setIsLoading] = useState(false);
   const classes1 = useStyles1();
 
-  useEffect(() => {
+  출처: //meaningone.tistory.com/318 [의미 하나]
+  https: useEffect(() => {
     setGender(2);
     setUsers(1);
     setUserCount();
