@@ -21,7 +21,7 @@ const SelfMeetingDetails = ({ selectedUser }) => {
             {`${selectedUser.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
           </div>
           <div className="id">
-            {`(${selectedUser.number})${selectedUser.nickname}/ ${selectedUser.gender}`}
+            {`(${selectedUser.number})${selectedUser.gender}/${selectedUser.nickname}`}
           </div>
           <div className="Out">
             <div className="out">
@@ -173,11 +173,7 @@ const SelfMeetingDetails = ({ selectedUser }) => {
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel3a-content"
               id="panel3a-header"
-            >
-              <Typography>
-                <Badge keyword={selectedUser.keysentence} color="rose" />
-              </Typography>
-            </ExpansionPanelSummary>
+            ></ExpansionPanelSummary>
           </ExpansionPanel>
         </div>
       </Paper>

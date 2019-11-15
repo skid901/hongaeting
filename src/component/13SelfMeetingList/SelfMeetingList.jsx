@@ -222,24 +222,56 @@ class Cards extends React.Component {
             {`${user.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
             {`(${user.number})${user.gender}/${user.nickname}`}
           </div>
-          <CardContent style={{ 'padding-top': '6px' }}>
-            <Badge
-              keyword={`#${user.tag.toString().split('#')[1]}`}
-              color="a"
-            />
-            <Badge
-              keyword={`#${user.tag.toString().split('#')[2]}`}
-              color="b"
-            />
-            <Badge
-              keyword={user.tag.toString().split('#')[3]}
-              color="primary"
-            />
-
-            {/* <Badge
-              keyword={user.drink.toString().substring(0, 5)}
-              color="warning"
-            /> */}
+          {(() => {
+              if (user.tag.toString().split('#')[1]) {
+                return (
+                  <Badge
+                    keyword={user.tag.toString().split('#')[1]}
+                    color="a"
+                  />
+                );
+              }
+            })()}
+            {(() => {
+              if (user.tag.toString().split('#')[2]) {
+                return (
+                  <Badge
+                    keyword={user.tag.toString().split('#')[2]}
+                    color="b"
+                  />
+                );
+              }
+            })()}
+            {(() => {
+              if (user.tag.toString().split('#')[3]) {
+                return (
+                  <Badge
+                    keyword={user.tag.toString().split('#')[3]}
+                    color="c"
+                  />
+                );
+              }
+            })()}
+            {(() => {
+              if (user.tag.toString().split('#')[4]) {
+                return (
+                  <Badge
+                    keyword={user.tag.toString().split('#')[4]}
+                    color="d"
+                  />
+                );
+              }
+            })()}
+            {(() => {
+              if (user.tag.toString().split('#')[5]) {
+                return (
+                  <Badge
+                    keyword={user.tag.toString().split('#')[5]}
+                    color="e"
+                  />
+                );
+              }
+            })()}
             <p
               className="body"
               style={{ 'padding-top': '5px', 'font-size': '14px' }}
