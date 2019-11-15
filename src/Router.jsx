@@ -27,25 +27,25 @@ import WaitingInfo from './component/00WaitingInfo/WaitingInfo';
 const Router = () => (
   <Switch>
     <Route exact path="/" component={SelfDatingList} />
-    <Route path="/signup/form" component={SignUp} />
+    {/* <Route path="/signup/form" component={SignUp} />
     <Route path="/signup/summit" component={Summit} />
     <Route path="/signup/auth/:authNum" component={Auth} />
     <Route path="/signin" component={SignIn} />
     <Route path="/mypage/:nickName" component={MyPage} />
-    <Route path="/introductionform" component={IntroductionForm} />
+    <Route path="/introductionform" component={IntroductionForm} /> */}
     <Route path="/selfdatinglist" component={SelfDatingList} />
     <Route path="/selfdatingdetails" component={SelfDatingDetails} />
-    <Route path="/selfdatingchat/:roomId" component={SelfDatingChat} />
+    {/* <Route path="/selfdatingchat/:roomId" component={SelfDatingChat} />
     <Route path="/matchmarkingchat" component={MatchmarkingChat} />
     <Route path="/adminreportchat" component={AdminReportChat} />
     <Route path="/adminpage" component={AdminPage} />
     <Route path="/errorpage" component={ErrorPage} />
-    <Route path="/demo" component={demo} />
+    <Route path="/demo" component={demo} /> */}
     <Route path="/selfmeetinglist" component={SelfMeetingList} />
     <Route path="/selfmeetingdetails" component={SelfMeetingDetails} />
-    <Route path="/meetingform" component={MeetingForm} />
+    {/* <Route path="/meetingform" component={MeetingForm} />
     <Route path="/realwelcome" component={RealWelcome} />
-    <Route path="/waitinginfo" component={WaitingInfo} />
+    <Route path="/waitinginfo" component={WaitingInfo} /> */}
     <Route component={ErrorPage} />
   </Switch>
 );

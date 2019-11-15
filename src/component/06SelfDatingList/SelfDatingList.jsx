@@ -12,12 +12,12 @@ import ReactPaginate from 'react-paginate';
 
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
-import Badge from './Badge';
+import Badge from 'component/06SelfDatingList/Badge';
 
 const useStyles1 = makeStyles({
   root: {
     width: 300,
-    background: 'linear-gradient(45deg, #085F63 30%, #085F63 90%)',
+    background: 'linear-gradient(45deg, #f06595 30%, #f06595 90%)',
     border: 0,
     borderRadius: 3,
     boxShadow: '0 3px 5px 2px #F1F1F1',
@@ -42,24 +42,11 @@ const SelfDatingList = ({
   // const [IsLoading, setIsLoading] = useState(false);
   const classes1 = useStyles1();
 
-  useEffect(() => {
+  //meaningone.tistory.com/318 [의미 하나]
+  출처: https: useEffect(() => {
     setGender(2);
     setUsers(1);
-    setUserCount();
-    // (async () => {
-    //   try {
-    //     const { data } = await axios.get(`api/auth/check`, {});
-    //     console.log(data);
-    //     const message = data.message || ``;
-    //     console.log(message);
-    //     if (message === 'noSignIn') {
-    //       history.push(`/signin`);
-    //       return;
-    //     }
-    //   } catch (e) {
-    //     history.push(`/signup/form`);
-    //   }
-    // })();
+    //setUserCount();
   }, []);
 
   return (
@@ -68,11 +55,14 @@ const SelfDatingList = ({
         <ol className="viewlist">
           <li className="view">
             <Button
-              style={{ 'font-family': 'Do Hyeon, sans-serif' }}
+              style={{
+                'font-family': 'Noto Sans KR, sans-serif',
+                'font-weight': 'bold',
+              }}
               onClick={() => {
                 setGender(2);
                 setUsers(1);
-                setUserCount();
+                //setUserCount();
               }}
             >
               전체보기
@@ -80,26 +70,32 @@ const SelfDatingList = ({
           </li>
           <li className="view">
             <Button
-              style={{ 'font-family': 'Do Hyeon, sans-serif' }}
+              style={{
+                'font-family': 'Noto Sans KR, sans-serif',
+                'font-weight': 'bold',
+              }}
               onClick={() => {
                 setGender(0);
                 setUsers(1);
-                setUserCount();
+                // setUserCount();
               }}
             >
-              남자보기
+              남학우만
             </Button>
           </li>
           <li className="view">
             <Button
-              style={{ 'font-family': 'Do Hyeon, sans-serif' }}
+              style={{
+                'font-family': 'Do Hyeon, sans-serif',
+                'font-weight': 'bold',
+              }}
               onClick={() => {
                 setGender(1);
                 setUsers(1);
-                setUserCount();
+                //setUserCount();
               }}
             >
-              여자보기
+              여학우만
             </Button>
           </li>
         </ol>
@@ -185,7 +181,7 @@ const SelfDatingList = ({
         </div>
       )}
       <div className="page" style={{ 'text-align': 'center' }}>
-        <ReactPaginate
+        {/* <ReactPaginate
           pageCount={parseInt(userCount / 20) + 1}
           marginPagesDisplayed={1}
           pageRangeDisplayed={1}
@@ -223,7 +219,7 @@ const SelfDatingList = ({
               <path fill="none" d="M0 0h24v24H0V0z" />
             </svg>
           }
-        />
+        /> */}
       </div>
     </div>
   );
@@ -324,7 +320,7 @@ class Cards extends React.Component {
                 color: '#545454',
               }}
             >
-              {user.keysentence.substring(0, 60)}
+              {user.keysentence}
             </p>
           </CardContent>
         </Card>

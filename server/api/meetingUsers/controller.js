@@ -2,7 +2,6 @@ import MeetingUser from '../../models/selfMeeting';
 
 export const create = async (ctx) => {
   const {
-    id,
     time,
     email,
     gender,
@@ -20,6 +19,7 @@ export const create = async (ctx) => {
     hobby,
     drink,
     idealtype,
+    chatlink,
     nickname,
     tag,
     keysentence
@@ -69,8 +69,8 @@ export const list = async (ctx) => {
     try{
       list = await MeetingUser.find({gender: "남학우"})
         .sort({_id: -1})
-        .skip((pageNumber-1) * 20)
-        .limit(20)
+        // .skip((pageNumber-1) * 20)
+        // .limit(20)
         .exec();
     } catch (e){
       return ctx.throw(500, e);
@@ -79,8 +79,8 @@ export const list = async (ctx) => {
     try{
       list = await MeetingUser.find({gender: "여학우"})
         .sort({_id: -1})
-        .skip((pageNumber-1) * 20)
-        .limit(20)
+        // .skip((pageNumber-1) * 20)
+        // .limit(20)
         .exec();
     } catch (e){
       return ctx.throw(500, e);
@@ -89,8 +89,8 @@ export const list = async (ctx) => {
     try{
       list = await MeetingUser.find()
         .sort({_id: -1})
-        .skip((pageNumber-1) * 20)
-        .limit(20)
+        // .skip((pageNumber-1) * 20)
+        // .limit(20)
         .exec();
     } catch (e){
       return ctx.throw(500, e);
@@ -156,6 +156,5 @@ export const count = async (ctx) => {
       return ctx.throw(500, e);
     }
   }
-  console.log(count);
   ctx.body = count;
 }

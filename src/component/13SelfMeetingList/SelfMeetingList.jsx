@@ -12,13 +12,13 @@ import { useHistory } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import ReactPaginate from 'react-paginate';
-import Badge from './Badge';
+import Badge from 'component/06SelfDatingList/Badge';
 import axios from '../../../node_modules/axios/index';
 
 const useStyles1 = makeStyles({
   root: {
     width: 300,
-    background: 'linear-gradient(45deg, #085F63 30%, #085F63 90%)',
+    background: 'linear-gradient(45deg, #f06595 30%, #f06595 90%)',
     border: 0,
     borderRadius: 3,
     boxShadow: '0 3px 5px 2px #F1F1F1',
@@ -44,21 +44,8 @@ const SelfMeetingList = ({
   useEffect(() => {
     setGender(2);
     setUsers(1);
-    setUserCount();
-    // (async () => {
-    //   try {
-    //     const { data } = await axios.get(`api/auth/check`, {});
-    //     console.log(data);
-    //     const message = data.message || ``;
-    //     console.log(message);
-    //     if (message === 'noSignIn') {
-    //       history.push(`/signin`);
-    //       return;
-    //     }
-    //   } catch (e) {
-    //     history.push(`/signup/form`);
-    //   }
-    // })();
+    //setUserCount();
+    console.log(pagedUser);
   }, []);
 
   return (
@@ -71,7 +58,7 @@ const SelfMeetingList = ({
               onClick={() => {
                 setGender(2);
                 setUsers(1);
-                setUserCount();
+                //setUserCount();
               }}
             >
               전체보기
@@ -83,10 +70,10 @@ const SelfMeetingList = ({
               onClick={() => {
                 setGender(0);
                 setUsers(1);
-                setUserCount();
+                //setUserCount();
               }}
             >
-              남자보기
+              남학우
             </Button>
           </li>
           <li className="view">
@@ -95,10 +82,10 @@ const SelfMeetingList = ({
               onClick={() => {
                 setGender(1);
                 setUsers(1);
-                setUserCount();
+                // setUserCount();
               }}
             >
-              여자보기
+              여학우
             </Button>
           </li>
         </ol>
@@ -165,13 +152,14 @@ const SelfMeetingList = ({
                       <Cards user={user} history={history} />
                     ));
               }
+              console.log('result : ', result);
               return result;
             })()}
           </Container>
         </div>
       )}
       <div className="page" style={{ 'text-align': 'center' }}>
-        <ReactPaginate
+        {/* <ReactPaginate
           pageCount={parseInt(userCount / 20) + 1}
           marginPagesDisplayed={1}
           pageRangeDisplayed={1}
@@ -208,8 +196,7 @@ const SelfMeetingList = ({
               <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
               <path fill="none" d="M0 0h24v24H0V0z" />
             </svg>
-          }
-        />
+          } />*/}
       </div>
     </div>
   );
@@ -222,7 +209,7 @@ const SelfMeetingList = ({
 class Cards extends React.Component {
   render() {
     const { setSelectedUser, user, history } = this.props;
-    const url = `/selfmeetingdetails/${user.email}`;
+    const url = `/selfmeetingdetails/user`;
     return (
       <div className="CardsWrapper">
         <Card
@@ -233,26 +220,66 @@ class Cards extends React.Component {
         >
           <div className="MuiCardHeader-root">
             {`${user.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
-            {`(${user.id}) ${user.number} /${user.nickname}${user.address}`}
+            {`(${user.number}대${user.number})${user.gender}/${user.nickname}`}
           </div>
           <CardContent style={{ 'padding-top': '6px' }}>
-            <Badge
-              keyword={`#${user.tag.toString().split('#')[1]}`}
-              color="primary"
-            />
-            <Badge
-              keyword={`#${user.tag.toString().split('#')[2]}`}
-              color="rose"
-            />
-            <Badge keyword={user.tag.toString().split('#')[3]} color="rose" />
-
-            <Badge
-              keyword={user.drink.toString().substring(0, 5)}
-              color="warning"
-            />
+            {(() => {
+              if (user.tag.toString().split('#')[1]) {
+                return (
+                  <Badge
+                    keyword={user.tag.toString().split('#')[1]}
+                    color="a"
+                  />
+                );
+              }
+            })()}
+            {(() => {
+              if (user.tag.toString().split('#')[2]) {
+                return (
+                  <Badge
+                    keyword={user.tag.toString().split('#')[2]}
+                    color="b"
+                  />
+                );
+              }
+            })()}
+            {(() => {
+              if (user.tag.toString().split('#')[3]) {
+                return (
+                  <Badge
+                    keyword={user.tag.toString().split('#')[3]}
+                    color="c"
+                  />
+                );
+              }
+            })()}
+            {(() => {
+              if (user.tag.toString().split('#')[4]) {
+                return (
+                  <Badge
+                    keyword={user.tag.toString().split('#')[4]}
+                    color="d"
+                  />
+                );
+              }
+            })()}
+            {(() => {
+              if (user.tag.toString().split('#')[5]) {
+                return (
+                  <Badge
+                    keyword={user.tag.toString().split('#')[5]}
+                    color="e"
+                  />
+                );
+              }
+            })()}
             <p
               className="body"
-              style={{ 'padding-top': '5px', 'font-size': '14px' }}
+              style={{
+                'font-size': '12px',
+                'padding-top': '5px',
+                color: '#545454',
+              }}
             >
               {user.keysentence}
             </p>
