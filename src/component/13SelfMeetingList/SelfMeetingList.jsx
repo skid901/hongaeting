@@ -220,7 +220,7 @@ class Cards extends React.Component {
         >
           <div className="MuiCardHeader-root">
             {`${user.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
-            {`(${user.number})${user.gender}/${user.nickname}`}
+            {`(${user.number}대${user.number})${user.gender}/${user.nickname}`}
           </div>
           <CardContent style={{ 'padding-top': '6px' }}>
             {(() => {
@@ -275,7 +275,11 @@ class Cards extends React.Component {
             })()}
             <p
               className="body"
-              style={{ 'padding-top': '5px', 'font-size': '14px' }}
+              style={{
+                'font-size': '12px',
+                'padding-top': '5px',
+                color: '#545454',
+              }}
             >
               {user.keysentence}
             </p>
