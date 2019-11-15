@@ -64,6 +64,12 @@ const SelfMeetingDetails = ({ selectedUser }) => {
                   </div>
                 </div>
                 <div className="Row">
+                  <div className="Q">주량</div>
+                  <div className="A" style={{ 'font-size': '14px' }}>
+                    {selectedUser.drink}
+                  </div>
+                </div>
+                <div className="Row">
                   <div className="Q">오픈채팅링크</div>
                   <div
                     className="A"
@@ -163,7 +169,7 @@ const SelfMeetingDetails = ({ selectedUser }) => {
               </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <Typography style={{ 'font-Family': 'Noto Sans KR, sans-serif' }}>
+              <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
                 {selectedUser.idealtype}
               </Typography>
             </ExpansionPanelDetails>

@@ -75,15 +75,36 @@ const SelfDatingDetails = ({ selectedUser }) => {
                     <ChatIcon style={{ 'margin-right': '8px' }} />
                     대화하기
                   </div>
-                  <div
-                    className="A"
-                    style={{ 'overflow-wrap': 'break-word' }}
-                    onClick={() => {
-                      window.open(`${selectedUser.chatlink}`);
-                    }}
-                  >
-                    <a>{selectedUser.chatlink}</a>
-                  </div>
+                  {(() => {
+                    if (selectedUser.chatlink.toString().split('/')[0]) {
+                      return (
+                        <div
+                          className="A"
+                          style={{ 'overflow-wrap': 'break-word' }}
+                          onClick={() => {
+                            window.open(`${selectedUser.chatlink}`);
+                          }}
+                        >
+                          <a>{selectedUser.chatlink}</a>
+                        </div>
+                      );
+                    }
+                  })()}
+                  {(() => {
+                    if (selectedUser.chatlink.toString().split('@')[0]) {
+                      return (
+                        <div
+                          className="A"
+                          style={{ 'overflow-wrap': 'break-word' }}
+                          onClick={() => {
+                            window.open(`mailto:${selectedUser.chatlink}`);
+                          }}
+                        >
+                          <a>{selectedUser.chatlink}</a>
+                        </div>
+                      );
+                    }
+                  })()}
                 </div>
               </div>
             </div>
