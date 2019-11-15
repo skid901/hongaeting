@@ -34,10 +34,10 @@ const SelfDatingDetails = ({ selectedUser }) => {
                   </div>
                   <div className="A">
                     {(() => {
-                      if (user.tag.toString().split('#')[1]) {
+                      if (selectedUser.tag.toString().split('#')[1]) {
                         return (
                           <Badge
-                            keyword={user.tag.toString().split('#')[1]}
+                            keyword={selectedUser.tag.toString().split('#')[1]}
                             style={{ color: 'black' }}
                             color="a"
                           />
@@ -46,50 +46,50 @@ const SelfDatingDetails = ({ selectedUser }) => {
                     })()}
 
                     {(() => {
-                      if (user.tag.toString().split('#')[2]) {
+                      if (selectedUser.tag.toString().split('#')[2]) {
                         return (
                           <Badge
-                            keyword={user.tag.toString().split('#')[2]}
+                            keyword={selectedUser.tag.toString().split('#')[2]}
                             color="b"
                           />
                         );
                       }
                     })()}
                     {(() => {
-                      if (user.tag.toString().split('#')[3]) {
+                      if (selectedUser.tag.toString().split('#')[3]) {
                         return (
                           <Badge
-                            keyword={user.tag.toString().split('#')[3]}
+                            keyword={selectedUser.tag.toString().split('#')[3]}
                             color="c"
                           />
                         );
                       }
                     })()}
                     {(() => {
-                      if (user.tag.toString().split('#')[4]) {
+                      if (selectedUser.tag.toString().split('#')[4]) {
                         return (
                           <Badge
-                            keyword={user.tag.toString().split('#')[4]}
+                            keyword={selectedUser.tag.toString().split('#')[4]}
                             color="d"
                           />
                         );
                       }
                     })()}
                     {(() => {
-                      if (user.tag.toString().split('#')[5]) {
+                      if (selectedUser.tag.toString().split('#')[5]) {
                         return (
                           <Badge
-                            keyword={user.tag.toString().split('#')[5]}
+                            keyword={selectedUser.tag.toString().split('#')[5]}
                             color="e"
                           />
                         );
                       }
                     })()}
                     {(() => {
-                      if (user.tag.toString().split('#')[6]) {
+                      if (selectedUser.tag.toString().split('#')[6]) {
                         return (
                           <Badge
-                            keyword={user.tag.toString().split('#')[6]}
+                            keyword={selectedUser.tag.toString().split('#')[6]}
                             style={{ color: 'black' }}
                             color="a"
                           />
@@ -98,40 +98,40 @@ const SelfDatingDetails = ({ selectedUser }) => {
                     })()}
 
                     {(() => {
-                      if (user.tag.toString().split('#')[7]) {
+                      if (selectedUser.tag.toString().split('#')[7]) {
                         return (
                           <Badge
-                            keyword={user.tag.toString().split('#')[7]}
+                            keyword={selectedUser.tag.toString().split('#')[7]}
                             color="b"
                           />
                         );
                       }
                     })()}
                     {(() => {
-                      if (user.tag.toString().split('#')[8]) {
+                      if (selectedUser.tag.toString().split('#')[8]) {
                         return (
                           <Badge
-                            keyword={user.tag.toString().split('#')[8]}
+                            keyword={selectedUser.tag.toString().split('#')[8]}
                             color="c"
                           />
                         );
                       }
                     })()}
                     {(() => {
-                      if (user.tag.toString().split('#')[9]) {
+                      if (selectedUser.tag.toString().split('#')[9]) {
                         return (
                           <Badge
-                            keyword={user.tag.toString().split('#')[9]}
+                            keyword={selectedUser.tag.toString().split('#')[9]}
                             color="d"
                           />
                         );
                       }
                     })()}
                     {(() => {
-                      if (user.tag.toString().split('#')[10]) {
+                      if (selectedUser.tag.toString().split('#')[10]) {
                         return (
                           <Badge
-                            keyword={user.tag.toString().split('#')[10]}
+                            keyword={selectedUser.tag.toString().split('#')[10]}
                             color="e"
                           />
                         );
@@ -144,19 +144,23 @@ const SelfDatingDetails = ({ selectedUser }) => {
                     <LooksIcon style={{ 'margin-right': '8px' }} />
                     종교
                   </div>
-                  <div className="A">{selectedUser.religion}</div>
+                  <div className="A" style={{ 'font-weight': 'bold' }}>
+                    {selectedUser.religion}
+                  </div>
                 </div>
                 <div className="Row">
                   <div className="Q">
                     <SmokeFreeIcon style={{ 'margin-right': '8px' }} />
                     흡연여부
                   </div>
-                  <div className="A">{selectedUser.smoke}</div>
+                  <div className="A" style={{ 'font-weight': 'bold' }}>
+                    {selectedUser.smoke}
+                  </div>
                 </div>
                 <div className="Row">
                   <div className="Q">
                     <ChatIcon style={{ 'margin-right': '8px' }} />
-                    대화하기
+                    대화하기(클릭)
                   </div>
                   {(() => {
                     if (selectedUser.chatlink.toString().split(':')[1]) {
@@ -168,7 +172,9 @@ const SelfDatingDetails = ({ selectedUser }) => {
                             window.open(`${selectedUser.chatlink}`);
                           }}
                         >
-                          <a>{selectedUser.chatlink}</a>
+                          <a style={{ 'text-decoration': 'underline' }}>
+                            {selectedUser.chatlink}
+                          </a>
                         </div>
                       );
                     }
@@ -183,7 +189,9 @@ const SelfDatingDetails = ({ selectedUser }) => {
                             window.open(`mailto:${selectedUser.chatlink}`);
                           }}
                         >
-                          <a>{selectedUser.chatlink}</a>
+                          <a style={{ 'text-decoration': 'underline' }}>
+                            {selectedUser.chatlink}
+                          </a>
                         </div>
                       );
                     }

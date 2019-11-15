@@ -73,7 +73,7 @@ const SelfMeetingDetails = ({ selectedUser }) => {
                   </div>
                 </div>
                 <div className="Row">
-                  <div className="Q">오픈채팅링크</div>
+                  <div className="Q">오픈채팅(클릭)</div>
                   {(() => {
                     if (selectedUser.chatlink.toString().split(':')[1]) {
                       return (
