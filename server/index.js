@@ -14,7 +14,6 @@ import socketServer from './socket';
 
 import DatingUser from './models/selfDating';
 import MeetingUser from './models/selfMeeting';
-import csv from 'fast-csv';
 const datingUsers = require('./json/datingUsers.json');
 const meetingUsers = require('./json/meetingUsers.json')
 
