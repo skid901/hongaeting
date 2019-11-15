@@ -14,8 +14,8 @@ import socketServer from './socket';
 
 import DatingUser from './models/selfDating';
 import MeetingUser from './models/selfMeeting';
-const datingUsers = require('./json/datingUsers.json');
-const meetingUsers = require('./json/meetingUsers.json')
+import daters from './json/meetingUsers.json';
+import meeters from './json/meetingUsers.json';
 
 import fs from 'fs';
 import https from 'https';
@@ -31,13 +31,13 @@ mongoose
     
     mongoose.connection.db.dropCollection('datingusers');
     mongoose.connection.db.dropCollection('meetingusers');
-    mongoose.connection.db.datingusers.insertMany(datingUsers, function(err,result) {
+    DatingUser.insertMany(daters, function(err,result) {
       if (err) {
         console.error(e);
       };
     });
 
-    mongoose.connection.db.datingusers.insertMany(datingUsers, function(err,result) {
+    MeetingUser.insertMany(meeters, function(err,result) {
       if (err) {
         console.error(e);
       };
