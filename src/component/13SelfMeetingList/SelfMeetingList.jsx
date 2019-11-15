@@ -222,7 +222,8 @@ class Cards extends React.Component {
             {`${user.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
             {`(${user.number})${user.gender}/${user.nickname}`}
           </div>
-          {(() => {
+          <CardContent style={{ 'padding-top': '6px' }}>
+            {(() => {
               if (user.tag.toString().split('#')[1]) {
                 return (
                   <Badge
