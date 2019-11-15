@@ -33,19 +33,18 @@ mongoose
     mongoose.connection.db.dropCollection('meetingusers');
     DatingUser.insertMany(daters, function(err,result) {
       if (err) {
-        console.error(e);
+        console.error('1' + e);
       };
     });
 
     MeetingUser.insertMany(meeters, function(err,result) {
-      console.log(meeters);
       if (err) {
-        console.error(e);
+        console.error('2' + e);
       };
     });
   })
   .catch(e => {
-    console.error(e);
+    console.error('3' + e);
   });
 
 
