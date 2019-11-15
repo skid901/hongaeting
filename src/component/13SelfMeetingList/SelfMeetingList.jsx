@@ -45,6 +45,7 @@ const SelfMeetingList = ({
     setGender(2);
     setUsers(1);
     setUserCount();
+    console.log(pagedUser);
   }, []);
 
   return (
@@ -151,6 +152,7 @@ const SelfMeetingList = ({
                       <Cards user={user} history={history} />
                     ));
               }
+              console.log('result : ', result);
               return result;
             })()}
           </Container>
@@ -194,8 +196,8 @@ const SelfMeetingList = ({
               <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
               <path fill="none" d="M0 0h24v24H0V0z" />
             </svg>
-          } */}
-        />
+          } />*/}
+
       </div>
     </div>
   );
