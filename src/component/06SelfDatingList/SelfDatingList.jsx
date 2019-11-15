@@ -46,7 +46,7 @@ const SelfDatingList = ({
   출처: https: useEffect(() => {
     setGender(2);
     setUsers(1);
-    setUserCount();
+    //setUserCount();
   }, []);
 
   return (
@@ -62,7 +62,7 @@ const SelfDatingList = ({
               onClick={() => {
                 setGender(2);
                 setUsers(1);
-                setUserCount();
+                //setUserCount();
               }}
             >
               전체보기
@@ -77,25 +77,25 @@ const SelfDatingList = ({
               onClick={() => {
                 setGender(0);
                 setUsers(1);
-                setUserCount();
+                // setUserCount();
               }}
             >
-              남학우보기
+              남학우만
             </Button>
           </li>
           <li className="view">
             <Button
               style={{
-                'font-family': 'Noto Sans KR, sans-serif',
+                'font-family': 'Do Hyeon, sans-serif',
                 'font-weight': 'bold',
               }}
               onClick={() => {
                 setGender(1);
                 setUsers(1);
-                setUserCount();
+                //setUserCount();
               }}
             >
-              여학우보기
+              여학우만
             </Button>
           </li>
         </ol>

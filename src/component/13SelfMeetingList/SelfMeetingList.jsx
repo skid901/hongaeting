@@ -18,7 +18,7 @@ import axios from '../../../node_modules/axios/index';
 const useStyles1 = makeStyles({
   root: {
     width: 300,
-    background: 'linear-gradient(45deg, #085F63 30%, #085F63 90%)',
+    background: 'linear-gradient(45deg, #f06595 30%, #f06595 90%)',
     border: 0,
     borderRadius: 3,
     boxShadow: '0 3px 5px 2px #F1F1F1',
@@ -44,7 +44,7 @@ const SelfMeetingList = ({
   useEffect(() => {
     setGender(2);
     setUsers(1);
-    setUserCount();
+    //setUserCount();
     console.log(pagedUser);
   }, []);
 
@@ -58,7 +58,7 @@ const SelfMeetingList = ({
               onClick={() => {
                 setGender(2);
                 setUsers(1);
-                setUserCount();
+                //setUserCount();
               }}
             >
               전체보기
@@ -70,10 +70,10 @@ const SelfMeetingList = ({
               onClick={() => {
                 setGender(0);
                 setUsers(1);
-                setUserCount();
+                //setUserCount();
               }}
             >
-              남자보기
+              남학우
             </Button>
           </li>
           <li className="view">
@@ -82,10 +82,10 @@ const SelfMeetingList = ({
               onClick={() => {
                 setGender(1);
                 setUsers(1);
-                setUserCount();
+                // setUserCount();
               }}
             >
-              여자보기
+              여학우
             </Button>
           </li>
         </ol>
