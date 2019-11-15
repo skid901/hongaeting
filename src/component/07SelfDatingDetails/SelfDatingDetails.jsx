@@ -76,7 +76,7 @@ const SelfDatingDetails = ({ selectedUser }) => {
                     대화하기
                   </div>
                   {(() => {
-                    if (selectedUser.chatlink.toString().split('/')[0]) {
+                    if (selectedUser.chatlink.toString().split(':')[1]) {
                       return (
                         <div
                           className="A"
@@ -91,7 +91,7 @@ const SelfDatingDetails = ({ selectedUser }) => {
                     }
                   })()}
                   {(() => {
-                    if (selectedUser.chatlink.toString().split('@')[0]) {
+                    if (selectedUser.chatlink.toString().split('@')[1]) {
                       return (
                         <div
                           className="A"
