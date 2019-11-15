@@ -14,7 +14,7 @@ import socketServer from './socket';
 
 import DatingUser from './models/selfDating';
 import MeetingUser from './models/selfMeeting';
-import daters from './json/meetingUsers.json';
+import daters from './json/datingUsers.json';
 import meeters from './json/meetingUsers.json';
 
 import fs from 'fs';
@@ -38,6 +38,7 @@ mongoose
     });
 
     MeetingUser.insertMany(meeters, function(err,result) {
+      console.log(meeters);
       if (err) {
         console.error(e);
       };
