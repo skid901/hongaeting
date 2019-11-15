@@ -12,7 +12,7 @@ import { useHistory } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import ReactPaginate from 'react-paginate';
-import Badge from './Badge';
+import Badge from 'component/06SelfDatingList/Badge';
 import axios from '../../../node_modules/axios/index';
 
 const useStyles1 = makeStyles({
