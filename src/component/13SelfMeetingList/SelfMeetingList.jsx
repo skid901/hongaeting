@@ -220,7 +220,7 @@ class Cards extends React.Component {
         >
           <div className="MuiCardHeader-root">
             {`${user.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
-            {`(${user.number}) /${user.nickname}`}
+            {`(${user.number})${user.gender}/${user.nickname}`}
           </div>
           <CardContent style={{ 'padding-top': '6px' }}>
             <Badge
@@ -231,7 +231,10 @@ class Cards extends React.Component {
               keyword={`#${user.tag.toString().split('#')[2]}`}
               color="b"
             />
-            <Badge keyword={user.tag.toString().split('#')[3]} color="c" />
+            <Badge
+              keyword={user.tag.toString().split('#')[3]}
+              color="primary"
+            />
 
             {/* <Badge
               keyword={user.drink.toString().substring(0, 5)}

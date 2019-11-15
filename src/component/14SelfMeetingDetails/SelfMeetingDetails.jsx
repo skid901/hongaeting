@@ -28,7 +28,7 @@ const SelfMeetingDetails = ({ selectedUser }) => {
             {`${selectedUser.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
           </div>
           <div className="id">
-            {`(${user.number})${selectedUser.nickname}/ ${selectedUser.gender}`}
+            {`(${selectedUser.number})${selectedUser.nickname}/ ${selectedUser.gender}`}
           </div>
           <div className="Out">
             <div className="out">
