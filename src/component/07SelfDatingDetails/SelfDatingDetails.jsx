@@ -33,27 +33,110 @@ const SelfDatingDetails = ({ selectedUser }) => {
                     자기소개
                   </div>
                   <div className="A">
-                    <Badge
-                      keyword={selectedUser.tag.toString().split('#')[1]}
-                      style={{ color: 'black' }}
-                      color="a"
-                    />
-                    <Badge
-                      keyword={selectedUser.tag.toString().split('#')[2]}
-                      color="b"
-                    />
-                    <Badge
-                      keyword={selectedUser.tag.toString().split('#')[3]}
-                      color="c"
-                    />
-                    <Badge
-                      keyword={selectedUser.tag.toString().split('#')[4]}
-                      color="d"
-                    />
-                    <Badge
-                      keyword={selectedUser.tag.toString().split('#')[5]}
-                      color="e"
-                    />
+                    {(() => {
+                      if (user.tag.toString().split('#')[1]) {
+                        return (
+                          <Badge
+                            keyword={user.tag.toString().split('#')[1]}
+                            style={{ color: 'black' }}
+                            color="a"
+                          />
+                        );
+                      }
+                    })()}
+
+                    {(() => {
+                      if (user.tag.toString().split('#')[2]) {
+                        return (
+                          <Badge
+                            keyword={user.tag.toString().split('#')[2]}
+                            color="b"
+                          />
+                        );
+                      }
+                    })()}
+                    {(() => {
+                      if (user.tag.toString().split('#')[3]) {
+                        return (
+                          <Badge
+                            keyword={user.tag.toString().split('#')[3]}
+                            color="c"
+                          />
+                        );
+                      }
+                    })()}
+                    {(() => {
+                      if (user.tag.toString().split('#')[4]) {
+                        return (
+                          <Badge
+                            keyword={user.tag.toString().split('#')[4]}
+                            color="d"
+                          />
+                        );
+                      }
+                    })()}
+                    {(() => {
+                      if (user.tag.toString().split('#')[5]) {
+                        return (
+                          <Badge
+                            keyword={user.tag.toString().split('#')[5]}
+                            color="e"
+                          />
+                        );
+                      }
+                    })()}
+                    {(() => {
+                      if (user.tag.toString().split('#')[6]) {
+                        return (
+                          <Badge
+                            keyword={user.tag.toString().split('#')[6]}
+                            style={{ color: 'black' }}
+                            color="a"
+                          />
+                        );
+                      }
+                    })()}
+
+                    {(() => {
+                      if (user.tag.toString().split('#')[7]) {
+                        return (
+                          <Badge
+                            keyword={user.tag.toString().split('#')[7]}
+                            color="b"
+                          />
+                        );
+                      }
+                    })()}
+                    {(() => {
+                      if (user.tag.toString().split('#')[8]) {
+                        return (
+                          <Badge
+                            keyword={user.tag.toString().split('#')[8]}
+                            color="c"
+                          />
+                        );
+                      }
+                    })()}
+                    {(() => {
+                      if (user.tag.toString().split('#')[9]) {
+                        return (
+                          <Badge
+                            keyword={user.tag.toString().split('#')[9]}
+                            color="d"
+                          />
+                        );
+                      }
+                    })()}
+                    {(() => {
+                      if (user.tag.toString().split('#')[10]) {
+                        return (
+                          <Badge
+                            keyword={user.tag.toString().split('#')[10]}
+                            color="e"
+                          />
+                        );
+                      }
+                    })()}
                   </div>
                 </div>
                 <div className="Row">

@@ -88,41 +88,47 @@ export const create = async (ctx) => {
     smoke2
   } = ctx.request.body;
   
-  const datingUser = new DatingUser({
-    id,
-    time,
-    email,
-    address,
-    gender,
-    age,
-    collage,
-    self,
-    same,
-    appearance,
-    personality,
-    hobby,
-    religion,
-    smoke,
-    idealtype,
-    chatlink,
-    tag,
-    keysentence,
-    appearance2,
-    personality2,
-    hobby2,
-    idealtype2,
-    religion2,
-    smoke2
-  });
-
-  try {
-    await datingUser.save();
-    await console.log("request come well");
-  } catch (e) {
-    return ctx.throw(500, e);
+  if(email === '' || address === '' || gender === '' || age === '' || collage === ''){
+    
   }
+  else{
+    const datingUser = new DatingUser({
+      id,
+      time,
+      email,
+      address,
+      gender,
+      age,
+      collage,
+      self,
+      same,
+      appearance,
+      personality,
+      hobby,
+      religion,
+      smoke,
+      idealtype,
+      chatlink,
+      tag,
+      keysentence,
+      appearance2,
+      personality2,
+      hobby2,
+      idealtype2,
+      religion2,
+      smoke2
+    });
 
-  ctx.body = datingUser;
+    try {
+      await datingUser.save();
+      await console.log("request come well");
+    } catch (e) {
+      return ctx.throw(500, e);
+    }
+    
+    ctx.body = datingUser;
+  }
+  
 }
 
 
