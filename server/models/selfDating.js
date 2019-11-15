@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
 const SelfDatingSchema = new Schema({
-  id: Number,
+  id: String,
   time: String,
   email: String,
   
