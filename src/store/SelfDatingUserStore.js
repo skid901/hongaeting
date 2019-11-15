@@ -57,7 +57,6 @@ class SelfDatingUserStore {
 
   setSelectedUser = user => {
     this.selectedUser = user;
-    console.log(this.selectedUser);
   };
 }
 

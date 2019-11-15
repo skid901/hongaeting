@@ -6,15 +6,8 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Paper from '@material-ui/core/Paper';
-import CommentIcon from '@material-ui/icons/Comment';
-import TableBody from '@material-ui/core/TableBody';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
-import Table from '@material-ui/core/Table';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Badge from 'component/06SelfDatingList/Badge';
 import { inject, observer } from 'mobx-react';
-import Grid from '@material-ui/core/Grid';
 
 const SelfMeetingDetails = ({ selectedUser }) => {
   useEffect(() => {
@@ -28,8 +21,7 @@ const SelfMeetingDetails = ({ selectedUser }) => {
             {`${selectedUser.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
           </div>
           <div className="id">
-            ({selectedUser.nickname}) {selectedUser.age} /{' '}
-            {selectedUser.collage}
+            {`(${selectedUser.number})${selectedUser.gender}/${selectedUser.nickname}`}
           </div>
           <div className="Out">
             <div className="out">
@@ -37,39 +29,51 @@ const SelfMeetingDetails = ({ selectedUser }) => {
                 <div className="Row">
                   <div className="Q">나이</div>
                   <div className="A">
-                    {selectedUser.age1},{' '}
-                    {selectedUser.age2}
-                    {selectedUser.age3}
-                    {selectedUser.age4}
+                    {selectedUser.age1},{selectedUser.age2},{selectedUser.age3},
+                    {selectedUser.age4},
                   </div>
                 </div>
                 <div className="Row">
                   <div className="Q">학과</div>
-                  <div className="A">
-                    {selectedUser.collage1},
-                    {selectedUser.collage2}
-                    {selectedUser.collage3}
-                    {selectedUser.collage4}
+                  <div className="A" style={{ 'font-size': '14px' }}>
+                    {selectedUser.collage1},{selectedUser.collage2},
+                    {selectedUser.collage3},{selectedUser.collage4},
                   </div>
                 </div>
                 <div className="Row">
                   <div className="Q">해시태그</div>
                   <div className="A">
-                    <Badge keyword={selectedUser.tag} color="primary" />
+                    <Badge
+                      keyword={selectedUser.tag.toString().split('#')[1]}
+                      color="a"
+                    />
+                    <Badge
+                      keyword={selectedUser.tag.toString().split('#')[2]}
+                      color="b"
+                    />
+                    <Badge
+                      keyword={selectedUser.tag.toString().split('#')[3]}
+                      color="c"
+                    />
                   </div>
                 </div>
                 <div className="Row">
                   <div className="Q">자기소개</div>
                   <div className="A">
-                    <Badge
-                      keyword={selectedUser.keysentence}
-                      color="primary"
-                    />
+                    <Badge keyword={selectedUser.keysentence} color="e" />
                   </div>
                 </div>
                 <div className="Row">
                   <div className="Q">오픈채팅링크</div>
-                  <div className="A">{selectedUser.address}</div>
+                  <div
+                    className="A"
+                    style={{ 'overflow-wrap': 'break-word' }}
+                    onClick={() => {
+                      window.open(`${selectedUser.chatlink}`);
+                    }}
+                  >
+                    {selectedUser.chatlink}
+                  </div>
                 </div>
               </div>
             </div>
@@ -82,7 +86,15 @@ const SelfMeetingDetails = ({ selectedUser }) => {
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>😊외모 </Typography>
+              <Typography
+                style={{
+                  'font-family': 'Noto Sans KR, sans-serif',
+                  'font-weight': 'bold',
+                  'font-size': '18px',
+                }}
+              >
+                😊외모
+              </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
@@ -96,10 +108,18 @@ const SelfMeetingDetails = ({ selectedUser }) => {
               aria-controls="panel2a-content"
               id="panel2a-header"
             >
-              <Typography> 🌵성격 </Typography>
+              <Typography
+                style={{
+                  'font-family': 'Noto Sans KR, sans-serif',
+                  'font-weight': 'bold',
+                  'font-size': '18px',
+                }}
+              >
+                🌵성격
+              </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif'}}>
+              <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
                 {selectedUser.personality}
               </Typography>
             </ExpansionPanelDetails>
@@ -110,10 +130,18 @@ const SelfMeetingDetails = ({ selectedUser }) => {
               aria-controls="panel2a-content"
               id="panel2a-header"
             >
-              <Typography> 🍀여가생활 및 취미 </Typography>
+              <Typography
+                style={{
+                  'font-family': 'Noto Sans KR, sans-serif',
+                  'font-weight': 'bold',
+                  'font-size': '18px',
+                }}
+              >
+                🍀여가생활 및 취미
+              </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <Typography style={{ 'font-family':'Noto Sans KR, sans-serif'}}>
+              <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
                 {selectedUser.hobby}
               </Typography>
             </ExpansionPanelDetails>
@@ -124,10 +152,18 @@ const SelfMeetingDetails = ({ selectedUser }) => {
               aria-controls="panel2a-content"
               id="panel2a-header"
             >
-              <Typography> 💕연애관 및 바라는 이상형 </Typography>
+              <Typography
+                style={{
+                  'font-family': 'Noto Sans KR, sans-serif',
+                  'font-weight': 'bold',
+                  'font-size': '18px',
+                }}
+              >
+                💕연애관 및 바라는 이상형
+              </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <Typography style={{ 'font-Family':'Noto Sans KR, sans-serif' }}>
+              <Typography style={{ 'font-Family': 'Noto Sans KR, sans-serif' }}>
                 {selectedUser.idealtype}
               </Typography>
             </ExpansionPanelDetails>
@@ -137,11 +173,7 @@ const SelfMeetingDetails = ({ selectedUser }) => {
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel3a-content"
               id="panel3a-header"
-            >
-              <Typography>
-                <Badge keyword={selectedUser.keysentence} color="rose" />
-              </Typography>
-            </ExpansionPanelSummary>
+            ></ExpansionPanelSummary>
           </ExpansionPanel>
         </div>
       </Paper>

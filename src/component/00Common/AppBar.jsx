@@ -33,6 +33,7 @@ const CustomAppBar = ({ props }) => {
     alert.setTitle(`${_title}`);
     alert.setMessage(`${_message}`);
   };
+
   const handleLogout = async event => {
     event.preventDefault();
     try {
@@ -51,7 +52,6 @@ const CustomAppBar = ({ props }) => {
       history.push(`/signin`);
     }
   };
-  console.log(history);
   return (
     <>
       {user.email === '' ? (
