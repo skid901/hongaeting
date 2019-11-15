@@ -17,7 +17,7 @@ import Badge from 'component/06SelfDatingList/Badge';
 const useStyles1 = makeStyles({
   root: {
     width: 300,
-    background: 'linear-gradient(45deg, #085F63 30%, #085F63 90%)',
+    background: 'linear-gradient(45deg, #f06595 30%, #f06595 90%)',
     border: 0,
     borderRadius: 3,
     boxShadow: '0 3px 5px 2px #F1F1F1',
@@ -55,7 +55,10 @@ const SelfDatingList = ({
         <ol className="viewlist">
           <li className="view">
             <Button
-              style={{ 'font-family': 'Do Hyeon, sans-serif' }}
+              style={{
+                'font-family': 'Noto Sans KR, sans-serif',
+                'font-weight': 'bold',
+              }}
               onClick={() => {
                 setGender(2);
                 setUsers(1);
@@ -67,26 +70,32 @@ const SelfDatingList = ({
           </li>
           <li className="view">
             <Button
-              style={{ 'font-family': 'Do Hyeon, sans-serif' }}
+              style={{
+                'font-family': 'Noto Sans KR, sans-serif',
+                'font-weight': 'bold',
+              }}
               onClick={() => {
                 setGender(0);
                 setUsers(1);
                 setUserCount();
               }}
             >
-              남자보기
+              남학우보기
             </Button>
           </li>
           <li className="view">
             <Button
-              style={{ 'font-family': 'Do Hyeon, sans-serif' }}
+              style={{
+                'font-family': 'Noto Sans KR, sans-serif',
+                'font-weight': 'bold',
+              }}
               onClick={() => {
                 setGender(1);
                 setUsers(1);
                 setUserCount();
               }}
             >
-              여자보기
+              여학우보기
             </Button>
           </li>
         </ol>

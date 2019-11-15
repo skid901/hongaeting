@@ -71,15 +71,36 @@ const SelfMeetingDetails = ({ selectedUser }) => {
                 </div>
                 <div className="Row">
                   <div className="Q">오픈채팅링크</div>
-                  <div
-                    className="A"
-                    style={{ 'overflow-wrap': 'break-word' }}
-                    onClick={() => {
-                      window.open(`${selectedUser.chatlink}`);
-                    }}
-                  >
-                    {selectedUser.chatlink}
-                  </div>
+                  {(() => {
+                    if (selectedUser.chatlink.toString().split(':')[1]) {
+                      return (
+                        <div
+                          className="A"
+                          style={{ 'overflow-wrap': 'break-word' }}
+                          onClick={() => {
+                            window.open(`${selectedUser.chatlink}`);
+                          }}
+                        >
+                          <a>{selectedUser.chatlink}</a>
+                        </div>
+                      );
+                    }
+                  })()}
+                  {(() => {
+                    if (selectedUser.chatlink.toString().split('@')[1]) {
+                      return (
+                        <div
+                          className="A"
+                          style={{ 'overflow-wrap': 'break-word' }}
+                          onClick={() => {
+                            window.open(`mailto:${selectedUser.chatlink}`);
+                          }}
+                        >
+                          <a>{selectedUser.chatlink}</a>
+                        </div>
+                      );
+                    }
+                  })()}
                 </div>
               </div>
             </div>
@@ -165,7 +186,7 @@ const SelfMeetingDetails = ({ selectedUser }) => {
                   'font-size': '18px',
                 }}
               >
-                💕연애관 및 바라는 이상형
+                💕바라는 미팅상대
               </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
