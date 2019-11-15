@@ -6,15 +6,8 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Paper from '@material-ui/core/Paper';
-import CommentIcon from '@material-ui/icons/Comment';
-import TableBody from '@material-ui/core/TableBody';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
-import Table from '@material-ui/core/Table';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Badge from 'component/06SelfDatingList/Badge';
 import { inject, observer } from 'mobx-react';
-import Grid from '@material-ui/core/Grid';
 
 const SelfMeetingDetails = ({ selectedUser }) => {
   useEffect(() => {
@@ -50,17 +43,16 @@ const SelfMeetingDetails = ({ selectedUser }) => {
                 <div className="Row">
                   <div className="Q">해시태그</div>
                   <div className="A">
-                    <Badge keyword={selectedUser.tag} />
                     <Badge
-                      keyword={`#${selectedUser.tag.toString().split('#')[1]}`}
+                      keyword={selectedUser.tag.toString().split('#')[1]}
                       color="a"
                     />
                     <Badge
-                      keyword={`#${selectedUser.tag.toString().split('#')[2]}`}
+                      keyword={selectedUser.tag.toString().split('#')[2]}
                       color="b"
                     />
                     <Badge
-                      keyword={`#${selectedUser.tag.toString().split('#')[3]}`}
+                      keyword={selectedUser.tag.toString().split('#')[3]}
                       color="c"
                     />
                   </div>
