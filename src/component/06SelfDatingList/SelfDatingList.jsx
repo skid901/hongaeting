@@ -56,8 +56,7 @@ const SelfDatingList = ({
           <li className="view">
             <Button
               style={{
-                'font-family': 'Noto Sans KR, sans-serif',
-                'font-weight': 'bold',
+                'font-family': 'Do Hyeon, sans-serif',
               }}
               onClick={() => {
                 setGender(2);
@@ -71,8 +70,7 @@ const SelfDatingList = ({
           <li className="view">
             <Button
               style={{
-                'font-family': 'Noto Sans KR, sans-serif',
-                'font-weight': 'bold',
+                'font-family': 'Do Hyeon, sans-serif',
               }}
               onClick={() => {
                 setGender(0);
@@ -80,14 +78,13 @@ const SelfDatingList = ({
                 // setUserCount();
               }}
             >
-              남학우만
+              남학우
             </Button>
           </li>
           <li className="view">
             <Button
               style={{
                 'font-family': 'Do Hyeon, sans-serif',
-                'font-weight': 'bold',
               }}
               onClick={() => {
                 setGender(1);
@@ -95,7 +92,7 @@ const SelfDatingList = ({
                 //setUserCount();
               }}
             >
-              여학우만
+              여학우
             </Button>
           </li>
         </ol>

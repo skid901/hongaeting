@@ -21,7 +21,7 @@ const SelfMeetingDetails = ({ selectedUser }) => {
             {`${selectedUser.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
           </div>
           <div className="id">
-            {`(${selectedUser.number})${selectedUser.gender}/${selectedUser.nickname}`}
+            {`(${selectedUser.number})${selectedUser.gender}  ${selectedUser.nickname}`}
           </div>
           <div className="Out">
             <div className="out">
@@ -29,15 +29,18 @@ const SelfMeetingDetails = ({ selectedUser }) => {
                 <div className="Row">
                   <div className="Q">나이</div>
                   <div className="A">
-                    {selectedUser.age1},{selectedUser.age2},{selectedUser.age3},
-                    {selectedUser.age4},
+                    {selectedUser.age1},{` `}
+                    {selectedUser.age2},{` `}
+                    {selectedUser.age3},{selectedUser.age4}
                   </div>
                 </div>
                 <div className="Row">
                   <div className="Q">학과</div>
                   <div className="A" style={{ 'font-size': '14px' }}>
-                    {selectedUser.collage1},{selectedUser.collage2},
-                    {selectedUser.collage3},{selectedUser.collage4},
+                    {selectedUser.collage1},{` `}
+                    {selectedUser.collage2},{` `}
+                    {selectedUser.collage3},{` `}
+                    {selectedUser.collage4}
                   </div>
                 </div>
                 <div className="Row">

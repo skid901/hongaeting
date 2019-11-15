@@ -69,7 +69,7 @@ const CustomAppBar = ({ props }) => {
                           history.push(`/`);
                         }}
                       >
-                        홍개팅
+                        홍개팅 시즌3
                       </p>
                       <div className="menu-wrapper">
                         <ol className="menulist">
