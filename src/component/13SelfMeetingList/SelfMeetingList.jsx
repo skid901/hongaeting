@@ -36,6 +36,7 @@ const SelfMeetingList = ({
   pagedUser,
   setUserCount,
   userCount,
+  gender,
   setGender,
 }) => {
   const history = useHistory();
@@ -54,7 +55,13 @@ const SelfMeetingList = ({
         <ol className="viewlist">
           <li className="view">
             <Button
-              style={{ 'font-family': 'Do Hyeon, sans-serif' }}
+              style={(()=>{
+                if(gender === 2){
+                  return {'font-family': 'Do Hyeon, sans-serif', 'background-color': 'lightgray'};
+                } else{
+                  return {'font-family': 'Do Hyeon, sans-serif'};
+                }
+              })()}
               onClick={() => {
                 setGender(2);
                 setUsers(1);
@@ -66,7 +73,13 @@ const SelfMeetingList = ({
           </li>
           <li className="view">
             <Button
-              style={{ 'font-family': 'Do Hyeon, sans-serif' }}
+              style={(()=>{
+                if(gender === 0){
+                  return {'font-family': 'Do Hyeon, sans-serif', 'background-color': 'lightgray'};
+                } else{
+                  return {'font-family': 'Do Hyeon, sans-serif'};
+                }
+              })()}
               onClick={() => {
                 setGender(0);
                 setUsers(1);
@@ -78,7 +91,13 @@ const SelfMeetingList = ({
           </li>
           <li className="view">
             <Button
-              style={{ 'font-family': 'Do Hyeon, sans-serif' }}
+              style={(()=>{
+                if(gender === 1){
+                  return {'font-family': 'Do Hyeon, sans-serif', 'background-color': 'lightgray'};
+                } else{
+                  return {'font-family': 'Do Hyeon, sans-serif'};
+                }
+              })()}
               onClick={() => {
                 setGender(1);
                 setUsers(1);
@@ -301,5 +320,6 @@ export default inject(({ selfMeetingUser }) => ({
   pagedUser: selfMeetingUser.pagedUser,
   setUserCount: selfMeetingUser.setUserCount,
   userCount: selfMeetingUser.userCount,
+  gender: selfMeetingUser.gender,
   setGender: selfMeetingUser.setGender,
 }))(observer(SelfMeetingList));

@@ -35,6 +35,7 @@ const SelfDatingList = ({
   pagedUser,
   setUserCount,
   userCount,
+  gender,
   setGender,
 }) => {
   const history = useHistory();
@@ -42,8 +43,7 @@ const SelfDatingList = ({
   // const [IsLoading, setIsLoading] = useState(false);
   const classes1 = useStyles1();
 
-  //meaningone.tistory.com/318 [의미 하나]
-  출처: https: useEffect(() => {
+    useEffect(() => {
     setGender(2);
     setUsers(1);
     //setUserCount();
@@ -55,9 +55,13 @@ const SelfDatingList = ({
         <ol className="viewlist">
           <li className="view">
             <Button
-              style={{
-                'font-family': 'Do Hyeon, sans-serif',
-              }}
+              style={(()=>{
+                if(gender === 2){
+                  return {'font-family': 'Do Hyeon, sans-serif', 'background-color': 'lightgray'};
+                } else{
+                  return {'font-family': 'Do Hyeon, sans-serif'};
+                }
+              })()}
               onClick={() => {
                 setGender(2);
                 setUsers(1);
@@ -69,9 +73,13 @@ const SelfDatingList = ({
           </li>
           <li className="view">
             <Button
-              style={{
-                'font-family': 'Do Hyeon, sans-serif',
-              }}
+              style={(()=>{
+                if(gender === 0){
+                  return {'font-family': 'Do Hyeon, sans-serif', 'background-color': 'lightgray'};
+                } else{
+                  return {'font-family': 'Do Hyeon, sans-serif'};
+                }
+              })()}
               onClick={() => {
                 setGender(0);
                 setUsers(1);
@@ -83,9 +91,13 @@ const SelfDatingList = ({
           </li>
           <li className="view">
             <Button
-              style={{
-                'font-family': 'Do Hyeon, sans-serif',
-              }}
+              style={(()=>{
+                if(gender === 1){
+                  return {'font-family': 'Do Hyeon, sans-serif', 'background-color': 'lightgray'};
+                } else{
+                  return {'font-family': 'Do Hyeon, sans-serif'};
+                }
+              })()}
               onClick={() => {
                 setGender(1);
                 setUsers(1);
@@ -337,5 +349,6 @@ export default inject(({ selfDatingUser }) => ({
   pagedUser: selfDatingUser.pagedUser,
   setUserCount: selfDatingUser.setUserCount,
   userCount: selfDatingUser.userCount,
+  gender: selfDatingUser.gender,
   setGender: selfDatingUser.setGender,
 }))(observer(SelfDatingList));
