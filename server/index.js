@@ -12,6 +12,11 @@ import api from './api';
 import jwtMiddleware from './lib/jwtMiddleware';
 import socketServer from './socket';
 
+import DatingUser from './models/selfDating';
+import MeetingUser from './models/selfMeeting';
+import daters from './json/datingUsers.json';
+import meeters from './json/meetingUsers.json';
+
 import fs from 'fs';
 import https from 'https';
 
@@ -23,10 +28,27 @@ mongoose
   })
   .then(() => {
     console.log('Connected to MongoDB');
+    
+    mongoose.connection.db.dropCollection('datingusers');
+    mongoose.connection.db.dropCollection('meetingusers');
+    DatingUser.insertMany(daters, function(err,result) {
+      if (err) {
+        console.error('1' + e);
+      };
+    });
+
+    MeetingUser.insertMany(meeters, function(err,result) {
+      if (err) {
+        console.error('2' + e);
+      };
+    });
   })
   .catch(e => {
-    console.error(e);
+    console.error('3' + e);
   });
+
+
+
 const app = new Koa();
 const router = new Router();
 
