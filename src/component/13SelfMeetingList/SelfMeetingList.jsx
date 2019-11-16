@@ -46,7 +46,7 @@ const SelfMeetingList = ({
     setGender(2);
     setUsers(1);
     //setUserCount();
-    console.log(pagedUser);
+    //console.log(pagedUser);
   }, []);
 
   return (
