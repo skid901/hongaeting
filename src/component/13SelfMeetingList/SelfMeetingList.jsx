@@ -108,7 +108,7 @@ const SelfMeetingList = ({
                 );
               }}
             >
-              홍미팅 신청하기
+              홍미팅 신청하기 (클릭)
             </Button>
           </div>
           <TextField
