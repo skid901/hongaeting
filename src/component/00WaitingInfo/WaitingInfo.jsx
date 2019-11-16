@@ -195,7 +195,10 @@ const WaitingInfo = () => {
               <FormControl fullWidth>
                 <InputLabel
                   htmlFor="id"
-                  style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
+                  style={{
+                    'font-family': 'Noto Sans KR, sans-serif',
+                    'text-align': 'center',
+                  }}
                 >
                   "인증문자를 여기에 입력해주세요"
                 </InputLabel>
@@ -208,7 +211,25 @@ const WaitingInfo = () => {
                   required
                 />
               </FormControl>
+              <Container className="signUpLink" maxWidth="sm">
+                <span
+                  style={{
+                    'font-family': 'Noto Sans KR, sans-serif',
+                  }}
+                >
+                  {`인증문자를 전달받지 못하셨나요?`}&nbsp;&nbsp;
+                  <a
+                    style={{
+                      'font-family': 'Noto Sans KR, sans-serif',
+                    }}
+                    href="https://open.kakao.com/o/sm9N2kBb"
+                  >
+                    문의하기
+                  </a>
+                </span>
+              </Container>
             </Container>
+
             <Container className="input button" maxWidth="sm">
               <Button
                 variant="contained"
@@ -224,34 +245,9 @@ const WaitingInfo = () => {
                 인증하고 홍개팅 참여하기
               </Button>
             </Container>
-            <Container className="signUpLink" maxWidth="sm">
-              <span
-                style={{
-                  'font-family': 'Noto Sans KR, sans-serif',
-                }}
-              >
-                {`인증문자를 전달받지 못하셨나요?`}&nbsp;&nbsp;
-                <a
-                  style={{
-                    'font-family': 'Noto Sans KR, sans-serif',
-                  }}
-                  href="https://open.kakao.com/o/sm9N2kBb"
-                >
-                  문의하기
-                </a>
-                <p
-                  style={{
-                    'font-family': 'Noto Sans KR, sans-serif',
-                    'text-decoration': 'underline',
-                  }}
-                >
-                  홍개팅을 신청한 학우만 참여할 수 있습니다.
-                </p>
-              </span>
-            </Container>
           </div>
           <Container>
-            <div style={{ 'text-align': 'center' }}>
+            <div style={{ 'text-align': 'center', 'margin-top': '7px' }}>
               <Button
                 className={classes1.root}
                 style={{
@@ -267,7 +263,7 @@ const WaitingInfo = () => {
                 //   history.push('/introductionform');
                 // }}
               >
-                셀프 소개팅 신청하기 (클릭)
+                셀프 소개팅 신청하기
               </Button>
             </div>
             <div style={{ 'text-align': 'center' }}>
@@ -283,9 +279,25 @@ const WaitingInfo = () => {
                   );
                 }}
               >
-                홍미팅 신청하기 (클릭)
+                홍미팅 신청하기
               </Button>
             </div>
+            <Container
+              className="signUpLink"
+              maxWidth="sm"
+              style={{ 'text-align': 'center' }}
+            >
+              <span
+                style={{
+                  'font-family': 'Noto Sans KR, sans-serif',
+                  'text-decoration': 'underline',
+                  'text-underline-position': 'under',
+                  'font-size': '13px',
+                }}
+              >
+                {`홍개팅을 신청한 학우만 참여할 수 있습니다.`}
+              </span>
+            </Container>
           </Container>
         </div>
       </ThemeProvider>
