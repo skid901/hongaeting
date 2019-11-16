@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { observer, MobXProviderContext } from 'mobx-react';
 import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
 
 import './WaitingInfo.scss';
 import Container from '@material-ui/core/Container';
@@ -107,6 +108,80 @@ const WaitingInfo = () => {
 
   return (
     <div>
+      <AppBar style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
+        <div className="global-navbar">
+          <nav className="navbar">
+            <div className="firstbar">
+              <div className="start">
+                <p
+                  className="logo"
+                  onClick={() => {
+                    history.push(`/`);
+                  }}
+                >
+                  홍개팅 시즌3
+                </p>
+                <div className="menu-wrapper">
+                  <ol className="menulist">
+                    <li className="selso">
+                      <div
+                        className="atag"
+                        onClick={() => {
+                          handleAlert(
+                            `안녕하세요 ^ㅇ^`,
+                            `인증문자를 먼저 입력해주세요!`,
+                          );
+                          // history.push(`/selfdatinglist`);
+                        }}
+                      >
+                        <span className="text1">#홍셀소</span>
+                      </div>
+                    </li>
+                    <li className="meeting">
+                      <div
+                        className="atag"
+                        onClick={() => {
+                          handleAlert(
+                            `반갑습니다 ^ㅇ^`,
+                            `인증문자를 먼저 입력해주세요!`,
+                          );
+                          // history.push(`/selfmeetinglist`);
+                        }}
+                      >
+                        <span className="text2">#홍미팅</span>
+                      </div>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+              {/* <div className="end">
+                      <IconButton
+                        color="inherit"
+                        onClick={() => {
+                          history.push(`/signin`);
+                        }}
+                      >
+                        <Button
+                          variant=""
+                          style={{
+                            'font-weight': 'bold',
+                            color: '#085f63',
+                            'border-color': '#085f63',
+                            'font-family': 'Noto Sans KR, sans-serif',
+                            'padding-top': '10px',
+                            'font-size': '14px',
+                            'letter-spacing': '-0.4px',
+                            'line-height': '1.43',
+                          }}
+                        >
+                          로그인
+                        </Button>
+                      </IconButton>
+                    </div> */}
+            </div>
+          </nav>
+        </div>
+      </AppBar>
       <ThemeProvider theme={mainTheme}>
         <div className="waitinginfo">
           <div className="blankspace">.</div>

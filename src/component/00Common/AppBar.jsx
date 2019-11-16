@@ -33,7 +33,7 @@ const CustomAppBar = ({ props }) => {
     alert.setTitle(`${_title}`);
     alert.setMessage(`${_message}`);
   };
-
+  console.log(history);
   const handleLogout = async event => {
     event.preventDefault();
     try {
