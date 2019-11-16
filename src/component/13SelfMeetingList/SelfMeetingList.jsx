@@ -101,7 +101,10 @@ const SelfMeetingList = ({
           <div style={{ 'text-align': 'center' }}>
             <Button
               className={classes1.root}
-              style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
+              style={{
+                'font-family': 'Noto Sans KR, sans-serif',
+                'font-weight': 'bold',
+              }}
               onClick={() => {
                 window.open(
                   'https://docs.google.com/forms/d/e/1FAIpQLSfgViP8n8uXJKWXxUxrh1RsBQ0rIQ-t7j3ow4bDphcrQ4ZHvg/viewform',
