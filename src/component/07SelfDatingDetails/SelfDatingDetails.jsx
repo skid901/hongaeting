@@ -159,7 +159,12 @@ const SelfDatingDetails = ({ selectedUser }) => {
                 </div>
                 <div className="Row">
                   <div className="Q">
-                    <ChatIcon style={{ 'margin-right': '8px' }} />
+                    <ChatIcon
+                      style={{
+                        'margin-right': '8px',
+                        'word-break': 'keep-all',
+                      }}
+                    />
                     대화하기(클릭)
                   </div>
                   {(() => {
