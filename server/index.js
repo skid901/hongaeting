@@ -29,21 +29,21 @@ mongoose
   .then(() => {
     console.log('Connected to MongoDB');
     
-    mongoose.connection.db.dropCollection('datingusers');
-    mongoose.connection.db.dropCollection('meetingusers');
-    DatingUser.insertMany(daters, function (err, result) {
-      if (err) {
-        console.log('1');
-        console.error('1' + e);
-      };
-    });
+    // mongoose.connection.db.dropCollection('datingusers');
+    // mongoose.connection.db.dropCollection('meetingusers');
+    // DatingUser.insertMany(daters, function (err, result) {
+    //   if (err) {
+    //     console.log('1');
+    //     console.error('1' + e);
+    //   };
+    // });
 
-    MeetingUser.insertMany(meeters, function (err, result) {
-      if (err) {
-        console.log('2');
-        console.error('2' + e);
-      };
-    });
+    // MeetingUser.insertMany(meeters, function (err, result) {
+    //   if (err) {
+    //     console.log('2');
+    //     console.error('2' + e);
+    //   };
+    // });
   })
   .catch(e => {
     console.log('3');
@@ -113,4 +113,19 @@ httpsServer.listen(process.env.SERVER_PORT_HTTPS, () => {
   console.log(
     `Listening to https://${process.env.SERVER_IP}:${process.env.SERVER_PORT_HTTPS}`,
   );
+  mongoose.connection.db.dropCollection('datingusers');
+    mongoose.connection.db.dropCollection('meetingusers');
+    DatingUser.insertMany(daters, function (err, result) {
+      if (err) {
+        console.log('1');
+        console.error('1' + e);
+      };
+    });
+
+    MeetingUser.insertMany(meeters, function (err, result) {
+      if (err) {
+        console.log('2');
+        console.error('2' + e);
+      };
+    });
 });
