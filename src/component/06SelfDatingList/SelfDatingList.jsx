@@ -114,7 +114,10 @@ const SelfDatingList = ({
           <div style={{ 'text-align': 'center' }}>
             <Button
               className={classes1.root}
-              style={{ 'font-family': 'Noto Sans KR, sans-serif' }}
+              style={{
+                'font-family': 'Noto Sans KR, sans-serif',
+                'font-weight': 'bold',
+              }}
               onClick={() => {
                 window.open(
                   'https://docs.google.com/forms/d/e/1FAIpQLSeoMtZdUinyboZnQf_vl69-Zl7912coTedQnlaWor8cvPjZKQ/viewform',
