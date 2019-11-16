@@ -21,7 +21,7 @@ const SelfMeetingDetails = ({ selectedUser }) => {
             {`${selectedUser.gender}` == '남학우' ? <p>🤵</p> : <p>👧</p>}
           </div>
           <div className="id">
-            {`(${selectedUser.number})${selectedUser.gender}  ${selectedUser.nickname}`}
+            {`(${selectedUser.number}) ${selectedUser.gender}  ${selectedUser.nickname}`}
           </div>
           <div className="Out">
             <div className="out">
@@ -30,34 +30,139 @@ const SelfMeetingDetails = ({ selectedUser }) => {
                   <div className="Q">나이</div>
                   <div className="A">
                     {selectedUser.age1},{` `}
-                    {selectedUser.age2},{` `}
-                    {selectedUser.age3},{selectedUser.age4}
+                    {selectedUser.age2}
+                    {(()=>{
+                      if(selectedUser.age3){
+                        return `, ${selectedUser.age3}`
+                      }
+                    })()}
+                    {(()=>{
+                      if(selectedUser.age4){
+                        return `, ${selectedUser.age4}`
+                      }
+                    })()}
                   </div>
                 </div>
                 <div className="Row">
                   <div className="Q">학과</div>
                   <div className="A" style={{ 'font-size': '14px' }}>
                     {selectedUser.collage1},{` `}
-                    {selectedUser.collage2},{` `}
-                    {selectedUser.collage3},{` `}
-                    {selectedUser.collage4}
+                    {selectedUser.collage2}
+                    {(()=>{
+                      if(selectedUser.collage3){
+                        return `, ${selectedUser.collage3}`
+                      }
+                    })()}
+                    {(()=>{
+                      if(selectedUser.collage4){
+                        return `, ${selectedUser.collage4}`
+                      }
+                    })()}
                   </div>
                 </div>
                 <div className="Row">
                   <div className="Q">해시태그</div>
                   <div className="A">
-                    <Badge
-                      keyword={selectedUser.tag.toString().split('#')[1]}
-                      color="a"
-                    />
-                    <Badge
-                      keyword={selectedUser.tag.toString().split('#')[2]}
-                      color="b"
-                    />
-                    <Badge
-                      keyword={selectedUser.tag.toString().split('#')[3]}
-                      color="c"
-                    />
+                    {(() => {
+                      if (selectedUser.tag.toString().split('#')[1]) {
+                        return (
+                          <Badge
+                            keyword={selectedUser.tag.toString().split('#')[1]}
+                            color="a"
+                          />
+                        )
+                      }
+                    })()}
+                    {(() => {
+                      if (selectedUser.tag.toString().split('#')[2]) {
+                        return (
+                          <Badge
+                            keyword={selectedUser.tag.toString().split('#')[2]}
+                            color="b"
+                          />
+                        )
+                      }
+                    })()}
+                    {(() => {
+                      if (selectedUser.tag.toString().split('#')[3]) {
+                        return (
+                          <Badge
+                            keyword={selectedUser.tag.toString().split('#')[3]}
+                            color="c"
+                          />
+                        )
+                      }
+                    })()}
+                    {(() => {
+                      if (selectedUser.tag.toString().split('#')[4]) {
+                        return (
+                          <Badge
+                            keyword={selectedUser.tag.toString().split('#')[4]}
+                            color="d"
+                          />
+                        )
+                      }
+                    })()}
+                    {(() => {
+                      if (selectedUser.tag.toString().split('#')[5]) {
+                        return (
+                          <Badge
+                            keyword={selectedUser.tag.toString().split('#')[5]}
+                            color="e"
+                          />
+                        )
+                      }
+                    })()}
+                    {(() => {
+                      if (selectedUser.tag.toString().split('#')[6]) {
+                        return (
+                          <Badge
+                            keyword={selectedUser.tag.toString().split('#')[6]}
+                            color="a"
+                          />
+                        )
+                      }
+                    })()}
+                    {(() => {
+                      if (selectedUser.tag.toString().split('#')[7]) {
+                        return (
+                          <Badge
+                            keyword={selectedUser.tag.toString().split('#')[7]}
+                            color="b"
+                          />
+                        )
+                      }
+                    })()}
+                    {(() => {
+                      if (selectedUser.tag.toString().split('#')[8]) {
+                        return (
+                          <Badge
+                            keyword={selectedUser.tag.toString().split('#')[8]}
+                            color="c"
+                          />
+                        )
+                      }
+                    })()}
+                    {(() => {
+                      if (selectedUser.tag.toString().split('#')[9]) {
+                        return (
+                          <Badge
+                            keyword={selectedUser.tag.toString().split('#')[9]}
+                            color="d"
+                          />
+                        )
+                      }
+                    })()}
+                    {(() => {
+                      if (selectedUser.tag.toString().split('#')[10]) {
+                        return (
+                          <Badge
+                            keyword={selectedUser.tag.toString().split('#')[10]}
+                            color="e"
+                          />
+                        )
+                      }
+                    })()}
                   </div>
                 </div>
                 <div className="Row">

@@ -31,19 +31,22 @@ mongoose
     
     mongoose.connection.db.dropCollection('datingusers');
     mongoose.connection.db.dropCollection('meetingusers');
-    DatingUser.insertMany(daters, function(err,result) {
+    DatingUser.insertMany(daters, function (err, result) {
       if (err) {
+        console.log('1');
         console.error('1' + e);
       };
     });
 
-    MeetingUser.insertMany(meeters, function(err,result) {
+    MeetingUser.insertMany(meeters, function (err, result) {
       if (err) {
+        console.log('2');
         console.error('2' + e);
       };
     });
   })
   .catch(e => {
+    console.log('3');
     console.error('3' + e);
   });
 
