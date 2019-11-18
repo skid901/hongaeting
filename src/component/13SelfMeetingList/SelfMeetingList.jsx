@@ -43,7 +43,7 @@ const SelfMeetingList = ({
   const [searchKeyword, setSearchKeyword] = useState('');
   const classes1 = useStyles1();
   useEffect(() => {
-    setGender(2);
+    setGender(gender);
     setUsers(1);
     //setUserCount();
     //console.log(pagedUser);
