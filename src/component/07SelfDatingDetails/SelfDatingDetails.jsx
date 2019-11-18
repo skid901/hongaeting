@@ -144,25 +144,20 @@ const SelfDatingDetails = ({ selectedUser }) => {
                     <LooksIcon style={{ 'margin-right': '8px' }} />
                     종교
                   </div>
-                  <div className="A" style={{ 'font-weight': 'bold' }}>
-                    {selectedUser.religion}
-                  </div>
+                  <div className="A">{selectedUser.religion}</div>
                 </div>
                 <div className="Row">
                   <div className="Q">
                     <SmokeFreeIcon style={{ 'margin-right': '8px' }} />
                     흡연여부
                   </div>
-                  <div className="A" style={{ 'font-weight': 'bold' }}>
-                    {selectedUser.smoke}
-                  </div>
+                  <div className="A">{selectedUser.smoke}</div>
                 </div>
                 <div className="Row">
-                  <div className="Q">
+                  <div className="Q" style={{ 'word-break': 'keep-all' }}>
                     <ChatIcon
                       style={{
                         'margin-right': '8px',
-                        'word-break': 'keep-all',
                       }}
                     />
                     대화하기(클릭)

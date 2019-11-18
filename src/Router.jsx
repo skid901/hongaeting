@@ -26,7 +26,7 @@ import WaitingInfo from './component/00WaitingInfo/WaitingInfo';
 
 const Router = () => (
   <Switch>
-    <Route exact path="/" component={SelfDatingList} />
+    <Route exact path="/" component={WaitingInfo} />
     {/* <Route path="/signup/form" component={SignUp} />
     <Route path="/signup/summit" component={Summit} />
     <Route path="/signup/auth/:authNum" component={Auth} />
