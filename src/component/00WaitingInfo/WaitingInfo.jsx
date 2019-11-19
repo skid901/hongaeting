@@ -184,13 +184,22 @@ const WaitingInfo = () => {
       </AppBar>
       <ThemeProvider theme={mainTheme}>
         <div className="waitinginfo">
-          <div className="blankspace">.</div>
-          <div className="SignIn">
-            {/* <div className="title" maxWidth="sm">
-            Quiz. " 홍개팅 신청확인을 위한 퀴즈입니다."
+          .
+          <div className="blankspace">
+            대학생의 로망 CC라이프,
             <br />
-            Q. 카카오톡에서 받은 인증문자를 입력해주세요!
-          </div> */}
+            <span className="season3" style={{ 'font-weight': 'bold' }}>
+              홍개팅시즌3
+            </span>
+            에서 만들어봐요!
+          </div>
+          <br />
+          <div className="subtitle">
+            전달받으신 인증문자를 입력해주시면 <br />
+            <span className="bold">셀프 소개팅</span>과
+            <span className="bold">홍미팅</span>을 볼 수 있어요!
+          </div>
+          <div className="SignIn">
             <Container className="input" maxWidth="sm">
               <FormControl fullWidth>
                 <InputLabel
@@ -200,7 +209,7 @@ const WaitingInfo = () => {
                     'text-align': 'center',
                   }}
                 >
-                  "인증문자를 여기에 입력해주세요"
+                  인증문자를 여기에 입력해주세요
                 </InputLabel>
                 <Input
                   type="email"
@@ -212,7 +221,7 @@ const WaitingInfo = () => {
                 />
               </FormControl>
               <Container className="signUpLink" maxWidth="sm">
-                <span
+                {/* <span
                   style={{
                     'font-family': 'Noto Sans KR, sans-serif',
                   }}
@@ -226,77 +235,43 @@ const WaitingInfo = () => {
                   >
                     문의하기
                   </a>
-                </span>
+                </span> */}
               </Container>
             </Container>
 
             <Container className="input button" maxWidth="sm">
               <Button
+                size="large"
                 variant="contained"
                 style={{
-                  'background-color': 'white',
-                  color: 'black',
-                  'font-weight': 'bold',
+                  'background-color': '#D92B6C',
+                  color: 'white',
                   'font-family': 'Noto Sans KR, sans-serif',
                 }}
                 fullWidth
                 onClick={handleClick}
               >
-                인증하고 홍개팅 참여하기
+                참여하기
               </Button>
             </Container>
           </div>
           <Container>
-            <div style={{ 'text-align': 'center', 'margin-top': '7px' }}>
-              <Button
-                className={classes1.root}
-                style={{
-                  'font-family': 'Noto Sans KR, sans-serif',
-                  'font-weight': 'bold',
-                }}
-                onClick={() => {
-                  window.open(
-                    'https://docs.google.com/forms/d/e/1FAIpQLSeoMtZdUinyboZnQf_vl69-Zl7912coTedQnlaWor8cvPjZKQ/viewform',
-                  );
-                }}
-                // onClick={() => {
-                //   history.push('/introductionform');
-                // }}
-              >
-                셀프 소개팅 신청하기
-              </Button>
-            </div>
-            <div style={{ 'text-align': 'center' }}>
-              <Button
-                className={classes1.root}
-                style={{
-                  'font-family': 'Noto Sans KR, sans-serif',
-                  'font-weight': 'bold',
-                }}
-                onClick={() => {
-                  window.open(
-                    'https://docs.google.com/forms/d/e/1FAIpQLSfgViP8n8uXJKWXxUxrh1RsBQ0rIQ-t7j3ow4bDphcrQ4ZHvg/viewform',
-                  );
-                }}
-              >
-                홍미팅 신청하기
-              </Button>
-            </div>
             <Container
               className="signUpLink"
               maxWidth="sm"
               style={{ 'text-align': 'center' }}
             >
-              <span
+              <a
                 style={{
                   'font-family': 'Noto Sans KR, sans-serif',
                   'text-decoration': 'underline',
                   'text-underline-position': 'under',
-                  'font-size': '13px',
+                  'font-size': '11px',
                 }}
+                href="https://docs.google.com/forms/d/e/1FAIpQLSeoMtZdUinyboZnQf_vl69-Zl7912coTedQnlaWor8cvPjZKQ/viewform"
               >
-                {`홍개팅을 신청한 학우만 참여할 수 있습니다.`}
-              </span>
+                {`홍개팅을 신청하시면 셀소&홍미팅 정보를 볼 수 있어요!`}
+              </a>
             </Container>
           </Container>
         </div>
@@ -304,25 +279,5 @@ const WaitingInfo = () => {
     </div>
   );
 };
-// if (message === `noEmail`) {
-//   handleAlert(
-//     `이메일 오류`,
-//     `해당 이메일로 가입된 계정이 없습니다.\n이메일을 다시 입력해주세요.`,
-//   );
-//   return;
-// }
-// if (message === `invalidPassword`) {
-//   handleAlert(
-//     `패스워드 오류`,
-//     `잘못된 패스워드입니다.\n패스워드를 다시 입력해주세요.`,
-//   );
-//   return;
-// }
-// if (message === `noAuth`) {
-//   handleAlert(
-//     `홍대 이메일 미인증`,
-//     `아직 인증되지 않은 계정입니다.\n회원가입 시 입력한 홍대 이메일을 확인해주세요.`,
-//   );
-//   return;
-// }
+
 export default WaitingInfo;

@@ -1,9 +1,9 @@
 .waitinginfo {
   position: relative;
-  background-image: url('/images/hong_2.png');
+  // background-image: url('/images/hong_2.png');
   background-position: center;
   background-size: cover;
-  max-width: 530px;
+  max-width: 720px;
   background-repeat: no-repeat;
   min-height: 750px;
   max-height: 4792px;
@@ -16,7 +16,30 @@
   top: 0;
   left: 0;
 }
+
 .blankspace {
-  width: 300px;
-  height: 250px;
+  margin-top: 50px;
+  margin-left: 30px;
+  font-family: 'Noto Sans KR, sans-serif';
+  font-size: 22px;
+  text-align: left;
+}
+
+.subtitle {
+  color: #525252;
+  font-family: 'Noto Sans KR, sans-serif';
+  font-size: 12px;
+  text-align: left;
+  margin-left: 30px;
+}
+
+.bold {
+  color: #525252;
+  font-family: 'Noto Sans KR, sans-serif';
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.SignIn {
+  margin-top: 50px;
 }
