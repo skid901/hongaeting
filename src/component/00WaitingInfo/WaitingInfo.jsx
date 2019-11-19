@@ -222,7 +222,7 @@ const WaitingInfo = () => {
                     style={{
                       'font-family': 'Noto Sans KR, sans-serif',
                     }}
-                    href="https://open.kakao.com/o/sm9N2kBb"
+                    href="http://pf.kakao.com/_xjeFmT"
                   >
                     문의하기
                   </a>
