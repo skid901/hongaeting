@@ -55,11 +55,14 @@ const SelfMeetingList = ({
         <ol className="viewlist">
           <li className="view">
             <Button
-              style={(()=>{
-                if(gender === 2){
-                  return {'font-family': 'Do Hyeon, sans-serif', 'background-color': 'lightgray'};
-                } else{
-                  return {'font-family': 'Do Hyeon, sans-serif'};
+              style={(() => {
+                if (gender === 2) {
+                  return {
+                    'font-family': 'Do Hyeon, sans-serif',
+                    'background-color': 'lightgray',
+                  };
+                } else {
+                  return { 'font-family': 'Do Hyeon, sans-serif' };
                 }
               })()}
               onClick={() => {
@@ -73,11 +76,14 @@ const SelfMeetingList = ({
           </li>
           <li className="view">
             <Button
-              style={(()=>{
-                if(gender === 0){
-                  return {'font-family': 'Do Hyeon, sans-serif', 'background-color': 'lightgray'};
-                } else{
-                  return {'font-family': 'Do Hyeon, sans-serif'};
+              style={(() => {
+                if (gender === 0) {
+                  return {
+                    'font-family': 'Do Hyeon, sans-serif',
+                    'background-color': 'lightgray',
+                  };
+                } else {
+                  return { 'font-family': 'Do Hyeon, sans-serif' };
                 }
               })()}
               onClick={() => {
@@ -91,11 +97,14 @@ const SelfMeetingList = ({
           </li>
           <li className="view">
             <Button
-              style={(()=>{
-                if(gender === 1){
-                  return {'font-family': 'Do Hyeon, sans-serif', 'background-color': 'lightgray'};
-                } else{
-                  return {'font-family': 'Do Hyeon, sans-serif'};
+              style={(() => {
+                if (gender === 1) {
+                  return {
+                    'font-family': 'Do Hyeon, sans-serif',
+                    'background-color': 'lightgray',
+                  };
+                } else {
+                  return { 'font-family': 'Do Hyeon, sans-serif' };
                 }
               })()}
               onClick={() => {
@@ -130,7 +139,7 @@ const SelfMeetingList = ({
                 );
               }}
             >
-              홍미팅 신청하기 (클릭)
+              홍미팅 등록하기
             </Button>
           </div>
           <TextField

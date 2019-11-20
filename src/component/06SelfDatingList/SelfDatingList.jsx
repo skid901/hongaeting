@@ -43,7 +43,7 @@ const SelfDatingList = ({
   // const [IsLoading, setIsLoading] = useState(false);
   const classes1 = useStyles1();
 
-    useEffect(() => {
+  useEffect(() => {
     setGender(gender);
     setUsers(1);
     //setUserCount();
@@ -55,11 +55,14 @@ const SelfDatingList = ({
         <ol className="viewlist">
           <li className="view">
             <Button
-              style={(()=>{
-                if(gender === 2){
-                  return {'font-family': 'Do Hyeon, sans-serif', 'background-color': 'lightgray'};
-                } else{
-                  return {'font-family': 'Do Hyeon, sans-serif'};
+              style={(() => {
+                if (gender === 2) {
+                  return {
+                    'font-family': 'Do Hyeon, sans-serif',
+                    'background-color': 'lightgray',
+                  };
+                } else {
+                  return { 'font-family': 'Do Hyeon, sans-serif' };
                 }
               })()}
               onClick={() => {
@@ -73,11 +76,14 @@ const SelfDatingList = ({
           </li>
           <li className="view">
             <Button
-              style={(()=>{
-                if(gender === 0){
-                  return {'font-family': 'Do Hyeon, sans-serif', 'background-color': 'lightgray'};
-                } else{
-                  return {'font-family': 'Do Hyeon, sans-serif'};
+              style={(() => {
+                if (gender === 0) {
+                  return {
+                    'font-family': 'Do Hyeon, sans-serif',
+                    'background-color': 'lightgray',
+                  };
+                } else {
+                  return { 'font-family': 'Do Hyeon, sans-serif' };
                 }
               })()}
               onClick={() => {
@@ -91,11 +97,14 @@ const SelfDatingList = ({
           </li>
           <li className="view">
             <Button
-              style={(()=>{
-                if(gender === 1){
-                  return {'font-family': 'Do Hyeon, sans-serif', 'background-color': 'lightgray'};
-                } else{
-                  return {'font-family': 'Do Hyeon, sans-serif'};
+              style={(() => {
+                if (gender === 1) {
+                  return {
+                    'font-family': 'Do Hyeon, sans-serif',
+                    'background-color': 'lightgray',
+                  };
+                } else {
+                  return { 'font-family': 'Do Hyeon, sans-serif' };
                 }
               })()}
               onClick={() => {
@@ -139,7 +148,7 @@ const SelfDatingList = ({
               //   history.push('/introductionform');
               // }}
             >
-              셀프 소개팅 신청하기 (클릭)
+              셀프 소개팅 등록하기
             </Button>
           </div>
           <TextField

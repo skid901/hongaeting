@@ -70,7 +70,7 @@ const WaitingInfo = () => {
         console.log('correct');
         handleAlert(
           `환영합니다.`,
-          `상대방에게 꼭 예의를 지켜주세요!! 우리 같이 홍개팅 문화를 만들어나가보아요`,
+          `1:1 소개팅만 신청하셨다면, 셀프 소개팅과 홍미팅을 등록해보세요! 여러 학우들의 연락을 받으실 수 있갑니다.`,
         );
         history.push('./selfdatinglist');
         // ctx.status = 200;
@@ -184,20 +184,19 @@ const WaitingInfo = () => {
       </AppBar>
       <ThemeProvider theme={mainTheme}>
         <div className="waitinginfo">
-          .
           <div className="blankspace">
-            대학생의 로망 CC라이프,
+            대학생의 로망 CC 라이프,
             <br />
             <span className="season3" style={{ 'font-weight': 'bold' }}>
-              홍개팅시즌3
+              홍개팅 시즌3
             </span>
-            에서 만들어봐요!
+            에서 만들어보아요!
           </div>
           <br />
           <div className="subtitle">
             전달받으신 인증문자를 입력해주시면 <br />
             <span className="bold">셀프 소개팅</span>과
-            <span className="bold">홍미팅</span>을 볼 수 있어요!
+            <span className="bold"> 홍미팅</span>을 보실 수 있어요!
           </div>
           <div className="SignIn">
             <Container className="input" maxWidth="sm">
@@ -270,7 +269,7 @@ const WaitingInfo = () => {
                 }}
                 href="https://docs.google.com/forms/d/e/1FAIpQLSeoMtZdUinyboZnQf_vl69-Zl7912coTedQnlaWor8cvPjZKQ/viewform"
               >
-                {`홍개팅을 신청하시면 셀소&홍미팅 정보를 볼 수 있어요!`}
+                {`홍개팅을 신청하시면 인증문자를 알려드려요.`}
               </a>
             </Container>
           </Container>
