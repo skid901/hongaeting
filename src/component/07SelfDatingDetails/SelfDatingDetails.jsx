@@ -306,7 +306,7 @@ const SelfDatingDetails = ({ selectedUser }) => {
                 {eval("`" + selectedUser.idealtype.replace("\n", `\n`) + "`")}
               </Typography> */}
               <div style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
-                {selectedUser.idealtype}
+                {selectedUser.idealtype.replace("\n", "\\n")}
               </div>
             </ExpansionPanelDetails>
           </ExpansionPanel>
