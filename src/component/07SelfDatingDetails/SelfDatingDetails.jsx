@@ -300,7 +300,7 @@ const SelfDatingDetails = ({ selectedUser }) => {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
-                {selectedUser.idealtype.replace('\n', '\n')}
+                {selectedUser.idealtype.replace('\n', '\\r\\n')}
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
