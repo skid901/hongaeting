@@ -217,7 +217,7 @@ const SelfDatingDetails = ({ selectedUser }) => {
         </div>
         <div className="Expansion" onClick={()=>{
           console.log(selectedUser.idealtype);
-          console.log(selectedUser.idealtype.indexof('\n'));
+          console.log(selectedUser.idealtype.indexOf('\n'));
           }}>
           <ExpansionPanel defaultExpanded="true">
             <ExpansionPanelSummary
@@ -303,7 +303,7 @@ const SelfDatingDetails = ({ selectedUser }) => {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
-                {eval("`" + selectedUser.idealtype + "`")}
+                {eval("`" + "${selectedUser.idealtype}" + "`")}
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
