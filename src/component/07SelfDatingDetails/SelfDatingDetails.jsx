@@ -215,7 +215,7 @@ const SelfDatingDetails = ({ selectedUser }) => {
             </div>
           </div>
         </div>
-        <div className="Expansion">
+        <div className="Expansion" onClick={()=>console.log(selectedUser.idealtype)}>
           <ExpansionPanel defaultExpanded="true">
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon />}
@@ -301,9 +301,6 @@ const SelfDatingDetails = ({ selectedUser }) => {
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
                 {selectedUser.idealtype}
-                {
-                  ()=>console.log(selectedUser.idealtype)
-                }
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
