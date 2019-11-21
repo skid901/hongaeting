@@ -229,7 +229,13 @@ const SelfDatingDetails = ({ selectedUser }) => {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
-                {selectedUser.appearance}
+                {selectedUser.appearance.split("\n").map((item, key) => {
+                  return(
+                    <p style = {{ 'font-family': 'Noto Sans KR, sans-serif' }}>
+                      {item}
+                    </p>
+                  )
+                })}
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
@@ -251,7 +257,13 @@ const SelfDatingDetails = ({ selectedUser }) => {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
-                {selectedUser.personality}
+                {selectedUser.personality.split("\n").map((item, key) => {
+                  return(
+                    <p style = {{ 'font-family': 'Noto Sans KR, sans-serif' }}>
+                      {item}
+                    </p>
+                  )
+                })}
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
@@ -273,7 +285,13 @@ const SelfDatingDetails = ({ selectedUser }) => {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
-                {selectedUser.hobby}
+                {selectedUser.hobby.split("\n").map((item, key) => {
+                  return(
+                    <p style = {{ 'font-family': 'Noto Sans KR, sans-serif' }}>
+                      {item}
+                    </p>
+                  )
+                })}
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
