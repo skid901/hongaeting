@@ -295,7 +295,13 @@ const SelfDatingDetails = ({ selectedUser }) => {
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
-                {selectedUser.idealtype}
+                {selectedUser.idealtype.split("\n").map((item, key) => {
+                  return(
+                    <p style = {{ 'font-family': 'Noto Sans KR, sans-serif' }}>
+                      {item}
+                    </p>
+                  )
+                })}
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
