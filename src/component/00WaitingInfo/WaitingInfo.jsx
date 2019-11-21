@@ -70,8 +70,10 @@ const WaitingInfo = () => {
         console.log('correct');
         handleAlert(
           `환영합니다.`,
-          `같은 홍대 학우들간의 
-          배려와 예의 부탁드려요.`,
+          `같은 홍대 학우들에게 친절하며 따뜻하게
+          대하는 좋은 사람이 되어주세요.
+          대학 생활을 하면서 서로에게 행복하고
+          즐거운 기억으로 남을 수 있도록 해주세요.`,
         );
         history.push('./selfdatinglist');
         // ctx.status = 200;
