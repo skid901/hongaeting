@@ -70,7 +70,8 @@ const WaitingInfo = () => {
         console.log('correct');
         handleAlert(
           `환영합니다.`,
-          `1:1 소개팅만 신청하셨다면, 셀프 소개팅과 홍미팅을 등록해보세요! 여러 학우들의 연락을 받으실 수 있답니다.`,
+          `같은 홍대 학우들간의 
+          배려와 예의 부탁드려요.`,
         );
         history.push('./selfdatinglist');
         // ctx.status = 200;
