@@ -260,7 +260,7 @@ const SelfMeetingDetails = ({ selectedUser }) => {
               </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <Typgraphy style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
+              <Typography style={{ 'font-family': 'Noto Sans KR, sans-serif' }}>
                 {selectedUser.personality.split("\n").map((item, key) => {
                   return(
                     <p style = {{ 'font-family': 'Noto Sans KR, sans-serif' }}>
