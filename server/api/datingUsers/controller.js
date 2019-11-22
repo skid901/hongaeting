@@ -35,8 +35,8 @@ export const create = async (ctx) => {
 }
 */
 export const create = async (ctx) => {
+  let {id} = ctx.request.body;
   const {
-    id,
     time,
     email,
     address,
@@ -63,7 +63,7 @@ export const create = async (ctx) => {
   } = ctx.request.body;
   
   if(email === '' || address === '' || gender === '' || age === '' || collage === ''){
-    
+    id = id.toString();
     try{
       if (self) {DatingUser.update({id : id},{self : self}); console.log("1");};
       if (same) {DatingUser.update({id:`${id}`},{same : same}); console.log("1");};
