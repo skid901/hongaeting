@@ -65,23 +65,23 @@ export const create = async (ctx) => {
   if(email === '' || address === '' || gender === '' || age === '' || collage === ''){
     id = id.toString();
     try{
-      if (self) {await DatingUser.updateOne({id : id},{self : self}); console.log("1");} else{console.log("2");}
-      if (same) {await DatingUser.updateOne({id: id },{same : same}); console.log("1");} else{console.log("2");}
-      if (appearance) {await DatingUser.updateOne({id : id},{appearance : appearance}); console.log("1");} else{console.log("2");}
-      if (personality) {await DatingUser.updateOne({id: id},{personality : personality}); console.log("1");}else{console.log("2");}
-      if (hobby) {await DatingUser.updateOne({id : id},{hobby : hobby}); console.log("1");}else{console.log("2");}
-      if (religion) {await DatingUser.updateOne({id: id},{religion : religion}); console.log("1");}else{console.log("2");}
-      if (smoke) {await DatingUser.updateOne({id : id},{smoke : smoke}); console.log("1");}else{console.log("2");}
-      if (idealtype) {await DatingUser.updateOne({id: id},{idealtype : idealtype}); console.log("1");}else{console.log("2");}
-      if (chatlink) {await DatingUser.updateOne({id : id},{chatlink : chatlink}); console.log("1");}else{console.log("2");}
-      if (tag) {await DatingUser.updateOne({id: id},{tag : tag}); console.log("1");}else{console.log("2");}
-      if (keysentence) {await DatingUser.updateOne({id : id},{keysentence : keysentence}); console.log("1");}else{console.log("2");}
-      if (appearance2) {await DatingUser.updateOne({id: id},{appearance2 : appearance2}); console.log("1");}else{console.log("2");}
-      if (personality2) {await DatingUser.updateOne({id : id},{personality2 : personality2}); console.log("1");}else{console.log("2");}
-      if (hobby2) {await DatingUser.updateOne({id: id},{hobby2 : hobby2}); console.log("1");}else{console.log("2");}
-      if (idealtype2) {await DatingUser.updateOne({id : id},{idealtype2 : idealtype2}); console.log("1");}else{console.log("2");}
-      if (religion2) {await DatingUser.updateOne({id: id},{religion2 : religion2}); console.log("1");}else{console.log("2");}
-      if (smoke2) {await DatingUser.updateOne({id : id},{smoke2 : smoke2}); console.log("1");}else{console.log("2");}
+      if (self) {await DatingUser.update({id : id},{self : self}); console.log("1");} else{console.log("2");}
+      if (same) {await DatingUser.update({id: id },{same : same}); console.log("1");} else{console.log("2");}
+      if (appearance) {await DatingUser.update({id : id},{appearance : appearance}); console.log("1");} else{console.log("2");}
+      if (personality) {await DatingUser.update({id: id},{personality : personality}); console.log("1");}else{console.log("2");}
+      if (hobby) {await DatingUser.update({id : id},{hobby : hobby}); console.log("1");}else{console.log("2");}
+      if (religion) {await DatingUser.update({id: id},{religion : religion}); console.log("1");}else{console.log("2");}
+      if (smoke) {await DatingUser.update({id : id},{smoke : smoke}); console.log("1");}else{console.log("2");}
+      if (idealtype) {await DatingUser.update({id: id},{idealtype : idealtype}); console.log("1");}else{console.log("2");}
+      if (chatlink) {await DatingUser.update({id : id},{chatlink : chatlink}); console.log("1");}else{console.log("2");}
+      if (tag) {await DatingUser.update({id: id},{tag : tag}); console.log("1");}else{console.log("2");}
+      if (keysentence) {await DatingUser.update({id : id},{keysentence : keysentence}); console.log("1");}else{console.log("2");}
+      if (appearance2) {await DatingUser.update({id: id},{appearance2 : appearance2}); console.log("1");}else{console.log("2");}
+      if (personality2) {await DatingUser.update({id : id},{personality2 : personality2}); console.log("1");}else{console.log("2");}
+      if (hobby2) {await DatingUser.update({id: id},{hobby2 : hobby2}); console.log("1");}else{console.log("2");}
+      if (idealtype2) {await DatingUser.update({id : id},{idealtype2 : idealtype2}); console.log("1");}else{console.log("2");}
+      if (religion2) {await DatingUser.update({id: id},{religion2 : religion2}); console.log("1");}else{console.log("2");}
+      if (smoke2) {await DatingUser.update({id : id},{smoke2 : smoke2}); console.log("1");}else{console.log("2");}
      
       console.log(`${id} 수정완료`);
     } catch (e){
