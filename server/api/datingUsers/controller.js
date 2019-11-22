@@ -65,20 +65,20 @@ export const create = async (ctx) => {
   if(email === '' || address === '' || gender === '' || age === '' || collage === ''){
     id = id.toString();
     try{
-      appearance ? DatingUser.update({id:`${id}`},{appearance : appearance}) : ;
-      personality ? DatingUser.update({id:`${id}`},{personality : personality}) : ;
-      hobby ? DatingUser.update({id:`${id}`},{hobby : hobby}) : ;
-      religion ? DatingUser.update({id:`${id}`},{religion : religion}) : ;
-      idealtype ? DatingUser.update({id:`${id}`},{idealtype : idealtype}) : ;
-      chatlink ? DatingUser.update({id:`${id}`},{chatlink : chatlink}) : ;
-      tag ? DatingUser.update({id:`${id}`},{tag : tag}) : ;
-      keysentence ? DatingUser.update({id:`${id}`},{keysentence : keysentence}) : ;
-      appearance2 ? DatingUser.update({id:`${id}`},{appearance2 : appearance2}) : ;
-      personality2 ? DatingUser.update({id:`${id}`},{personality2 : personality2}) : ;
-      hobby2 ? DatingUser.update({id:`${id}`},{hobby2 : hobby2}) : ;
-      idealtype2 ? DatingUser.update({id:`${id}`},{idealtype2 : idealtype2}) : ;
-      religion2 ? DatingUser.update({id:`${id}`},{religion2 : religion2}) : ;
-      smoke2 ? DatingUser.update({id:`${id}`},{smoke2 : smoke2}) : ;
+      appearance ? DatingUser.update({id:`${id}`},{appearance : appearance}) : 
+      personality ? DatingUser.update({id:`${id}`},{personality : personality}) : 
+      hobby ? DatingUser.update({id:`${id}`},{hobby : hobby}) : 
+      religion ? DatingUser.update({id:`${id}`},{religion : religion}) : 
+      idealtype ? DatingUser.update({id:`${id}`},{idealtype : idealtype}) : 
+      chatlink ? DatingUser.update({id:`${id}`},{chatlink : chatlink}) : 
+      tag ? DatingUser.update({id:`${id}`},{tag : tag}) : 
+      keysentence ? DatingUser.update({id:`${id}`},{keysentence : keysentence}) : 
+      appearance2 ? DatingUser.update({id:`${id}`},{appearance2 : appearance2}) : 
+      personality2 ? DatingUser.update({id:`${id}`},{personality2 : personality2}) : 
+      hobby2 ? DatingUser.update({id:`${id}`},{hobby2 : hobby2}) : 
+      idealtype2 ? DatingUser.update({id:`${id}`},{idealtype2 : idealtype2}) : 
+      religion2 ? DatingUser.update({id:`${id}`},{religion2 : religion2}) : 
+      smoke2 ? DatingUser.update({id:`${id}`},{smoke2 : smoke2}) : 
       console.log(`${id} 수정완료`);
     } catch (e){
         return ctx.throw(500, e);
