@@ -61,15 +61,15 @@ export const create = async (ctx) => {
     religion2,
     smoke2
   } = ctx.request.body;
-  
+  console.log(`email${email}address${address}gender${gender}age${age}collage${collage}`);
   if(email === '' || address === '' || gender === '' || age === '' || collage === ''){
     id = id.toString();
     try{
       if (self) {DatingUser.update({id : id},{self : self}); console.log("1");} else{console.log("2");}
-      if (same) {DatingUser.update({id:`${id}`},{same : same}); console.log("1");} else{console.log("2");}
+      if (same) {DatingUser.update({id: id },{same : same}); console.log("1");} else{console.log("2");}
       if (appearance) {DatingUser.update({id : id},{appearance : appearance}); console.log("1");} else{console.log("2");}
-      if (personality) {DatingUser.update({id:`${id}`},{personality : personality}); console.log("1");}else{console.log("2");}
-      if (hobby) {DatingUser.update({id : id},{hobby : hobby}); console.log("1");}else{console.log("2");}
+      if (personality) {DatingUser.update({id:id},{personality : personality}); console.log("1");}else{console.log("2");}
+      if (hobby) {DatingUser.update({id : `${id}`},{hobby : hobby}); console.log("1");}else{console.log("2");}
       if (religion) {DatingUser.update({id:`${id}`},{religion : religion}); console.log("1");}else{console.log("2");}
       if (smoke) {DatingUser.update({id : id},{smoke : smoke}); console.log("1");}else{console.log("2");}
       if (idealtype) {DatingUser.update({id:`${id}`},{idealtype : idealtype}); console.log("1");}else{console.log("2");}
