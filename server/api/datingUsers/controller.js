@@ -64,23 +64,23 @@ export const create = async (ctx) => {
   if(email === '' || address === '' || gender === '' || age === '' || collage === ''){
     id = id.toString();
     try{
-      if (self) {DatingUser.update({id : id},{self : self});}
-      if (same) {DatingUser.update({id: id },{same : same});}
-      if (appearance) {DatingUser.update({id : id},{appearance : appearance});}
-      if (personality) {DatingUser.update({id:id},{personality : personality});}
-      if (hobby) {DatingUser.update({id : `${id}`},{hobby : hobby});}
-      if (religion) {DatingUser.update({id:`${id}`},{religion : religion}); }
-      if (smoke) {DatingUser.update({id : id},{smoke : smoke});}
-      if (idealtype) {DatingUser.update({id:`${id}`},{idealtype : idealtype});}
-      if (chatlink) {DatingUser.update({id : id},{chatlink : chatlink}); }
-      if (tag) {DatingUser.update({id:`${id}`},{tag : tag}); }
-      if (keysentence) {DatingUser.update({id : id},{keysentence : keysentence}); }
-      if (appearance2) {DatingUser.update({id:`${id}`},{appearance2 : appearance2});}
-      if (personality2) {DatingUser.update({id : id},{personality2 : personality2});}
-      if (hobby2) {DatingUser.update({id:`${id}`},{hobby2 : hobby2});}
-      if (idealtype2) {DatingUser.update({id : id},{idealtype2 : idealtype2});}
-      if (religion2) {DatingUser.update({id:`${id}`},{religion2 : religion2});}
-      if (smoke2) {DatingUser.update({id : id},{smoke2 : smoke2});}
+      if (self) {DatingUser.update({id : id},{self : self}); console.log("1");} else{console.log("2");}
+      if (same) {DatingUser.update({id: id },{same : same}); console.log("1");} else{console.log("2");}
+      if (appearance) {DatingUser.update({id : id},{appearance : appearance}); console.log("1");} else{console.log("2");}
+      if (personality) {DatingUser.update({id:id},{personality : personality}); console.log("1");}else{console.log("2");}
+      if (hobby) {DatingUser.update({id : `${id}`},{hobby : hobby}); console.log("1");}else{console.log("2");}
+      if (religion) {DatingUser.update({id:`${id}`},{religion : religion}); console.log("1");}else{console.log("2");}
+      if (smoke) {DatingUser.update({id : id},{smoke : smoke}); console.log("1");}else{console.log("2");}
+      if (idealtype) {DatingUser.update({id:`${id}`},{idealtype : idealtype}); console.log("1");}else{console.log("2");}
+      if (chatlink) {DatingUser.update({id : id},{chatlink : chatlink}); console.log("1");}else{console.log("2");}
+      if (tag) {DatingUser.update({id:`${id}`},{tag : tag}); console.log("1");}else{console.log("2");}
+      if (keysentence) {DatingUser.update({id : id},{keysentence : keysentence}); console.log("1");}else{console.log("2");}
+      if (appearance2) {DatingUser.update({id:`${id}`},{appearance2 : appearance2}); console.log("1");}else{console.log("2");}
+      if (personality2) {DatingUser.update({id : id},{personality2 : personality2}); console.log("1");}else{console.log("2");}
+      if (hobby2) {DatingUser.update({id:`${id}`},{hobby2 : hobby2}); console.log("1");}else{console.log("2");}
+      if (idealtype2) {DatingUser.update({id : id},{idealtype2 : idealtype2}); console.log("1");}else{console.log("2");}
+      if (religion2) {DatingUser.update({id:`${id}`},{religion2 : religion2}); console.log("1");}else{console.log("2");}
+      if (smoke2) {DatingUser.update({id : id},{smoke2 : smoke2}); console.log("1");}else{console.log("2");}
      
       console.log(`${id} 수정완료`);
     } catch (e){
