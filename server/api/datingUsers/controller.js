@@ -65,8 +65,8 @@ export const create = async (ctx) => {
   if(email === '' || address === '' || gender === '' || age === '' || collage === ''){
     id = id.toString();
     try{
-      if (self) {await DatingUser.update({id : id},{self : self}); console.log("1");} else{console.log("2");}
-      if (same) {await DatingUser.update({id: id },{same : same}); console.log("1");} else{console.log("2");}
+      if (self==0) {await DatingUser.update({id : id},{self : self}); console.log("1");} else{console.log("2");}
+      if (same==0) {await DatingUser.update({id: id },{same : same}); console.log("1");} else{console.log("2");}
       if (appearance) {await DatingUser.update({id : id},{appearance : appearance}); console.log("1");} else{console.log("2");}
       if (personality) {await DatingUser.update({id: id},{personality : personality}); console.log("1");}else{console.log("2");}
       if (hobby) {await DatingUser.update({id : id},{hobby : hobby}); console.log("1");}else{console.log("2");}
