@@ -21,6 +21,7 @@ import fs from 'fs';
 import https from 'https';
 
 require('dotenv').config();
+console.log('a');
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
