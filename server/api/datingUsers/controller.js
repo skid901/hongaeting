@@ -63,7 +63,68 @@ export const create = async (ctx) => {
   } = ctx.request.body;
   
   if(email === '' || address === '' || gender === '' || age === '' || collage === ''){
-    console.log("a");
+    id = id.toString();
+    try{
+      if (self == 1) {
+        DatingUser.update({id : id},{self : self})
+      } else if(self == 0){
+        DatingUser.update({id : id}, {self : self})
+      }
+      if (same == 1) {
+        DatingUser.update({id : id},{same : same});
+      } else if(same == 0){
+        DatingUser.update({id : id},{same : same});
+      }
+      if (appearance) {
+        DatingUser.update({id : id},{appearance : appearance});
+      }  
+      if (personality) {
+        DatingUser.update({id : id},{personality : personality});
+      } 
+      if (hobby) {
+        DatingUser.update({id : id},{hobby : hobby});
+      } 
+      if (religion) {
+        DatingUser.update({id : id},{religion : religion});
+      } 
+      if (smoke) {
+        DatingUser.update({id : id},{smoke : smoke});
+      } 
+      if (idealtype) {
+        DatingUser.update({id : id},{idealtype : idealtype});
+      } 
+      if (chatlink) {
+        DatingUser.update({id : id},{chatlink : chatlink});
+      } 
+      if (tag) {
+        DatingUser.update({id : id},{tag : tag});
+      } 
+      if (keysentence) {
+        DatingUser.update({id : id},{keysentence : keysentence});
+      } 
+      if (appearance2) {
+        DatingUser.update({id : id},{appearance2 : appearance2});
+      } 
+      if (personality2) {
+        DatingUser.update({id : id},{personality2 : personality2});
+      } 
+      if (hobby2) {
+        DatingUser.update({id : id},{hobby2 : hobby2});
+      } 
+      if (idealtype2) {
+        DatingUser.update({id : id},{idealtype2 : idealtype2});
+      } 
+      if (religion2) {
+        DatingUser.update({id : id},{religion2 : religion2});
+      } 
+      if (smoke2) {
+        DatingUser.update({id : id},{smoke2 : smoke2});
+      } 
+     
+      console.log(`${id} 수정완료`);
+    } catch (e){
+        return ctx.throw(500, e);
+    }
   }
   else{
     const datingUser = new DatingUser({
