@@ -35,8 +35,9 @@ export const create = async (ctx) => {
 }
 */
 export const create = async (ctx) => {
+  let {id} = ctx.request.body;
   const {
-    id,
+    //id,
     time,
     email,
     address,
