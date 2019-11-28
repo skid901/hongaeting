@@ -1,4 +1,5 @@
 import DatingUser from '../../models/selfDating';
+import SelfDatingUserStore from '../../../src/store/SelfDatingUserStore';
 /*
 export const create = async (ctx) => {
   const {
@@ -35,8 +36,8 @@ export const create = async (ctx) => {
 }
 */
 export const create = async (ctx) => {
+  let {id} = ctx.request.body;
   const {
-    id,
     time,
     email,
     address,
@@ -61,7 +62,6 @@ export const create = async (ctx) => {
     religion2,
     smoke2
   } = ctx.request.body;
-  
   if(email === '' || address === '' || gender === '' || age === '' || collage === ''){
     console.log("a");
   }

@@ -79,38 +79,45 @@ app.use(async ctx => {
 });
 
 // http 서버
-const httpServer = http.createServer(app.callback());
+try {
+  const httpServer = http.createServer(app.callback());
 
-// socket 서버
-socketServer(httpServer, app);
+  // socket 서버
+  socketServer(httpServer, app);
 
-httpServer.listen(process.env.SERVER_PORT, () => {
-  console.log(
-    `Listening to http://${process.env.SERVER_IP}:${process.env.SERVER_PORT}`,
-  );
-});
-
+  httpServer.listen(process.env.SERVER_PORT, () => {
+    console.log(
+      `Listening to http://${process.env.SERVER_IP}:${process.env.SERVER_PORT}`,
+    );
+  });
+}catch(e){
+  console.log('httpError');
+}
 // https 서버
-const options = {
-  key: fs
-    .readFileSync(
-      path.resolve(process.cwd(), `certs/${process.env.SSL_KEY}`),
-      'utf8',
-    )
-    .toString(),
+try{
+  const options = {
+    key: fs
+      .readFileSync(
+        path.resolve(process.cwd(), `certs/${process.env.SSL_KEY}`),
+        'utf8',
+      )
+      .toString(),
 
-  cert: fs
-    .readFileSync(
-      path.resolve(process.cwd(), `certs/${process.env.SSL_CERT}`),
-      'utf8',
-    )
-    .toString(),
-};
+    cert: fs
+      .readFileSync(
+        path.resolve(process.cwd(), `certs/${process.env.SSL_CERT}`),
+        'utf8',
+      )
+      .toString(),
+  };
 
-const httpsServer = https.createServer(options, app.callback());
+  const httpsServer = https.createServer(options, app.callback());
 
-httpsServer.listen(process.env.SERVER_PORT_HTTPS, () => {
-  console.log(
-    `Listening to https://${process.env.SERVER_IP}:${process.env.SERVER_PORT_HTTPS}`,
-  );
-});
+  httpsServer.listen(process.env.SERVER_PORT_HTTPS, () => {
+    console.log(
+      `Listening to https://${process.env.SERVER_IP}:${process.env.SERVER_PORT_HTTPS}`,
+    );
+  });
+}catch(e){
+  console.log("httpsError");
+}
