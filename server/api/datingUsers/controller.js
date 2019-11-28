@@ -63,7 +63,7 @@ export const create = async (ctx) => {
   } = ctx.request.body;
   
   if(email === '' || address === '' || gender === '' || age === '' || collage === ''){
-    
+    console.log('a');
   }
   else{
     const datingUser = new DatingUser({
