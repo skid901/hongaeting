@@ -13,7 +13,7 @@ import ReactPaginate from 'react-paginate';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Badge from 'component/06SelfDatingList/Badge';
-import ChannelService from '../ChannelTalk/ChannelService';
+//import ChannelService from '../ChannelTalk/ChannelService';
 
 const useStyles1 = makeStyles({
   root: {
@@ -47,9 +47,9 @@ const SelfDatingList = ({
   useEffect(() => {
     setGender(gender);
     setUsers(1);
-    ChannelService.boot({
-      "pluginKey": "3d8ab77f-d765-484e-825f-535ffa8d60ce",
-    })
+    // ChannelService.boot({
+    //   "pluginKey": "3d8ab77f-d765-484e-825f-535ffa8d60ce",
+    // })
     //setUserCount();
   }, []);
 
