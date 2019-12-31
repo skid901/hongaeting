@@ -26,7 +26,7 @@ const App = () => (
   >
     <BrowserRouter>
       <div className="App">
-        <CustomAppBar />
+        {/* <CustomAppBar /> */}
         <AlertDialog />
         {/* <SelfDatingList/> */}
         <Router />
