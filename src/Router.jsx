@@ -2,9 +2,9 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Welcome from 'component/01Welcome/Welcome';
-import SignUp from 'component/02SignUp/SignUp';
-import Summit from 'component/02SignUp/Summit';
-import Auth from 'component/02SignUp/Auth';
+import SignUp from 'component/02SignUp2/SignUp';
+//import Summit from 'component/02SignUp/Summit';
+//import Auth from 'component/02SignUp/Auth';
 import SignIn from 'component/03SignIn/SignIn';
 import MyPage from 'component/04MyPage/MyPage';
 import IntroductionForm from 'component/05IntroductionForm/IntroductionForm';
@@ -28,8 +28,8 @@ const Router = () => (
   <Switch>
     <Route exact path="/" component={RealWelcome} />
     <Route path="/signup/form" component={SignUp} />
-    <Route path="/signup/summit" component={Summit} />
-    <Route path="/signup/auth/:authNum" component={Auth} />
+    {/* <Route path="/signup/summit" component={Summit} /> */}
+    {/* <Route path="/signup/auth/:authNum" component={Auth} /> */}
     {/* <Route path="/signin" component={SignIn} /> */}
     {/* <Route path="/mypage/:nickName" component={MyPage} /> */}
     {/* <Route path="/introductionform" component={IntroductionForm} /> */}

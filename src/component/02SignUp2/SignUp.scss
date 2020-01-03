@@ -1,0 +1,18 @@
+@mixin SignUp {
+  font-size: 1rem;
+  max-width: 770px;
+  margin: {
+    left: auto;
+    right: auto;
+  }
+  padding: {
+    top: 20px;
+    left: 30px;
+    bottom: 20px;
+    right: 30px;
+  }
+}
+
+.SignUp{
+  
+}
