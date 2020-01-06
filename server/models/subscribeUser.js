@@ -4,6 +4,6 @@ const SubscribeUserSchema = new Schema({
   phone: String
 });
 
-const SubscribeUser = mongoose.model('datinguser', SubscribeUserSchema);
+const SubscribeUser = mongoose.model('subscribeuser', SubscribeUserSchema);
 
 export default SubscribeUser;
