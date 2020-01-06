@@ -11,7 +11,7 @@ import './RealWelcome.scss';
 const RealWelcome = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = async(phone) => {
-    const url = `${process.env.REACT_APP_DOMAIN}/api/subscirbe`;
+    const url = `${process.env.REACT_APP_DOMAIN}/api/subscribe`;
     const req = await axios.post(url, phone);
     console.log("success", req);
   }
