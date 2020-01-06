@@ -1,9 +1,21 @@
 import React from 'react';
+
+import axios from 'axios';
+
 import Container from '@material-ui/core/Container';
+import {useForm} from 'react-hook-form';
+import Input from "@material-ui/core/Input";
 
 import './RealWelcome.scss';
 
 const RealWelcome = () => {
+  const { register, handleSubmit } = useForm();
+  const onSubmit = async(phone) => {
+    const url = `${process.env.REACT_APP_DOMAIN}/api/subscirbe`;
+    const req = await axios.post(url, phone);
+    console.log("success", req);
+  }
+
   return (
     <div className="image">
       <div className="tiledBackground" />
@@ -28,6 +40,26 @@ const RealWelcome = () => {
         더 나은 모습으로 준비하여 <br />
         <span className="bold">홍개팅 시즌4</span>로 돌아올게요.
       </div>
+
+      <div className="formWrapper">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <Input
+            name="phoneNumber"
+            ref={register}
+            placeholder="01012345678"
+          />
+          <div className="buttonWrapper">
+            <input
+              className="button"
+              type="submit"
+              value="시즌4 알림 받기"
+            />
+          </div>
+        </form>
+      </div>
+
       <Container
         className="signUpLink"
         maxWidth="sm"
