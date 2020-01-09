@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import axios from 'axios';
 
@@ -10,10 +10,12 @@ import './RealWelcome.scss';
 
 const RealWelcome = () => {
   const { register, handleSubmit } = useForm();
+  const [ isSubmitted, setSubmitted ] = useState(false);
   const onSubmit = async(phone) => {
     const url = `${process.env.REACT_APP_DOMAIN}/api/subscribe`;
     const req = await axios.post(url, phone);
     console.log("success", req);
+    console.log(phone);
   }
 
   return (
@@ -47,7 +49,17 @@ const RealWelcome = () => {
         >
           <Input
             name="phoneNumber"
-            ref={register}
+            ref={register({
+              required: '입력후 버튼을 눌러주세요',
+              maxLength : {
+                value: 11,
+                message: '잘못된 전화번호 형식입니다'
+              },
+              minLength: {
+                value: 11,
+                message: '01012345678과 같은 형식으로 입력해주세요'
+              }
+            })}
             placeholder="01012345678"
           />
           <div className="buttonWrapper">
@@ -55,7 +67,9 @@ const RealWelcome = () => {
               className="button"
               type="submit"
               value="시즌4 알림 받기"
+              onClick = {()=> {setSubmitted(true)}}
             />
+            {isSubmitted && (<div>전송완료</div>)}
           </div>
         </form>
       </div>
