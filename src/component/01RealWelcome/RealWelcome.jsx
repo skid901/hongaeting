@@ -12,11 +12,16 @@ const RealWelcome = () => {
   const { register, handleSubmit, errors } = useForm();
   const [ isSubmitted, setSubmitted ] = useState(false);
   const onSubmit = async(phone) => {
-    await console.log(phone);
     const url = `${process.env.REACT_APP_DOMAIN}/api/subscribe`;
-    const req = await axios.post(url, phone);
-    console.log("success", req);
-    
+    let req;
+    if(phone.phone.length === 11){
+      req = await axios.post(url, phone);
+      setSubmitted(1);
+    }
+    else{
+      alert("'-'를 제외한 숫자를 모두 입력해주세요");
+      return;
+    }    
   }
 
   return (
@@ -46,22 +51,19 @@ const RealWelcome = () => {
 
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <Input
-          style={{ marginBottom: "20px" }}
+          style={{ marginBottom: "10px" }}
           name="phone"
-          inputRef={register({
-            validate: value => {console.log(value.length); return (value.length === 11)}
-          })}
+          inputRef={register}
           placeholder="01012345678"
         />
         <div>
-          <input 
-            type="submit"
-            onClick={() => {
-              if(errors.phone){
-                alert("'-'는 제외한 모든 숫자를 입력해주세요")
-              }
-            }}
-          />
+          {isSubmitted ? 
+            <p>시즌 4 알림이 신청 되었습니다.</p> :
+            <input 
+              type="submit"
+            />
+          }
+          
         </div>
       </form>
 
