@@ -2,7 +2,7 @@ import SubscribeUser from '../../models/subscribeUser';
 
 export const subscribe = async (ctx) => {
   const {phone} = ctx.request.body;
-
+  console.log(ctx);
   console.log("phone :", phone);
   const subscribeUser = new SubscribeUser({phone});
 

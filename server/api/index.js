@@ -14,5 +14,5 @@ api.use('/chat', chat.routes());
 api.use('/datingusers', datingUser.routes());
 api.use('/meetingusers', meetingUser.routes());
 
-api.post('/subscribe', controller.subscribe());
+api.post('/subscribe', controller.subscribe);
 export default api;
