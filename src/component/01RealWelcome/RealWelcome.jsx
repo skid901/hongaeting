@@ -1,27 +1,27 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import axios from 'axios';
 
 import Container from '@material-ui/core/Container';
-import {useForm} from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import Input from "@material-ui/core/Input";
 
 import './RealWelcome.scss';
 
 const RealWelcome = () => {
   const { register, handleSubmit, errors } = useForm();
-  const [ isSubmitted, setSubmitted ] = useState(false);
-  const onSubmit = async(data) => {
+  const [isSubmitted, setSubmitted] = useState(false);
+  const onSubmit = async (data) => {
     const url = `${process.env.REACT_APP_DOMAIN}/api/subscribe`;
     let req;
-    if(data.phone.length === 11){
+    if (data.phone.length === 11) {
       req = await axios.post(url, data);
       setSubmitted(1);
     }
-    else{
+    else {
       alert("'-'를 제외한 숫자를 모두 입력해주세요");
       return;
-    }    
+    }
   }
 
   return (
@@ -57,11 +57,11 @@ const RealWelcome = () => {
           placeholder="01012345678"
         />
         <div>
-          {isSubmitted ? 
+          {isSubmitted ?
             <p>시즌 4 알림이 신청 되었습니다.</p> :
-            <input type="submit"/>
+            <input type="submit" />
           }
-          
+
         </div>
       </form>
 
