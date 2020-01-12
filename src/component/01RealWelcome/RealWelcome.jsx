@@ -47,7 +47,7 @@ const RealWelcome = () => {
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <Input
           style={{ marginBottom: "20px" }}
-          name="PhoneNumber"
+          name="phone"
           inputRef={register}
           placeholder="01012345678"
         />
