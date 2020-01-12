@@ -9,7 +9,7 @@ import Input from "@material-ui/core/Input";
 import './RealWelcome.scss';
 
 const RealWelcome = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors } = useForm();
   const [ isSubmitted, setSubmitted ] = useState(false);
   const onSubmit = async(phone) => {
     await console.log(phone);
@@ -48,10 +48,21 @@ const RealWelcome = () => {
         <Input
           style={{ marginBottom: "20px" }}
           name="phone"
-          inputRef={register}
+          inputRef={({
+            validate: value => value.length === 11
+          })}
           placeholder="01012345678"
         />
-        <input type="submit"/>
+        <div>
+          <input 
+            type="submit"
+            onClick={() => {
+              if(errors.phone){
+                alert("'-'는 제외한 모든 숫자를 입력해주세요")
+              }
+            }}
+          />
+        </div>
       </form>
 
       <Container
