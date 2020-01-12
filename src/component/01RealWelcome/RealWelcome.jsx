@@ -53,7 +53,6 @@ const RealWelcome = () => {
           })}
           placeholder="01012345678"
         />
-        <div>
           <input 
             type="submit"
             onClick={() => {
@@ -62,7 +61,6 @@ const RealWelcome = () => {
               }
             }}
           />
-        </div>
       </form>
 
       <Container
