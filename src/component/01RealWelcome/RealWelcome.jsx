@@ -59,9 +59,7 @@ const RealWelcome = () => {
         <div>
           {isSubmitted ? 
             <p>시즌 4 알림이 신청 되었습니다.</p> :
-            <input 
-              type="submit"
-            />
+            <input type="submit"/>
           }
           
         </div>
