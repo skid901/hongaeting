@@ -48,11 +48,12 @@ const RealWelcome = () => {
         <Input
           style={{ marginBottom: "20px" }}
           name="phone"
-          inputRef={({
-            validate: value => value.length === 11
+          inputRef={register({
+            validate: value => {console.log(value.length); return (value.length === 11)}
           })}
           placeholder="01012345678"
         />
+        <div>
           <input 
             type="submit"
             onClick={() => {
@@ -61,6 +62,7 @@ const RealWelcome = () => {
               }
             }}
           />
+        </div>
       </form>
 
       <Container
