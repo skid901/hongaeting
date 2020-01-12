@@ -3,7 +3,7 @@ import SubscribeUser from '../../models/subscribeUser';
 export const subscribe = async (ctx) => {
   const {phone} = ctx.request.body;
   console.log("phone :", phone);
-  const subscribeUser = new SubscribeUser({PhoneNumber});
+  const subscribeUser = new SubscribeUser({phone});
 
   try{
     await subscribeUser.save();
