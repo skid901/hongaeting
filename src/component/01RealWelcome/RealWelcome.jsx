@@ -11,11 +11,11 @@ import './RealWelcome.scss';
 const RealWelcome = () => {
   const { register, handleSubmit, errors } = useForm();
   const [ isSubmitted, setSubmitted ] = useState(false);
-  const onSubmit = async(phone) => {
+  const onSubmit = async(data) => {
     const url = `${process.env.REACT_APP_DOMAIN}/api/subscribe`;
     let req;
-    if(phone.phone.length === 11){
-      req = await axios.post(url, phone);
+    if(data.phone.length === 11){
+      req = await axios.post(url, data);
       setSubmitted(1);
     }
     else{
