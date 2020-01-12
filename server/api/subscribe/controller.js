@@ -4,7 +4,7 @@ export const subscribe = async (ctx) => {
   const {phone, PhoneNumber} = ctx.request.body;
   console.log(PhoneNumber);
   console.log("phone :", phone);
-  const subscribeUser = new SubscribeUser({phone});
+  const subscribeUser = new SubscribeUser({PhoneNumber});
 
   try{
     await subscribeUser.save();
