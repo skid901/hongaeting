@@ -1,18 +1,58 @@
-@mixin SignUp {
-  font-size: 1rem;
-  max-width: 770px;
-  margin: {
-    left: auto;
-    right: auto;
-  }
-  padding: {
-    top: 20px;
-    left: 30px;
-    bottom: 20px;
-    right: 30px;
-  }
-}
+// @mixin SignUp {
+//   font-size: 1rem;
+//   width: 720px;
+//   margin: 0 auto;
+//   padding: {
+//     top: 20px;
+//     left: 30px;
+//     bottom: 20px;
+//     right: 30px;
+//   }
+// }
 
 .SignUp{
-  
+  width: 720px;
+  margin: 0 auto;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+label{
+  line-height: 2;
+  text-align: left;
+  display: block;
+  margin-bottom: 13px;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 200;
+}
+
+input.textInput {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid wheat;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+input[type="submit"] {
+  background: #ec5990;
+  color: white;
+  text-transform: uppercase;
+  border: none;
+  margin-top: 40px;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 100;
+  letter-spacing: 10px;
+}
+
+input[type="submit"]:hover {
+  background: #b86582;
+}
+
+input.radioInput{
+
 }
