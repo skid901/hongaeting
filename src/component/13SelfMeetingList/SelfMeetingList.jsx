@@ -247,6 +247,7 @@ class Cards extends React.Component {
           onClick={() => {
             setSelectedUser(user);
             history.push(url);
+            window.scrollTo(0,0);
           }}
         >
           <div className="MuiCardHeader-root">
