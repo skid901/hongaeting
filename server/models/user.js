@@ -16,6 +16,12 @@ UserSchema.methods.checkPassword = async (password) => {
   return result;
 }
 
+UserSchema.methods.serialize = () => {
+  const data = this.toJSON();
+  delete data.hashedPassword;
+  return data;
+}
+
 UserSchema.statics.findByUsername = (username) => {
   return this.findOne({ username })
 }

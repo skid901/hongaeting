@@ -17,8 +17,37 @@ const SignUp = observer(() => {
     console.log(selectedGender, e.target.value); // 검토용
   }
 
+  const handleAlert = (_title, _message) => {
+    //alert(`${_title}`);
+    alert(`${_message}`);
+  };
+
   const onSubmit = (data) => {
-    alert(JSON.stringify(data));
+    const { email, password, passwordCheck, nickname, gender, schoolIDCard } = data;
+    if (email === '') {
+      handleAlert(`이메일 미입력`, `이메일을 입력해주세요.`);
+      return;
+    }
+    if (password === '') {
+      handleAlert(`비밀번호 미입력`, `비밀번호를 입력해주세요.`);
+      return;
+    }
+    if (passwordCheck === '') {
+      handleAlert(`비밀번호 확인 미입력`, `비밀번호 확인을 입력해주세요.`);
+      return;
+    }
+    if (nickname === '') {
+      handleAlert(`닉네임 미입력`, `닉네임을 입력해주세요.`);
+      return;
+    }
+    if (gender === '') {
+      handleAlert(`성별 미입력`, `성별을 입력해주세요.`);
+      return;
+    }
+    if (schoolIDCard === '') {
+      handleAlert(`학생증 미입력`, `학생증을 입력해주세요.`);
+      return;
+    }
   }
 
   return(
@@ -47,6 +76,15 @@ const SignUp = observer(() => {
           <input
             className="textInput"
             name="passwordCheck"
+            ref={register}
+          />
+        </div>
+
+        <div>
+          <label>닉네임</label>
+          <input
+            className="textInput"
+            name="nickname"
             ref={register}
           />
         </div>
