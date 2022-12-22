@@ -16,7 +16,7 @@
     "customize-cra": "^0.7.0",
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "koa": "^2.8.1",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
